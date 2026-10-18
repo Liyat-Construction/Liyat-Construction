@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-manrope), system-ui, sans-serif;
+}
+
+@theme {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-brand-primary-light: var(--brand-primary-light);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-dark: var(--brand-accent-dark);
+
+  /* Semantic surface colors */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f9fafb;
+  --color-surface-warm: #fafaf5;
+  --color-surface-cool: #fafbfc;
+  --color-surface-card: #1f2937;
+  --color-surface-card-from: #1a2332;
+  --color-surface-card-to: #141b26;
+  --color-surface-modal: #0b1220;
+  --color-surface-page: #18181b;
+
+  /* Semantic text colors */
+  --color-text-primary: #252b30;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #e5e7eb;
+  --color-text-on-accent: #ffffff;
+
+  /* Semantic border colors */
+  --color-border-default: #e5e7eb;
+  --color-border-dark: #374151;
+}
+
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Headings use Manrope */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+.PhoneInput {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInputInput {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  color: inherit;
+}
+
+.PhoneInputInput:focus {
+  outline: none;
+  border-color: var(--color-brand-accent);
+  box-shadow: 0 0 0 1px var(--color-brand-accent);
+}
+
+/* Country dropdown select - theme-aware styling */
+.PhoneInputCountrySelect,
+select.PhoneInputCountrySelect {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.PhoneInputCountrySelect option,
+select.PhoneInputCountrySelect option {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  padding: 0.5rem;
+}
+
+html.dark .PhoneInputCountrySelect,
+html.dark select.PhoneInputCountrySelect {
+  background: #1f2937 !important;
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+  border: 1px solid #374151 !important;
+}
+
+html.dark .PhoneInputCountrySelect option,
+html.dark select.PhoneInputCountrySelect option {
+  background: #1f2937 !important;
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* Target the dropdown menu/popup that appears */
+.PhoneInputCountrySelect::-ms-expand {
+  display: none;
+}
+
+/* Smooth scroll offset for sticky navbar */
+[id] {
+  scroll-margin-top: 80px;
+}
