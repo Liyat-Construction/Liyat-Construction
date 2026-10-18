@@ -7,6 +7,25 @@ import type { HomePage } from '@/types/content';
 
 export const HOME_PAGE: HomePage = {
   heroTitleLines: ['Groundwater', 'Development', 'Engineered Right'],
+  heroSlides: [
+    {
+      url: '/hero/hero-water-column.webp',
+      alt: 'Water column rising from a newly developed Liyat well',
+    },
+    {
+      url: '/hero/hero-afar-rig-fleet.webp',
+      alt: 'Liyat drilling rig and support fleet at Afdera, Afar Region',
+    },
+    { url: '/hero/hero-ethiopian-airlines.webp', alt: 'Pumping test for Ethiopian Airlines' },
+    {
+      url: '/hero/hero-credocs-shoring.webp',
+      alt: 'Drilling rig in the 14 m deep shored excavation for CREDOCS Digital Service',
+    },
+    {
+      url: '/hero/hero-yekatit-12.webp',
+      alt: 'Well development at Yekatit 12 Hospital Medical College',
+    },
+  ],
   heroSubtitle:
     'Liyat Construction PLC delivers groundwater investigation, water-well drilling, pumping tests, and turnkey water works across Ethiopia for institutional and commercial clients.',
   heroPrimaryButtonText: 'Contact Us',

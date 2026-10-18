@@ -11,7 +11,7 @@ import type { Testimonial } from '@/types/content';
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    clientName: 'Abebe Kebede',
+    clientName: 'Alemayew Bayew',
     company: 'Facilities Director, Addis Ababa',
     quote:
       'Liyat Construction delivered a thorough pumping test and clear report that helped us size our pump system correctly. Their team was professional and responsive throughout the project.',

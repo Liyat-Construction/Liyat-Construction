@@ -10,7 +10,7 @@
 
 import type { Project } from '@/types/content';
 
-const placeholderImage = { url: '/placeholders/project.svg', alt: 'Project image placeholder' };
+const photo = (file: string, alt: string) => ({ url: `/projects/${file}.webp`, alt });
 
 export const PROJECTS: Project[] = [
   {
@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
       'Pumping test and performance evaluation to support the bank’s water supply system requirements.',
     description:
       'Liyat Construction PLC conducted a pumping test for Tsedey Bank to evaluate well performance and confirm sustainable yield for the bank’s water supply system. The work included water-level monitoring, drawdown and recovery measurements, and a technical report suitable for design and operational planning.',
-    image: placeholderImage,
+    image: photo('tsedey-bank-pumping-test', 'Pumping test discharge at the Tsedey Bank site'),
     gallery: [],
     tags: ['Pumping Test', 'Hydrogeological Evaluation'],
     featured: true,
@@ -35,8 +35,18 @@ export const PROJECTS: Project[] = [
     summary: 'Lowering and shoring works to 14 meters for a digital-service facility project.',
     description:
       'For CREDOCKS Digital Service, Liyat performed rig lowering and shoring work to a depth of 14 meters. The project required controlled excavation support and careful coordination with the client’s construction team to maintain safety and schedule.',
-    image: placeholderImage,
-    gallery: [],
+    image: photo(
+      'credocs-deep-shoring',
+      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS Digital Service'
+    ),
+    gallery: [
+      photo('credocs-site-overview', 'Overview of the shored excavation at the CREDOCS site'),
+      photo(
+        'credocs-rig-in-excavation',
+        'Liyat drilling rig working at the base of the excavation'
+      ),
+      photo('credocs-shoring-works', 'Shoring works and site cranes at the CREDOCS project'),
+    ],
     tags: ['Shoring', 'Excavation Support'],
     featured: true,
   },
@@ -48,7 +58,7 @@ export const PROJECTS: Project[] = [
     summary: 'Groundwater and water-supply works for the Chaka House development.',
     description:
       'Liyat provided groundwater development and water-supply services for the Chaka House project. The scope included well construction and related water works to support the property’s operational water needs.',
-    image: placeholderImage,
+    image: photo('chaka-house-project', 'Liyat drilling rig on site at the Chaka House project'),
     gallery: [],
     tags: ['Well Development', 'Water Supply'],
     featured: true,
@@ -61,7 +71,7 @@ export const PROJECTS: Project[] = [
     summary: 'Groundwater development works for salt manufacturing operations in the Afar region.',
     description:
       'Liyat executed groundwater development works for SD Salt Manufacturing at Afdera in the Afar region. The project involved drilling and well-development activities to support industrial water demand in a remote and challenging environment.',
-    image: placeholderImage,
+    image: photo('sd-salt-afdera', 'Liyat drilling rig and support fleet at Afdera, Afar Region'),
     gallery: [],
     tags: ['Well Drilling', 'Industrial Water'],
     featured: true,
@@ -74,7 +84,7 @@ export const PROJECTS: Project[] = [
     summary: 'Artesian flowing well development near Entoto Kidanemihret Church.',
     description:
       'Liyat developed an artesian flowing well in the Entoto area near Kidanemihret Church. The project tapped natural artesian pressure to produce a flowing water source for local use.',
-    image: placeholderImage,
+    image: photo('entoto-artesian-well', 'Artesian well flowing near Entoto Kidanemihret Church'),
     gallery: [],
     tags: ['Artesian Well', 'Well Development'],
     featured: true,
@@ -87,7 +97,10 @@ export const PROJECTS: Project[] = [
     summary: 'Well development and water-supply works for a major hospital medical college.',
     description:
       'Liyat carried out well development works for Yekatit 12 Hospital Medical College, supporting the institution’s water demand with a dedicated groundwater source and related water-works infrastructure.',
-    image: placeholderImage,
+    image: photo(
+      'yekatit-12-well-development',
+      'Well development at Yekatit 12 Hospital Medical College'
+    ),
     gallery: [],
     tags: ['Well Development', 'Institutional Water'],
     featured: true,
@@ -100,8 +113,16 @@ export const PROJECTS: Project[] = [
     summary: 'Pumping test confirming a 40-litre-per-second yield for Ethiopian Airlines.',
     description:
       'Liyat performed a pumping test for Ethiopian Airlines to verify well capacity at 40 litres per second. The test provided the performance data needed for pump selection and distribution system design at the client’s facility.',
-    image: placeholderImage,
-    gallery: [],
+    image: photo(
+      'ethiopian-airlines-pumping-test',
+      'Pumping test at 40 litres per second for Ethiopian Airlines'
+    ),
+    gallery: [
+      photo(
+        'ethiopian-airlines-rig',
+        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
+      ),
+    ],
     tags: ['Pumping Test', 'High-Capacity Well'],
     featured: true,
   },
@@ -113,7 +134,10 @@ export const PROJECTS: Project[] = [
     summary: 'Pump installation and electromechanical works for the British Embassy.',
     description:
       'Liyat completed pump installation and electromechanical works for the British Embassy in Addis Ababa. The project involved selecting, installing, and commissioning pumping equipment to meet the embassy’s operational water requirements.',
-    image: placeholderImage,
+    image: photo(
+      'british-embassy-pump-installation',
+      'Pump installation works at the British Embassy, Addis Ababa'
+    ),
     gallery: [],
     tags: ['Pump Installation', 'Electromechanical'],
     featured: true,

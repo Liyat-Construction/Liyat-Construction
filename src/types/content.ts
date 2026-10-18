@@ -35,6 +35,8 @@ export interface Partner {
   name: string;
   /** Path under /public, e.g. '/partners/acme.png'. Without a logo, the name is shown as text. */
   logo?: string;
+  /** Site/project photo shown with the partner name when no logo is available. */
+  photo?: string;
   url?: string;
 }
 
@@ -55,6 +57,8 @@ export interface Service {
 
 export interface HomePage {
   heroTitleLines: [string, string, string];
+  /** Full-bleed hero background photos (cross-fade every 5s). Empty → animated gradient. */
+  heroSlides?: ImageAsset[];
   heroSubtitle: string;
   heroPrimaryButtonText: string;
   heroPrimaryButtonUrl: string;

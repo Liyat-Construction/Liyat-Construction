@@ -1,14 +1,14 @@
 /**
- * Client Logos Marquee - World Class Trust Banner
- * Premium infinite scrolling logo showcase with sophisticated interactions
- * Inspired by Stripe, Linear, and Apple-level polish
+ * Client Logos Marquee
+ * Infinite right-to-left strip of partner cards. A card shows a logo, a site
+ * photo with the partner name, or the name alone. Pauses on hover and stays
+ * still for users who prefer reduced motion.
  */
 
 'use client';
 
-import { useEffect, useState, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import type { Partner } from '@/types/content';
 
 interface ClientLogosMarqueeProps {
@@ -16,7 +16,6 @@ interface ClientLogosMarqueeProps {
 }
 
 export function ClientLogosMarquee({ logos }: ClientLogosMarqueeProps) {
-  const [hoveredId, setHoveredId] = useState<string | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Duplicate exactly 2x; then animate by the exact pixel width of 1 copy.
@@ -28,25 +27,17 @@ export function ClientLogosMarquee({ logos }: ClientLogosMarqueeProps) {
     if (!el) return;
 
     const updateShift = () => {
-      // With 2 copies, half the scrollWidth corresponds to one full set.
-      const total = el.scrollWidth;
-      const shift = total / 2;
+      const shift = el.scrollWidth / 2;
       if (Number.isFinite(shift) && shift > 0) {
         el.style.setProperty('--marquee-shift', `${shift}px`);
-
-        const speedRaw = getComputedStyle(el).getPropertyValue('--marquee-speed');
-        const speed = Number.parseFloat(speedRaw);
-        const resolvedSpeed = Number.isFinite(speed) && speed > 0 ? speed : 70;
-        el.style.setProperty('--marquee-duration', `${shift / resolvedSpeed}s`);
+        const speed = Number.parseFloat(getComputedStyle(el).getPropertyValue('--marquee-speed'));
+        el.style.setProperty('--marquee-duration', `${shift / (speed > 0 ? speed : 45)}s`);
       }
     };
 
     updateShift();
-
     const ro = new ResizeObserver(() => updateShift());
     ro.observe(el);
-
-    // Recompute once images settle (common cause of a seam if widths change post-mount).
     const t = window.setTimeout(updateShift, 250);
 
     return () => {
@@ -58,157 +49,88 @@ export function ClientLogosMarquee({ logos }: ClientLogosMarqueeProps) {
   if (logos.length === 0) return;
 
   return (
-    <div className="relative w-full">
-      {/* Premium container with subtle glass effect - full width edge to edge */}
-      <div className="relative w-full overflow-hidden border-y border-white/5 bg-white/[0.02] backdrop-blur-sm">
-        {/* Top gold accent line - full width */}
-        <div className="via-brand-accent/40 absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent to-transparent" />
+    <div className="relative w-full overflow-hidden">
+      <div className="from-surface-elevated dark:from-surface-page pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r to-transparent md:w-40" />
+      <div className="from-surface-elevated dark:from-surface-page pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l to-transparent md:w-40" />
 
-        {/* Bottom gold accent line - full width */}
-        <div className="via-brand-accent/40 absolute right-0 bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent to-transparent" />
+      <style>{`
+        @keyframes marquee-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(calc(-1 * var(--marquee-shift, 0px))); }
+        }
+        .da-marquee { animation: marquee-scroll var(--marquee-duration, 30s) linear infinite; }
+        .da-marquee:hover { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) {
+          .da-marquee { animation: none; }
+        }
+      `}</style>
 
-        {/* Left fade gradient */}
-        <div className="from-brand-primary/80 via-brand-primary/40 pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-24 bg-gradient-to-r to-transparent" />
-
-        {/* Right fade gradient */}
-        <div className="from-brand-primary/80 via-brand-primary/40 pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-24 bg-gradient-to-l to-transparent" />
-
-        {/* Scrolling container */}
-        <div
-          ref={containerRef}
-          className="da-marquee flex flex-nowrap items-center py-5 [@media(max-height:850px)]:py-4"
-          style={
-            {
-              animation: 'marquee-scroll var(--marquee-duration, 20s) linear infinite',
-              willChange: 'transform',
-              // Luxury/calm default speed (px/sec). Duration is computed from content width.
-              '--marquee-speed': '70',
-            } as CSSProperties
-          }
-          onMouseEnter={(e) => {
-            e.currentTarget.style.animationPlayState = 'paused';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.animationPlayState = 'running';
-            setHoveredId(undefined);
-          }}
-        >
-          <style>{`
-            @keyframes marquee-scroll {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(calc(-1 * var(--marquee-shift, 0px))); }
-            }
-
-            @media (max-width: 640px) {
-              .da-marquee {
-                --marquee-speed: 90;
-              }
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-              .da-marquee {
-                animation: none !important;
-              }
-            }
-          `}</style>
-
-          {duplicatedLogos.map((logo, index) => {
-            const uniqueKey = `${logo.name}-${index}`;
-            const isHovered = hoveredId === uniqueKey;
-            const hasAnyHover = hoveredId !== undefined;
-
-            return (
-              <div
-                key={uniqueKey}
-                className="group flex-shrink-0 px-6"
-                onMouseEnter={() => setHoveredId(uniqueKey)}
-                onMouseLeave={() => setHoveredId(undefined)}
-              >
-                {logo.url ? (
-                  <a
-                    href={logo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative block"
-                  >
-                    <LogoCard logo={logo} isHovered={isHovered} hasAnyHover={hasAnyHover} />
-                  </a>
-                ) : (
-                  <LogoCard logo={logo} isHovered={isHovered} hasAnyHover={hasAnyHover} />
-                )}
-              </div>
-            );
-          })}
-        </div>
+      <div
+        ref={containerRef}
+        className="da-marquee flex w-max flex-nowrap items-center py-6"
+        style={{ '--marquee-speed': '45', willChange: 'transform' } as CSSProperties}
+      >
+        {duplicatedLogos.map((partner, index) => {
+          const card = <PartnerCard partner={partner} />;
+          return (
+            <div
+              key={`${partner.name}-${index}`}
+              className="flex-shrink-0 px-3 md:px-4"
+              aria-hidden={index >= logos.length || undefined}
+            >
+              {partner.url ? (
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={index >= logos.length ? -1 : undefined}
+                >
+                  {card}
+                </a>
+              ) : (
+                card
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-interface LogoCardProps {
-  logo: Partner;
-  isHovered: boolean;
-  hasAnyHover: boolean;
-}
-
-function LogoCard({ logo, isHovered, hasAnyHover }: LogoCardProps) {
-  const shouldReduceMotion = useReducedMotion();
-
+function PartnerCard({ partner }: { partner: Partner }) {
   return (
-    <motion.div
-      className="relative flex h-14 items-center justify-center px-3 [@media(max-height:850px)]:h-12"
-      animate={shouldReduceMotion ? undefined : { scale: isHovered ? 1.12 : 1 }}
-      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      {/* Subtle glow on hover */}
-      {shouldReduceMotion ? undefined : (
-        <motion.div
-          className="pointer-events-none absolute inset-0 rounded-full"
-          animate={{
-            boxShadow: isHovered
-              ? '0 0 40px rgba(201, 162, 39, 0.25), 0 0 80px rgba(201, 162, 39, 0.1)'
-              : '0 0 0px rgba(201, 162, 39, 0)',
-          }}
-          transition={{ duration: 0.3 }}
+    <div className="group dark:ring-brand-accent/30 relative flex h-28 w-52 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_rgba(23,74,112,0.08)] ring-1 ring-gray-200/80 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(23,107,69,0.18)] md:h-32 md:w-64">
+      {partner.logo ? (
+        <Image
+          src={partner.logo}
+          alt={partner.name}
+          fill
+          sizes="256px"
+          unoptimized
+          className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
         />
-      )}
-
-      {logo.logo ? (
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+      ) : partner.photo ? (
+        <>
           <Image
-            src={logo.logo}
-            alt={logo.name}
-            width={140}
-            height={40}
+            src={partner.photo}
+            alt=""
+            fill
+            sizes="256px"
             unoptimized
-            className="h-10 w-auto max-w-[140px] min-w-[60px] object-contain transition-all duration-400 [@media(max-height:850px)]:h-9"
-            style={{
-              filter: hasAnyHover
-                ? isHovered
-                  ? 'grayscale(0) brightness(1.25) drop-shadow(0 4px 16px rgba(201, 162, 39, 0.35))'
-                  : 'grayscale(0.7) brightness(0.6) opacity(0.35)'
-                : 'grayscale(0.2) brightness(1) opacity(0.9)',
-              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-            }}
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
-        </div>
+          <div className="from-brand-primary-dark/90 via-brand-primary-dark/30 absolute inset-0 bg-gradient-to-t to-transparent" />
+          <span className="absolute inset-x-0 bottom-0 px-4 pb-3 text-left text-sm leading-tight font-semibold text-white">
+            {partner.name}
+          </span>
+        </>
       ) : (
-        <span
-          className="text-center text-sm font-bold tracking-widest uppercase transition-all duration-400"
-          style={{
-            color: isHovered
-              ? 'var(--color-brand-accent)'
-              : hasAnyHover
-                ? 'rgba(255, 255, 255, 0.35)'
-                : 'rgba(255, 255, 255, 0.8)',
-            textShadow: isHovered ? '0 0 30px rgba(201, 162, 39, 0.6)' : 'none',
-            letterSpacing: isHovered ? '0.15em' : '0.1em',
-            transform: isHovered ? 'scale(1.08)' : 'scale(1)',
-          }}
-        >
-          {logo.name}
+        <span className="text-brand-accent px-4 text-center text-sm font-bold tracking-wide uppercase">
+          {partner.name}
         </span>
       )}
-    </motion.div>
+      <div className="bg-brand-primary absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+    </div>
   );
 }

@@ -46,13 +46,13 @@ export function Navbar() {
               'hover:text-brand-accent text-white'
             )}
           >
-            <div className="border-brand-accent/60 flex h-8 w-8 items-center justify-center rounded-lg border bg-white/10">
+            <div className="flex h-9 items-center justify-center rounded-lg bg-white px-1.5 shadow-sm">
               <Image
                 src="/logo.png"
                 alt={siteConfig.logoAlt}
-                width={24}
-                height={24}
-                className="h-6 w-auto object-contain"
+                width={44}
+                height={28}
+                className="h-7 w-auto object-contain"
               />
             </div>
             <span>{siteConfig.name}</span>

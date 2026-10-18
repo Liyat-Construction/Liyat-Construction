@@ -65,7 +65,7 @@ export const siteConfig = {
     email: 'hello@liyatconstruction.com',
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
     address: '301 Mickey Leland St, Addis Ababa, Ethiopia',
-    officeHours: 'Mon–Sat, 8 AM – 11 PM',
+    officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
     // Google Maps → Share → Embed a map → copy only the src="..." URL
     mapEmbedUrl: '',
     // Default country for the phone field in the contact form (ISO code)
@@ -114,7 +114,7 @@ export const siteConfig = {
     ogTitle: 'Liyat Construction | Groundwater Development & Water-Well Engineering',
     ogDescription:
       'Ethiopian groundwater development and water-well engineering contractor serving government, institutional, and commercial clients.',
-    ogImage: '/og-image.png',
+    ogImage: '/og-image.jpg',
     ogImageAlt: 'Liyat Construction',
   },
 

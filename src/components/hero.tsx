@@ -7,6 +7,7 @@
 'use client';
 
 import { AnimatedGradientBackground } from '@/components/animated-gradient-background';
+import { HeroSlideshow } from '@/components/hero-slideshow';
 import { PremiumButton } from '@/components/premium-button';
 import { Container } from '@/components/container';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
@@ -71,8 +72,11 @@ export function Hero({ homePage }: HeroProps) {
 
   return (
     <section className="bg-brand-primary relative min-h-screen">
-      {/* Animated Gradient Background */}
-      <AnimatedGradientBackground />
+      {homePage.heroSlides?.length ? (
+        <HeroSlideshow slides={homePage.heroSlides} />
+      ) : (
+        <AnimatedGradientBackground />
+      )}
 
       {/* Content */}
       <Container className="relative z-10">
