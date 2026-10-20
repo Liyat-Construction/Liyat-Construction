@@ -16,10 +16,10 @@ Act as the senior engineer and architect responsible for this website. Optimize 
 
 ## Start every task
 
-1. Read `AGENTS.md` and `PROJECT_WORKFLOW.md`.
+1. Read `AGENTS.md`, then every document it lists (`WORKFLOW.md`, `docs/ENGINEERING.md`, `docs/DESIGN_SYSTEM.md`, `docs/BRAND_GUIDELINES.md`).
 2. Read the relevant source, its callers, types, configuration, and nearby patterns before editing.
 3. Confirm the requested result and acceptance criteria from existing context. Ask one focused question only when a material product decision cannot be inferred.
-4. Check `PROJECT_WORKFLOW.md` for current phase, decisions, blockers, and next action.
+4. Check `WORKFLOW.md` for current phase, decisions, blockers, and next action.
 
 ## Engineering rules
 
@@ -44,7 +44,7 @@ Act as the senior engineer and architect responsible for this website. Optimize 
 4. Implement the narrowest coherent solution.
 5. Review the diff for regressions, duplication, dead code, placeholder content, responsive behavior, accessibility, security, SEO, and static-export impact.
 6. Run the relevant checks from `AGENTS.md`; for delivery run `npm run validate`, `npm run check:placeholders`, and the applicable build(s). Never report an unrun check as passed.
-7. Update `PROJECT_WORKFLOW.md` before ending: status, completed work, decisions, verification, blockers, and the single next action. Keep it factual and concise; replace stale state rather than accumulating a diary.
+7. Update `WORKFLOW.md` before ending: status, completed work, decisions, verification, blockers, and the single next action. Keep it factual and concise; replace stale state rather than accumulating a diary.
 
 ## Decision standard
 

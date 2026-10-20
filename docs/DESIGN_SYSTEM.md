@@ -1,0 +1,287 @@
+# Design System
+
+> How the [brand](BRAND_GUIDELINES.md) becomes code. **Every visual decision is
+> made exactly once, in one file, and reused everywhere.** If you are about to
+> type a color, a font size, a radius or a button style inside a page or
+> section, stop: it belongs in a token or a component listed here.
+
+---
+
+## 1. The principle — one source for every decision
+
+The site is built in four layers. Each layer only uses the layer below it.
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ 4. PAGES       src/app/**/page.tsx                                   │
+│    Pick sections, pass them data from src/data. No styling.          │
+├──────────────────────────────────────────────────────────────────────┤
+│ 3. SECTIONS    src/components/sections/*   (+ layout/, diagrams/)    │
+│    Hero, ProofStrip, FeaturedProjects… Arrange cards and primitives. │
+│    Layout classes only (grid, gap, order). No colors, no type sizes. │
+├──────────────────────────────────────────────────────────────────────┤
+│ 2. COMPONENTS  src/components/ui/*  and  src/components/cards/*      │
+│    Button, Card, Section, Heading, Stat, ProjectCard…                │
+│    The ONLY place visual styling is written.                         │
+├──────────────────────────────────────────────────────────────────────┤
+│ 1. TOKENS      src/styles/tokens.css                                 │
+│    Colors, fonts, type scale, spacing, radii, shadows, motion.       │
+│    The ONLY place raw values (hex, px, rem, ms) are written.         │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**What this buys us**
+
+| I want to change…              | I edit exactly                           |
+| ------------------------------ | ---------------------------------------- |
+| The brand green, everywhere    | `tokens.css` → `--color-brand`           |
+| Every heading size             | `tokens.css` → `--text-h1` … `--text-h4` |
+| How every primary button looks | `ui/button.tsx` → `variants.primary`     |
+| Corner radius of every card    | `tokens.css` → `--radius-card`           |
+| Padding of every section       | `tokens.css` → `--spacing-section`       |
+| How every project card looks   | `cards/project-card.tsx`                 |
+| Homepage section order         | `src/app/page.tsx`                       |
+| Any text on the site           | `src/data/*.ts` or `src/config/site.ts`  |
+
+**Enforcement.** Tailwind's default palette is switched off (`--color-*: initial`),
+so `bg-red-500` or `text-gray-600` simply do not exist — only Liyat tokens do.
+`npm run check:design` fails the build if a hex value, `rgb()`, or an arbitrary
+Tailwind value (`text-[17px]`, `bg-[#…]`) appears outside `tokens.css`.
+A genuine exception needs a `// design-exception: <reason>` comment on that line.
+
+---
+
+## 2. Tokens — `src/styles/tokens.css`
+
+Tokens are Tailwind 4 `@theme` variables. Each token automatically becomes
+utility classes (`--color-brand` → `bg-brand`, `text-brand`, `border-brand`).
+Components use **token names only**.
+
+### 2.1 Color
+
+| Token                | Value                  | Utility examples                    | Role                                    |
+| -------------------- | ---------------------- | ----------------------------------- | --------------------------------------- |
+| `--color-brand`      | `#156635`              | `bg-brand` `text-brand`             | Actions, links, rule, highlights        |
+| `--color-brand-dark` | `#0F4F28`              | `hover:bg-brand-dark`               | Hover / pressed of brand elements only  |
+| `--color-brand-tint` | `#E7F0EA`              | `bg-brand-tint`                     | Callouts, table rows, selected states   |
+| `--color-ink`        | `#1D2521`              | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections   |
+| `--color-ink-muted`  | `#56615B`              | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders |
+| `--color-paper`      | `#FFFFFF`              | `bg-paper`                          | Page background                         |
+| `--color-stone`      | `#F4F2ED`              | `bg-stone`                          | Alternating sections                    |
+| `--color-line`       | `#DCDAD3`              | `border-line`                       | Hairlines, card borders                 |
+| `--color-water`      | `#0B5CA0`              | `text-water` `fill-water`           | **Water data only**                     |
+| `--color-alert`      | `#B42318`              | `text-alert` `border-alert`         | Form errors only                        |
+| `--color-white`      | `#FFFFFF`              | `text-white`                        | Text on dark / green / photo            |
+| `--color-scrim`      | `rgb(29 37 33 / 0.62)` | `bg-scrim`                          | Flat overlay on photographs behind text |
+
+Plus `transparent` and `current`. Nothing else exists.
+Contrast proofs and forbidden pairs: [Brand §4](BRAND_GUIDELINES.md#4-color).
+**Hard rule: never `text-brand` on `bg-ink` (2.2 : 1).** On Ink, actions are white.
+
+### 2.2 Typography
+
+Fonts load through `next/font` (self-hosted, no Google request at runtime),
+exposed as `--font-heading` (Manrope 600/700) and `--font-body` (Inter 400/500/600),
+with Arial-metric fallbacks to prevent layout shift.
+
+Sizes are fluid (`clamp`) so one token works from 375 px to 1440 px — no
+per-breakpoint font classes in components.
+
+| Token            | Size (min → max)     | Line height | Font / weight                 | Used for                        |
+| ---------------- | -------------------- | ----------- | ----------------------------- | ------------------------------- |
+| `--text-display` | 2.5rem → 4.25rem     | 1.05        | Manrope 700, −0.02em          | Home hero headline only         |
+| `--text-h1`      | 2.25rem → 3.25rem    | 1.1         | Manrope 700, −0.015em         | Page titles                     |
+| `--text-h2`      | 1.75rem → 2.5rem     | 1.15        | Manrope 700, −0.01em          | Section titles                  |
+| `--text-h3`      | 1.25rem → 1.5rem     | 1.3         | Manrope 600                   | Card titles, sub-sections       |
+| `--text-h4`      | 1.0625rem → 1.125rem | 1.4         | Manrope 600                   | Small headings, table headers   |
+| `--text-figure`  | 2rem → 3rem          | 1           | Manrope 700, tabular          | Stats: depths, yields, counts   |
+| `--text-lead`    | 1.125rem → 1.25rem   | 1.6         | Inter 400                     | Intro paragraphs                |
+| `--text-body`    | 1rem                 | 1.6         | Inter 400                     | Body                            |
+| `--text-small`   | 0.875rem             | 1.5         | Inter 400/500                 | Captions, metadata, table cells |
+| `--text-eyebrow` | 0.8125rem            | 1.2         | Inter 600, +0.08em, UPPERCASE | Labels above headings           |
+
+Rules: one `h1` per page; heading levels never skip; headings in sentence case;
+paragraph width ≤ 68 characters (`max-w-prose`); figures always `tabular-nums`.
+
+### 2.3 Spacing and layout
+
+Base unit 4 px (Tailwind's default spacing scale stays on).
+
+| Token                  | Value                      | Use                                   |
+| ---------------------- | -------------------------- | ------------------------------------- |
+| `--spacing-section`    | `clamp(4rem, 8vw, 7.5rem)` | Vertical padding of every `<Section>` |
+| `--spacing-section-sm` | `clamp(3rem, 5vw, 4.5rem)` | Compact sections (proof strip, CTA)   |
+| `--spacing-gutter`     | `clamp(1rem, 4vw, 2rem)`   | Container side padding                |
+| `--container-content`  | `75rem` (1200 px)          | Default container width               |
+| `--container-wide`     | `87.5rem` (1400 px)        | Full-bleed-ish galleries              |
+| `--container-prose`    | `45rem` (720 px)           | Long text, legal pages                |
+| `--header-height`      | `4.5rem`                   | Sticky header; used for scroll offset |
+
+Grid: 12 columns on `lg`, gap `1.5rem → 2rem`. Breakpoints: Tailwind defaults
+(`sm 640`, `md 768`, `lg 1024`, `xl 1280`). Design and test at **375, 768, 1280, 1440**.
+
+### 2.4 Shape, depth, motion
+
+| Token              | Value                                                           | Use                                              |
+| ------------------ | --------------------------------------------------------------- | ------------------------------------------------ |
+| `--radius-control` | `6px`                                                           | Buttons, inputs, tags                            |
+| `--radius-card`    | `8px`                                                           | Cards, images                                    |
+| `--shadow-raise`   | `0 1px 2px rgb(29 37 33 / .06), 0 8px 24px rgb(29 37 33 / .08)` | Sticky header after scroll, menus. Nothing else. |
+| `--rule-width`     | `2px`                                                           | The signature rule                               |
+| `--duration-fast`  | `150ms`                                                         | Hover, focus                                     |
+| `--duration-base`  | `300ms`                                                         | Reveal, menu open                                |
+| `--ease-standard`  | `cubic-bezier(.2, .7, .2, 1)`                                   | Everything                                       |
+
+Motion rules: animate only `opacity` and `transform`; reveal = fade + 12 px
+rise, once; no parallax, no auto-playing carousels, no shine/glow effects;
+`prefers-reduced-motion` turns all motion off globally (in `globals.css`).
+
+---
+
+## 3. Component library
+
+### 3.1 Primitives — `src/components/ui/`
+
+Every primitive is a **server component**, typed, and accepts `className` only
+for layout (margin, grid placement) — never to override its look. Variants are
+plain typed maps inside the file (no extra library):
+
+```tsx
+// pattern used by every primitive
+const variants = {
+  primary: 'bg-brand text-white hover:bg-brand-dark',
+  secondary: 'border border-brand text-brand hover:bg-brand-tint',
+  text: 'text-brand underline-offset-4 hover:underline',
+} as const satisfies Record<string, string>;
+type Variant = keyof typeof variants;
+```
+
+| Component        | Props (essential)                                                                                                                                  | Notes                                                                                                                                             |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Container`      | `size: 'content' \| 'wide' \| 'prose'`                                                                                                             | Max width + gutters                                                                                                                               |
+| `Section`        | `tone: 'paper' \| 'stone' \| 'tint' \| 'ink' \| 'brand'`, `spacing: 'default' \| 'compact'`, `id?`                                                 | Background, vertical rhythm, text color for dark tones. Wraps `Container`.                                                                        |
+| `SectionHeading` | `eyebrow?`, `title`, `intro?`, `align: 'start' \| 'center'`, `as?: 'h1' \| 'h2'`                                                                   | Rule + eyebrow + title + intro — the one way every section starts                                                                                 |
+| `Eyebrow`        | `children`                                                                                                                                         | Small uppercase label, preceded by the rule                                                                                                       |
+| `Rule`           | `tone: 'brand' \| 'white'`, `length: 'short' \| 'full'`                                                                                            | The signature line                                                                                                                                |
+| `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `onDark?: boolean`, `href?` or `type?`, `icon?: 'arrow' \| 'phone' \| 'mail'` | Renders `Link`, `<a>` (external/tel/mailto) or `<button>`. `onDark` swaps to the white palette for Ink/Green/photo backgrounds. Min height 44 px. |
+| `TextLink`       | `href`, `arrow?`                                                                                                                                   | Inline link inside prose                                                                                                                          |
+| `Card`           | `as?`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                                                                        | White surface, `border-line`, `radius-card`; interactive cards get border-brand + image zoom on hover                                             |
+| `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                           | Service labels on projects                                                                                                                        |
+| `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                     | Big figure + label. `water` for yields/levels only                                                                                                |
+| `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                      | Key-value technical data (projects, equipment). Striped with `brand-tint`                                                                         |
+| `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'square' \| 'portrait'`, `preset`, `priority?`                                          | Wraps `next/image`; ratio + correct `sizes` presets — never write `sizes` by hand                                                                 |
+| `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`                                                                                                               | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used                                                                  |
+| `Prose`          | `children`                                                                                                                                         | Typography for long-form text (legal pages, project stories)                                                                                      |
+| `Field`          | `label`, `error?`, `hint?`, `children` (+ `Input`, `Textarea`, `Select`)                                                                           | Accessible form controls: label, `aria-describedby`, error state in `alert`                                                                       |
+| `Reveal`         | `children`, `delay?`                                                                                                                               | The only animation wrapper. Tiny client island (IntersectionObserver + CSS)                                                                       |
+
+### 3.2 Cards — `src/components/cards/`
+
+Domain cards compose primitives. Each takes **one data object** typed from
+`src/types/content.ts`, so a change in the data shape shows up as a type error.
+
+| Card              | Data          | Content                                                                          |
+| ----------------- | ------------- | -------------------------------------------------------------------------------- |
+| `ProjectCard`     | `Project`     | Photo (card ratio), client, title, location · year, one key figure, service tags |
+| `ServiceCard`     | `Service`     | Number (01–06), icon, title, one-line summary, link                              |
+| `TestimonialCard` | `Testimonial` | Quote, name, role, organization                                                  |
+| `EquipmentCard`   | `Equipment`   | Photo, name, type, FactsTable of key specs (e.g. rated depth)                    |
+| `TeamCard`        | `TeamMember`  | Portrait, name, role                                                             |
+| `ReferenceCard`   | `Reference`   | Letter thumbnail, organization, date, link to full scan                          |
+
+### 3.3 Layout — `src/components/layout/`
+
+| Component    | Behavior                                                                                                                                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Header`     | White, sticky, full-color logo, nav from `siteConfig.navigation`, primary "Contact us" button, green rule bottom edge; gains `shadow-raise` after scroll. Server component; only `MobileMenu` and the scroll listener are client islands. |
+| `MobileMenu` | Full-height panel below `lg`; focus trap, Esc to close, body scroll lock, closes on route change.                                                                                                                                         |
+| `Footer`     | Ink. All-white logo, descriptor, company description, nav, contact details, legal name + Amharic name, legal links.                                                                                                                       |
+| `SkipLink`   | "Skip to content" — first focusable element.                                                                                                                                                                                              |
+
+### 3.4 Sections — `src/components/sections/`
+
+Sections are props-driven (no data imports inside), so any page can reuse them.
+
+| Section            | Used on              | Composition                                                                                                             |
+| ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `Hero`             | Home                 | Full-bleed `Photo` (priority) + `bg-scrim` + eyebrow + display headline + lead + 2 Buttons (`onDark`)                   |
+| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                 |
+| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                           |
+| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                  |
+| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well |
+| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                 |
+| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                          |
+| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary onDark` + phone link                                                      |
+| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                        |
+
+### 3.5 Diagrams — `src/components/diagrams/`
+
+`WellDiagram` — inline SVG cross-section of a water well: ground layers, aquifer,
+borehole, casing, screen, gravel pack, pump, rising main, static water level.
+Colors from tokens only (`fill-water` for water, `stroke-brand` for Liyat-built
+elements, `ink`/`line` for ground). Each part has an `id` matching a service
+slug so `ServiceLifecycle` can highlight it. Must stay technically correct and
+readable at 320 px wide.
+
+---
+
+## 4. Page blueprints
+
+Every page ends with `CtaBand`, then the footer. Section tones alternate
+paper ↔ stone; Ink only for the footer; Brand only for `CtaBand`.
+
+### Home — `/`
+
+| #   | Section            | Tone  | Purpose (blueprint priority)                                                      |
+| --- | ------------------ | ----- | --------------------------------------------------------------------------------- |
+| 1   | `Hero`             | photo | Identity: descriptor, "Know better. Drill better.", Contact us / Explore projects |
+| 2   | `ProofStrip`       | paper | Credibility at a glance: figures + client logos                                   |
+| 3   | `FeaturedProjects` | stone | Evidence near the top (brand rule: real projects up front)                        |
+| 4   | `ServiceLifecycle` | paper | Services + "Every well surveyed, drilled and proven." + well diagram              |
+| 5   | `EquipmentTeaser`  | stone | Capability: rig by name, rated depth                                              |
+| 6   | `Testimonials`     | paper | Client confidence (hidden if empty)                                               |
+| 7   | `CtaBand`          | brand | Primary action                                                                    |
+
+### About — `/about`
+
+`PageHeader` → company description + story → `ProofStrip` (founded, HQ, licence
+grade, wells completed) → how we work (principles from Brand §2) → leadership &
+team (`TeamCard`) → licences & credentials → safety & responsibility → `CtaBand`.
+
+### Services — `/services` and `/services/[slug]`
+
+Index: `PageHeader` → `ServiceLifecycle` → "What you receive at every stage"
+(deliverables: survey report, drilling log, test report, handover file) → `CtaBand`.
+Detail: `PageHeader` with photo → overview + who it is for → what's included →
+method steps → what you receive → related projects (`FeaturedProjects`) → `CtaBand`.
+
+### Projects — `/projects` and `/projects/[slug]`
+
+Index: `PageHeader` → grid of `ProjectCard` (sorted newest first) → `CtaBand`.
+Detail: full-width `Photo` → title, client, location → `FactsTable` (client,
+location, year, services, depth, yield, duration) → scope / approach / result →
+gallery → related projects → `CtaBand`.
+
+### Equipment & Capabilities — `/equipment-capabilities`
+
+`PageHeader` → drilling rigs (`EquipmentCard`) → support & testing equipment
+(`FactsTable`) → capability figures (`Stat`) → safety & site practice → `CtaBand`.
+
+### Testimonials — `/testimonials`
+
+`PageHeader` → `Testimonials` → reference letters (`ReferenceCard`) → client
+logos → `CtaBand`.
+
+### Contact — `/contact`
+
+`PageHeader` → `ContactPanel` (form left; phones, email, address, hours, map right) → no CtaBand.
+
+### System pages
+
+Privacy policy, Terms of service (`Prose`), 404, error — all use `PageHeader` + `Container size="prose"`.
+
+### Style guide — `/styleguide` (development review page)
+
+Renders every token and component in every variant. Used for the aesthetic
+review gate after each design step. `noindex`, excluded from the sitemap,
+removed or kept private before launch (decision O-05).

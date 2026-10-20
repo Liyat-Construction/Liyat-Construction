@@ -1,66 +1,63 @@
-# AGENTS.md — Instructions for AI coding tools
+# AGENTS.md — start here (AI tools and developers)
 
-## What this project is
+Website for **Liyat Construction PLC**, an Ethiopian water-well drilling and
+groundwater engineering company. Built by Digital Aksumite. Next.js 16 + React 19 +
+TypeScript strict + Tailwind CSS 4, static-export compatible. All content lives
+in this repository as TypeScript data — no CMS.
 
-A reusable static business-website template. Next.js (App Router) + React +
-TypeScript + Tailwind CSS 4 + Framer Motion. Every piece of content lives in
-this repository as TypeScript data — there is nothing external to manage.
+## Before you do anything
 
-Before any work, read `PROJECT_WORKFLOW.md` for the approved scope, current
-phase, decisions, blockers, verification evidence, and next action. Update its
-handoff section before ending a work session. Use the `senior-website-engineer`
-project skill for the implementation workflow and quality standard.
+Read, in this order:
 
-## Where things live
+1. **[`WORKFLOW.md`](WORKFLOW.md)** — "You are here": current step, blockers, next action. Work only on the step marked ▶.
+2. **[`docs/ENGINEERING.md`](docs/ENGINEERING.md)** — architecture, rules, performance budget, definition of done.
+3. **[`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md)** — tokens, component library, page blueprints.
+4. **[`docs/BRAND_GUIDELINES.md`](docs/BRAND_GUIDELINES.md)** — colors, voice, photography, service names.
 
-| What                                                                              | Where                      |
-| --------------------------------------------------------------------------------- | -------------------------- |
-| Brand, colors, fonts, contact, socials, SEO, legal details, contact-form provider | `src/config/site.ts`       |
-| Page copy (hero, sections, CTA)                                                   | `src/data/home.ts`         |
-| About page copy                                                                   | `src/data/about.ts`        |
-| Services (cards + detail pages)                                                   | `src/data/services.ts`     |
-| Portfolio projects                                                                | `src/data/projects.ts`     |
-| Testimonials                                                                      | `src/data/testimonials.ts` |
-| Trusted partner logos                                                             | `src/data/partners.ts`     |
-| Contact section copy                                                              | `src/data/contact.ts`      |
-| Shared TypeScript types                                                           | `src/types/content.ts`     |
-| Pages / routes                                                                    | `src/app/`                 |
-| Components                                                                        | `src/components/`          |
-| Images, logos, partner logos                                                      | `public/`                  |
+Then read the source files the current step touches, plus their callers and types.
 
-**Rule of thumb:** to rebrand for a client you edit `src/config/site.ts`, the
-files in `src/data/`, and the images in `public/`. Rarely anything else.
+## Non-negotiable rules
 
-## Behavior rules worth knowing
+- **Be honest, not agreeable.** Judge every idea on its merits, including the
+  owner's. If you disagree or know a better option, say so with concrete reasons
+  before acting. Hold your position unless given a new fact or a better argument.
+  If the owner decides otherwise, implement it well and record the decision and
+  your objection in `WORKFLOW.md`. Never hide failures or praise weak work.
 
-- Empty string in `site.ts` hides the related UI (no `social.telegram` → no
-  floating Telegram button; no `contact.mapEmbedUrl` → no map; etc.).
-- `contactForm.provider` in `site.ts` is `'none'` | `'formspree'` | `'web3forms'`.
-  `'none'` hides the form entirely.
-- Sections (Projects, Testimonials, Partners) render only when their data
-  arrays are non-empty.
-- Brand colors flow from `site.ts` → CSS variables in `src/app/layout.tsx` →
-  Tailwind classes like `bg-brand-primary`, `text-brand-accent`. Do not
-  hard-code brand hex values in components.
+- **One source for every decision.** Raw design values (hex, px, rem, ms) exist
+  only in `src/styles/tokens.css`. Visual styling exists only in
+  `src/components/ui/` and `src/components/cards/`. Pages compose sections;
+  sections compose components. Need a new look? Add a variant to the component,
+  never a one-off class in a page.
+- **Reuse before you create.** Check the component library in Design System §3
+  first. A new component goes into the library and onto `/styleguide`.
+- **Content lives in `src/data/` and `src/config/site.ts`**, typed by `src/types/content.ts`.
+  Only `src/app/` imports data; components receive it as props.
+- **Server components by default.** Client components only from the allowed list in Engineering §3.
+- **Never invent facts:** company details, figures, credentials, testimonials or
+  client names. Use realistic placeholders marked `// PLACEHOLDER(C-xx)` that
+  point to the client checklist in `WORKFLOW.md` §5.
+- **No new dependencies** without the owner's approval.
+- **Brand:** green `brand` for actions; `water` only for water data; never
+  `text-brand` on `bg-ink`; sentence-case headings; no gradients, glows, or
+  repeated water drops.
+- Kebab-case filenames, no `any`, no `@ts-ignore`.
 
 ## Commands
 
 ```bash
 npm run dev                 # dev server
-npm run type-check          # TypeScript — must pass before finishing
-npm run lint                # ESLint — must pass
-npm run build               # production build (Vercel / next start)
-npm run build:static        # static export → out/ (cPanel, any static host)
-npm run check:placeholders  # scan for leftover template placeholder text
-npm run format              # Prettier write
+npm run validate            # type-check + lint + format — must pass
+npm run check:design        # no raw design values outside tokens.css — must pass
+npm run check:placeholders  # PLACEHOLDER markers; must be zero at launch
+npm run build:static        # static export → out/ — must pass
 ```
 
-## Conventions
+## Finishing a session
 
-- Kebab-case file names, TypeScript strict mode, no `any`.
-- Reuse existing components (`Container`, `PremiumButton`, `ScrollReveal`,
-  `GoldDivider`, …) before creating new ones.
-- No new dependencies without asking.
-- Keep changes focused; run `npm run validate` + `npm run check:placeholders`
-  before considering work done.
-- Never commit secrets. `.env.local` stays local.
+1. Meet the definition of done (Engineering §10) for whatever you completed.
+2. Update `WORKFLOW.md`: "You are here", step status, verification evidence,
+   handoff, and any new decision (§6) or client item (§5).
+3. If you changed a design decision, update `DESIGN_SYSTEM.md` or `BRAND_GUIDELINES.md` in the same change.
+4. When a step reaches `Complete`, commit it: one commit per step, message as in
+   `WORKFLOW.md` §3. Never push unless the owner asks.
