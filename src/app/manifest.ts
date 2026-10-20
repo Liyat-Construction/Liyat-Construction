@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: siteConfig.description,
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: siteConfig.brand.colors.primary,
+    background_color: '#ffffff', // design-exception: manifest literal, mirrors --color-paper
+    theme_color: '#ffffff', // design-exception: manifest literal, mirrors --color-paper
     icons: [
       { src: '/android-icon-192x192.png', sizes: '192x192', type: 'image/png' },
       { src: '/android-icon-512x512.png', sizes: '512x512', type: 'image/png' },

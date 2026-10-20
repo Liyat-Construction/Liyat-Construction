@@ -9,17 +9,17 @@ import { env, siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
 import './globals.css';
 
-const brandColors = siteConfig.brand.colors;
-
+// Fonts and weights: Brand §5. Exposed to tokens.css as --font-heading / --font-body.
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
 });
 
 const manrope = Manrope({
   variable: '--font-manrope',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -92,19 +92,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.language} data-scroll-behavior="smooth">
-      <head>
-        <style>{`
-          :root {
-            --brand-primary: ${brandColors.primary};
-            --brand-primary-dark: ${brandColors.primaryDark};
-            --brand-primary-light: ${brandColors.primaryLight};
-            --brand-accent: ${brandColors.accent};
-            --brand-accent-dark: ${brandColors.accentDark};
-          }
-        `}</style>
-      </head>
-      <body className={`${inter.variable} ${manrope.variable} font-sans antialiased`}>
+    <html
+      lang={siteConfig.language}
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${manrope.variable}`}
+    >
+      <body>
         {env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script

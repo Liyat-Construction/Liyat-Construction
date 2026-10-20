@@ -43,10 +43,18 @@ The site is built in four layers. Each layer only uses the layer below it.
 | Homepage section order         | `src/app/page.tsx`                       |
 | Any text on the site           | `src/data/*.ts` or `src/config/site.ts`  |
 
-**Enforcement.** Tailwind's default palette is switched off (`--color-*: initial`),
-so `bg-red-500` or `text-gray-600` simply do not exist — only Liyat tokens do.
-`npm run check:design` fails the build if a hex value, `rgb()`, or an arbitrary
-Tailwind value (`text-[17px]`, `bg-[#…]`) appears outside `tokens.css`.
+**Enforcement.** Tailwind's default colors, fonts, type sizes, radii and shadows
+are switched off (`--color-*`, `--font-*`, `--text-*`, `--radius-*`, `--shadow-*`
+and the other shadow namespaces set to `initial` — D-25), so `bg-red-500`,
+`text-sm`, `rounded-xl` or `shadow-lg` simply do not exist — only Liyat tokens do.
+Tailwind ignores unknown classes silently, so `npm run check:design` fails if a
+hex value, `rgb()`, an arbitrary value (`text-[17px]`, `bg-[#…]`), a default
+palette class, a switched-off default (`text-sm`, `rounded-lg`, `shadow-md`,
+`font-sans`, `*-black`) or a template-era token (`brand-primary`, `brand-accent`,
+`text-secondary`, `surface-*`) appears outside `tokens.css`.
+Still available from Tailwind: the 4 px spacing scale, breakpoints, default
+containers (`max-w-xl`…), `rounded-none`/`rounded-full`, font weights, leading,
+tracking and easing helpers.
 A genuine exception needs a `// design-exception: <reason>` comment on that line.
 
 ---
@@ -55,7 +63,9 @@ A genuine exception needs a `// design-exception: <reason>` comment on that line
 
 Tokens are Tailwind 4 `@theme` variables. Each token automatically becomes
 utility classes (`--color-brand` → `bg-brand`, `text-brand`, `border-brand`).
-Components use **token names only**.
+Components use **token names only**. Tokens outside a Tailwind namespace
+(`--header-height`, `--rule-width`, `--focus-*`, `--duration-*`) are used as CSS
+variables, e.g. `duration-(--duration-fast)`, `h-(--header-height)`.
 
 ### 2.1 Color
 
@@ -107,17 +117,18 @@ paragraph width ≤ 68 characters (`max-w-prose`); figures always `tabular-nums`
 
 Base unit 4 px (Tailwind's default spacing scale stays on).
 
-| Token                  | Value                      | Use                                   |
-| ---------------------- | -------------------------- | ------------------------------------- |
-| `--spacing-section`    | `clamp(4rem, 8vw, 7.5rem)` | Vertical padding of every `<Section>` |
-| `--spacing-section-sm` | `clamp(3rem, 5vw, 4.5rem)` | Compact sections (proof strip, CTA)   |
-| `--spacing-gutter`     | `clamp(1rem, 4vw, 2rem)`   | Container side padding                |
-| `--container-content`  | `75rem` (1200 px)          | Default container width               |
-| `--container-wide`     | `87.5rem` (1400 px)        | Full-bleed-ish galleries              |
-| `--container-prose`    | `45rem` (720 px)           | Long text, legal pages                |
-| `--header-height`      | `4.5rem`                   | Sticky header; used for scroll offset |
+| Token                  | Value                        | Use                                   |
+| ---------------------- | ---------------------------- | ------------------------------------- |
+| `--spacing-section`    | `clamp(4rem, 8vw, 7.5rem)`   | Vertical padding of every `<Section>` |
+| `--spacing-section-sm` | `clamp(3rem, 5vw, 4.5rem)`   | Compact sections (proof strip, CTA)   |
+| `--spacing-gutter`     | `clamp(1rem, 4vw, 2rem)`     | Container side padding                |
+| `--container-content`  | `75rem` (1200 px)            | Default container width               |
+| `--container-wide`     | `87.5rem` (1400 px)          | Full-bleed-ish galleries              |
+| `--container-prose`    | `45rem` (720 px)             | Long text, legal pages                |
+| `--spacing-grid`       | `clamp(1.5rem, 2.5vw, 2rem)` | Grid gap (`gap-grid`)                 |
+| `--header-height`      | `4.5rem`                     | Sticky header; used for scroll offset |
 
-Grid: 12 columns on `lg`, gap `1.5rem → 2rem`. Breakpoints: Tailwind defaults
+Grid: 12 columns on `lg`, gap `gap-grid` (1.5rem → 2rem). Breakpoints: Tailwind defaults
 (`sm 640`, `md 768`, `lg 1024`, `xl 1280`). Design and test at **375, 768, 1280, 1440**.
 
 ### 2.4 Shape, depth, motion
@@ -128,6 +139,8 @@ Grid: 12 columns on `lg`, gap `1.5rem → 2rem`. Breakpoints: Tailwind defaults
 | `--radius-card`    | `8px`                                                           | Cards, images                                    |
 | `--shadow-raise`   | `0 1px 2px rgb(29 37 33 / .06), 0 8px 24px rgb(29 37 33 / .08)` | Sticky header after scroll, menus. Nothing else. |
 | `--rule-width`     | `2px`                                                           | The signature rule                               |
+| `--focus-width`    | `2px`                                                           | Focus outline width                              |
+| `--focus-offset`   | `2px`                                                           | Focus outline offset                             |
 | `--duration-fast`  | `150ms`                                                         | Hover, focus                                     |
 | `--duration-base`  | `300ms`                                                         | Reveal, menu open                                |
 | `--ease-standard`  | `cubic-bezier(.2, .7, .2, 1)`                                   | Everything                                       |
@@ -135,6 +148,15 @@ Grid: 12 columns on `lg`, gap `1.5rem → 2rem`. Breakpoints: Tailwind defaults
 Motion rules: animate only `opacity` and `transform`; reveal = fade + 12 px
 rise, once; no parallax, no auto-playing carousels, no shine/glow effects;
 `prefers-reduced-motion` turns all motion off globally (in `globals.css`).
+
+### 2.5 Base styles — `src/app/globals.css`
+
+Applied once, from tokens: body in `font-body` / `text-body`, Ink on Paper;
+headings in `font-heading`; `:focus-visible` = `--focus-width` Brand outline at
+`--focus-offset`, switched to White inside any element with `data-on-dark`
+(`Section` sets it on `ink` and `brand` tones, and on photo overlays);
+`::selection` White on Brand; `[id]` anchors offset by header height + gutter;
+smooth scroll, and all animation and transition, off under reduced motion.
 
 ---
 
@@ -202,17 +224,17 @@ Domain cards compose primitives. Each takes **one data object** typed from
 
 Sections are props-driven (no data imports inside), so any page can reuse them.
 
-| Section            | Used on              | Composition                                                                                                             |
-| ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `Hero`             | Home                 | Full-bleed `Photo` (priority) + `bg-scrim` + eyebrow + display headline + lead + 2 Buttons (`onDark`)                   |
-| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                 |
-| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                           |
-| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                  |
-| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well |
-| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                 |
-| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                          |
-| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary onDark` + phone link                                                      |
-| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                        |
+| Section            | Used on              | Composition                                                                                                                                                              |
+| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Hero`             | Home                 | Full-bleed `Photo` (priority, natural color, never washed) + flat `bg-scrim` behind the text area only (D-27) + eyebrow + display headline + lead + 2 Buttons (`onDark`) |
+| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                  |
+| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                                                                            |
+| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                                                                   |
+| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well                                                  |
+| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                  |
+| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                           |
+| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary onDark` + phone link                                                                                                       |
+| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                         |
 
 ### 3.5 Diagrams — `src/components/diagrams/`
 

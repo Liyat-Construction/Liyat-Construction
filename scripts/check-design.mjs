@@ -22,6 +22,17 @@ const RULES = [
   { name: 'rgb()/hsl()', pattern: /\b(rgba?|hsla?)\(/i },
   { name: 'arbitrary value', pattern: /\b[a-z][\w:/-]*-\[[^\]\s]+\]/ },
   { name: 'default palette', pattern: new RegExp(`\\b[a-z-]+-(${PALETTE})-\\d{2,3}\\b`) },
+  // Tailwind defaults switched off in tokens.css (D-25) and template-era tokens:
+  // these classes generate no CSS, so they would fail silently.
+  {
+    name: 'removed default',
+    pattern:
+      /\b(text-(xs|sm|base|lg|[2-9]?xl)|rounded(-[trblse]{1,2})?-(xs|sm|md|lg|[2-4]?xl)|shadow-(2xs|xs|sm|md|lg|2?xl)|font-(sans|serif|mono)|[a-z]+-black)\b(?![\w-])/,
+  },
+  {
+    name: 'template token',
+    pattern: /\b[a-z]+-(brand-(primary|accent)|text-(primary|secondary|muted|inverse)|surface)\b/,
+  },
 ];
 
 const SCAN_DIR = 'src';
@@ -30,32 +41,37 @@ const ALLOWED = new Set(['src/styles/tokens.css']);
 
 // Template-era files, rebuilt in P2–P13. Their violations are reported as
 // warnings so the check can pass while they still exist. Never add a file here:
-// remove each entry when the file is rebuilt or deleted.
+// remove each entry when the file is rebuilt or deleted. (Sole exception, D-26:
+// P2 added the template files that only the new removed-default rules caught.)
 const LEGACY = new Set([
   'src/app/about/page.tsx',
+  'src/app/contact/page.tsx',
   'src/app/equipment-capabilities/page.tsx',
   'src/app/error.tsx',
-  'src/app/globals.css',
   'src/app/loading.tsx',
-  'src/app/manifest.ts',
   'src/app/not-found.tsx',
   'src/app/privacy-policy/page.tsx',
   'src/app/projects/[slug]/page.tsx',
   'src/app/projects/loading.tsx',
   'src/app/projects/page.tsx',
   'src/app/services/[slug]/page.tsx',
+  'src/app/services/page.tsx',
   'src/app/terms-of-service/page.tsx',
   'src/app/testimonials/page.tsx',
+  'src/components/about-section.tsx',
   'src/components/client-logos-marquee.tsx',
   'src/components/contact-section.tsx',
   'src/components/cta-section.tsx',
+  'src/components/footer.tsx',
+  'src/components/hero-slideshow.tsx',
   'src/components/hero.tsx',
+  'src/components/navbar.tsx',
+  'src/components/partners-section.tsx',
   'src/components/premium-button.tsx',
   'src/components/projects-section.tsx',
   'src/components/services-section.tsx',
   'src/components/telegram-chat-button.tsx',
   'src/components/testimonials-section.tsx',
-  'src/config/site.ts',
 ]);
 
 const errors = [];

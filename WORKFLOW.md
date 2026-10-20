@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Current step**      | **P2 — Design tokens** (not started)                                                                               |
-| **Last completed**    | P1 — Strip the template (2026-10-20)                                                                               |
-| **Blocked on client** | Logo vector files (C-01) — needed by P3; contact details (C-03…C-06) — needed by P5                                |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-04 image script dependency · O-05 styleguide at launch      |
-| **Next action**       | Start P2: create `src/styles/tokens.css` per Design System §2, reset the default palette, wire fonts, base styles. |
+|                       |                                                                                                               |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **P4 — Component library + `/styleguide`** (not started; P3 is blocked on C-01)                               |
+| **Last completed**    | P2 — Design tokens (2026-10-20)                                                                               |
+| **Blocked on client** | Logo vector files (C-01) — needed by P3; contact details (C-03…C-06) — needed by P5                           |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-04 image script dependency · O-05 styleguide at launch |
+| **Next action**       | Start P4: build the Design System §3.1 primitives and §3.2 cards, and show them on `/styleguide`.             |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -58,7 +58,8 @@
 6. **One commit per completed step** (owner rule, 2026-10-20). Subject
    `P<n>: <step name>`; body lists what changed, the decisions involved, and how
    it was verified. Commit only after the step is `Complete` and every check
-   passes. Never push unless the owner asks.
+   passes. **A step is committed before the next step starts** (owner, 2026-10-20).
+   Never push unless the owner asks.
 
 ---
 
@@ -68,7 +69,7 @@
 | --- | ------------------------------------- | --------------------- | ------------------------------- | ----------- |
 | P0  | Foundation and documentation          | —                     | Owner                           | Complete    |
 | P1  | Strip the template                    | P0                    | Technical                       | Complete    |
-| P2  | Design tokens                         | P1                    | Technical                       | Not started |
+| P2  | Design tokens                         | P1                    | Technical                       | Complete    |
 | P3  | Logo master files                     | P2, C-01              | Owner + client                  | Not started |
 | P4  | Component library + `/styleguide`     | P2                    | **Owner — main aesthetic gate** | Not started |
 | P5  | Site shell: header, menu, footer      | P3, P4                | Owner                           | Not started |
@@ -106,12 +107,14 @@
 - **Why:** A smaller codebase before building means less to restyle, less JavaScript, and no old patterns for the next developer to copy.
 - **Done when:** ✔ 2026-10-20. No `dark:`, `framer-motion` or phone-library references remain. `validate`, `check:design` and `build:static` pass (`check:design` passes via its legacy list — D-20).
 
-### P2 — Design tokens
+### P2 — Design tokens · `Complete`
 
 - **What:** Create `src/styles/tokens.css` with every token in Design System §2. Reset Tailwind's default palette. Wire fonts via `next/font` (Manrope 600/700, Inter 400/500/600). Add base styles in `globals.css`: focus ring, reduced motion, selection, scroll offset. Remove `brand.colors`/`fonts` from `site.ts` and the inline `<style>` in `layout.tsx`.
 - **How:** Values exactly as documented; any change goes to the docs first.
 - **Why:** One file controls the whole look; the default palette is gone, so off-brand colors cannot slip in.
-- **Done when:** `bg-brand`, `text-ink`, `text-h2` etc. work; `bg-gray-500` generates no CSS (Tailwind 4 silently ignores unknown classes rather than failing, so `check:design` is what flags it); contrast pairs re-verified; `globals.css`, `layout.tsx` and `site.ts` removed from the `check:design` legacy list.
+- **Done when:** `bg-brand`, `text-ink`, `text-h2` etc. work; `bg-gray-500` generates no CSS (Tailwind 4 silently ignores unknown classes rather than failing, so `check:design` is what flags it); contrast pairs re-verified; `globals.css`, `layout.tsx` and `site.ts` removed from the `check:design` legacy list. ✔ 2026-10-20 (`layout.tsx` was never on the list; `manifest.ts` came off instead).
+- **Done:** `src/styles/tokens.css` holds every §2 token plus `--spacing-grid` and `--focus-width/offset`; resets for colors, fonts, type sizes, radii and shadows (D-25). `globals.css` = Tailwind + tokens + base styles (DS §2.5). `layout.tsx`: Manrope 600/700, Inter 400/500/600, font variables on `<html>`, inline `<style>` gone. `site.ts` has no `brand` block. Manifest colors are white literals (`design-exception`). `check:design` now also flags switched-off defaults and template tokens (D-26).
+- **Known effect:** template pages now render mostly unstyled. Text that was white on the old green/navy backgrounds is invisible on white. This is expected and is fixed as P5–P13 rebuild each page; the site is not live.
 
 ### P3 — Logo master files
 
@@ -147,6 +150,12 @@
 ### P7 — Home page + well diagram
 
 - **What:** Sections in the order of Design System §4 (Home). Build `WellDiagram` and the `ServiceLifecycle` interaction. Choose the hero photo (rig + water at the surface).
+- **Hero plan (D-27, owner, 2026-10-20):**
+  - **Image:** `public/hero/hero-water-column.webp` (1920 × 1280): a water column rising beside the rig against a clear sky. After P2 removed the template's green gradient, the owner saw it in natural color and called it "just beautiful". It is the leading candidate, compared against the C-18 originals when they arrive.
+  - **Treatment:** natural color, no wash. A flat Ink scrim behind the text side only (Brand §7, ≤ 70%), tuned to the lightest opacity at which the headline and lead reach 4.5 : 1 over the brightest pixels behind them. The white spray must never sit behind text. Check the mobile crop (`object-position`) so the water column stays clear of the headline.
+  - **Measured sky:** `#5A8FE8`–`#6DADF5` (≈ `#5E94EB`). White on it = 2.3–3.2 : 1, so text on the bare sky fails WCAG.
+  - **Sky blue as a brand color (raised by the owner, not decided):** the owner is open to a sky-blue brand color, "not the navy". The agent objects: it fails contrast in both directions (2.3–3.2 : 1); the accessible version is the existing Water Blue `#0B5CA0`; it would compete with the photography that made the look work; and green is Liyat's only existing recognition (logo, brochure, vehicles, uniforms). Brand colors also change only by a management decision (Brand §12, Wondossen). The owner will review it again when the hero is built. Any change needs a new decision row, plus client approval.
+  - **Preview:** P4 shows the `Photo` + scrim on `/styleguide` with this image, so the look is judged at the aesthetic gate first.
 - **Why:** The home page carries most of the first impression and proves the system works end to end.
 - **Done when:** LCP < 2.0 s on mobile simulation; diagram readable at 320 px; owner approves.
 
@@ -224,32 +233,35 @@ with placeholders until they arrive. **Must** items block launch.
 
 Decisions that constrain future work. Change one only by adding a new row that supersedes it.
 
-| ID   | Date       | Decision                                                                                                                                                                               | Reason                                                                                                                                  |
-| ---- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| D-01 | 2026-10-18 | Digital Presence package: no CMS; content as TypeScript in `src/data/`                                                                                                                 | Package scope                                                                                                                           |
-| D-02 | 2026-10-18 | Pages: Home, About, Services, Projects, Equipment & Capabilities, Testimonials, Contact + Privacy, Terms                                                                               | Client blueprint                                                                                                                        |
-| D-03 | 2026-10-18 | Public name "Liyat Construction"; legal name "Liyat Construction PLC"                                                                                                                  | Client blueprint                                                                                                                        |
-| D-04 | 2026-10-18 | Must stay static-export compatible (`build:static`)                                                                                                                                    | Hosting not yet decided; keeps cPanel possible                                                                                          |
-| D-05 | 2026-10-20 | Brand green is **`#156635`**                                                                                                                                                           | Measured from Liyat's own designed brochure; 7 : 1 on white; logo JPG green `#006000` is off-brand                                      |
-| D-06 | 2026-10-20 | Palette: Green, Ink, White + Stone, Green Tint, Line; **Water Blue only for water data**; Alert Red only for form errors                                                               | One color + one neutral is the strongest identity; blue gains meaning                                                                   |
-| D-07 | 2026-10-20 | Gold and navy are **not** used                                                                                                                                                         | Gold 2.6 : 1 contrast, competes with yellow machinery; navy competes with green                                                         |
-| D-08 | 2026-10-20 | White sticky header with full-color logo; Ink footer with all-white logo                                                                                                               | Logo shown in true colors; avoids green-on-dark conflict                                                                                |
-| D-09 | 2026-10-20 | Hero: one photograph (rig + water at the surface), flat Ink scrim, no slideshow                                                                                                        | Faster LCP, calmer; most visitors never see slide 2; range shown in projects section                                                    |
-| D-10 | 2026-10-20 | Hero headline "Know better. Drill better."; eyebrow "Water Well Drilling & Engineering"; promise heads the lifecycle section                                                           | Client-owned tagline beats an invented one                                                                                              |
-| D-11 | 2026-10-20 | Six services in lifecycle order (Brand §9)                                                                                                                                             | Client-sourced list; turnkey is a real tender category                                                                                  |
-| D-12 | 2026-10-20 | Remove dark mode, Framer Motion and the phone-input library                                                                                                                            | Off-brand (white pages); large share of JS; CSS covers our motion                                                                       |
-| D-13 | 2026-10-20 | Fonts stay Manrope (headings) + Inter (body); tabular numerals for figures                                                                                                             | Good fit; gains are elsewhere                                                                                                           |
-| D-14 | 2026-10-20 | Four-layer design system; all raw values only in `src/styles/tokens.css`; Tailwind default palette disabled; `check:design` enforces it                                                | Change anything visual in one place; consistency by construction                                                                        |
-| D-15 | 2026-10-20 | Brand colors leave `site.ts`; `site.ts` keeps identity, contact, navigation, SEO, form                                                                                                 | One home for design values (tokens), one for business facts (config)                                                                    |
-| D-16 | 2026-10-20 | Signature visual: interactive well cross-section linking services to parts of the well                                                                                                 | Technical drawings are part of the brand; shows expertise without decoration                                                            |
-| D-17 | 2026-10-20 | Placeholders allowed during build, marked `PLACEHOLDER(C-xx)`; zero required at launch                                                                                                 | Judge design with realistic content; impossible to ship by accident                                                                     |
-| D-18 | 2026-10-20 | English only; Amharic legal name in the footer                                                                                                                                         | Scope; local credibility at no cost                                                                                                     |
-| D-19 | 2026-10-20 | `WORKFLOW.md` replaces `PROJECT_WORKFLOW.md`; `PROJECT_DOCUMENTATION.md` is replaced by `docs/`                                                                                        | One current source; template-era docs were outdated                                                                                     |
-| D-20 | 2026-10-20 | `check:design` keeps a `LEGACY` list of template files whose violations are only warnings; it fails if an entry is deleted or clean                                                    | The check passes from P1 on and blocks new violations; the list can only shrink                                                         |
-| D-21 | 2026-10-20 | `npm run analyze` uses Next's built-in `next experimental-analyze` (Turbopack), not `@next/bundle-analyzer`                                                                            | `@next/bundle-analyzer` only works with webpack builds; Next 16 builds with Turbopack                                                   |
-| D-22 | 2026-10-20 | Framer Motion removed (owner questioned D-12, then agreed — O-07 closed)                                                                                                               | ~42 KB gzip chunk; forced client components; hero headline invisible until hydration (> 3 s in dev). CSS covers our motion              |
-| D-23 | 2026-10-20 | `@next/bundle-analyzer` removed                                                                                                                                                        | Unused; superseded by D-21                                                                                                              |
-| D-24 | 2026-10-20 | JS budget: our own JS ≤ 30 KB gzip per route on top of React/Next; total first-load ≤ 190 KB (excl. `nomodule` polyfill). Replaces "≤ 110 KB total" (O-09, owner delegated the choice) | React 19 + Next 16 alone ≈ 155 KB, so 110 KB was unreachable; the limit now covers what we control, and Lighthouse/LCP/INP targets stay |
+| ID   | Date       | Decision                                                                                                                                                                                                                                                                                     | Reason                                                                                                                                   |
+| ---- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| D-01 | 2026-10-18 | Digital Presence package: no CMS; content as TypeScript in `src/data/`                                                                                                                                                                                                                       | Package scope                                                                                                                            |
+| D-02 | 2026-10-18 | Pages: Home, About, Services, Projects, Equipment & Capabilities, Testimonials, Contact + Privacy, Terms                                                                                                                                                                                     | Client blueprint                                                                                                                         |
+| D-03 | 2026-10-18 | Public name "Liyat Construction"; legal name "Liyat Construction PLC"                                                                                                                                                                                                                        | Client blueprint                                                                                                                         |
+| D-04 | 2026-10-18 | Must stay static-export compatible (`build:static`)                                                                                                                                                                                                                                          | Hosting not yet decided; keeps cPanel possible                                                                                           |
+| D-05 | 2026-10-20 | Brand green is **`#156635`**                                                                                                                                                                                                                                                                 | Measured from Liyat's own designed brochure; 7 : 1 on white; logo JPG green `#006000` is off-brand                                       |
+| D-06 | 2026-10-20 | Palette: Green, Ink, White + Stone, Green Tint, Line; **Water Blue only for water data**; Alert Red only for form errors                                                                                                                                                                     | One color + one neutral is the strongest identity; blue gains meaning                                                                    |
+| D-07 | 2026-10-20 | Gold and navy are **not** used                                                                                                                                                                                                                                                               | Gold 2.6 : 1 contrast, competes with yellow machinery; navy competes with green                                                          |
+| D-08 | 2026-10-20 | White sticky header with full-color logo; Ink footer with all-white logo                                                                                                                                                                                                                     | Logo shown in true colors; avoids green-on-dark conflict                                                                                 |
+| D-09 | 2026-10-20 | Hero: one photograph (rig + water at the surface), flat Ink scrim, no slideshow                                                                                                                                                                                                              | Faster LCP, calmer; most visitors never see slide 2; range shown in projects section                                                     |
+| D-10 | 2026-10-20 | Hero headline "Know better. Drill better."; eyebrow "Water Well Drilling & Engineering"; promise heads the lifecycle section                                                                                                                                                                 | Client-owned tagline beats an invented one                                                                                               |
+| D-11 | 2026-10-20 | Six services in lifecycle order (Brand §9)                                                                                                                                                                                                                                                   | Client-sourced list; turnkey is a real tender category                                                                                   |
+| D-12 | 2026-10-20 | Remove dark mode, Framer Motion and the phone-input library                                                                                                                                                                                                                                  | Off-brand (white pages); large share of JS; CSS covers our motion                                                                        |
+| D-13 | 2026-10-20 | Fonts stay Manrope (headings) + Inter (body); tabular numerals for figures                                                                                                                                                                                                                   | Good fit; gains are elsewhere                                                                                                            |
+| D-14 | 2026-10-20 | Four-layer design system; all raw values only in `src/styles/tokens.css`; Tailwind default palette disabled; `check:design` enforces it                                                                                                                                                      | Change anything visual in one place; consistency by construction                                                                         |
+| D-15 | 2026-10-20 | Brand colors leave `site.ts`; `site.ts` keeps identity, contact, navigation, SEO, form                                                                                                                                                                                                       | One home for design values (tokens), one for business facts (config)                                                                     |
+| D-16 | 2026-10-20 | Signature visual: interactive well cross-section linking services to parts of the well                                                                                                                                                                                                       | Technical drawings are part of the brand; shows expertise without decoration                                                             |
+| D-17 | 2026-10-20 | Placeholders allowed during build, marked `PLACEHOLDER(C-xx)`; zero required at launch                                                                                                                                                                                                       | Judge design with realistic content; impossible to ship by accident                                                                      |
+| D-18 | 2026-10-20 | English only; Amharic legal name in the footer                                                                                                                                                                                                                                               | Scope; local credibility at no cost                                                                                                      |
+| D-19 | 2026-10-20 | `WORKFLOW.md` replaces `PROJECT_WORKFLOW.md`; `PROJECT_DOCUMENTATION.md` is replaced by `docs/`                                                                                                                                                                                              | One current source; template-era docs were outdated                                                                                      |
+| D-20 | 2026-10-20 | `check:design` keeps a `LEGACY` list of template files whose violations are only warnings; it fails if an entry is deleted or clean                                                                                                                                                          | The check passes from P1 on and blocks new violations; the list can only shrink                                                          |
+| D-21 | 2026-10-20 | `npm run analyze` uses Next's built-in `next experimental-analyze` (Turbopack), not `@next/bundle-analyzer`                                                                                                                                                                                  | `@next/bundle-analyzer` only works with webpack builds; Next 16 builds with Turbopack                                                    |
+| D-22 | 2026-10-20 | Framer Motion removed (owner questioned D-12, then agreed — O-07 closed)                                                                                                                                                                                                                     | ~42 KB gzip chunk; forced client components; hero headline invisible until hydration (> 3 s in dev). CSS covers our motion               |
+| D-23 | 2026-10-20 | `@next/bundle-analyzer` removed                                                                                                                                                                                                                                                              | Unused; superseded by D-21                                                                                                               |
+| D-24 | 2026-10-20 | JS budget: our own JS ≤ 30 KB gzip per route on top of React/Next; total first-load ≤ 190 KB (excl. `nomodule` polyfill). Replaces "≤ 110 KB total" (O-09, owner delegated the choice)                                                                                                       | React 19 + Next 16 alone ≈ 155 KB, so 110 KB was unreachable; the limit now covers what we control, and Lighthouse/LCP/INP targets stay  |
+| D-25 | 2026-10-20 | Tailwind defaults switched off for colors, fonts, type sizes, radii and all shadow namespaces (not just colors); spacing, breakpoints, containers, weights stay. Supersedes the color-only reset in D-14                                                                                     | Only tokens can be used for any visual decision; owner approved the agent's recommendation                                               |
+| D-26 | 2026-10-20 | `check:design` also flags switched-off defaults (`text-sm`, `rounded-lg`, `shadow-md`, `font-sans`, `*-black`) and template tokens (`brand-primary/accent`, `text-secondary`, `surface-*`). The 7 template files only these rules caught were added to `LEGACY` (one-time exception to D-20) | These classes generate no CSS, so they would fail silently; the files are all rebuilt in P5–P13                                          |
+| D-27 | 2026-10-20 | Hero and all photography keep their natural color: no green, blue or other color wash. Text over a photo sits on a flat Ink scrim limited to the text area, as light as contrast allows. Candidate hero image: `public/hero/hero-water-column.webp` (see P7)                                 | The owner saw the photo unwashed after P2 and preferred it strongly. It confirms Brand §6 and D-09; the template's green wash broke them |
 
 ### Open decisions
 
@@ -283,7 +295,17 @@ The site is still the **Digital Aksumite template filled with Liyat content**
 rebuild the visual layer. Content and photos in `src/data/` and `public/` are
 reused.
 
-### Last session — 2026-10-20 (P1, part 2)
+### Last session — 2026-10-20 (P2)
+
+- Owner approved P2, including the wider reset (D-25).
+- Built tokens, base styles and fonts; removed `siteConfig.brand`; extended `check:design` (D-26).
+- Template pages look broken until rebuilt (see P2 "Known effect").
+- With the green wash gone, the owner saw the hero photo in natural color and loved it. Recorded as D-27, with the hero plan, the measured sky colors and the open sky-blue question (plus the agent's objection) under P7.
+- New owner rule: every step is committed before the next starts (§3).
+- Found: `@tailwindcss/typography` is installed but never loaded (`prose-*` classes on legal pages do nothing). Recommend removing it in P14, when legal pages move to our `Prose` component. That needs owner approval.
+- Found: Google Analytics loads whenever `NEXT_PUBLIC_GA_ID` is set, despite O-03. Settle in P14.
+
+### Earlier session — 2026-10-20 (P1, part 2)
 
 - Owner agreed to remove Framer Motion (D-22) and `@next/bundle-analyzer` (D-23); both uninstalled.
 - Unwrapped `ScrollReveal`/`StaggerContainer`/`StaggerItem` and deleted `scroll-reveal.tsx`; replaced `motion.*` with plain elements; hero slideshow uses a CSS cross-fade; removed `'use client'` from `hero`, `premium-button`, `about-`, `cta-`, `projects-`, `services-`, `testimonials-section`.
@@ -311,6 +333,14 @@ reused.
 
 ### Verification evidence
 
+P2, 2026-10-20:
+
+- `npm run validate` → pass. `npm run check:design` → pass (91 legacy lines in 21 files before the new rules; the 7 newly caught template files added per D-26). `npm run check:placeholders` → 1 hit (C-12), as intended.
+- Clean `npm run build:static` → pass. A temporary class probe showed CSS generated for `bg-brand`, `text-ink`, `text-h2`, `text-display`, `rounded-card`, `shadow-raise`, `py-section`, `px-gutter`, `gap-grid`, `max-w-content`, `font-heading`, `bg-scrim`, `ease-standard`, `duration-(--duration-fast)`, `bg-transparent`, `text-white/80`. **No** CSS for `bg-gray-500`, `text-sm`, `shadow-lg`, `rounded-xl`, `font-sans`, `text-black`, `bg-brand-primary`. The emitted color variables are exactly the 12 tokens. The probe was deleted.
+- `check:design` probe file: `text-sm`, `shadow-lg`, `rounded-xl`, `text-brand-accent`, `font-sans`, `text-black` each flagged; a line of valid tokens is not flagged. Probe deleted.
+- Contrast: all 13 approved pairs recomputed (WCAG formula) and match Brand §4; green on Ink = 2.23 (forbidden, confirmed).
+- Browser (dev, port 3001): body is Inter on `#FFFFFF` in Ink `rgb(29 37 33)`; h1 is Manrope; loaded faces are exactly Inter 400/500/600 and Manrope 600/700; `--color-brand` = `#156635`; old inline `<style>` gone. Focus ring = solid 2 px `rgb(21 102 53)`, offset 2 px. `[id]` scroll margin = 104 px at 1280. The reduced-motion rule is present. Home at 375, About at 768 and Services at 1280 viewed, with no console errors and no horizontal scroll. Pages look stripped, as expected.
+
 P1 part 2, 2026-10-20:
 
 - `npm run validate` → pass. `npm run check:design` → pass (legacy warnings only). `npm run check:placeholders` → 1 hit (C-12), as intended.
@@ -329,4 +359,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P2 — Design tokens.** See §4 P2.
+**P4 — Component library + `/styleguide`.** See §4 P4. P3 waits for C-01 (logo files); P4 depends only on P2.

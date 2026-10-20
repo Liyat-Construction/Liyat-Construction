@@ -1,0 +1,107 @@
+/*
+ * Liyat design tokens — the ONLY file with raw design values (Design System §2).
+ * Each @theme variable becomes Tailwind utilities: --color-brand → bg-brand,
+ * --text-h2 → text-h2, --radius-card → rounded-card, --shadow-raise → shadow-raise.
+ * Tailwind's default colors, fonts, type sizes, radii and shadows are switched
+ * off, so only the tokens below exist. Change a value here and it changes everywhere.
+ */
+
+@theme {
+  /* Defaults off (D-14, D-25) */
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+
+  /* 2.1 Color — contrast pairs in Brand §4 */
+  --color-brand: #156635;
+  --color-brand-dark: #0f4f28;
+  --color-brand-tint: #e7f0ea;
+  --color-ink: #1d2521;
+  --color-ink-muted: #56615b;
+  --color-paper: #ffffff;
+  --color-stone: #f4f2ed;
+  --color-line: #dcdad3;
+  --color-water: #0b5ca0;
+  --color-alert: #b42318;
+  --color-white: #ffffff;
+  --color-scrim: rgb(29 37 33 / 0.62);
+
+  /* 2.2 Type scale — fluid from 375 px to 1440 px viewports */
+  --text-display: clamp(2.5rem, 1.8838rem + 2.6291vw, 4.25rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
+
+  --text-h1: clamp(2.25rem, 1.8979rem + 1.5023vw, 3.25rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: clamp(1.75rem, 1.4859rem + 1.1268vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 600;
+
+  --text-h4: clamp(1.0625rem, 1.0405rem + 0.0939vw, 1.125rem);
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 600;
+
+  --text-figure: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);
+  --text-figure--line-height: 1;
+  --text-figure--font-weight: 700;
+
+  --text-lead: clamp(1.125rem, 1.081rem + 0.1878vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.08em;
+  --text-eyebrow--font-weight: 600;
+
+  /* 2.3 Spacing and layout (Tailwind's 4 px spacing scale stays on) */
+  --spacing-section: clamp(4rem, 8vw, 7.5rem);
+  --spacing-section-sm: clamp(3rem, 5vw, 4.5rem);
+  --spacing-gutter: clamp(1rem, 4vw, 2rem);
+  --spacing-grid: clamp(1.5rem, 2.5vw, 2rem);
+  --container-content: 75rem;
+  --container-wide: 87.5rem;
+  --container-prose: 45rem;
+  --header-height: 4.5rem;
+
+  /* 2.4 Shape, depth, motion */
+  --radius-control: 6px;
+  --radius-card: 8px;
+  --shadow-raise: 0 1px 2px rgb(29 37 33 / 0.06), 0 8px 24px rgb(29 37 33 / 0.08);
+  --rule-width: 2px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/*
+ * Fonts: next/font sets --font-manrope and --font-inter on <html> (layout.tsx);
+ * each already includes a metric-matched fallback. `inline` makes the utilities
+ * resolve those variables where they are used.
+ */
+@theme inline {
+  --font-heading: var(--font-manrope), Arial, sans-serif;
+  --font-body: var(--font-inter), Arial, sans-serif;
+  --default-font-family: var(--font-body);
+}

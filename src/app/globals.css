@@ -1,68 +1,64 @@
 @import 'tailwindcss';
+@import '../styles/tokens.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Base styles only. Every value comes from a token; component styling lives in
+ * src/components/ui and src/components/cards.
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-heading: var(--font-manrope), system-ui, sans-serif;
-}
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-@theme {
-  --color-brand-primary: var(--brand-primary);
-  --color-brand-primary-dark: var(--brand-primary-dark);
-  --color-brand-primary-light: var(--brand-primary-light);
-  --color-brand-accent: var(--brand-accent);
-  --color-brand-accent-dark: var(--brand-accent-dark);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
 
-  /* Semantic surface colors */
-  --color-surface: #ffffff;
-  --color-surface-elevated: #f9fafb;
-  --color-surface-warm: #fafaf5;
-  --color-surface-cool: #fafbfc;
-  --color-surface-card: #1f2937;
-  --color-surface-card-from: #1a2332;
-  --color-surface-card-to: #141b26;
-  --color-surface-modal: #0b1220;
-  --color-surface-page: #18181b;
+  /* Visible focus: brand outline; white inside dark tones (Section sets data-on-dark) */
+  :focus-visible {
+    outline: var(--focus-width) solid var(--color-brand);
+    outline-offset: var(--focus-offset);
+  }
 
-  /* Semantic text colors */
-  --color-text-primary: #252b30;
-  --color-text-secondary: #475569;
-  --color-text-muted: #64748b;
-  --color-text-inverse: #e5e7eb;
-  --color-text-on-accent: #ffffff;
+  [data-on-dark] :focus-visible {
+    outline-color: var(--color-white);
+  }
 
-  /* Semantic border colors */
-  --color-border-default: #e5e7eb;
-  --color-border-dark: #374151;
-}
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-white);
+  }
 
-html {
-  scroll-behavior: smooth;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
+  /* Anchored sections clear the sticky header */
+  [id] {
+    scroll-margin-top: calc(var(--header-height) + var(--spacing-gutter));
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
 
-/* Headings use Manrope */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading), system-ui, sans-serif;
-}
-
-/* Smooth scroll offset for sticky navbar */
-[id] {
-  scroll-margin-top: 80px;
+    *,
+    ::before,
+    ::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 }

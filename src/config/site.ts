@@ -1,7 +1,7 @@
 /**
  * Site Configuration — the primary file to edit for every new client.
  * Brand identity, contact details, social links, SEO and the contact form live here.
- * Page copy lives in src/data/*.
+ * Page copy lives in src/data/*; design values live in src/styles/tokens.css.
  *
  * Rule of thumb: an empty string hides the related UI (no phone → no phone row,
  * no telegram → no floating Telegram button, no map → no map, etc.).
@@ -10,24 +10,6 @@
 export type ContactFormProvider = 'none' | 'formspree' | 'web3forms';
 
 export const siteConfig = {
-  // ── Brand Colors ────────────────────────────────────────────────────────────
-  // These feed into CSS custom properties via layout.tsx. Change here and the
-  // whole site updates automatically. No need to touch globals.css.
-  brand: {
-    colors: {
-      primary: '#176B45',
-      primaryDark: '#0f4a2f',
-      primaryLight: '#1e8555',
-      accent: '#174A70',
-      accentDark: '#0f2d44',
-    },
-    // Font names here MUST match the imports in src/app/layout.tsx
-    fonts: {
-      body: 'Inter',
-      heading: 'Manrope',
-    },
-  },
-
   // ── Navigation ──────────────────────────────────────────────────────────────
   // One source of truth for nav links across desktop, tablet and mobile.
   navigation: {
