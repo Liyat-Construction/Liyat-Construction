@@ -9,7 +9,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Container } from '@/components/container';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 
@@ -78,17 +77,11 @@ export function Navbar() {
               href={cta.href}
               className={cn(
                 'rounded-lg px-4 py-2 text-sm font-medium transition-colors',
-                'bg-brand-primary hover:bg-brand-primary-dark text-white',
-                'dark:bg-brand-primary dark:hover:bg-brand-primary-dark dark:text-white'
+                'bg-brand-primary hover:bg-brand-primary-dark text-white'
               )}
             >
               {cta.label}
             </Link>
-
-            {/* Theme Toggle */}
-            <div className="hidden md:block">
-              <ThemeToggle variant="navbar" />
-            </div>
           </div>
 
           {/* Tablet Navigation - md only (no Contact) */}
@@ -109,22 +102,15 @@ export function Navbar() {
               href={cta.href}
               className={cn(
                 'rounded-lg px-4 py-2 text-sm font-medium transition-colors',
-                'bg-brand-primary hover:bg-brand-primary-dark text-white',
-                'dark:bg-brand-primary dark:hover:bg-brand-primary-dark dark:text-white'
+                'bg-brand-primary hover:bg-brand-primary-dark text-white'
               )}
             >
               {cta.label}
             </Link>
-
-            {/* Theme Toggle */}
-            <div className="hidden md:block">
-              <ThemeToggle variant="navbar" />
-            </div>
           </div>
 
-          {/* Mobile: Theme Toggle + Menu Button */}
+          {/* Mobile: Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle variant="navbar" />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={cn('rounded-lg p-2 transition-colors', 'text-white hover:bg-white/10')}
@@ -166,18 +152,11 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
                   'mt-2 rounded-lg px-4 py-2 text-center text-sm font-medium',
-                  'bg-brand-primary hover:bg-brand-primary-dark text-white',
-                  'dark:bg-brand-primary dark:hover:bg-brand-primary-dark dark:text-white'
+                  'bg-brand-primary hover:bg-brand-primary-dark text-white'
                 )}
               >
                 {cta.label}
               </Link>
-
-              {/* Mobile Theme Toggle */}
-              <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
-                <span className="text-sm text-white/60">Theme</span>
-                <ThemeToggle variant="navbar" />
-              </div>
             </div>
           </div>
         )}

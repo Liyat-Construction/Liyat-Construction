@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">

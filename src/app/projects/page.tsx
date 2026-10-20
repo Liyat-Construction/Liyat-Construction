@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -63,9 +63,7 @@ export default function ProjectsPage() {
         <Container>
           {projects.length === 0 ? (
             <div className="py-20 text-center">
-              <p className="text-text-secondary dark:text-text-muted text-lg">
-                No projects published yet.
-              </p>
+              <p className="text-text-secondary text-lg">No projects published yet.</p>
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -89,10 +87,8 @@ function ProjectCard({ project }: { project: Project }) {
         className={cn(
           'relative h-full overflow-hidden rounded-2xl',
           'border border-gray-100 bg-white shadow-sm',
-          'dark:bg-surface-card dark:border-transparent',
           'transition-all duration-500',
-          'hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-primary)_12%,transparent)]',
-          'dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]'
+          'hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-primary)_12%,transparent)]'
         )}
       >
         <div className="bg-surface-card relative aspect-[16/10] overflow-hidden">
@@ -117,7 +113,6 @@ function ProjectCard({ project }: { project: Project }) {
             className={cn(
               'mb-2 text-xl font-bold',
               'text-brand-primary',
-              'dark:text-white',
               'transition-colors duration-300',
               'group-hover:text-brand-accent'
             )}
@@ -127,8 +122,7 @@ function ProjectCard({ project }: { project: Project }) {
           <p
             className={cn(
               'text-[15px] leading-relaxed break-words whitespace-pre-line',
-              'text-text-secondary',
-              'dark:text-text-muted'
+              'text-text-secondary'
             )}
           >
             {project.summary}

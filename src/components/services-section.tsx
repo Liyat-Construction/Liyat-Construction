@@ -3,12 +3,8 @@
  * Display featured services with premium hover effects and stagger animations
  */
 
-'use client';
-
 import { Container } from '@/components/container';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/scroll-reveal';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { Service } from '@/types/content';
@@ -29,13 +25,12 @@ type ServiceCardData = Pick<
 >;
 
 const tagColors: Record<string, string> = {
-  Investigation:
-    'bg-brand-accent/15 text-brand-accent dark:bg-brand-accent/20 dark:text-brand-accent',
-  Drilling: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400',
-  Testing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  Rehabilitation: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
-  Electromechanical: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
-  Turnkey: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400',
+  Investigation: 'bg-brand-accent/15 text-brand-accent',
+  Drilling: 'bg-emerald-100 text-emerald-800',
+  Testing: 'bg-blue-100 text-blue-700',
+  Rehabilitation: 'bg-amber-100 text-amber-800',
+  Electromechanical: 'bg-slate-100 text-slate-700',
+  Turnkey: 'bg-cyan-100 text-cyan-800',
 };
 
 interface ServicesSectionProps {
@@ -51,56 +46,40 @@ export function ServicesSection({ title, subtitle, services }: ServicesSectionPr
   }
 
   return (
-    <section
-      id="services"
-      className={cn('py-20 md:py-28 lg:py-32', 'bg-white', 'dark:bg-surface-page')}
-    >
+    <section id="services" className={cn('py-20 md:py-28 lg:py-32', 'bg-white')}>
       <Container>
         {/* Section Header */}
         <div className="mb-12 text-center md:mb-16">
-          <ScrollReveal>
-            <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
-              Our Services
-            </span>
-          </ScrollReveal>
+          <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
+            Our Services
+          </span>
 
-          <ScrollReveal delay={0.1}>
-            <h2
-              className={cn(
-                'mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl',
-                'text-brand-primary',
-                'dark:text-white'
-              )}
-            >
-              {title}
-            </h2>
-          </ScrollReveal>
+          <h2
+            className={cn(
+              'mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl',
+              'text-brand-primary'
+            )}
+          >
+            {title}
+          </h2>
 
-          <ScrollReveal delay={0.2}>
-            <p
-              className={cn(
-                'mx-auto mt-4 max-w-2xl text-base md:text-lg',
-                'text-text-muted',
-                'dark:text-text-muted'
-              )}
-            >
-              {subtitle}
-            </p>
-          </ScrollReveal>
+          <p className={cn('mx-auto mt-4 max-w-2xl text-base md:text-lg', 'text-text-muted')}>
+            {subtitle}
+          </p>
         </div>
 
         {/* Services Grid */}
-        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((service) => {
             const IconComponent = iconMap[service.slug] || DefaultIcon;
 
             return (
-              <StaggerItem key={service.slug}>
+              <div key={service.slug}>
                 <ServiceCard service={service} IconComponent={IconComponent} />
-              </StaggerItem>
+              </div>
             );
           })}
-        </StaggerContainer>
+        </div>
       </Container>
     </section>
   );
@@ -117,19 +96,16 @@ function ServiceCard({
 
   return (
     <Link href={`/services/${service.slug}`} className="block h-full">
-      <motion.div
+      <div
         className={cn(
           'group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border p-8',
           service.isHighlighted
-            ? 'border-brand-accent/50 ring-brand-accent/20 dark:border-brand-accent/40 dark:bg-surface-card bg-white shadow-lg ring-1'
-            : 'dark:border-border-dark dark:bg-surface-card border-gray-100 bg-white shadow-sm dark:shadow-none',
+            ? 'border-brand-accent/50 ring-brand-accent/20 bg-white shadow-lg ring-1'
+            : 'border-gray-100 bg-white shadow-sm',
           'transition-all duration-500',
           'hover:border-brand-accent/30 hover:shadow-[0_8px_30px_rgba(15,42,68,0.08)]',
-          'dark:hover:border-brand-accent/50 dark:hover:shadow-[0_8px_30px_rgba(201,162,39,0.12)]',
           'hover:-translate-y-1'
         )}
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.3 }}
       >
         {/* Gradient overlay on hover */}
         <div className="from-brand-accent/[0.03] absolute inset-0 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -158,7 +134,6 @@ function ServiceCard({
           className={cn(
             'relative mb-1 text-xl font-bold',
             'text-brand-primary',
-            'dark:text-white',
             'transition-colors duration-300',
             'group-hover:text-brand-accent'
           )}
@@ -177,8 +152,7 @@ function ServiceCard({
         <p
           className={cn(
             'relative flex-1 text-[15px] leading-relaxed break-words',
-            'text-text-secondary',
-            'dark:text-text-muted'
+            'text-text-secondary'
           )}
         >
           {service.description}
@@ -192,7 +166,7 @@ function ServiceCard({
 
         {/* Bottom accent */}
         <div className="via-brand-accent absolute right-8 bottom-0 left-8 h-[2px] scale-x-0 bg-gradient-to-r from-transparent to-transparent transition-all duration-500 group-hover:scale-x-100" />
-      </motion.div>
+      </div>
     </Link>
   );
 }

@@ -7,11 +7,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { StyledPhoneInput } from '@/components/styled-phone-input';
 import { Container } from '@/components/container';
-import { ScrollReveal } from '@/components/scroll-reveal';
 import {
   SocialLinks,
   TelegramIcon,
@@ -45,111 +43,98 @@ export function ContactSection({ contactPage }: ContactSectionProps) {
   ) : undefined;
 
   return (
-    <section
-      id="contact"
-      className={cn('py-20 md:py-28 lg:py-32', 'bg-brand-primary', 'dark:bg-brand-primary')}
-    >
+    <section id="contact" className={cn('py-20 md:py-28 lg:py-32', 'bg-brand-primary')}>
       <Container>
         {/* Header */}
         <div className="mb-12 text-center md:mb-16">
-          <ScrollReveal>
-            <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
-              Contact Us
-            </span>
-          </ScrollReveal>
+          <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
+            Contact Us
+          </span>
 
-          <ScrollReveal delay={0.1}>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-              {contactPage.title}
-            </h2>
-          </ScrollReveal>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            {contactPage.title}
+          </h2>
 
-          <ScrollReveal delay={0.2}>
-            <p className="text-text-inverse/80 mx-auto mt-4 max-w-2xl text-base md:mt-6 md:text-lg lg:text-xl">
-              {contactPage.description}
-            </p>
-          </ScrollReveal>
+          <p className="text-text-inverse/80 mx-auto mt-4 max-w-2xl text-base md:mt-6 md:text-lg lg:text-xl">
+            {contactPage.description}
+          </p>
         </div>
 
         <div
           className={cn('grid gap-8 md:gap-12', formOrMap ? 'lg:grid-cols-2' : 'mx-auto max-w-xl')}
         >
-          {formOrMap && <ScrollReveal>{formOrMap}</ScrollReveal>}
+          {formOrMap}
 
           {/* Contact Info */}
-          <ScrollReveal delay={0.2}>
-            <div className={cn('flex flex-col justify-center', formOrMap && 'lg:pl-8')}>
-              <h3 className="text-xl font-bold text-white md:text-2xl">Contact Information</h3>
-              <p className="text-text-inverse/70 mt-2 text-sm md:text-base">
-                Reach out to us directly through any of these channels.
-              </p>
+          <div className={cn('flex flex-col justify-center', formOrMap && 'lg:pl-8')}>
+            <h3 className="text-xl font-bold text-white md:text-2xl">Contact Information</h3>
+            <p className="text-text-inverse/70 mt-2 text-sm md:text-base">
+              Reach out to us directly through any of these channels.
+            </p>
 
-              <div className="mt-8 space-y-6 md:mt-10 md:space-y-8">
-                {phone && (
-                  <ContactItem
-                    icon={PhoneIcon}
-                    label="Phone"
-                    value={phone}
-                    href={`tel:${phone.replace(/\s/g, '')}`}
-                  />
-                )}
-                {email && (
-                  <ContactItem
-                    icon={EmailIcon}
-                    label="Email"
-                    value={email}
-                    href={`mailto:${email}`}
-                  />
-                )}
-                {address && <ContactItem icon={LocationIcon} label="Address" value={address} />}
-                {officeHours && (
-                  <ContactItem icon={ClockIcon} label="Office Hours" value={officeHours} />
-                )}
-              </div>
-
-              <SocialLinks
-                className="mt-8 md:mt-10"
-                linkClassName="text-text-inverse/60 hover:text-brand-accent"
-                iconClassName="h-6 w-6"
-              />
-
-              {/* Direct channels */}
-              {hasDirectChannels && (
-                <div className="border-brand-accent/20 from-brand-accent/10 mt-8 rounded-xl border bg-gradient-to-br to-transparent p-5 md:mt-10 md:p-6">
-                  <h4 className="text-base font-semibold text-white md:text-lg">
-                    Prefer to talk directly?
-                  </h4>
-                  <p className="text-text-inverse/70 mt-2 text-sm">
-                    Call or message us and we will get back to you as soon as possible.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                    {phone && (
-                      <QuickLink
-                        href={`tel:${phone.replace(/\s/g, '')}`}
-                        icon={PhoneIcon}
-                        label="Call us now"
-                      />
-                    )}
-                    {whatsappUrl && (
-                      <QuickLink href={whatsappUrl} icon={WhatsAppIcon} label="WhatsApp" external />
-                    )}
-                    {telegramUrl && (
-                      <QuickLink href={telegramUrl} icon={TelegramIcon} label="Telegram" external />
-                    )}
-                  </div>
-                </div>
+            <div className="mt-8 space-y-6 md:mt-10 md:space-y-8">
+              {phone && (
+                <ContactItem
+                  icon={PhoneIcon}
+                  label="Phone"
+                  value={phone}
+                  href={`tel:${phone.replace(/\s/g, '')}`}
+                />
+              )}
+              {email && (
+                <ContactItem
+                  icon={EmailIcon}
+                  label="Email"
+                  value={email}
+                  href={`mailto:${email}`}
+                />
+              )}
+              {address && <ContactItem icon={LocationIcon} label="Address" value={address} />}
+              {officeHours && (
+                <ContactItem icon={ClockIcon} label="Office Hours" value={officeHours} />
               )}
             </div>
-          </ScrollReveal>
+
+            <SocialLinks
+              className="mt-8 md:mt-10"
+              linkClassName="text-text-inverse/60 hover:text-brand-accent"
+              iconClassName="h-6 w-6"
+            />
+
+            {/* Direct channels */}
+            {hasDirectChannels && (
+              <div className="border-brand-accent/20 from-brand-accent/10 mt-8 rounded-xl border bg-gradient-to-br to-transparent p-5 md:mt-10 md:p-6">
+                <h4 className="text-base font-semibold text-white md:text-lg">
+                  Prefer to talk directly?
+                </h4>
+                <p className="text-text-inverse/70 mt-2 text-sm">
+                  Call or message us and we will get back to you as soon as possible.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+                  {phone && (
+                    <QuickLink
+                      href={`tel:${phone.replace(/\s/g, '')}`}
+                      icon={PhoneIcon}
+                      label="Call us now"
+                    />
+                  )}
+                  {whatsappUrl && (
+                    <QuickLink href={whatsappUrl} icon={WhatsAppIcon} label="WhatsApp" external />
+                  )}
+                  {telegramUrl && (
+                    <QuickLink href={telegramUrl} icon={TelegramIcon} label="Telegram" external />
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Map below the grid when the form takes the left column */}
         {isContactFormEnabled && mapEmbedUrl && (
-          <ScrollReveal delay={0.1}>
-            <div className="mt-12 md:mt-16">
-              <MapEmbed className="aspect-[16/9] md:aspect-[21/9]" />
-            </div>
-          </ScrollReveal>
+          <div className="mt-12 md:mt-16">
+            <MapEmbed className="aspect-[16/9] md:aspect-[21/9]" />
+          </div>
         )}
       </Container>
     </section>
@@ -167,7 +152,6 @@ function ContactForm({ contactPage }: { contactPage: ContactPage }) {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm<ContactFormInput, unknown, ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -272,18 +256,14 @@ function ContactForm({ contactPage }: { contactPage: ContactPage }) {
           </FormField>
 
           <FormField label="Phone Number" htmlFor="contact-phone" error={errors.phone?.message}>
-            <Controller
-              control={control}
-              name="phone"
-              render={({ field }) => (
-                <StyledPhoneInput
-                  {...field}
-                  id="contact-phone"
-                  defaultCountry={siteConfig.contact.defaultPhoneCountry}
-                  international
-                  placeholder="Enter phone number"
-                />
-              )}
+            <input
+              id="contact-phone"
+              type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+              {...register('phone')}
+              className={formInputStyles}
+              placeholder="+251 9X XXX XXXX"
             />
           </FormField>
 

@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
   const sections = defaultSections;
 
   return (
-    <main className={cn('min-h-screen', 'bg-surface-warm', 'dark:bg-surface-page')}>
+    <main className={cn('min-h-screen', 'bg-surface-warm')}>
       {/* Hero Section */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         {/* Breadcrumb */}
@@ -181,8 +181,7 @@ export default function PrivacyPolicyPage() {
               <div
                 className={cn(
                   'rounded-2xl border p-6 md:p-8',
-                  'border-gray-100 bg-white shadow-sm',
-                  'dark:border-brand-accent/10 dark:bg-surface-card'
+                  'border-gray-100 bg-white shadow-sm'
                 )}
               >
                 <h2 className="text-brand-accent mb-4 flex items-center gap-2 text-lg font-semibold">
@@ -200,16 +199,14 @@ export default function PrivacyPolicyPage() {
                         href={`#section-${section.id}`}
                         className={cn(
                           'group flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300',
-                          'hover:bg-brand-accent/5',
-                          'dark:hover:bg-brand-accent/5'
+                          'hover:bg-brand-accent/5'
                         )}
                       >
                         <IconComponent className="text-brand-accent/60 group-hover:text-brand-accent h-4 w-4 transition-colors" />
                         <span
                           className={cn(
                             'text-sm transition-colors',
-                            'group-hover:text-brand-primary text-text-secondary',
-                            'dark:text-white/70 dark:group-hover:text-white'
+                            'group-hover:text-brand-primary text-text-secondary'
                           )}
                         >
                           {section.title}
@@ -234,8 +231,7 @@ export default function PrivacyPolicyPage() {
                     id={`section-${section.id}`}
                     className={cn(
                       'group relative overflow-hidden rounded-2xl border transition-all duration-300',
-                      'border-gray-100 bg-white hover:-translate-y-1 hover:shadow-lg',
-                      'dark:border-brand-accent/10 dark:hover:border-brand-accent/30 dark:hover:shadow-brand-accent/5 dark:from-surface-card-from dark:to-surface-card-to dark:bg-gradient-to-br dark:hover:shadow-xl'
+                      'border-gray-100 bg-white hover:-translate-y-1 hover:shadow-lg'
                     )}
                   >
                     {/* Left accent line */}
@@ -254,8 +250,7 @@ export default function PrivacyPolicyPage() {
                           <h2
                             className={cn(
                               'mt-1 text-xl font-bold md:text-2xl',
-                              'text-brand-primary',
-                              'dark:text-white'
+                              'text-brand-primary'
                             )}
                           >
                             {sectionTitle}
@@ -266,14 +261,13 @@ export default function PrivacyPolicyPage() {
                       {/* Section Content */}
                       <div
                         className={cn(
-                          'text-text-secondary dark:text-text-inverse/90',
+                          'text-text-secondary',
                           'prose prose-lg max-w-none',
                           'prose-p:text-text-secondary prose-p:leading-relaxed',
                           'prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline',
                           'prose-strong:text-brand-primary',
                           'prose-ul:text-text-secondary prose-li:marker:text-brand-accent',
-                          'prose-ol:text-text-secondary prose-li:marker:text-brand-accent',
-                          'dark:prose-p:text-text-inverse/90 dark:prose-strong:text-white dark:prose-ul:text-text-inverse/90 dark:prose-ol:text-text-inverse/90'
+                          'prose-ol:text-text-secondary prose-li:marker:text-brand-accent'
                         )}
                         dangerouslySetInnerHTML={{
                           __html: section.content
@@ -297,25 +291,13 @@ export default function PrivacyPolicyPage() {
             {/* Contact CTA */}
             <div className="mt-16 text-center">
               <div
-                className={cn(
-                  'rounded-2xl border p-8 md:p-12',
-                  'bg-surface-cool border-gray-100',
-                  'dark:border-brand-accent/20 dark:bg-brand-accent/5'
-                )}
+                className={cn('rounded-2xl border p-8 md:p-12', 'bg-surface-cool border-gray-100')}
               >
                 <Mail className="text-brand-accent mx-auto mb-4 h-12 w-12" />
-                <h3
-                  className={cn('mb-3 text-2xl font-bold', 'text-brand-primary', 'dark:text-white')}
-                >
+                <h3 className={cn('mb-3 text-2xl font-bold', 'text-brand-primary')}>
                   Questions About Your Privacy?
                 </h3>
-                <p
-                  className={cn(
-                    'mx-auto mb-8 max-w-xl',
-                    'text-text-secondary',
-                    'dark:text-text-inverse/90'
-                  )}
-                >
+                <p className={cn('mx-auto mb-8 max-w-xl', 'text-text-secondary')}>
                   If anything here is unclear, email us before you sign anything. We would rather
                   answer a question upfront than have a disagreement later.
                 </p>
@@ -346,15 +328,15 @@ export default function PrivacyPolicyPage() {
             </div>
 
             {/* Footer Note */}
-            <div className="mt-12 border-t border-gray-100 pt-8 dark:border-white/10">
+            <div className="mt-12 border-t border-gray-100 pt-8">
               <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                <p className="text-text-muted text-sm dark:text-white/50">
+                <p className="text-text-muted text-sm">
                   © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
                 </p>
                 <div className="flex items-center gap-6">
                   <Link
                     href="/terms-of-service"
-                    className="hover:text-brand-accent dark:hover:text-brand-accent text-text-muted text-sm transition-colors dark:text-white/60"
+                    className="hover:text-brand-accent text-text-muted text-sm transition-colors"
                   >
                     Terms of Service
                   </Link>

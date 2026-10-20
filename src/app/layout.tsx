@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Inter, Manrope } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { OrganizationSchema } from '@/components/organization-schema';
 import { TelegramChatButton } from '@/components/telegram-chat-button';
 import { env, siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
-import 'react-phone-number-input/style.css';
 import './globals.css';
 
 const brandColors = siteConfig.brand.colors;
@@ -94,22 +92,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.language} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang={siteConfig.language} data-scroll-behavior="smooth">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var stored = localStorage.getItem('app-theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var isDark = stored === 'dark' || (!stored && prefersDark);
-                  document.documentElement.classList.toggle('dark', isDark);
-                } catch (e) {}
-              })()
-            `,
-          }}
-        />
         <style>{`
           :root {
             --brand-primary: ${brandColors.primary};
@@ -138,14 +122,12 @@ export default function RootLayout({
           </>
         )}
         <OrganizationSchema siteUrl={siteUrl} />
-        <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
-          <TelegramChatButton />
-        </ThemeProvider>
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </div>
+        <TelegramChatButton />
       </body>
     </html>
   );

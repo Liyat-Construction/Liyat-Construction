@@ -1,13 +1,9 @@
 /**
  * Premium Button Component
- * Architectural, precise button with subtle gold glow on hover
- * Inspired by Stripe's interaction design
+ * Template button (replaced by ui/button in P4)
  */
 
-'use client';
-
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 interface PremiumButtonProps {
@@ -34,7 +30,6 @@ export function PremiumButton({
     variant === 'primary' && [
       'border border-transparent bg-brand-primary text-white',
       'hover:border-brand-primary hover:bg-brand-primary-dark hover:text-white',
-      'hover:shadow-[0_0_30px_color-mix(in_srgb,var(--brand-primary)_30%,transparent)]',
       'hover:scale-[1.02]',
     ],
     variant === 'secondary' && [
@@ -47,29 +42,15 @@ export function PremiumButton({
   const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2 }}
-    >
-      <Link href={href} className={baseStyles} {...externalProps}>
-        {/* Glow effect for primary */}
+    <Link href={href} className={baseStyles} {...externalProps}>
+      {/* Content */}
+      <span className="relative flex items-center gap-2">
+        {children}
         {variant === 'primary' && (
-          <span className="absolute inset-0 rounded-lg bg-white/10 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+          <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         )}
-
-        {/* Shine sweep animation */}
-        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-
-        {/* Content */}
-        <span className="relative flex items-center gap-2">
-          {children}
-          {variant === 'primary' && (
-            <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          )}
-        </span>
-      </Link>
-    </motion.div>
+      </span>
+    </Link>
   );
 }
 

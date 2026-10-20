@@ -1,6 +1,6 @@
 /**
  * Hero Slideshow
- * Full-bleed background photos that cross-fade every 5 seconds with a slow zoom.
+ * Full-bleed background photos that cross-fade every 5 seconds (CSS transition).
  * A brand overlay keeps hero text readable. Reduced motion shows the first slide only.
  */
 
@@ -8,37 +8,29 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { ImageAsset } from '@/types/content';
 
 const INTERVAL_MS = 5000;
 
 export function HeroSlideshow({ slides }: { slides: ImageAsset[] }) {
-  const shouldReduceMotion = useReducedMotion();
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    if (shouldReduceMotion || slides.length < 2) return;
+    if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const id = window.setInterval(() => setActive((i) => (i + 1) % slides.length), INTERVAL_MS);
     return () => window.clearInterval(id);
-  }, [shouldReduceMotion, slides.length, active]);
+  }, [slides.length, active]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
       {slides.map((slide, index) => (
-        <motion.div
+        <div
           key={slide.url}
-          className="absolute inset-0"
-          initial={false}
-          animate={{
-            opacity: index === active ? 1 : 0,
-            scale: index === active && !shouldReduceMotion ? 1 : 1.08,
-          }}
-          transition={{
-            opacity: { duration: 1.2, ease: 'easeInOut' },
-            scale: { duration: index === active ? 6 : 1.2, ease: 'easeOut' },
-          }}
+          className={cn(
+            'absolute inset-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none',
+            index === active ? 'opacity-100' : 'opacity-0'
+          )}
           aria-hidden={index !== active}
         >
           <Image
@@ -49,7 +41,7 @@ export function HeroSlideshow({ slides }: { slides: ImageAsset[] }) {
             sizes="100vw"
             className="object-cover"
           />
-        </motion.div>
+        </div>
       ))}
 
       <div className="from-brand-primary-dark/95 via-brand-primary-dark/70 absolute inset-0 bg-gradient-to-r to-black/30" />

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Scans the project for leftover template placeholder text.
- * Run before delivering a client site:  npm run check:placeholders
+ * Lists every PLACEHOLDER(C-xx) marker and leftover template text.
+ * Must report zero before launch:  npm run check:placeholders
  * Exits 0 when clean, 1 when placeholders are found.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const PATTERNS = [
+  /PLACEHOLDER\(/,
   /brand name/i,
   /your (company|brand|tagline|logo|email|phone|text|content|site)/i,
   /lorem ipsum/i,
@@ -60,7 +61,7 @@ for (const dir of SCAN_DIRS) {
 }
 
 if (hits.length === 0) {
-  console.log('✓ No placeholder text found. Site is ready to ship.');
+  console.log('✓ No placeholders or template text found.');
   process.exit(0);
 }
 

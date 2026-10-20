@@ -47,16 +47,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
   const heroTagColor = tagHeroColors[service.tag] ?? tagHeroColors['Primary'];
 
-  const SECTION_BG = 'bg-white dark:bg-surface-page';
-  const CARD =
-    'relative overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-brand-accent/10 dark:bg-surface-card';
+  const SECTION_BG = 'bg-white';
+  const CARD = 'relative overflow-hidden rounded-2xl border border-gray-200 bg-white';
   const CARD_ACCENT =
     'absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-brand-accent to-brand-accent/50';
   const LABEL = 'text-sm font-semibold tracking-widest text-brand-accent uppercase';
-  const BODY = 'text-lg leading-relaxed text-text-secondary dark:text-text-muted';
+  const BODY = 'text-lg leading-relaxed text-text-secondary';
 
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -130,9 +129,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <div className="bg-brand-accent h-px w-8" />
               <span className={LABEL}>What&apos;s included</span>
             </div>
-            <h2 className="text-brand-primary text-2xl font-bold md:text-3xl dark:text-white">
-              What is included.
-            </h2>
+            <h2 className="text-brand-primary text-2xl font-bold md:text-3xl">What is included.</h2>
             <div className="mt-8 space-y-4">
               {service.includes.map((item, index) => (
                 <div
@@ -147,9 +144,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   <div className="bg-brand-accent/10 mt-0.5 flex-shrink-0 rounded-full p-1">
                     <Check className="text-brand-accent h-4 w-4" />
                   </div>
-                  <p className="text-text-secondary dark:text-text-muted pl-1 text-base leading-relaxed">
-                    {item}
-                  </p>
+                  <p className="text-text-secondary pl-1 text-base leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>
@@ -167,14 +162,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <div className="bg-brand-accent h-px w-8" />
               <span className={LABEL}>How to start</span>
             </div>
-            <h2 className="text-brand-primary text-2xl font-bold md:text-3xl dark:text-white">
-              How we work.
-            </h2>
+            <h2 className="text-brand-primary text-2xl font-bold md:text-3xl">How we work.</h2>
             <p className={cn('mt-4', BODY)}>
               {service.howToStart ||
                 'We begin every engagement with a discovery session to understand your requirements, constraints, and goals. From there we scope, architect, and deliver in clearly defined phases.'}
             </p>
-            <p className="text-text-muted dark:text-text-muted mt-3 text-base leading-relaxed">
+            <p className="text-text-muted mt-3 text-base leading-relaxed">
               {service.howToStartTagline || 'Clear scope. Clean build. Confident launch.'}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">

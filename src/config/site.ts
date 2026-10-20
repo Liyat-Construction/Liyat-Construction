@@ -68,8 +68,6 @@ export const siteConfig = {
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
     // Google Maps → Share → Embed a map → copy only the src="..." URL
     mapEmbedUrl: '',
-    // Default country for the phone field in the contact form (ISO code)
-    defaultPhoneCountry: 'ET',
   },
 
   // ── Social Links ────────────────────────────────────────────────────────────

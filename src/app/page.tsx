@@ -14,23 +14,16 @@ import { PARTNERS } from '@/data/partners';
 import { TESTIMONIALS } from '@/data/testimonials';
 import { CONTACT_PAGE } from '@/data/contact';
 
-function GoldDivider() {
-  return <div className="border-brand-accent/30 border-t" />;
-}
-
 export default function Home() {
   return (
-    <main className="dark:bg-surface-page bg-white">
+    <main className="bg-white">
       <Hero homePage={HOME_PAGE} />
-      <GoldDivider />
       <AboutSection about={ABOUT_SUMMARY} />
-      <GoldDivider />
       <ServicesSection
         title={HOME_PAGE.servicesTitle}
         subtitle={HOME_PAGE.servicesSubtitle}
         services={SERVICES}
       />
-      <GoldDivider />
       <ProjectsSection
         title={HOME_PAGE.projectsTitle}
         subtitle={HOME_PAGE.projectsSubtitle}
@@ -42,7 +35,6 @@ export default function Home() {
         subtitle={HOME_PAGE.testimonialsSubtitle}
         testimonials={TESTIMONIALS}
       />
-      <GoldDivider />
       <ContactSection contactPage={CONTACT_PAGE} />
       <CTASection homePage={HOME_PAGE} />
     </main>

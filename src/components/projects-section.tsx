@@ -3,15 +3,11 @@
  * Display featured projects with premium card interactions
  */
 
-'use client';
-
 import { Container } from '@/components/container';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/scroll-reveal';
 import { PremiumButton } from '@/components/premium-button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import type { Project } from '@/types/content';
 
 interface ProjectsSectionProps {
@@ -29,62 +25,44 @@ export function ProjectsSection({ title, subtitle, projects }: ProjectsSectionPr
   const displayProjects = projects;
 
   return (
-    <section
-      id="projects"
-      className={cn('py-20 md:py-28 lg:py-32', 'bg-white', 'dark:bg-surface-page')}
-    >
+    <section id="projects" className={cn('py-20 md:py-28 lg:py-32', 'bg-white')}>
       <Container>
         {/* Section Header */}
         <div className="mb-12 md:mb-16">
           <div className="text-center">
-            <ScrollReveal>
-              <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
-                Portfolio
-              </span>
-            </ScrollReveal>
+            <span className="text-brand-accent text-sm font-semibold tracking-widest uppercase">
+              Portfolio
+            </span>
 
-            <ScrollReveal delay={0.1}>
-              <h2
-                className={cn(
-                  'mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl',
-                  'text-brand-primary',
-                  'dark:text-white'
-                )}
-              >
-                {title}
-              </h2>
-            </ScrollReveal>
+            <h2
+              className={cn(
+                'mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl',
+                'text-brand-primary'
+              )}
+            >
+              {title}
+            </h2>
 
-            <ScrollReveal delay={0.2}>
-              <p
-                className={cn(
-                  'mx-auto mt-4 max-w-2xl text-base md:text-lg',
-                  'text-text-secondary',
-                  'dark:text-text-muted'
-                )}
-              >
-                {subtitle}
-              </p>
-            </ScrollReveal>
+            <p className={cn('mx-auto mt-4 max-w-2xl text-base md:text-lg', 'text-text-secondary')}>
+              {subtitle}
+            </p>
           </div>
 
-          <ScrollReveal delay={0.3}>
-            <div className="mt-8 flex w-full justify-end">
-              <PremiumButton href="/projects" variant="primary">
-                See All Projects
-              </PremiumButton>
-            </div>
-          </ScrollReveal>
+          <div className="mt-8 flex w-full justify-end">
+            <PremiumButton href="/projects" variant="primary">
+              See All Projects
+            </PremiumButton>
+          </div>
         </div>
 
         {/* Projects Grid */}
-        <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.15}>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {displayProjects.map((project) => (
-            <StaggerItem key={project.slug}>
+            <div key={project.slug}>
               <ProjectCard project={project} />
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Container>
     </section>
   );
@@ -93,17 +71,13 @@ export function ProjectsSection({ title, subtitle, projects }: ProjectsSectionPr
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Link href={`/projects/${project.slug}`} className="group block h-full">
-      <motion.article
+      <article
         className={cn(
           'relative h-full overflow-hidden rounded-2xl',
           'border border-gray-100 bg-white shadow-sm',
-          'dark:bg-surface-card dark:border-transparent',
           'transition-all duration-500',
-          'hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-primary)_12%,transparent)]',
-          'dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]'
+          'hover:shadow-[0_20px_40px_color-mix(in_srgb,var(--brand-primary)_12%,transparent)]'
         )}
-        whileHover={{ y: -8 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <div className="bg-surface-card relative aspect-[16/10] overflow-hidden">
           {project.image ? (
@@ -130,7 +104,6 @@ function ProjectCard({ project }: { project: Project }) {
             className={cn(
               'mb-2 text-xl font-bold',
               'text-brand-primary',
-              'dark:text-white',
               'transition-colors duration-300',
               'group-hover:text-brand-accent'
             )}
@@ -140,8 +113,7 @@ function ProjectCard({ project }: { project: Project }) {
           <p
             className={cn(
               'text-[15px] leading-relaxed break-words whitespace-pre-line',
-              'text-text-secondary',
-              'dark:text-text-muted'
+              'text-text-secondary'
             )}
           >
             {project.summary}
@@ -162,7 +134,7 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* Bottom accent line */}
         <div className="from-brand-accent via-brand-accent to-brand-accent absolute right-0 bottom-0 left-0 h-1 scale-x-0 bg-gradient-to-r transition-transform duration-500 group-hover:scale-x-100" />
-      </motion.article>
+      </article>
     </Link>
   );
 }

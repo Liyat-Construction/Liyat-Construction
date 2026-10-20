@@ -7,6 +7,8 @@
  * is published. Names, companies, and quotes are not verified.
  */
 
+// PLACEHOLDER(C-12): every entry below; replace with approved testimonials
+
 import type { Testimonial } from '@/types/content';
 
 export const TESTIMONIALS: Testimonial[] = [

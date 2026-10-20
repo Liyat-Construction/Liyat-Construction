@@ -6,8 +6,10 @@
  */
 
 import { z } from 'zod';
-import { isValidPhoneNumber } from 'libphonenumber-js';
 import { siteConfig } from '@/config/site';
+
+// Digits with optional +, spaces, dashes and parentheses; 7–20 characters.
+const phonePattern = /^\+?[\d\s()-]{7,20}$/;
 
 const { provider, formKey } = siteConfig.contactForm;
 
@@ -25,7 +27,7 @@ export const contactFormSchema = z.object({
     .string()
     .optional()
     .transform((value) => (value ?? '').trim() || undefined)
-    .refine((value) => value === undefined || isValidPhoneNumber(value), 'Invalid phone number'),
+    .refine((value) => value === undefined || phonePattern.test(value), 'Invalid phone number'),
   subject: z.string().min(1, 'Please choose a subject'),
   message: z
     .string()

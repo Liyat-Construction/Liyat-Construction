@@ -1,61 +1,18 @@
 /**
  * Premium Hero Section
- * Immersive hero with animated gradient, staggered text reveal
- * Architectural, precise, calm - inspired by Stripe and Apple
+ * Hero with photo slideshow (template; rebuilt in P7)
  */
 
-'use client';
-
-import { AnimatedGradientBackground } from '@/components/animated-gradient-background';
 import { HeroSlideshow } from '@/components/hero-slideshow';
 import { PremiumButton } from '@/components/premium-button';
 import { Container } from '@/components/container';
-import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import type { HomePage } from '@/types/content';
 
 interface HeroProps {
   homePage: HomePage;
 }
 
-// Animation variants
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
-
-const titleWordVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
-
 export function Hero({ homePage }: HeroProps) {
-  const shouldReduceMotion = useReducedMotion();
-
   const [line1, line2, line3] = homePage.heroTitleLines;
 
   const subtitle = homePage.heroSubtitle;
@@ -72,11 +29,7 @@ export function Hero({ homePage }: HeroProps) {
 
   return (
     <section className="bg-brand-primary relative min-h-screen">
-      {homePage.heroSlides?.length ? (
-        <HeroSlideshow slides={homePage.heroSlides} />
-      ) : (
-        <AnimatedGradientBackground />
-      )}
+      {homePage.heroSlides?.length ? <HeroSlideshow slides={homePage.heroSlides} /> : undefined}
 
       {/* Content */}
       <Container className="relative z-10">
@@ -84,47 +37,27 @@ export function Hero({ homePage }: HeroProps) {
           <div className="mt-3 flex flex-1 items-start md:mt-0 md:items-center">
             <div className="grid w-full grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-5">
               {/* Left side - Text content */}
-              <motion.div
-                className="flex flex-col items-center pt-0 text-center lg:items-start lg:pt-1 lg:text-left [@media(min-width:768px)_and_(max-height:850px)]:pb-3"
-                variants={containerVariants}
-                initial={shouldReduceMotion ? 'visible' : 'hidden'}
-                animate="visible"
-              >
+              <div className="flex flex-col items-center pt-0 text-center lg:items-start lg:pt-1 lg:text-left [@media(min-width:768px)_and_(max-height:850px)]:pb-3">
                 {/* Title - 3 lines: editable via heroTitleLines */}
-                <motion.h1 className="w-full" variants={containerVariants}>
-                  <motion.span
-                    className="block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]"
-                    variants={titleWordVariants}
-                  >
+                <h1 className="w-full">
+                  <span className="block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]">
                     {line1}
-                  </motion.span>
-                  <motion.span
-                    className="mt-1.5 block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]"
-                    variants={titleWordVariants}
-                  >
+                  </span>
+                  <span className="mt-1.5 block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]">
                     {line2}
-                  </motion.span>
-                  <motion.span
-                    className="mt-1.5 block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]"
-                    variants={titleWordVariants}
-                  >
+                  </span>
+                  <span className="mt-1.5 block text-[4rem] leading-[1.01] font-bold tracking-tight text-white sm:text-[4.5rem] sm:leading-[1.05] sm:whitespace-nowrap md:text-[5.5rem] lg:text-[5.75rem] xl:text-[6.25rem] 2xl:text-[6.75rem] [@media(min-width:768px)_and_(max-height:850px)]:text-[6rem]">
                     {line3}
-                  </motion.span>
-                </motion.h1>
+                  </span>
+                </h1>
 
                 {/* Subtitle - stepped back to let title dominate */}
-                <motion.p
-                  className="text-text-inverse/65 mt-2 max-w-xl text-sm leading-relaxed sm:mt-3 sm:text-base md:text-lg lg:text-xl"
-                  variants={itemVariants}
-                >
+                <p className="text-text-inverse/65 mt-2 max-w-xl text-sm leading-relaxed sm:mt-3 sm:text-base md:text-lg lg:text-xl">
                   {subtitle}
-                </motion.p>
+                </p>
 
                 {/* CTA Buttons */}
-                <motion.div
-                  className="mt-4 flex w-full flex-col gap-3 sm:mt-5 sm:w-auto sm:flex-row sm:items-center md:mt-7 lg:mt-6 [@media(min-width:768px)_and_(max-height:850px)]:mt-4"
-                  variants={itemVariants}
-                >
+                <div className="mt-4 flex w-full flex-col gap-3 sm:mt-5 sm:w-auto sm:flex-row sm:items-center md:mt-7 lg:mt-6 [@media(min-width:768px)_and_(max-height:850px)]:mt-4">
                   <PremiumButton
                     href={ctaButtonUrl}
                     variant="primary"
@@ -140,8 +73,8 @@ export function Hero({ homePage }: HeroProps) {
                   >
                     {secondaryButtonText}
                   </PremiumButton>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

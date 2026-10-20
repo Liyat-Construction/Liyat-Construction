@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const gallery = project.gallery ?? [];
 
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-28">
         <div className="from-brand-primary to-brand-primary-dark absolute inset-0 bg-gradient-to-b" />
@@ -154,7 +154,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Content */}
-      <section className={cn('pt-12 pb-16 md:pt-16', 'bg-white', 'dark:bg-surface-page')}>
+      <section className={cn('pt-12 pb-16 md:pt-16', 'bg-white')}>
         <Container>
           <div className="mx-auto max-w-3xl">
             {project.image && (
@@ -162,8 +162,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 className={cn(
                   'relative mb-10 overflow-hidden rounded-2xl shadow-lg',
                   'aspect-[16/9]',
-                  'ring-1 ring-gray-100',
-                  'dark:ring-brand-accent/20'
+                  'ring-1 ring-gray-100'
                 )}
               >
                 <Image
@@ -182,8 +181,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <p
                 className={cn(
                   'text-lg leading-relaxed whitespace-pre-line md:text-xl',
-                  'text-text-secondary',
-                  'dark:text-text-inverse/90'
+                  'text-text-secondary'
                 )}
               >
                 {project.description}
@@ -196,8 +194,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <h2
                   className={cn(
                     'mb-4 flex items-center gap-2 text-lg font-semibold',
-                    'text-brand-primary',
-                    'dark:text-white'
+                    'text-brand-primary'
                   )}
                 >
                   <Tag className="text-brand-accent h-5 w-5" />
@@ -247,20 +244,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Gallery */}
           {gallery.length > 0 && (
             <div className="mx-auto mt-4 max-w-5xl">
-              <h2
-                className={cn(
-                  'mb-6 text-2xl font-bold md:text-3xl',
-                  'text-brand-primary',
-                  'dark:text-white'
-                )}
-              >
+              <h2 className={cn('mb-6 text-2xl font-bold md:text-3xl', 'text-brand-primary')}>
                 Gallery
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {gallery.map((image) => (
                   <figure
                     key={image.url}
-                    className="dark:ring-brand-accent/20 relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-gray-100"
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-gray-100"
                   >
                     <Image
                       src={image.url}

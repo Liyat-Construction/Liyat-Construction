@@ -2,13 +2,13 @@ import { Container } from '@/components/container';
 
 function SkeletonCard() {
   return (
-    <div className="dark:bg-surface-card relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-transparent">
-      <div className="aspect-[16/10] animate-pulse bg-gray-200 dark:bg-gray-700" />
+    <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+      <div className="aspect-[16/10] animate-pulse bg-gray-200" />
       <div className="p-6">
-        <div className="mb-3 h-6 w-3/4 animate-pulse rounded-md bg-gray-200 dark:bg-gray-700" />
-        <div className="mb-2 h-4 w-full animate-pulse rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="mb-2 h-4 w-5/6 animate-pulse rounded-md bg-gray-100 dark:bg-gray-800" />
-        <div className="mt-4 h-4 w-32 animate-pulse rounded-md bg-gray-100 dark:bg-gray-800" />
+        <div className="mb-3 h-6 w-3/4 animate-pulse rounded-md bg-gray-200" />
+        <div className="mb-2 h-4 w-full animate-pulse rounded-md bg-gray-100" />
+        <div className="mb-2 h-4 w-5/6 animate-pulse rounded-md bg-gray-100" />
+        <div className="mt-4 h-4 w-32 animate-pulse rounded-md bg-gray-100" />
       </div>
     </div>
   );
@@ -16,7 +16,7 @@ function SkeletonCard() {
 
 export default function ProjectsLoading() {
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero skeleton */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <Container className="relative z-10">

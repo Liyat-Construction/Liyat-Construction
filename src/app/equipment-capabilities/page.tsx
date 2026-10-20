@@ -13,13 +13,12 @@ export const metadata: Metadata = {
     'Liyat Construction PLC drilling, testing, and water-works capabilities for groundwater development projects across Ethiopia.',
 };
 
-const SECTION_BG = 'bg-white dark:bg-surface-page';
-const CARD =
-  'relative overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-brand-accent/10 dark:bg-surface-card';
+const SECTION_BG = 'bg-white';
+const CARD = 'relative overflow-hidden rounded-2xl border border-gray-200 bg-white';
 const CARD_ACCENT =
   'absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-brand-accent to-brand-accent/50';
 const LABEL = 'text-sm font-semibold tracking-widest text-brand-accent uppercase';
-const BODY = 'text-lg leading-relaxed text-text-secondary dark:text-text-muted';
+const BODY = 'text-lg leading-relaxed text-text-secondary';
 
 const CAPABILITY_CARDS = [
   {
@@ -66,7 +65,7 @@ const CAPABILITY_CARDS = [
 
 export default function EquipmentCapabilitiesPage() {
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -139,7 +138,7 @@ export default function EquipmentCapabilitiesPage() {
               <span className={LABEL}>Operational strengths</span>
               <div className="bg-brand-accent h-px w-8" />
             </div>
-            <h2 className="text-brand-primary text-3xl font-bold md:text-4xl dark:text-white">
+            <h2 className="text-brand-primary text-3xl font-bold md:text-4xl">
               Capabilities by discipline
             </h2>
             <p className={cn('mx-auto mt-4 max-w-2xl', BODY)}>
@@ -158,18 +157,11 @@ export default function EquipmentCapabilitiesPage() {
                 )}
               >
                 <div className={CARD_ACCENT} />
-                <h3 className="text-brand-primary pl-2 text-xl font-bold dark:text-white">
-                  {card.title}
-                </h3>
-                <p className="text-text-secondary dark:text-text-muted mt-3 pl-2 leading-relaxed">
-                  {card.body}
-                </p>
+                <h3 className="text-brand-primary pl-2 text-xl font-bold">{card.title}</h3>
+                <p className="text-text-secondary mt-3 pl-2 leading-relaxed">{card.body}</p>
                 <ul className="mt-5 space-y-2 pl-2">
                   {card.items.map((item) => (
-                    <li
-                      key={item}
-                      className="text-text-secondary dark:text-text-muted flex items-start gap-3 text-sm"
-                    >
+                    <li key={item} className="text-text-secondary flex items-start gap-3 text-sm">
                       <div className="bg-brand-accent/10 mt-0.5 rounded-full p-0.5">
                         <Check className="text-brand-accent h-3.5 w-3.5" />
                       </div>

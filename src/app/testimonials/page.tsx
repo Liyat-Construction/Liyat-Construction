@@ -14,12 +14,11 @@ export const metadata: Metadata = {
     'Client feedback and references for Liyat Construction PLC groundwater development and water-well engineering projects in Ethiopia.',
 };
 
-const CARD =
-  'relative overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-brand-accent/10 dark:bg-surface-card';
+const CARD = 'relative overflow-hidden rounded-2xl border border-gray-100 bg-white';
 
 export default function TestimonialsPage() {
   return (
-    <main className="dark:bg-surface-page min-h-screen bg-white">
+    <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -66,9 +65,7 @@ export default function TestimonialsPage() {
         <Container>
           {TESTIMONIALS.length === 0 ? (
             <div className="py-20 text-center">
-              <p className="text-text-secondary dark:text-text-muted text-lg">
-                No testimonials published yet.
-              </p>
+              <p className="text-text-secondary text-lg">No testimonials published yet.</p>
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -81,7 +78,7 @@ export default function TestimonialsPage() {
                   )}
                 >
                   <div className="text-brand-accent/20 mb-4 text-4xl">&ldquo;</div>
-                  <p className="text-text-secondary dark:text-text-inverse/90 mb-6 text-[15px] leading-relaxed">
+                  <p className="text-text-secondary mb-6 text-[15px] leading-relaxed">
                     {testimonial.quote}
                   </p>
                   <div className="flex items-center gap-4">
@@ -91,7 +88,7 @@ export default function TestimonialsPage() {
                       </span>
                     </div>
                     <div>
-                      <div className="text-brand-primary font-semibold dark:text-white">
+                      <div className="text-brand-primary font-semibold">
                         {testimonial.clientName}
                       </div>
                       <div className="text-text-muted text-sm">{testimonial.company}</div>
@@ -102,11 +99,11 @@ export default function TestimonialsPage() {
             </div>
           )}
 
-          <div className="bg-surface-cool dark:border-brand-accent/10 dark:bg-surface-card mx-auto mt-16 max-w-2xl rounded-2xl border border-gray-100 p-8 text-center md:p-12">
-            <h2 className="text-brand-primary mb-3 text-2xl font-bold dark:text-white">
+          <div className="bg-surface-cool mx-auto mt-16 max-w-2xl rounded-2xl border border-gray-100 p-8 text-center md:p-12">
+            <h2 className="text-brand-primary mb-3 text-2xl font-bold">
               References Available Upon Request
             </h2>
-            <p className="text-text-secondary dark:text-text-muted mb-6">
+            <p className="text-text-secondary mb-6">
               For additional client references or project-specific case studies, please contact us
               directly. We will be happy to provide verified references for projects similar to
               yours.

@@ -50,8 +50,8 @@ export function ClientLogosMarquee({ logos }: ClientLogosMarqueeProps) {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="from-surface-elevated dark:from-surface-page pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r to-transparent md:w-40" />
-      <div className="from-surface-elevated dark:from-surface-page pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l to-transparent md:w-40" />
+      <div className="from-surface-elevated pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r to-transparent md:w-40" />
+      <div className="from-surface-elevated pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l to-transparent md:w-40" />
 
       <style>{`
         @keyframes marquee-scroll {
@@ -100,7 +100,7 @@ export function ClientLogosMarquee({ logos }: ClientLogosMarqueeProps) {
 
 function PartnerCard({ partner }: { partner: Partner }) {
   return (
-    <div className="group dark:ring-brand-accent/30 relative flex h-28 w-52 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_rgba(23,74,112,0.08)] ring-1 ring-gray-200/80 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(23,107,69,0.18)] md:h-32 md:w-64">
+    <div className="group relative flex h-28 w-52 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_rgba(23,74,112,0.08)] ring-1 ring-gray-200/80 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_36px_rgba(23,107,69,0.18)] md:h-32 md:w-64">
       {partner.logo ? (
         <Image
           src={partner.logo}
