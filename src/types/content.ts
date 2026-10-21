@@ -211,6 +211,25 @@ export interface ProjectsPage {
   };
 }
 
+/** A section of running text, with an optional statement or button (Story section). */
+export interface StoryCopy extends SectionCopy {
+  paragraphs: string[];
+}
+
+/** /about, in section order (Design System §4). Company facts come from company.ts. */
+export interface AboutPage {
+  header: PageCopy & { image: ImageAsset };
+  story: StoryCopy & { factsTitle: string };
+  figures: SectionCopy;
+  offer: SectionCopy & { items: Feature[]; link: Action };
+  audience: StoryCopy & { action: Action };
+  purpose: StoryCopy & { statement: string };
+  principles: SectionCopy & { items: Feature[] };
+  team: SectionCopy;
+  credentials: SectionCopy;
+  safety: SectionCopy;
+}
+
 /** The band that ends every page except Contact (Design System §3.4). */
 export interface CtaBandContent {
   title: string;

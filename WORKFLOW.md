@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                                                   |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **P10 — About page** (not started)                                                                                                                                                |
-| **Last completed**    | P9 — Projects pages (2026-10-21)                                                                                                                                                  |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                                                                |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-10 root `loading.tsx`                                                                          |
-| **Next action**       | New session: start P10 (§4 P10; blueprint in Design System §4). Decide O-10 first if the owner agrees. One phase per session; the owner reviews the whole site at the end (D-43). |
+|                       |                                                                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Current step**      | **P11 — Equipment & Capabilities page** (not started)                                                                                      |
+| **Last completed**    | P10 — About page (2026-10-21)                                                                                                              |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                         |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                 |
+| **Next action**       | New session: start P11 (§4 P11; blueprint in Design System §4). One phase per session; the owner reviews the whole site at the end (D-43). |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -77,7 +77,7 @@
 | P7  | Home page + well diagram              | P5, P6                | Owner                           | Complete    |
 | P8  | Services pages                        | P7                    | Owner                           | Complete    |
 | P9  | Projects pages                        | P7                    | Owner                           | Complete    |
-| P10 | About page                            | P7                    | Owner                           | Not started |
+| P10 | About page                            | P7                    | Owner                           | Complete    |
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Not started |
 | P12 | Testimonials page                     | P7                    | Owner                           | Not started |
 | P13 | Contact page and form                 | P7, O-01              | Owner                           | Not started |
@@ -233,7 +233,21 @@
   - Related projects often show a single card (e.g. Ethiopian Airlines → Tsedey Bank).
   - Gallery photos cannot be enlarged (no client island for a lightbox).
 
-### P10 — About · P11 — Equipment · P12 — Testimonials
+### P10 — About page · `Complete` (2026-10-21)
+
+- **Plan agreed 2026-10-21** in a question-by-question review: keep the three old About sections (D-50), facts as both a figures row and a "Company at a glance" table (D-51), delete the root `loading.tsx` (D-52).
+- **Built:** `/about` = PageHeader (Afar rig photo) → Story + "Company at a glance" FactsTable → figures row (ProofStrip pattern) → What we offer → Who we serve → Our purpose (Story with Statement) → How we work (FeatureGrid) → Leadership and team (TeamGrid) → Licences and credentials (FeatureGrid, document icon) → Safety and site practice (FeatureGrid) → CtaBand.
+- New in the library, shown on `/styleguide`: `sections/story` (text beside an optional facts sidebar or statement), `sections/team-grid`, `ui/statement`. `FeatureGrid` gained an optional link, following `FeaturedProjects`.
+- Data: new `AboutPage` type; `src/data/about.ts` rewritten and typed (unsupported template claims dropped — rehabilitation/maintenance, hospitals and manufacturers, the unattributed quote now a company statement); `company.ts` gained `ABOUT_FIGURES`, `COMPANY_FACTS`, `SAFETY_PRACTICES`. New client item C-28 (confirm hospitals and manufacturers among clients).
+- Cleanup: `src/app/loading.tsx` deleted (O-10 → D-52); About and loading left the `check:design` LEGACY list.
+- **Verified:** `validate`, `check:design`, `build:static` pass; `check:placeholders` lists the expected open items. Built HTML serves the page content directly in `<main>` (the hidden reveal div is gone). Screenshots taken at 375/768/1280; 1280 reviewed — structure and order correct.
+- **Owner review:** at the end of the run (D-43), with the whole site.
+- **Open points:**
+  - Most of the page is marked placeholders until C-08, C-10, C-14, C-15, C-17, C-28 arrive; under the empty-section rule About shrinks to header, story, offer, audience, purpose, principles at launch.
+  - "Who we serve" and the practices in "How we work" make claims Liyat must confirm (C-28, C-09).
+  - Console errors at the three widths not yet captured; full browser/aesthetic review happens at the end (D-43).
+
+### P11 — Equipment · P12 — Testimonials
 
 - **What:** Each page exactly as its blueprint in Design System §4, composed from existing sections and cards. A new component is added to the library (and the styleguide) first, never inside a page.
 - **Done when:** Per page: definition of done plus owner approval.
@@ -303,6 +317,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-25 | Inbox that should receive website inquiries                                                                                                                    | P13       | Must                   | Open   |
 | C-27 | Wondossen checks the well cross-section drawing (home and services) matches how Liyat builds wells                                                             | P16       | Should                 | Open   |
 | C-26 | Approval of Brand Guidelines v1.1 by Wondossen                                                                                                                 | P18       | Must                   | Open   |
+| C-28 | Confirm the client types named on About (the template listed hospitals and manufacturers)                                                                      | P16       | Should                 | Open   |
 
 ## 6. Decisions log
 
@@ -359,17 +374,20 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-48 | 2026-10-21 | Project pages open with `PageHeader` and the cover photo beside the title, not a full-width photo. Portrait photos (`ImageAsset.orientation`) use the Photo `feature` ratio: 3:2 while stacked, 4:5 from `lg`. Applies to every PageHeader                                                       | 9 of 12 project photos are portrait and most are 901 px wide: full width at 1280 would upscale them and crop them to a strip (owner approved the plan)                                                                                              |
 | D-49 | 2026-10-21 | `PhotoGallery` lays photos out in CSS columns, each at its own shape (portrait 4:5, landscape 3:2) instead of one cropped ratio                                                                                                                                                                  | The galleries mix tall phone shots and wide frames; a single 3:2 or 4:3 crop cut the portrait ones to a band. Fixed ratios keep zero layout shift                                                                                                   |
 | D-47 | 2026-10-21 | `Scrim` primitive and `--color-scrim` token deleted                                                                                                                                                                                                                                              | No text sits on a photo after D-44; Brand §7 still allows a scrim if a future layout needs one                                                                                                                                                      |
+| D-50 | 2026-10-21 | About keeps the three template-era sections — "What we offer", "The real purpose" (now "Our purpose"), "Who we serve" — rewritten in the design system                                                                                                                                           | Owner's call. Agent's objection, recorded: "What we offer" repeats the Services page; the audience list claims client types Liyat hasn't confirmed (C-28); the purpose quote was unattributed — it now renders as a company statement, not a quote  |
+| D-51 | 2026-10-21 | About shows company facts both ways: a figures row (`ABOUT_FIGURES`) and a "Company at a glance" FactsTable beside the story                                                                                                                                                                     | Owner chose "both" over replacing the figures row with the table (the agent's recommendation: "Addis Ababa" and licence grades are words, not numbers)                                                                                              |
+| D-52 | 2026-10-21 | Root `src/app/loading.tsx` deleted (closes O-10)                                                                                                                                                                                                                                                 | It wrapped every page in `<div hidden>` until a script revealed it — without JavaScript the content stayed hidden. Pages are static; there is nothing to wait for                                                                                   |
 
 ### Open decisions
 
-| ID   | Question                                      | Recommendation                                                                                                                                                                                                                                                                                          | Needed by                                  |
-| ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| O-01 | Form provider                                 | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter                                                                                                                                                                                                          | P13                                        |
-| O-02 | Hosting                                       | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise                                                                                                                                                                                                 | P17                                        |
-| O-03 | Analytics                                     | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner                                                                                                                                                                                                    | P14                                        |
-| O-05 | `/styleguide` at launch                       | Keep it, `noindex` and unlinked — useful for future maintenance                                                                                                                                                                                                                                         | P17                                        |
-| O-10 | Root `src/app/loading.tsx` (template spinner) | **Delete it.** It wraps every page in a Suspense boundary: the built HTML holds the page inside `<div hidden>` behind a spinner until an inline script reveals it. Without JavaScript, or in a background tab, the content stays hidden (seen in P9). Pages are static, so there is nothing to wait for | P14 at the latest; now if the owner agrees |
-| O-06 | Floating WhatsApp/Telegram button             | Only if the client actively answers that channel (C-20)                                                                                                                                                                                                                                                 | P5                                         |
+| ID   | Question                                      | Recommendation                                                                                          | Needed by |
+| ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| O-01 | Form provider                                 | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter          | P13       |
+| O-02 | Hosting                                       | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise | P17       |
+| O-03 | Analytics                                     | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner    | P14       |
+| O-05 | `/styleguide` at launch                       | Keep it, `noindex` and unlinked — useful for future maintenance                                         | P17       |
+| O-10 | Root `src/app/loading.tsx` (template spinner) | **Closed by D-52:** deleted in P10                                                                      | —         |
+| O-06 | Floating WhatsApp/Telegram button             | Only if the client actively answers that channel (C-20)                                                 | P5        |
 
 ## 7. Risks
 
@@ -389,12 +407,20 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 ### Current state of the code
 
-The site is still the **Digital Aksumite template filled with Liyat content**
-(built 2026-10-18). Its visuals do not follow this documentation yet; P1–P5
-rebuild the visual layer. Content and photos in `src/data/` and `public/` are
-reused.
+Home, Services, Projects and About are rebuilt in the final design system
+(P7–P10). Equipment, Testimonials and Contact are still template pages on the
+`check:design` LEGACY list; P11–P13 rebuild them next. Content and photos in
+`src/data/` and `public/` carry `PLACEHOLDER(C-xx)` markers until P16.
 
-### Last session — 2026-10-21 (P9)
+### Last session — 2026-10-21 (P10)
+
+- Owner answered the four P10 questions one at a time: keep the old sections (D-50), facts both ways (D-51), delete `loading.tsx` (D-52), build.
+- Built and verified P10; `validate`, `check:design`, `check:placeholders` (expected markers) and `build:static` pass; `/about` serves its content directly.
+- Screenshots at 375/768/1280 taken; 1280 reviewed and correct. Remaining: owner's whole-site review at the end (D-43).
+- Tooling: PIL is not installed, so cropping the tall screenshot failed; view captures directly or re-screenshot per section.
+- P10 commit `P10: About page` is still pending the owner's OK.
+
+### Earlier session — 2026-10-21 (P9)
 
 - Owner approved the P9 plan and deleting `projects/loading.tsx`. Built and verified P9 (D-48, D-49); committed on the owner's instruction.
 - Found: the root `loading.tsx` hides every page's content until a script runs (O-10). Not fixed: it is outside P9 and deleting needs the owner's OK.

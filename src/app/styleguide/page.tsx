@@ -26,7 +26,10 @@ import { ReferenceCard } from '@/components/cards/reference-card';
 import { ServiceCard } from '@/components/cards/service-card';
 import { TeamCard } from '@/components/cards/team-card';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
-import { KEY_FIGURES, TEAM } from '@/data/company';
+import { Story } from '@/components/sections/story';
+import { TeamGrid } from '@/components/sections/team-grid';
+import { Statement } from '@/components/ui/statement';
+import { COMPANY_FACTS, KEY_FIGURES, TEAM } from '@/data/company';
 import { CTA_BAND } from '@/data/cta';
 import { EQUIPMENT } from '@/data/equipment';
 import { getProjectBySlug, PROJECTS } from '@/data/projects';
@@ -265,6 +268,12 @@ export default function StyleguidePage() {
               <FactsTable rows={projectFacts} />
             </Specimen>
           </div>
+
+          <Specimen title="Statement" note="the company speaking, not a quotation">
+            <Statement>
+              Every successful well begins with understanding the ground beneath it.
+            </Statement>
+          </Specimen>
         </div>
       </Section>
 
@@ -390,6 +399,24 @@ export default function StyleguidePage() {
         title="PhotoGallery"
         intro="Project and site photos in columns, each at its own shape: portrait 4:5, landscape 3:2. Sample: the CREDOCS gallery."
         images={getProjectBySlug('credocs-shoring')?.gallery ?? []}
+      />
+
+      <Story
+        id="sg-story"
+        tone="stone"
+        eyebrow="Sections"
+        title="Story"
+        paragraphs={[sectionCopy.body]}
+        facts={{ title: 'Company at a glance', rows: COMPANY_FACTS }}
+        statement="Every successful well begins with understanding the ground beneath it."
+        action={{ label: 'Contact us', href: '/contact' }}
+      />
+
+      <TeamGrid
+        eyebrow="Sections"
+        title="TeamGrid"
+        intro="TeamCards, two columns on phones; hidden when TEAM is empty (C-15)."
+        members={TEAM}
       />
 
       <Section labelledBy="sg-diagram">

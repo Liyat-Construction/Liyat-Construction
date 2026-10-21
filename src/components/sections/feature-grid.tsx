@@ -1,8 +1,9 @@
-import type { Feature, SectionCopy } from '@/types/content';
+import type { Action, Feature, SectionCopy } from '@/types/content';
 import { FeatureCard } from '@/components/cards/feature-card';
 import type { IconName } from '@/components/ui/icon';
 import { Section, type SectionTone } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
+import { TextLink } from '@/components/ui/text-link';
 import { cn, pick } from '@/lib/utils';
 
 const columns = {
@@ -16,6 +17,8 @@ interface FeatureGridProps extends SectionCopy {
   /** The same icon on every card, e.g. `document` for deliverables */
   icon?: IconName;
   columns?: keyof typeof columns;
+  /** A link beside the heading, e.g. to the page that covers the topic in full */
+  link?: Action;
   tone?: SectionTone;
   id: string;
 }
@@ -28,6 +31,7 @@ export function FeatureGrid({
   items,
   icon,
   columns: count = 3,
+  link,
   tone = 'paper',
   id,
 }: FeatureGridProps) {
@@ -35,7 +39,14 @@ export function FeatureGrid({
   return (
     <Section tone={tone} labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+        <div className="gap-grid flex flex-col md:flex-row md:items-end md:justify-between">
+          <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+          {link && (
+            <TextLink href={link.href} arrow className="shrink-0">
+              {link.label}
+            </TextLink>
+          )}
+        </div>
         <ul className={cn('gap-grid grid', pick(columns, count))}>
           {items.map((item) => (
             <FeatureCard key={item.title} as="li" feature={item} icon={icon} />

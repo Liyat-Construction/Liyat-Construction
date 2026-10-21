@@ -1,76 +1,110 @@
 /**
- * About Content
- * ABOUT_PAGE_SECTIONS → the full /about page
+ * /about copy, in section order (Design System §4). Figures, facts, team,
+ * credentials and safety practice come from company.ts.
+ * The offer, audience and purpose sections are kept from the template (D-50).
  */
 
-export const ABOUT_PAGE_SECTIONS = {
-  whoWeAre: {
-    sectionLabel: 'Who we are',
-    headline: 'Liyat Construction PLC',
-    body: 'Liyat Construction PLC is an Ethiopian company operating in groundwater development, water-well drilling, and related water works. We serve government ministries, international organizations, embassies, commercial businesses, and property developers who need reliable water systems and technically sound execution.',
-    // PLACEHOLDER(C-08): founding year, founders, milestones
-    origin: 'Company story (C-08).',
-  },
+import type { AboutPage } from '@/types/content';
 
-  whatWeBuild: {
-    sectionLabel: 'What we offer',
-    headline: 'Full-cycle groundwater and water-well services',
+export const ABOUT_PAGE: AboutPage = {
+  header: {
+    eyebrow: 'About us',
+    title: 'Groundwater engineering, from survey to handover',
     intro:
-      'We manage the entire water-well lifecycle — from initial subsurface investigation and drilling to pump installation, testing, and ongoing rehabilitation. Our work is shaped by the technical standards and delivery discipline required by institutional clients.',
-    dimensions: [
+      'Liyat Construction is an Ethiopian groundwater development company. We survey, drill, test and equip water wells, and document every stage for our clients.',
+    description:
+      'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor for public bodies, embassies, NGOs, institutions and commercial clients.',
+    image: {
+      url: '/images/hero/afar-rig-fleet.webp',
+      alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
+    },
+  },
+  story: {
+    eyebrow: 'Who we are',
+    title: 'Liyat Construction PLC',
+    paragraphs: [
+      // The company description, used unchanged (Brand §10)
+      'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
+      // PLACEHOLDER(C-08): founding year, founders, milestones, why the company exists
+      'Company story (C-08): when and why Liyat was founded, by whom, and the milestones since. Two or three sentences of this length.',
+    ],
+    factsTitle: 'Company at a glance',
+  },
+  figures: {
+    eyebrow: 'Track record',
+    title: 'Liyat in figures',
+  },
+  offer: {
+    eyebrow: 'What we offer',
+    title: 'The whole life of a water well',
+    intro:
+      'From the first study of the ground to a working pump. Take one stage, or let us run the complete project.',
+    items: [
       {
-        roman: 'I',
         title: 'Investigate',
-        body: 'Hydrogeological and geophysical investigations to identify viable water sources and inform drilling decisions.',
+        text: 'Hydrogeological and geophysical surveys that find a viable water source and decide where to drill.',
       },
       {
-        roman: 'II',
         title: 'Drill',
-        body: 'Deep and shallow well drilling executed with appropriate rigs, casing, and well-development techniques.',
+        text: 'Well drilling, casing and well development, with a rig suited to the ground and the depth.',
       },
       {
-        roman: 'III',
         title: 'Equip',
-        body: 'Pumping tests, pump installation, electromechanical works, and wellhead construction for operational systems.',
+        text: 'Pumping tests, wellhead construction, pump installation and electromechanical works.',
+      },
+    ],
+    link: { label: 'See all six services', href: '/services' },
+  },
+  audience: {
+    eyebrow: 'Who we serve',
+    title: 'Built for institutional and commercial water demand',
+    paragraphs: [
+      // PLACEHOLDER(C-28): confirm whether hospitals and manufacturers are among Liyat's clients
+      'We work for government agencies, embassies, international NGOs, institutions and commercial developers that need groundwater developed in Ethiopia. Other client types (C-28): hospitals, manufacturers.',
+      'If your project needs a dependable water source and a contractor who works to institutional standards, we should talk.',
+    ],
+    action: { label: 'Contact us', href: '/contact' },
+  },
+  purpose: {
+    eyebrow: 'Our purpose',
+    title: 'Reliable water for organizations that depend on it',
+    paragraphs: [
+      'A well is only as good as the understanding of the ground beneath it. We start with the survey, build with discipline, and hand over a source that keeps working.',
+      'Our clients present our reports to their own engineers, funders and boards. So every stage ends with a document they can check.',
+    ],
+    statement: 'Every successful well begins with understanding the ground beneath it.',
+  },
+  // PLACEHOLDER(C-09): Liyat confirms each principle describes what it actually does
+  principles: {
+    eyebrow: 'How we work',
+    title: 'Principles we can show on every project',
+    items: [
+      {
+        title: 'Survey before we drill',
+        text: 'We study the ground before choosing a site, so the drilling decision rests on evidence.',
+      },
+      {
+        title: 'Test before we hand over',
+        text: 'Every well is pumping-tested, and the client receives the results.',
+      },
+      {
+        title: 'Document every stage',
+        text: 'Survey report, drilling log, test report and handover file: a record your engineers can check.',
       },
     ],
   },
-
-  theRealPurpose: {
-    sectionLabel: 'The real purpose',
-    headline: 'Reliable water access for organizations that depend on it',
-    body: 'Our purpose is to help institutions and businesses across Ethiopia access dependable groundwater solutions. We believe that effective water infrastructure starts with accurate subsurface understanding, continues with disciplined construction, and ends with systems that operate reliably over time.',
-    pullQuote: 'Every successful well begins with understanding the ground beneath it.',
-    bodyAfterQuote:
-      'This focus on investigation, precision, and long-term performance is what distinguishes our approach and what our clients rely on when they present our work to their own stakeholders.',
+  team: {
+    eyebrow: 'Our people',
+    title: 'Leadership and team',
   },
-
-  whatWeBelieve: {
-    sectionLabel: 'What we believe',
-    headline: 'How we work',
-    intro:
-      'Our operating principles reflect the expectations of the institutional and commercial clients we serve.',
-    beliefs: [
-      {
-        lead: 'Technical accuracy first.',
-        body: 'We invest in proper hydrogeological assessment before drilling so that our clients make decisions based on evidence, not assumptions.',
-      },
-      {
-        lead: 'Disciplined execution.',
-        body: 'Projects are planned, staffed, and supervised with the standards required by large institutions and funded developments.',
-      },
-      {
-        lead: 'Long-term performance.',
-        body: 'We design and build wells and water systems that continue to perform — and we support clients with rehabilitation and maintenance when needed.',
-      },
-    ],
+  credentials: {
+    eyebrow: 'Credentials',
+    title: 'Licences and registration',
+    intro: 'Copies are available on request.',
   },
-
-  whoBuildFor: {
-    sectionLabel: 'Who we serve',
-    headline: 'Built for institutional and commercial water demand',
-    body: 'We work with government agencies, foreign embassies, international NGOs, hospitals, manufacturers, property developers, and commercial enterprises that need professional groundwater development and water works in Ethiopia.',
-    closing:
-      'If your project requires dependable water access and a contractor who understands institutional standards, we should talk.',
+  safety: {
+    eyebrow: 'Responsibility',
+    title: 'Safety and site practice',
+    intro: 'How we protect the crew, the water and the land on every site.',
   },
-} as const;
+};
