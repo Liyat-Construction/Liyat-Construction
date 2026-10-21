@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                |
-| --------------------- | ------------------------------------------------------------------------------ |
-| **Current step**      | **P8 — Services pages** (in progress)                                          |
-| **Last completed**    | P7 — Home page + well diagram (2026-10-21)                                     |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                             |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch |
-| **Next action**       | Build P8–P13 back to back (D-43); owner reviews the whole site at the end.     |
+|                       |                                                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Current step**      | **P9 — Projects pages** (not started)                                                                                                                        |
+| **Last completed**    | P8 — Services pages (2026-10-21); P7 committed before it                                                                                                     |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                                           |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch                                                                               |
+| **Next action**       | New session: start P9 (§4 P9; blueprint in Design System §4). One phase per session (owner, 2026-10-21); the owner reviews the whole site at the end (D-43). |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -377,7 +377,14 @@ The site is still the **Digital Aksumite template filled with Liyat content**
 rebuild the visual layer. Content and photos in `src/data/` and `public/` are
 reused.
 
-### Last session — 2026-10-21 (P5)
+### Last session — 2026-10-21 (P7 and P8)
+
+- Owner agreed the plan in a question-by-question review; chose hero option C from a live A/B/C comparison (D-44). D-42…D-47 and C-27 recorded.
+- P7 and P8 built, verified and committed (`ae901ba`, `b44a6fd`). The owner has not yet looked at them in the browser: review at the end (D-43).
+- Owner, 2026-10-21: from P9 on, **one phase per new session**. Start P9 by reading §4 P9 and the Projects blueprint; the projects pages are still the template (`src/app/projects/page.tsx`, `[slug]/page.tsx`, `loading.tsx` on the LEGACY list). Reuse `FeaturedProjects`, `ProjectCard`, `FactsTable`, `Photo`, `PageHeader`, `CtaBand`; the project page needs a gallery.
+- Tooling: the static server on port 3007 belongs to another session but serves this folder's `out/`, so `npm run build:static` then open `http://localhost:3007`. The built-in browser pane renders blank while hidden; use headless Edge for 1280/768 captures and a 375 px iframe for phones.
+
+### Earlier session — 2026-10-21 (P5)
 
 - P6 committed (`e2aba3d`) on the owner's instruction. P5 planned, approved (D-38…D-41) and built; owner approved P5; committed.
 - One `build:static` failed with a Turbopack "next/font/google queries have exactly one entry" error and passed unchanged on retry — likely the other session's dev server sharing `.next`. Retry before debugging.
