@@ -23,8 +23,8 @@
   --color-brand-tint: #e7f0ea;
   --color-ink: #1d2521;
   --color-ink-muted: #56615b;
-  --color-paper: #ffffff;
-  --color-stone: #f4f2ed;
+  --color-paper: #f8f7f3;
+  --color-stone: #eeebe3;
   --color-line: #dcdad3;
   --color-water: #0b5ca0;
   --color-alert: #b42318;
@@ -82,6 +82,13 @@
   --container-wide: 87.5rem;
   --container-prose: 45rem;
   --header-height: 4.5rem;
+
+  /* Photo ratios (Engineering §5). Tailwind keeps aspect-square and aspect-video. */
+  --aspect-hero: 3 / 2;
+  --aspect-hero-mobile: 4 / 5;
+  --aspect-wide: 3 / 2;
+  --aspect-card: 4 / 3;
+  --aspect-portrait: 4 / 5;
 
   /* 2.4 Shape, depth, motion */
   --radius-control: 6px;

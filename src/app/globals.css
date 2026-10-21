@@ -2,6 +2,13 @@
 @import '../styles/tokens.css';
 
 /*
+ * `on-dark:` applies inside a dark surface (Section ink/brand tones, Scrim), so
+ * components adapt by themselves: `text-brand on-dark:text-white`. A light
+ * surface inside a dark one (a Card) sets data-on-light and switches back.
+ */
+@custom-variant on-dark (&:where([data-on-dark] *):not(:where([data-on-light] *)));
+
+/*
  * Base styles only. Every value comes from a token; component styling lives in
  * src/components/ui and src/components/cards.
  */
@@ -35,7 +42,7 @@
     outline-offset: var(--focus-offset);
   }
 
-  [data-on-dark] :focus-visible {
+  [data-on-dark] :focus-visible:not([data-on-light] *) {
     outline-color: var(--color-white);
   }
 

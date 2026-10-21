@@ -64,7 +64,9 @@ through props. Exceptions: `layout/*` and `lib/metadata` read `siteConfig`.
   arbitrary classes (`text-[17px]`). Enforced by `npm run check:design`.
 - No styling classes in pages or sections except layout (grid, flex, gap, order, span).
 - Never override a primitive's look via `className`; add a variant to the primitive instead.
-- Combine classes with `cn()` from `src/lib/utils.ts`.
+- Combine classes with `cn()` from `src/lib/utils.ts` (tailwind-merge, extended with the token names).
+- Look up variant maps with `pick(map, key)` from `src/lib/utils.ts`, not `map[key]` (lint rule `security/detect-object-injection`).
+- Components adapt to dark surfaces with the `on-dark:` variant, not props (Design System §2.5).
 
 ### Server first
 
@@ -136,19 +138,25 @@ How we stay inside it:
 
 Static export has no image optimizer, so images are prepared ahead of time.
 
-| Use         | Ratio                                        | Widths generated      | Format, quality |
-| ----------- | -------------------------------------------- | --------------------- | --------------- |
-| Hero        | 16:9 (mobile crop 4:5 via `object-position`) | 640, 1024, 1600, 1920 | WebP q≈72       |
-| Page header | 3:2                                          | 640, 1024, 1600       | WebP q≈72       |
-| Card        | 4:3                                          | 400, 800              | WebP q≈70       |
-| Gallery     | 3:2                                          | 800, 1600             | WebP q≈75       |
-| Portrait    | 4:5                                          | 400, 800              | WebP q≈75       |
-| Logos       | —                                            | SVG preferred         | SVG / PNG       |
+| Use         | Ratio                                  | Widths generated      | Format, quality |
+| ----------- | -------------------------------------- | --------------------- | --------------- |
+| Hero        | 3:2 (phones 4:5; text below the photo) | 640, 1024, 1600, 1920 | WebP q≈72       |
+| Page header | 3:2 (`wide`)                           | 640, 1024, 1600       | WebP q≈72       |
+| Card        | 4:3                                    | 400, 800              | WebP q≈70       |
+| Gallery     | 3:2                                    | 800, 1600             | WebP q≈75       |
+| Portrait    | 4:5                                    | 400, 800              | WebP q≈75       |
+| Logos       | —                                      | SVG preferred         | SVG / PNG       |
 
 - Originals never go into `public/`. They are processed by
   `scripts/optimize-images.mjs` (decision O-04) and committed as optimized files.
 - Filenames: `kebab-case`, descriptive: `projects/ethiopian-airlines-pumping-test/cover.webp`.
 - Every image has meaningful `alt` text in data; decorative images use `alt=""`.
+- Most project photos are portrait (9:16, 3:4). When a ratio crops them, the
+  data sets `image.focus` (`'top' | 'bottom' | 'left' | 'right'`, default
+  center) so the subject stays in frame (D-31).
+- Until P6 adds the generated widths and an `images.loaderFile`, static export
+  serves each image at its single stored size; `Photo`'s `sizes` presets take
+  effect then, with no component change.
 - EXIF orientation is applied and metadata stripped during processing.
 
 ## 6. Accessibility (target: WCAG 2.2 AA)

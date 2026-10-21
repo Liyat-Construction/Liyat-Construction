@@ -69,24 +69,26 @@ variables, e.g. `duration-(--duration-fast)`, `h-(--header-height)`.
 
 ### 2.1 Color
 
-| Token                | Value                  | Utility examples                    | Role                                    |
-| -------------------- | ---------------------- | ----------------------------------- | --------------------------------------- |
-| `--color-brand`      | `#156635`              | `bg-brand` `text-brand`             | Actions, links, rule, highlights        |
-| `--color-brand-dark` | `#0F4F28`              | `hover:bg-brand-dark`               | Hover / pressed of brand elements only  |
-| `--color-brand-tint` | `#E7F0EA`              | `bg-brand-tint`                     | Callouts, table rows, selected states   |
-| `--color-ink`        | `#1D2521`              | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections   |
-| `--color-ink-muted`  | `#56615B`              | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders |
-| `--color-paper`      | `#FFFFFF`              | `bg-paper`                          | Page background                         |
-| `--color-stone`      | `#F4F2ED`              | `bg-stone`                          | Alternating sections                    |
-| `--color-line`       | `#DCDAD3`              | `border-line`                       | Hairlines, card borders                 |
-| `--color-water`      | `#0B5CA0`              | `text-water` `fill-water`           | **Water data only**                     |
-| `--color-alert`      | `#B42318`              | `text-alert` `border-alert`         | Form errors only                        |
-| `--color-white`      | `#FFFFFF`              | `text-white`                        | Text on dark / green / photo            |
-| `--color-scrim`      | `rgb(29 37 33 / 0.62)` | `bg-scrim`                          | Flat overlay on photographs behind text |
+| Token                | Value                  | Utility examples                    | Role                                      |
+| -------------------- | ---------------------- | ----------------------------------- | ----------------------------------------- |
+| `--color-brand`      | `#156635`              | `bg-brand` `text-brand`             | Actions, links, rule, highlights          |
+| `--color-brand-dark` | `#0F4F28`              | `hover:bg-brand-dark`               | Hover / pressed of brand elements only    |
+| `--color-brand-tint` | `#E7F0EA`              | `bg-brand-tint`                     | Callouts, table rows, selected states     |
+| `--color-ink`        | `#1D2521`              | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections     |
+| `--color-ink-muted`  | `#56615B`              | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders   |
+| `--color-paper`      | `#F8F7F3`              | `bg-paper`                          | Page background (warm off-white, D-33)    |
+| `--color-stone`      | `#EEEBE3`              | `bg-stone`                          | Alternating sections                      |
+| `--color-line`       | `#DCDAD3`              | `border-line`                       | Hairlines, card borders                   |
+| `--color-water`      | `#0B5CA0`              | `text-water` `fill-water`           | **Water data only**                       |
+| `--color-alert`      | `#B42318`              | `text-alert` `border-alert`         | Form errors only                          |
+| `--color-white`      | `#FFFFFF`              | `bg-white` `text-white`             | Cards, inputs, tags, header; text on dark |
+| `--color-scrim`      | `rgb(29 37 33 / 0.62)` | `bg-scrim`                          | Flat overlay on photographs behind text   |
 
 Plus `transparent` and `current`. Nothing else exists.
 Contrast proofs and forbidden pairs: [Brand §4](BRAND_GUIDELINES.md#4-color).
 **Hard rule: never `text-brand` on `bg-ink` (2.2 : 1).** On Ink, actions are white.
+**Surfaces (D-33):** the page is `paper`, anything that sits on it (cards, inputs,
+tags, header) is `white` — never `bg-paper` inside a component.
 
 ### 2.2 Typography
 
@@ -117,16 +119,23 @@ paragraph width ≤ 68 characters (`max-w-prose`); figures always `tabular-nums`
 
 Base unit 4 px (Tailwind's default spacing scale stays on).
 
-| Token                  | Value                        | Use                                   |
-| ---------------------- | ---------------------------- | ------------------------------------- |
-| `--spacing-section`    | `clamp(4rem, 8vw, 7.5rem)`   | Vertical padding of every `<Section>` |
-| `--spacing-section-sm` | `clamp(3rem, 5vw, 4.5rem)`   | Compact sections (proof strip, CTA)   |
-| `--spacing-gutter`     | `clamp(1rem, 4vw, 2rem)`     | Container side padding                |
-| `--container-content`  | `75rem` (1200 px)            | Default container width               |
-| `--container-wide`     | `87.5rem` (1400 px)          | Full-bleed-ish galleries              |
-| `--container-prose`    | `45rem` (720 px)             | Long text, legal pages                |
-| `--spacing-grid`       | `clamp(1.5rem, 2.5vw, 2rem)` | Grid gap (`gap-grid`)                 |
-| `--header-height`      | `4.5rem`                     | Sticky header; used for scroll offset |
+| Token                  | Value                        | Use                                              |
+| ---------------------- | ---------------------------- | ------------------------------------------------ |
+| `--spacing-section`    | `clamp(4rem, 8vw, 7.5rem)`   | Vertical padding of every `<Section>`            |
+| `--spacing-section-sm` | `clamp(3rem, 5vw, 4.5rem)`   | Compact sections (proof strip, CTA)              |
+| `--spacing-gutter`     | `clamp(1rem, 4vw, 2rem)`     | Container side padding                           |
+| `--container-content`  | `75rem` (1200 px)            | Default container width                          |
+| `--container-wide`     | `87.5rem` (1400 px)          | Full-bleed-ish galleries                         |
+| `--container-prose`    | `45rem` (720 px)             | Long text, legal pages                           |
+| `--spacing-grid`       | `clamp(1.5rem, 2.5vw, 2rem)` | Grid gap (`gap-grid`)                            |
+| `--header-height`      | `4.5rem`                     | Sticky header; used for scroll offset            |
+| `--aspect-hero`        | `3 / 2` (phones `4 / 5`)     | Hero photo (`aspect-hero`, `aspect-hero-mobile`) |
+| `--aspect-wide`        | `3 / 2`                      | Page header, gallery                             |
+| `--aspect-card`        | `4 / 3`                      | Cards                                            |
+| `--aspect-portrait`    | `4 / 5`                      | Team portraits                                   |
+
+`--container-prose` is used as `max-w-(--container-prose)`: Tailwind's own
+`max-w-prose` (65ch) wins over the token, and is what paragraphs use for line length.
 
 Grid: 12 columns on `lg`, gap `gap-grid` (1.5rem → 2rem). Breakpoints: Tailwind defaults
 (`sm 640`, `md 768`, `lg 1024`, `xl 1280`). Design and test at **375, 768, 1280, 1440**.
@@ -158,13 +167,21 @@ headings in `font-heading`; `:focus-visible` = `--focus-width` Brand outline at
 `::selection` White on Brand; `[id]` anchors offset by header height + gutter;
 smooth scroll, and all animation and transition, off under reduced motion.
 
+**`on-dark:` variant (D-30).** `globals.css` defines `@custom-variant on-dark`:
+it applies inside any element with `data-on-dark` (Section `ink`/`brand`,
+`Scrim`), except inside a light surface marked `data-on-light` (`Card`).
+Components style themselves for both, e.g. `text-brand on-dark:text-white`, so
+nothing needs an `onDark` prop and a dark section cannot be given light-surface
+colors by mistake. Nesting rule: dark surfaces may contain light cards; light
+cards never contain dark surfaces.
+
 ---
 
 ## 3. Component library
 
 ### 3.1 Primitives — `src/components/ui/`
 
-Every primitive is a **server component**, typed, and accepts `className` only
+Every primitive except `Reveal` is a **server component**, typed, and accepts `className` only
 for layout (margin, grid placement) — never to override its look. Variants are
 plain typed maps inside the file (no extra library):
 
@@ -178,24 +195,30 @@ const variants = {
 type Variant = keyof typeof variants;
 ```
 
-| Component        | Props (essential)                                                                                                                                  | Notes                                                                                                                                             |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Container`      | `size: 'content' \| 'wide' \| 'prose'`                                                                                                             | Max width + gutters                                                                                                                               |
-| `Section`        | `tone: 'paper' \| 'stone' \| 'tint' \| 'ink' \| 'brand'`, `spacing: 'default' \| 'compact'`, `id?`                                                 | Background, vertical rhythm, text color for dark tones. Wraps `Container`.                                                                        |
-| `SectionHeading` | `eyebrow?`, `title`, `intro?`, `align: 'start' \| 'center'`, `as?: 'h1' \| 'h2'`                                                                   | Rule + eyebrow + title + intro — the one way every section starts                                                                                 |
-| `Eyebrow`        | `children`                                                                                                                                         | Small uppercase label, preceded by the rule                                                                                                       |
-| `Rule`           | `tone: 'brand' \| 'white'`, `length: 'short' \| 'full'`                                                                                            | The signature line                                                                                                                                |
-| `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `onDark?: boolean`, `href?` or `type?`, `icon?: 'arrow' \| 'phone' \| 'mail'` | Renders `Link`, `<a>` (external/tel/mailto) or `<button>`. `onDark` swaps to the white palette for Ink/Green/photo backgrounds. Min height 44 px. |
-| `TextLink`       | `href`, `arrow?`                                                                                                                                   | Inline link inside prose                                                                                                                          |
-| `Card`           | `as?`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                                                                        | White surface, `border-line`, `radius-card`; interactive cards get border-brand + image zoom on hover                                             |
-| `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                           | Service labels on projects                                                                                                                        |
-| `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                     | Big figure + label. `water` for yields/levels only                                                                                                |
-| `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                      | Key-value technical data (projects, equipment). Striped with `brand-tint`                                                                         |
-| `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'square' \| 'portrait'`, `preset`, `priority?`                                          | Wraps `next/image`; ratio + correct `sizes` presets — never write `sizes` by hand                                                                 |
-| `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`                                                                                                               | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used                                                                  |
-| `Prose`          | `children`                                                                                                                                         | Typography for long-form text (legal pages, project stories)                                                                                      |
-| `Field`          | `label`, `error?`, `hint?`, `children` (+ `Input`, `Textarea`, `Select`)                                                                           | Accessible form controls: label, `aria-describedby`, error state in `alert`                                                                       |
-| `Reveal`         | `children`, `delay?`                                                                                                                               | The only animation wrapper. Tiny client island (IntersectionObserver + CSS)                                                                       |
+| Component        | Props (essential)                                                                                                                                 | Notes                                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `Container`      | `size: 'content' \| 'wide' \| 'prose'`                                                                                                            | Max width + `px-gutter`                                                                                                                   |
+| `Section`        | `tone: 'paper' \| 'stone' \| 'tint' \| 'ink' \| 'brand'`, `spacing: 'default' \| 'compact'`, `container`, `id?`, `labelledBy?`                    | Background, vertical rhythm, text color. `ink`/`brand` set `data-on-dark`. Wraps `Container`.                                             |
+| `SectionHeading` | `eyebrow?`, `title`, `intro?`, `align: 'start' \| 'center'`, `as?: 'h1' \| 'h2'`, `id?`                                                           | Rule + eyebrow + title + intro — the one way every section starts. Pass `id` to Section `labelledBy`                                      |
+| `Eyebrow`        | `children`, `align?`                                                                                                                              | Small uppercase label, preceded by the rule                                                                                               |
+| `Rule`           | `length: 'short' \| 'full'`                                                                                                                       | The signature line. Green; white on dark surfaces by itself (no `tone` prop — D-30)                                                       |
+| `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `href?` or `type?`/`disabled?`, `icon?: 'arrow' \| 'phone' \| 'mail'`        | Renders `SmartLink` or `<button>`. Swaps to the white palette on dark surfaces by itself (replaces `onDark` — D-30). Min height 44 px     |
+| `TextLink`       | `href`, `arrow?`                                                                                                                                  | Inline link; always underlined, so color is never the only cue                                                                            |
+| `SmartLink`      | `href`                                                                                                                                            | Internal → `next/link`; tel/mailto/files → `<a>`; other sites → new tab, announced to screen readers. Used by Button, TextLink, Card      |
+| `Card`           | `as?`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                                                                       | White surface, `border-line`, `radius-card`, `data-on-light`. Linked cards: border-brand + photo zoom on hover                            |
+| `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                          | Service labels on projects                                                                                                                |
+| `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                    | Big figure + label as `dt`/`dd`; place inside a `<dl>`. `water` for yields/levels only; every tone turns white on dark                    |
+| `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                     | Key-value technical data (projects, equipment) as a `<dl>`. Striped with `brand-tint`; renders nothing when empty                         |
+| `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'portrait' \| 'square'`, `width: 'full' \| 'half' \| 'third'`, `priority?`, `rounded?` | Wraps `next/image` (`fill`) in a fixed-ratio box — no layout shift. `width` picks the `sizes` preset; `image.focus` picks the crop (D-31) |
+| `Scrim`          | `children`                                                                                                                                        | Flat Ink panel (`--color-scrim`, 62 %) behind text on a photo, text area only (D-27). Sets `data-on-dark`                                 |
+| `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`, `label?`                                                                                                    | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used; hidden from screen readers unless `label` is given      |
+| `Prose`          | `children`                                                                                                                                        | Typography for long-form text (legal pages, project stories)                                                                              |
+| `Field`          | `id`, `label`, `hint?`, `error?`, `optional?`, `children: (control) => ReactNode` (+ `Input`, `Textarea`, `Select`)                               | Render prop passes `id`, `aria-describedby`, `aria-invalid`, `required` to the control. Fields are required unless `optional`             |
+| `Reveal`         | `children`, `delay?: 0 \| 1 \| 2 \| 3`                                                                                                            | The only animation wrapper. Client island (~0.7 KB gzip). Hides only what is still below the fold after hydration                         |
+
+Variant lookups use `pick(map, key)` from `lib/utils.ts`: the `security/detect-object-injection`
+lint rule rejects `map[key]`, and the key is a typed union, so the one exception lives in one place.
+`cn()` is `tailwind-merge` extended with the token names; add new token names there too.
 
 ### 3.2 Cards — `src/components/cards/`
 
@@ -224,17 +247,17 @@ Domain cards compose primitives. Each takes **one data object** typed from
 
 Sections are props-driven (no data imports inside), so any page can reuse them.
 
-| Section            | Used on              | Composition                                                                                                                                                              |
-| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Hero`             | Home                 | Full-bleed `Photo` (priority, natural color, never washed) + flat `bg-scrim` behind the text area only (D-27) + eyebrow + display headline + lead + 2 Buttons (`onDark`) |
-| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                  |
-| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                                                                            |
-| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                                                                   |
-| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well                                                  |
-| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                  |
-| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                           |
-| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary onDark` + phone link                                                                                                       |
-| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                         |
+| Section            | Used on              | Composition                                                                                                                                                                                       |
+| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Hero`             | Home                 | Full-bleed `Photo` (priority, natural color, never washed) + `Scrim` behind the text area only (D-27) + eyebrow + display headline + lead + 2 Buttons. Phones: text below the photo on Ink (D-31) |
+| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                                           |
+| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                                                                                                     |
+| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                                                                                            |
+| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well                                                                           |
+| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                                           |
+| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                    |
+| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary` + phone link                                                                                                                                       |
+| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                                                  |
 
 ### 3.5 Diagrams — `src/components/diagrams/`
 
@@ -304,6 +327,8 @@ Privacy policy, Terms of service (`Prose`), 404, error — all use `PageHeader` 
 
 ### Style guide — `/styleguide` (development review page)
 
-Renders every token and component in every variant. Used for the aesthetic
+Renders every token and component in every variant. Token values are read
+from `tokens.css` at build time. Its specimen chrome (`src/app/styleguide/_parts/`)
+is the one place outside `ui/`/`cards/` with visual classes (D-29). Used for the aesthetic
 review gate after each design step. `noindex`, excluded from the sitemap,
 removed or kept private before launch (decision O-05).
