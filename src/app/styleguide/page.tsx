@@ -19,6 +19,7 @@ import { WellDiagram } from '@/components/diagrams/well-diagram';
 import { HOME_PAGE } from '@/data/home';
 import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
+import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { EquipmentCard } from '@/components/cards/equipment-card';
 import { ProjectCard } from '@/components/cards/project-card';
 import { ReferenceCard } from '@/components/cards/reference-card';
@@ -260,7 +261,7 @@ export default function StyleguidePage() {
                 ))}
               </dl>
             </Specimen>
-            <Specimen title="FactsTable">
+            <Specimen title="FactsTable" note="water rows in Water Blue">
               <FactsTable rows={projectFacts} />
             </Specimen>
           </div>
@@ -292,8 +293,8 @@ export default function StyleguidePage() {
               </div>
             </Specimen>
           </div>
-          <Specimen title="Linked card" note="hover: green border, photo zooms">
-            <div className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+          <div className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+            <Specimen title="Linked card" note="hover: green border, photo zooms">
               <Card href="/projects" padding="none">
                 <Photo image={photos.pumpingTest} width="third" />
                 <div className="flex flex-col gap-2 p-6">
@@ -301,8 +302,14 @@ export default function StyleguidePage() {
                   <p className="text-small text-ink-muted">Addis Ababa</p>
                 </div>
               </Card>
-            </div>
-          </Specimen>
+            </Specimen>
+            <Specimen
+              title="feature: 3:2, 4:5 from lg"
+              note="portrait photos in page headers (orientation: portrait)"
+            >
+              <Photo image={photos.pumpingTestTop} ratio="feature" width="third" rounded />
+            </Specimen>
+          </div>
         </div>
       </Section>
 
@@ -376,6 +383,14 @@ export default function StyleguidePage() {
       </Section>
 
       <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
+
+      <PhotoGallery
+        id="sg-gallery"
+        eyebrow="Sections"
+        title="PhotoGallery"
+        intro="Project and site photos in columns, each at its own shape: portrait 4:5, landscape 3:2. Sample: the CREDOCS gallery."
+        images={getProjectBySlug('credocs-shoring')?.gallery ?? []}
+      />
 
       <Section labelledBy="sg-diagram">
         <div className="gap-grid grid items-start lg:grid-cols-2">

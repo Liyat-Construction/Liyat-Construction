@@ -7,13 +7,18 @@
  * (year, depth, yield, duration, result) and permission to name the client (C-11).
  */
 
-import type { ImageAsset, Project, ServiceSlug } from '@/types/content';
+import type { ImageAsset, Project, ProjectsPage, ServiceSlug } from '@/types/content';
 
-const photo = (slug: string, file: string, alt: string, focus?: ImageAsset['focus']) => ({
-  url: `/images/projects/${slug}/${file}.webp`,
-  alt,
-  ...(focus && { focus }),
-});
+const photo = (
+  slug: string,
+  file: string,
+  alt: string,
+  options?: Pick<ImageAsset, 'focus' | 'orientation'>
+): ImageAsset => ({ url: `/images/projects/${slug}/${file}.webp`, alt, ...options });
+
+// Most site photos are phone shots in portrait
+const portrait = { orientation: 'portrait' } as const;
+const portraitTop = { orientation: 'portrait', focus: 'top' } as const;
 
 // PLACEHOLDER(C-11): confirm each project's facts and the permission to name its client
 export const PROJECTS: Project[] = [
@@ -28,13 +33,15 @@ export const PROJECTS: Project[] = [
     image: photo(
       'ethiopian-airlines-pumping-test',
       'cover',
-      'Water discharging during the pumping test for Ethiopian Airlines'
+      'Water discharging during the pumping test for Ethiopian Airlines',
+      portrait
     ),
     gallery: [
       photo(
         'ethiopian-airlines-pumping-test',
         'rig',
-        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
+        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead',
+        portrait
       ),
     ],
     services: ['pumping-tests'],
@@ -54,7 +61,7 @@ export const PROJECTS: Project[] = [
       'british-embassy-pump-installation',
       'cover',
       'Pump installation works at the British Embassy, Addis Ababa',
-      'top'
+      portraitTop
     ),
     gallery: [],
     services: ['pump-installation'],
@@ -72,7 +79,7 @@ export const PROJECTS: Project[] = [
       'tsedey-bank-pumping-test',
       'cover',
       'Pumping test discharge at the Tsedey Bank site',
-      'top'
+      portraitTop
     ),
     gallery: [],
     services: ['pumping-tests'],
@@ -106,7 +113,8 @@ export const PROJECTS: Project[] = [
     image: photo(
       'yekatit-12-hospital-well-development',
       'cover',
-      'Well development at Yekatit 12 Hospital Medical College'
+      'Well development at Yekatit 12 Hospital Medical College',
+      portrait
     ),
     gallery: [],
     services: ['well-drilling'],
@@ -120,7 +128,12 @@ export const PROJECTS: Project[] = [
     summary: 'Well construction for the water supply of the Chaka House development.',
     description:
       'Well construction and related water works for the Chaka House development, supplying the property’s operational water demand.',
-    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House'),
+    image: photo(
+      'chaka-house-project',
+      'cover',
+      'Liyat drilling rig on site at Chaka House',
+      portrait
+    ),
     gallery: [],
     services: ['well-drilling'],
     featured: false,
@@ -137,7 +150,8 @@ export const PROJECTS: Project[] = [
     image: photo(
       'entoto-artesian-well',
       'cover',
-      'Water flowing from the artesian well near Entoto Kidanemihret Church'
+      'Water flowing from the artesian well near Entoto Kidanemihret Church',
+      portrait
     ),
     gallery: [],
     services: ['well-drilling'],
@@ -155,14 +169,16 @@ export const PROJECTS: Project[] = [
     image: photo(
       'credocs-shoring',
       'cover',
-      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS'
+      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS',
+      portrait
     ),
     gallery: [
       photo('credocs-shoring', 'site-overview', 'Overview of the shored excavation'),
       photo(
         'credocs-shoring',
         'rig-in-excavation',
-        'Liyat rig working at the base of the excavation'
+        'Liyat rig working at the base of the excavation',
+        portrait
       ),
       photo('credocs-shoring', 'shoring-works', 'Shoring works and site cranes'),
     ],
@@ -172,6 +188,38 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+// PLACEHOLDER(C-11): the intro describes the current list; check it when the facts arrive
+export const PROJECTS_PAGE: ProjectsPage = {
+  header: {
+    eyebrow: 'Projects',
+    title: 'Projects we have delivered',
+    intro:
+      'Well drilling, pumping tests and pump installations for institutional and commercial clients. Each project lists the work we did and the facts we can document.',
+    description:
+      'Water well drilling, pumping test and pump installation projects by Liyat Construction for institutional and commercial clients in Ethiopia.',
+  },
+  detail: {
+    overview: 'About the project',
+    approach: 'Approach',
+    result: 'Result',
+    facts: 'Project facts',
+    factLabels: {
+      client: 'Client',
+      location: 'Location',
+      year: 'Year',
+      services: 'Services',
+      duration: 'Duration',
+    },
+    gallery: { title: 'Photos from the site' },
+    related: 'Related projects',
+    allProjects: { label: 'Explore all projects', href: '/projects' },
+    contact: { label: 'Discuss a similar project', href: '/contact' },
+  },
+};
+
+/** Newest first; projects without a year (C-11) keep their order, after the dated ones. */
+export const PROJECTS_NEWEST_FIRST = [...PROJECTS].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+
 export const FEATURED_PROJECTS = PROJECTS.filter((project) => project.featured).slice(0, 6);
 
 /** Projects that included the given service, featured first. */
@@ -179,6 +227,14 @@ export function getProjectsByService(slug: ServiceSlug): Project[] {
   return PROJECTS.filter((project) => project.services.includes(slug)).sort(
     (a, b) => Number(b.featured) - Number(a.featured)
   );
+}
+
+/** Other projects that share a service with this one, featured first. */
+export function getRelatedProjects(project: Project): Project[] {
+  return PROJECTS.filter(
+    (other) =>
+      other.slug !== project.slug && other.services.some((slug) => project.services.includes(slug))
+  ).sort((a, b) => Number(b.featured) - Number(a.featured));
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {

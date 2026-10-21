@@ -10,7 +10,7 @@ interface PageHeaderProps {
   intro?: string;
   /** Home first, the current page last (without href) */
   breadcrumbs: Crumb[];
-  /** Optional photo on the right; it is the page's LCP image */
+  /** Optional photo on the right; it is the page's LCP image. Portrait photos stay tall from lg */
   image?: ImageAsset;
 }
 
@@ -26,7 +26,7 @@ export function PageHeader({ title, eyebrow, intro, breadcrumbs, image }: PageHe
         {image && (
           <Photo
             image={image}
-            ratio="wide"
+            ratio={image.orientation === 'portrait' ? 'feature' : 'wide'}
             width="half"
             priority
             rounded

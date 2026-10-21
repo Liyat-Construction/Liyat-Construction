@@ -87,6 +87,7 @@ export const SERVICES: Service[] = [
     image: {
       url: '/images/projects/ethiopian-airlines-pumping-test/cover.webp',
       alt: 'Water discharging during the pumping test for Ethiopian Airlines',
+      orientation: 'portrait',
     },
   },
   {
@@ -140,6 +141,7 @@ export const SERVICES: Service[] = [
       url: '/images/projects/british-embassy-pump-installation/cover.webp',
       alt: 'Pump installation works at the British Embassy, Addis Ababa',
       focus: 'top',
+      orientation: 'portrait',
     },
   },
   {

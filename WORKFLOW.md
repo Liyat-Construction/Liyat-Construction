@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Current step**      | **P9 — Projects pages** (not started)                                                                                                                        |
-| **Last completed**    | P8 — Services pages (2026-10-21); P7 committed before it                                                                                                     |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                                           |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch                                                                               |
-| **Next action**       | New session: start P9 (§4 P9; blueprint in Design System §4). One phase per session (owner, 2026-10-21); the owner reviews the whole site at the end (D-43). |
+|                       |                                                                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **P10 — About page** (not started)                                                                                                                                                |
+| **Last completed**    | P9 — Projects pages (2026-10-21)                                                                                                                                                  |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                                                                |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-10 root `loading.tsx`                                                                          |
+| **Next action**       | New session: start P10 (§4 P10; blueprint in Design System §4). Decide O-10 first if the owner agrees. One phase per session; the owner reviews the whole site at the end (D-43). |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -76,7 +76,7 @@
 | P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Complete    |
 | P7  | Home page + well diagram              | P5, P6                | Owner                           | Complete    |
 | P8  | Services pages                        | P7                    | Owner                           | Complete    |
-| P9  | Projects pages                        | P7                    | Owner                           | Not started |
+| P9  | Projects pages                        | P7                    | Owner                           | Complete    |
 | P10 | About page                            | P7                    | Owner                           | Not started |
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Not started |
 | P12 | Testimonials page                     | P7                    | Owner                           | Not started |
@@ -219,7 +219,21 @@
 - Changed from the blueprint: "What you receive" moved into the overview sidebar — as its own section it held one lonely card.
 - Verified: validate, check:design, build:static pass; `/services`, well drilling and pumping tests reviewed at 1280 and 375; fixed the gap between "What is included" and "How we work" on phones.
 
-### P9 — Projects · P10 — About · P11 — Equipment · P12 — Testimonials
+### P9 — Projects · `Complete` (2026-10-21)
+
+- **Plan agreed 2026-10-21** (owner approved, including deleting `projects/loading.tsx`).
+- **Built:** `/projects` = PageHeader → ProjectGrid (newest first; no project has a year yet, so the data order stands) → CtaBand. `/projects/[slug]` = PageHeader (client as eyebrow, summary, cover photo) → ProjectDetail (about the project beside "Project facts" + "Discuss a similar project") → PhotoGallery (stone, hidden when empty) → related projects sharing a service (hidden when none) → CtaBand.
+- New in the library: `sections/project-grid`, `sections/project-detail`, `sections/photo-gallery` (on `/styleguide`); Photo ratio `feature`; PageHeader picks `feature` for portrait photos; FactsTable `water` rows; `ImageAsset.orientation`. Data: `ProjectsPage` type, `PROJECTS_PAGE`, `PROJECTS_NEWEST_FIRST`, `getRelatedProjects()`; portrait photos marked in `projects.ts` and `services.ts`.
+- Changed from the blueprint: no full-width photo on the project page (D-48); gallery keeps each photo's shape (D-49).
+- Side effect on P8: the pumping-tests and pump-installation headers now show their portrait photos at 4:5 from `lg` (was a 3:2 strip).
+- Deleted `projects/loading.tsx` (owner approved); the three project files left `LEGACY`. The template `Container` is no longer used by the project pages. Open Graph no longer claims 1200 × 630 for portrait covers.
+- **Open points:**
+  - Most project pages are thin (one or two sentences, no figures) until C-11; only Ethiopian Airlines and CREDOCS have galleries.
+  - The Tsedey Bank card crops to a building and crane (`focus: top`), not the pumping test; better photo or crop with C-18.
+  - Related projects often show a single card (e.g. Ethiopian Airlines → Tsedey Bank).
+  - Gallery photos cannot be enlarged (no client island for a lightbox).
+
+### P10 — About · P11 — Equipment · P12 — Testimonials
 
 - **What:** Each page exactly as its blueprint in Design System §4, composed from existing sections and cards. A new component is added to the library (and the styleguide) first, never inside a page.
 - **Done when:** Per page: definition of done plus owner approval.
@@ -342,17 +356,20 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-44 | 2026-10-21 | Home hero = option C: from `lg` the text on Ink at the left and the whole photo at the right; below `lg` the photo, then the text on Ink. Chosen by the owner from an A/B/C comparison (closes D-34's panel question)                                                                            | Nothing covers the photo; headline and buttons above the fold at 1280 (B pushed them below); contrast does not depend on the photo, so it survives the C-18 swap                                                                                    |
 | D-45 | 2026-10-21 | ServiceLifecycle highlights the well-diagram part with CSS `:has()` in `globals.css`, not a client island; removed from the client-island list (Engineering §3)                                                                                                                                  | Zero JavaScript; works with keyboard focus; supported by all current browsers                                                                                                                                                                       |
 | D-46 | 2026-10-21 | FeaturedProjects shows 3 equal cards (2 at `md`), not "1 large + 2"                                                                                                                                                                                                                              | Most project photos are portrait; a large 4:3 card beside two stacked ones leaves uneven heights. Equal cards are calmer                                                                                                                            |
+| D-48 | 2026-10-21 | Project pages open with `PageHeader` and the cover photo beside the title, not a full-width photo. Portrait photos (`ImageAsset.orientation`) use the Photo `feature` ratio: 3:2 while stacked, 4:5 from `lg`. Applies to every PageHeader                                                       | 9 of 12 project photos are portrait and most are 901 px wide: full width at 1280 would upscale them and crop them to a strip (owner approved the plan)                                                                                              |
+| D-49 | 2026-10-21 | `PhotoGallery` lays photos out in CSS columns, each at its own shape (portrait 4:5, landscape 3:2) instead of one cropped ratio                                                                                                                                                                  | The galleries mix tall phone shots and wide frames; a single 3:2 or 4:3 crop cut the portrait ones to a band. Fixed ratios keep zero layout shift                                                                                                   |
 | D-47 | 2026-10-21 | `Scrim` primitive and `--color-scrim` token deleted                                                                                                                                                                                                                                              | No text sits on a photo after D-44; Brand §7 still allows a scrim if a future layout needs one                                                                                                                                                      |
 
 ### Open decisions
 
-| ID   | Question                          | Recommendation                                                                                          | Needed by |
-| ---- | --------------------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
-| O-01 | Form provider                     | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter          | P13       |
-| O-02 | Hosting                           | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise | P17       |
-| O-03 | Analytics                         | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner    | P14       |
-| O-05 | `/styleguide` at launch           | Keep it, `noindex` and unlinked — useful for future maintenance                                         | P17       |
-| O-06 | Floating WhatsApp/Telegram button | Only if the client actively answers that channel (C-20)                                                 | P5        |
+| ID   | Question                                      | Recommendation                                                                                                                                                                                                                                                                                          | Needed by                                  |
+| ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| O-01 | Form provider                                 | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter                                                                                                                                                                                                          | P13                                        |
+| O-02 | Hosting                                       | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise                                                                                                                                                                                                 | P17                                        |
+| O-03 | Analytics                                     | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner                                                                                                                                                                                                    | P14                                        |
+| O-05 | `/styleguide` at launch                       | Keep it, `noindex` and unlinked — useful for future maintenance                                                                                                                                                                                                                                         | P17                                        |
+| O-10 | Root `src/app/loading.tsx` (template spinner) | **Delete it.** It wraps every page in a Suspense boundary: the built HTML holds the page inside `<div hidden>` behind a spinner until an inline script reveals it. Without JavaScript, or in a background tab, the content stays hidden (seen in P9). Pages are static, so there is nothing to wait for | P14 at the latest; now if the owner agrees |
+| O-06 | Floating WhatsApp/Telegram button             | Only if the client actively answers that channel (C-20)                                                                                                                                                                                                                                                 | P5                                         |
 
 ## 7. Risks
 
@@ -377,7 +394,13 @@ The site is still the **Digital Aksumite template filled with Liyat content**
 rebuild the visual layer. Content and photos in `src/data/` and `public/` are
 reused.
 
-### Last session — 2026-10-21 (P7 and P8)
+### Last session — 2026-10-21 (P9)
+
+- Owner approved the P9 plan and deleting `projects/loading.tsx`. Built and verified P9 (D-48, D-49); committed on the owner's instruction.
+- Found: the root `loading.tsx` hides every page's content until a script runs (O-10). Not fixed: it is outside P9 and deleting needs the owner's OK.
+- Tooling: port 3007 belongs to another session, so this session served `out/` with the `static-out-3005` config. Its `python` command ignores the port the app assigns (3006): the server is on **3005**. In the hidden browser pane, React's reveal script waits for a frame, so content measures 0 × 0 until a screenshot is taken. Measure after a screenshot.
+
+### Earlier session — 2026-10-21 (P7 and P8)
 
 - Owner agreed the plan in a question-by-question review; chose hero option C from a live A/B/C comparison (D-44). D-42…D-47 and C-27 recorded.
 - P7 and P8 built, verified and committed (`ae901ba`, `b44a6fd`). The owner has not yet looked at them in the browser: review at the end (D-43).
@@ -457,6 +480,14 @@ reused.
 
 ### Verification evidence
 
+P9, 2026-10-21:
+
+- `npm run validate` → pass. `npm run check:design` → pass (LEGACY shrank by 3). Clean `npm run build:static` → pass, 8 project pages.
+- Captured `/projects`, Ethiopian Airlines, CREDOCS and SD Salt at 1280 and 768 (headless Edge) and reviewed; 375 in the browser pane (mobile emulation): `/projects`, CREDOCS, Ethiopian Airlines and pumping tests have no horizontal overflow; the CREDOCS header photo is 343 × 229 (3:2) at 375 and the gallery stacks at 343 × 229 / 343 × 429 / 343 × 229.
+- At 1280 the Ethiopian Airlines header photo is 379 × 474 (4:5), eager (`cover-800.webp`); the other images are lazy. One `h1`, one `<main>`. Facts: client, location, services, "Tested yield 40 L/s" in `rgb(11 92 160)` (Water Blue); missing facts render no row.
+- All 25 image URLs (`src` + `srcset`) on `/projects` return 200. Console: only the R-08 `__PAGE__.txt` prefetch 404s.
+- JS first load (gzip, without the polyfill): `/projects`, project pages, `/services/pumping-tests` and home all 167.4 KB (unchanged).
+
 P7, 2026-10-21:
 
 - `npm run validate` → pass. `npm run check:design` → pass (LEGACY shrank by 7). Clean `npm run build:static` → pass, 29 pages.
@@ -516,4 +547,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P7 — Home page + well diagram.** See §4 P7. P3 still waits for C-01.
+**P10 — About page.** See §4 P10. P3 still waits for C-01.

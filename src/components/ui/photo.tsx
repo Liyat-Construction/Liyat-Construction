@@ -6,6 +6,8 @@ import { cn, pick } from '@/lib/utils';
 const ratios = {
   hero: 'aspect-hero-mobile md:aspect-hero',
   wide: 'aspect-wide',
+  /** A portrait photo beside text: 3:2 while stacked, 4:5 from lg (page headers) */
+  feature: 'aspect-wide lg:aspect-portrait',
   card: 'aspect-card',
   portrait: 'aspect-portrait',
   square: 'aspect-square',

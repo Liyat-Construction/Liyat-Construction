@@ -145,14 +145,14 @@ How we stay inside it:
 
 Static export has no image optimizer, so images are prepared ahead of time.
 
-| Use         | Ratio                                  | Widths generated      | Format, quality |
-| ----------- | -------------------------------------- | --------------------- | --------------- |
-| Hero        | 3:2 (phones 4:5; text below the photo) | 640, 1024, 1600, 1920 | WebP q≈72       |
-| Page header | 3:2 (`wide`)                           | 640, 1024, 1600       | WebP q≈72       |
-| Card        | 4:3                                    | 400, 800              | WebP q≈70       |
-| Gallery     | 3:2                                    | 800, 1600             | WebP q≈75       |
-| Portrait    | 4:5                                    | 400, 800              | WebP q≈75       |
-| Logos       | —                                      | SVG preferred         | SVG / PNG       |
+Widths are set per source folder in `scripts/optimize-images.mjs`; the ratio is chosen where the photo is shown.
+
+| Folder                             | Shown as                                                                         | Widths generated      | Format, quality |
+| ---------------------------------- | -------------------------------------------------------------------------------- | --------------------- | --------------- |
+| `hero/`                            | Hero 3:2 (phones 4:5; text below the photo)                                      | 640, 1024, 1600, 1920 | WebP q72        |
+| `projects/`, `equipment/`, `site/` | Cards 4:3; page header `wide` 3:2 or `feature`; gallery 3:2 / 4:5 by orientation | 400, 800, 1600        | WebP q72        |
+| `team/`, `references/`             | Portrait 4:5                                                                     | 400, 800              | WebP q75        |
+| `clients/`                         | Logos (SVG preferred)                                                            | original width        | WebP q85        |
 
 - Sources live in `assets/images/` (never in `public/`). `npm run images`
   (`scripts/optimize-images.mjs`, `sharp` — D-35) writes `public/images/<path>/<name>-<width>.webp`
@@ -165,7 +165,8 @@ Static export has no image optimizer, so images are prepared ahead of time.
 - Every image has meaningful `alt` text in data; decorative images use `alt=""`.
 - Most project photos are portrait (9:16, 3:4). When a ratio crops them, the
   data sets `image.focus` (`'top' | 'bottom' | 'left' | 'right'`, default
-  center) so the subject stays in frame (D-31).
+  center) so the subject stays in frame (D-31), and `image.orientation: 'portrait'`
+  so page headers and galleries keep the photo tall (D-48, D-49).
 - Budget exception (R-09): the current project photos are recompressed social-media
   images; at 800 px they weigh 54–208 KB against the 70 KB card budget. Lower quality
   only adds blur. Re-run `npm run images` when the originals (C-18) arrive.

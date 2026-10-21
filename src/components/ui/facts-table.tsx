@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 export interface FactsRow {
   label: string;
   value: React.ReactNode;
+  /** Water data (yields, water levels) in Water Blue (Brand §4) */
+  water?: boolean;
 }
 
 interface FactsTableProps {
@@ -18,7 +20,9 @@ export function FactsTable({ rows, className }: FactsTableProps) {
       {rows.map((row) => (
         <div key={row.label} className="odd:bg-brand-tint grid grid-cols-5 gap-4 px-3 py-2.5">
           <dt className="text-ink-muted col-span-2 font-medium">{row.label}</dt>
-          <dd className="text-ink col-span-3 tabular-nums">{row.value}</dd>
+          <dd className={cn('col-span-3 tabular-nums', row.water ? 'text-water' : 'text-ink')}>
+            {row.value}
+          </dd>
         </div>
       ))}
     </dl>

@@ -14,6 +14,8 @@ export interface ImageAsset {
   alt: string;
   /** Defaults to 'center' */
   focus?: ImageFocus;
+  /** Shape of the source photo; defaults to 'landscape'. Headers and galleries keep portrait photos tall */
+  orientation?: 'landscape' | 'portrait';
 }
 
 /** A headline figure: a depth, a yield, a count. `water` marks water data (Brand §4). */
@@ -183,6 +185,29 @@ export interface ServicesPage {
     deliverables: string;
     related: string;
     allProjects: Action;
+  };
+}
+
+/** /projects and the headings of every /projects/[slug] page (Design System §4). */
+export interface ProjectsPage {
+  header: PageCopy;
+  detail: {
+    overview: string;
+    approach: string;
+    result: string;
+    facts: string;
+    /** FactsTable labels; depth and yield bring their own (Stat.label) */
+    factLabels: {
+      client: string;
+      location: string;
+      year: string;
+      services: string;
+      duration: string;
+    };
+    gallery: SectionCopy;
+    related: string;
+    allProjects: Action;
+    contact: Action;
   };
 }
 

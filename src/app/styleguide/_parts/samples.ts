@@ -17,6 +17,7 @@ export const photos = {
     url: '/images/projects/tsedey-bank-pumping-test/cover.webp',
     alt: 'Pumping test discharge at the Tsedey Bank site',
     focus: 'top',
+    orientation: 'portrait',
   },
   airlift: {
     url: '/images/site/well-airlift-development.webp',
@@ -35,7 +36,7 @@ export const projectFacts = [
   { label: 'Year', value: '— (C-11)' },
   { label: 'Services', value: 'Pumping Tests' },
   { label: 'Depth', value: '— m (C-11)' },
-  { label: 'Tested yield', value: '— L/s (C-11)' },
+  { label: 'Tested yield', value: '— L/s (C-11)', water: true },
   { label: 'Duration', value: '— (C-11)' },
 ];
 
