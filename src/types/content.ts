@@ -56,6 +56,8 @@ export interface Service {
   deliverables: string[];
   /** Verb-first button text, e.g. 'Request a site survey' (Brand §8) */
   cta: string;
+  /** Photo in the page header; only a photo that really shows this service */
+  image?: ImageAsset;
 }
 
 export interface Project {
@@ -150,6 +152,38 @@ export interface SectionCopy {
   eyebrow?: string;
   title: string;
   intro?: string;
+}
+
+/** A titled point in a grid: a deliverable, a principle, a capability. */
+export interface Feature {
+  title: string;
+  text?: string;
+}
+
+/** The top of an inner page (PageHeader). */
+export interface PageCopy {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  /** Meta description for search results */
+  description: string;
+}
+
+/** /services, in section order (Design System §4). */
+export interface ServicesPage {
+  header: PageCopy;
+  lifecycle: SectionCopy;
+  deliverables: SectionCopy & { items: Feature[] };
+  /** Headings of the sections on every /services/[slug] page */
+  detail: {
+    overview: string;
+    forWho: string;
+    includes: string;
+    method: string;
+    deliverables: string;
+    related: string;
+    allProjects: Action;
+  };
 }
 
 /** The band that ends every page except Contact (Design System §3.4). */

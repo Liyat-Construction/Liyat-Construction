@@ -54,13 +54,10 @@ const LEGACY = new Set([
   'src/app/projects/[slug]/page.tsx',
   'src/app/projects/loading.tsx',
   'src/app/projects/page.tsx',
-  'src/app/services/[slug]/page.tsx',
-  'src/app/services/page.tsx',
   'src/app/terms-of-service/page.tsx',
   'src/app/testimonials/page.tsx',
   'src/components/contact-section.tsx',
   'src/components/premium-button.tsx',
-  'src/components/services-section.tsx',
 ]);
 
 const errors = [];

@@ -7,7 +7,7 @@
  * (year, depth, yield, duration, result) and permission to name the client (C-11).
  */
 
-import type { ImageAsset, Project } from '@/types/content';
+import type { ImageAsset, Project, ServiceSlug } from '@/types/content';
 
 const photo = (slug: string, file: string, alt: string, focus?: ImageAsset['focus']) => ({
   url: `/images/projects/${slug}/${file}.webp`,
@@ -173,6 +173,13 @@ export const PROJECTS: Project[] = [
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((project) => project.featured).slice(0, 6);
+
+/** Projects that included the given service, featured first. */
+export function getProjectsByService(slug: ServiceSlug): Project[] {
+  return PROJECTS.filter((project) => project.services.includes(slug)).sort(
+    (a, b) => Number(b.featured) - Number(a.featured)
+  );
+}
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return PROJECTS.find((project) => project.slug === slug);

@@ -75,7 +75,7 @@
 | P5  | Site shell: header, menu, footer      | P4, P6 (D-37)         | Owner                           | Complete    |
 | P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Complete    |
 | P7  | Home page + well diagram              | P5, P6                | Owner                           | Complete    |
-| P8  | Services pages                        | P7                    | Owner                           | Not started |
+| P8  | Services pages                        | P7                    | Owner                           | Complete    |
 | P9  | Projects pages                        | P7                    | Owner                           | Not started |
 | P10 | About page                            | P7                    | Owner                           | Not started |
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Not started |
@@ -212,7 +212,14 @@
   - Figures, equipment and testimonials show marked fillers until C-10, C-16, C-12; each section hides when its data is empty.
   - LCP measured only indirectly (the hero is the one priority image, 640 px = 19 KB on phones); Lighthouse needs `npx lighthouse` (a download) — run in P15 with the owner's OK.
 
-### P8 — Services · P9 — Projects · P10 — About · P11 — Equipment · P12 — Testimonials
+### P8 — Services · `Complete` (2026-10-21)
+
+- **Built:** `/services` = PageHeader → ServiceLifecycle (with the diagram) → "What you receive at every stage" (FeatureGrid, 4 documents) → CtaBand. `/services/[slug]` = PageHeader (photo for drilling, pumping tests and pump installation only — no photo truly shows a survey, a wellhead or a turnkey job) → ServiceDetail → related projects (hidden when none: survey, wellhead, turnkey) → CtaBand.
+- New in the library: `ui/check-list`, `ui/steps`, `cards/feature-card`, `sections/feature-grid`, `sections/service-detail`. `Service.image`, `SERVICES_PAGE` copy, `getProjectsByService()`. Template `services-section` deleted.
+- Changed from the blueprint: "What you receive" moved into the overview sidebar — as its own section it held one lonely card.
+- Verified: validate, check:design, build:static pass; `/services`, well drilling and pumping tests reviewed at 1280 and 375; fixed the gap between "What is included" and "How we work" on phones.
+
+### P9 — Projects · P10 — About · P11 — Equipment · P12 — Testimonials
 
 - **What:** Each page exactly as its blueprint in Design System §4, composed from existing sections and cards. A new component is added to the library (and the styleguide) first, never inside a page.
 - **Done when:** Per page: definition of done plus owner approval.

@@ -4,7 +4,7 @@
  * homepage, /services and /services/[slug]; the order sets the 01–06 numbers.
  */
 
-import type { Service, ServiceSlug } from '@/types/content';
+import type { Service, ServicesPage, ServiceSlug } from '@/types/content';
 
 // PLACEHOLDER(C-09): confirm the service list, the scope lists and the method/deliverable wording with Liyat
 export const SERVICES: Service[] = [
@@ -56,6 +56,10 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Drilling log', 'As-built well construction drawing'],
     cta: 'Request a drilling quote',
+    image: {
+      url: '/images/hero/afar-rig-fleet.webp',
+      alt: 'Liyat drilling rig and support fleet at Afdera, Afar Region',
+    },
   },
   {
     slug: 'pumping-tests',
@@ -80,6 +84,10 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Pumping test report with the recommended pumping rate'],
     cta: 'Book a pumping test',
+    image: {
+      url: '/images/projects/ethiopian-airlines-pumping-test/cover.webp',
+      alt: 'Water discharging during the pumping test for Ethiopian Airlines',
+    },
   },
   {
     slug: 'wellhead-rehabilitation',
@@ -128,6 +136,11 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Commissioning record', 'Operation and maintenance notes'],
     cta: 'Plan a pump installation',
+    image: {
+      url: '/images/projects/british-embassy-pump-installation/cover.webp',
+      alt: 'Pump installation works at the British Embassy, Addis Ababa',
+      focus: 'top',
+    },
   },
   {
     slug: 'turnkey-projects',
@@ -154,6 +167,57 @@ export const SERVICES: Service[] = [
     cta: 'Request a turnkey proposal',
   },
 ];
+
+// PLACEHOLDER(C-09): confirm the deliverables with Liyat
+export const SERVICES_PAGE: ServicesPage = {
+  header: {
+    eyebrow: 'Services',
+    title: 'From survey to handover',
+    intro:
+      'Six services that take a water source from the first survey to a working supply. Choose one stage, or let us run the whole project.',
+    description:
+      'Hydrogeological survey, well drilling, pumping tests, wellhead construction, pump installation and turnkey water projects by Liyat Construction in Ethiopia.',
+  },
+  lifecycle: {
+    eyebrow: 'The lifecycle',
+    title: 'Every well surveyed, drilled and proven.',
+    intro:
+      'The six services in the order a water source is built. The drawing shows the part of the well each one delivers.',
+  },
+  deliverables: {
+    eyebrow: 'Documentation',
+    title: 'What you receive at every stage',
+    intro:
+      'Each stage ends with a document you can keep, check and share with your engineers and funders.',
+    items: [
+      {
+        title: 'Survey report',
+        text: 'The recommended drilling site, the expected depth and the likely yield.',
+      },
+      {
+        title: 'Drilling log',
+        text: 'The formations drilled and an as-built drawing of the finished well.',
+      },
+      {
+        title: 'Pumping test report',
+        text: 'Measured drawdown and recovery, with the recommended pumping rate.',
+      },
+      {
+        title: 'Handover file',
+        text: 'Every report from survey to commissioning, in one file.',
+      },
+    ],
+  },
+  detail: {
+    overview: 'About this service',
+    forWho: 'Who it is for',
+    includes: 'What is included',
+    method: 'How we work',
+    deliverables: 'What you receive',
+    related: 'Related projects',
+    allProjects: { label: 'Explore all projects', href: '/projects' },
+  },
+};
 
 export function getServiceBySlug(slug: string): Service | undefined {
   return SERVICES.find((service) => service.slug === slug);

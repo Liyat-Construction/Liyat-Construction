@@ -216,6 +216,8 @@ type Variant = keyof typeof variants;
 | `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`, `label?`                                                                                                               | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used; hidden from screen readers unless `label` is given      |
 | `Logo`           | `variant: 'color' \| 'white'`, `alt`, `eager?`                                                                                                               | At least 80 px wide (Brand §3). Until P3: `logo.png`; `white` = the color logo on a white plate (D-38). P3 swaps the artwork here only    |
 | `Subheading`     | `as: 'h3' \| 'h4'`, `size?`                                                                                                                                  | A heading inside a section, below its SectionHeading                                                                                      |
+| `CheckList`      | `items: string[]`                                                                                                                                            | Included items, each with a green check; renders nothing when empty                                                                       |
+| `Steps`          | `items: string[]`                                                                                                                                            | Numbered method steps (01, 02…) between hairlines                                                                                         |
 | `Breadcrumbs`    | `items: { label, href? }[]`                                                                                                                                  | `nav` + `ol`; the current page last, without `href`, marked `aria-current`                                                                |
 | `Prose`          | `children`                                                                                                                                                   | Typography for long-form text (legal pages, project stories)                                                                              |
 | `Field`          | `id`, `label`, `hint?`, `error?`, `optional?`, `children: (control) => ReactNode` (+ `Input`, `Textarea`, `Select`)                                          | Render prop passes `id`, `aria-describedby`, `aria-invalid`, `required` to the control. Fields are required unless `optional`             |
@@ -241,6 +243,7 @@ Two need one extra value the object cannot hold: `ProjectCard` gets `serviceName
 | `EquipmentCard`   | `Equipment`   | Photo, name, type, FactsTable of key specs (e.g. rated depth)                                                                 |
 | `TeamCard`        | `TeamMember`  | Portrait, name, role                                                                                                          |
 | `ReferenceCard`   | `Reference`   | Letter thumbnail (document icon until a scan exists), organization, month · year; links to the full scan                      |
+| `FeatureCard`     | `Feature`     | Optional icon, title, optional sentence, optional children (e.g. a CheckList): deliverables, principles, capabilities         |
 | `ClientCard`      | `Partner`     | The client's logo, else its name. Site photos are not shown as logos                                                          |
 
 ### 3.3 Layout — `src/components/layout/`
@@ -257,17 +260,19 @@ Two need one extra value the object cannot hold: `ProjectCard` gets `serviceName
 
 Sections are props-driven (no data imports inside), so any page can reuse them.
 
-| Section            | Used on              | Composition                                                                                                                                                                                                                    |
-| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Hero`             | Home                 | Option C (D-44): from `lg`, text on Ink (5 columns) beside the whole photo (7 columns, priority, natural color, nothing over it); below `lg` the photo first, text below on Ink. Eyebrow + display headline + lead + 2 Buttons |
-| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                                                                        |
-| `ProofStrip`       | Home, About          | 3–4 `Stat`s + a row of `ClientCard`s; each part hides when empty                                                                                                                                                               |
-| `FeaturedProjects` | Home, Service detail | `SectionHeading` + "Explore all projects" + 3 equal `ProjectCard`s (2 at `md`) — D-46                                                                                                                                          |
-| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the sticky `WellDiagram`; pointing at or focusing a service highlights its part of the well, in CSS only (`:has()`, D-45)                                                             |
-| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                                                                        |
-| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                                                 |
-| `CtaBand`          | End of every page    | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                                                   |
-| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                                                                               |
+| Section            | Used on                    | Composition                                                                                                                                                                                                                    |
+| ------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Hero`             | Home                       | Option C (D-44): from `lg`, text on Ink (5 columns) beside the whole photo (7 columns, priority, natural color, nothing over it); below `lg` the photo first, text below on Ink. Eyebrow + display headline + lead + 2 Buttons |
+| `PageHeader`       | All inner pages            | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                                                                        |
+| `ProofStrip`       | Home, About                | 3–4 `Stat`s + a row of `ClientCard`s; each part hides when empty                                                                                                                                                               |
+| `FeaturedProjects` | Home, Service detail       | `SectionHeading` + "Explore all projects" + 3 equal `ProjectCard`s (2 at `md`) — D-46                                                                                                                                          |
+| `ServiceLifecycle` | Home, Services             | Promise heading; 6 `ServiceCard`s beside the sticky `WellDiagram`; pointing at or focusing a service highlights its part of the well, in CSS only (`:has()`, D-45)                                                             |
+| `EquipmentTeaser`  | Home                       | Photo + 3 key specs + link to Equipment                                                                                                                                                                                        |
+| `Testimonials`     | Home, Testimonials         | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                                                 |
+| `FeatureGrid`      | Services, About, Equipment | `SectionHeading` + 2–4 columns of `FeatureCard`s; renders nothing when empty                                                                                                                                                   |
+| `ServiceDetail`    | Service detail             | Overview + sidebar (who it is for, what you receive, CTA); then what is included beside the method `Steps`                                                                                                                     |
+| `CtaBand`          | End of every page          | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                                                   |
+| `ContactPanel`     | Contact                    | Form + details + lazy map facade                                                                                                                                                                                               |
 
 ### 3.5 Diagrams — `src/components/diagrams/`
 
@@ -309,8 +314,9 @@ team (`TeamCard`) → licences & credentials → safety & responsibility → `Ct
 
 Index: `PageHeader` → `ServiceLifecycle` → "What you receive at every stage"
 (deliverables: survey report, drilling log, test report, handover file) → `CtaBand`.
-Detail: `PageHeader` with photo → overview + who it is for → what's included →
-method steps → what you receive → related projects (`FeaturedProjects`) → `CtaBand`.
+Detail: `PageHeader` (photo only when one really shows the service) → overview with
+who it is for and what you receive → what's included beside the method steps →
+related projects (`FeaturedProjects`, hidden when none) → `CtaBand`.
 
 ### Projects — `/projects` and `/projects/[slug]`
 
