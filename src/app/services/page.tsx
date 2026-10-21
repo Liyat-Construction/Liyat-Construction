@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
@@ -9,10 +10,7 @@ import { SERVICES, SERVICES_PAGE } from '@/data/services';
 
 const { header, lifecycle, deliverables } = SERVICES_PAGE;
 
-export const metadata: Metadata = {
-  title: 'Services',
-  description: header.description,
-};
+export const metadata: Metadata = pageMetadata('/services', header.title, header.description);
 
 // Design System §4 (Services index)
 export default function ServicesPage() {

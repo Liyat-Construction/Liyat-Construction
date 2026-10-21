@@ -5,12 +5,11 @@ import { FeaturedProjects } from '@/components/sections/featured-projects';
 import { PageHeader } from '@/components/sections/page-header';
 import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { ProjectDetail } from '@/components/sections/project-detail';
-import { siteUrl } from '@/config/env';
+import { pageMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/config/site';
 import { CTA_BAND } from '@/data/cta';
 import { getProjectBySlug, getRelatedProjects, PROJECTS, PROJECTS_PAGE } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
-import { preparedImageUrl } from '@/lib/image-loader';
 
 export const dynamicParams = false;
 
@@ -22,33 +21,12 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Open Graph and canonical stay as the template had them until P14's metadata helper
+// Open Graph and canonical use P14's shared metadata helper
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const project = getProjectBySlug((await params).slug);
   if (!project) return {};
 
-  const url = `${siteUrl}/projects/${project.slug}`;
-  const image = { url: `${siteUrl}${preparedImageUrl(project.image.url)}`, alt: project.image.alt };
-  return {
-    title: project.title,
-    description: project.summary,
-    alternates: { canonical: url },
-    openGraph: {
-      title: project.title,
-      description: project.summary,
-      type: 'article',
-      url,
-      siteName: siteConfig.name,
-      locale: siteConfig.locale,
-      images: [image],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: project.title,
-      description: project.summary,
-      images: [image.url],
-    },
-  };
+  return pageMetadata(`/projects/${project.slug}`, project.title, project.summary, project.image);
 }
 
 // Design System §4 (Project detail)

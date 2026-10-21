@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
 import { CtaBand } from '@/components/sections/cta-band';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
@@ -22,7 +23,7 @@ interface ServicePageProps {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const service = getServiceBySlug((await params).slug);
   if (!service) return {};
-  return { title: service.title, description: service.intro };
+  return pageMetadata(`/services/${service.slug}`, service.title, service.summary, service.image);
 }
 
 // Design System §4 (Service detail)

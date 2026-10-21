@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **P13 — Contact page and form** (Review; production delivery blocked on C-25)                                                                   |
-| **Last completed**    | P12 — Testimonials page (2026-10-21; committed pending owner review, D-43)                                                                      |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                                           |
-| **Next action**       | Owner authorized P13 commit and P14 implementation + commit; all UI review deferred until after P15 (D-56). C-25 still blocks delivery testing. |
+|                       |                                                                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **Owner whole-site review before P15** (D-57); P14 implementation complete; owner authorized commit only, then whole-site review |
+| **Last completed**    | P14 — implementation complete (D-57 exception); P13 committed as 97d0686, real receipt remains blocked                           |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                            |
+| **Next action**       | Owner reviews the whole site before P15 (D-57). P15 is Not started; wait for instruction after review.                           |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -81,7 +81,7 @@
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Review      |
 | P12 | Testimonials page                     | P7                    | Owner                           | Review      |
 | P13 | Contact page and form                 | P7, O-01              | Owner                           | Review      |
-| P14 | SEO, metadata, legal and system pages | P8–P13                | Technical                       | Not started |
+| P14 | SEO, metadata, legal and system pages | P8–P13                | Technical                       | Complete    |
 | P15 | Quality and performance audit         | P14                   | Technical + owner               | Not started |
 | P16 | Real content swap                     | P15, client checklist | Owner + client                  | Not started |
 | P17 | Deployment                            | P16, O-02             | Technical                       | Not started |
@@ -277,10 +277,16 @@
 - **Verification:** static build (29 routes), lint, design check and seven focused Node tests pass. Final `npm run validate` passes (type-check, lint and format check); `git diff --check` passes. Browser screenshots reviewed at 375/768/1280 (`.p13-*.png`); no horizontal overflow, one h1/main, no captured runtime/console-API errors (the existing static-host prefetch issue R-08 remains for P17). Enabled-form fixture verifies first-invalid focus, linked errors, sending/disabled states, failed submission retention and successful reset; both provider responses mocked in-browser, no real requests. Map specimen mounts only after click and removes on hide; no external requests. Contact first-load JS = **181.6 KiB gzip**, home = **167.7 KiB** (excludes nomodule polyfill; within 190 KiB guard rail). Analyzer run recorded below.
 - **Delivery blockers:** C-25 inbox + public provider key and provider-side abuse protection; client-approved phones/email/address/hours (C-03–C-07); map waits for C-24. No real inquiry sent. P13 cannot reach Complete until production receipt is verified with explicit owner permission.
 
-### P14 — SEO, metadata, legal and system pages
+### P14 — SEO, metadata, legal and system pages · `Complete` (implementation; D-57)
 
-- **What:** `lib/metadata.ts` helper; per-page titles and descriptions; sitemap from data; JSON-LD organization + breadcrumbs; OG images; privacy and terms in `Prose`; 404 and error pages.
-- **Done when:** Lighthouse SEO 100 on every page; structured data validates.
+- **Built:** shared metadata/page-URL helper; route-specific canonical, Open Graph and Twitter metadata on all main/detail/legal/specimen pages; static trailing slashes match sitemap URLs. Sitemap derives from navigation + services/projects, without fabricated modification dates. Breadcrumb JSON-LD reuses PageHeader crumbs; organization and breadcrumbs escape `<` in JSON serialization.
+- **Legal:** typed `src/data/legal.ts`, shared `LegalContent` + Prose; removed invented deposit, cancellation, retention and response promises. Both drafts visibly marked, noindex and excluded from sitemap until C-29 approval. This is not legal clearance.
+- **System:** server 404 with real recovery links; mandatory client error boundary uses client-safe `SystemMessage`, not tailwind-merge/Icon registry. New components demonstrated on styleguide. Only unused `premium-button.tsx` remains on LEGACY; no unauthorized deletion or dependency removal.
+- **Social image:** reproducible `npm run images:og` produces the natural-color 1200 × 630 hero crop; removes the template green wash. Project/service covers use prepared images with no false dimensions.
+- **Analytics:** disabled configuration gate prevents an environment ID alone from activating Google Analytics; O-03 remains open.
+- **Original acceptance:** Lighthouse SEO 100 on every page and structured-data validation. **Still pending:** Lighthouse, external structured-data validator, responsive/browser/error-reset checks and owner aesthetic review. Owner requested implementation marked done and review before P15 (D-57); Complete here does not assert those unrun checks passed.
+- **Verification:** final static build passed (29 routes); final `validate` passed (type-check, lint, format); design check passed with the one existing unused PremiumButton exception; seven contact tests passed. Placeholder check exits 1 with 40 hits (includes two C-29 markers), not launch-ready. Initial SEO tests reproduced old canonical/breadcrumb/legal indexing failures; the intermediate build passed 3/4 with a trailing-slash mismatch. That mismatch was corrected and rebuilt successfully, but the final SEO suite was **not rerun**: owner requested no further commands. Browser, Lighthouse and external schema checks remain unrun.
+- **Stop state:** P14 implementation marked Complete at owner request. After pausing commands, owner explicitly instructed committing P14 now without further testing. Whole-site owner review is the only next action; P15 remains Not started. Pending checks above remain pending; commit is not launch approval.
 
 ### P15 — Quality and performance audit
 
@@ -338,6 +344,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-27 | Wondossen checks the well cross-section drawing (home and services) matches how Liyat builds wells                                                             | P16       | Should                 | Open   |
 | C-26 | Approval of Brand Guidelines v1.1 by Wondossen                                                                                                                 | P18       | Must                   | Open   |
 | C-28 | Confirm the client types named on About (the template listed hospitals and manufacturers)                                                                      | P16       | Should                 | Open   |
+| C-29 | Client and qualified reviewer approve privacy practices, providers, retention, requests and website terms; replace legal drafts before launch                  | P16       | Must                   | Open   |
 
 ## 6. Decisions log
 
@@ -403,6 +410,8 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit P14 next, and defer owner UI review for all pages until after P15. This supersedes the per-step aesthetic/commit gates for this sequence only. P13 remains Review with production receipt blocked by C-25; committing does not imply delivery or aesthetic approval. Agent concern: delayed review can require shared-component rework; no launch gate or client-content requirement is waived.
 
+**D-57 — owner update, 2026-10-21:** finish and commit P14 implementation, mark it done, then stop for whole-site owner review **before P15** (supersedes D-56’s review-after-P15 timing). P15 must not start without instruction. Implementation completion is an explicit exception to Engineering §10’s visual/audit gates: browser review, Lighthouse SEO 100 and external structured-data validation remain pending and must not be represented as passed. Legal approval (C-29) and real form receipt (C-25) still block launch.
+
 ### Open decisions
 
 | ID   | Question                                      | Recommendation                                                                                          | Needed by |
@@ -432,11 +441,21 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 
 ### Current state of the code
 
-All seven main pages are rebuilt in the final design system (P7–P13).
-P13 is in Review; production form delivery still needs C-25 and explicit
-permission for a real receipt test. Legal/system pages and `premium-button` remain on the
-`check:design` LEGACY list for P14. Content and photos in `src/data/` and
-`public/` carry `PLACEHOLDER(C-xx)` markers until P16.
+All seven main pages and P14 legal/system pages are rebuilt in the design system.
+P14 implementation is Complete by owner instruction (D-57); whole-site owner review now precedes P15.
+P13 is committed (97d0686), still Review; production form delivery needs C-25 and explicit permission.
+Only unused `premium-button.tsx` remains on the design LEGACY list; no deletion authorized.
+Legal copy remains visibly marked, noindex drafts pending C-29. Client placeholders remain until P16.
+P14 browser/Lighthouse/external schema checks are pending, not passed. Do not start P15 yet.
+
+### Current session — 2026-10-21 (P14)
+
+- Owner authorized P13/P14 commits and deferred review (D-56), then changed the next gate to review before P15 (D-57).
+- P13 committed as 97d0686 with pre-commit eslint/prettier passing. P14 adds shared metadata, sitemap alignment, escaped breadcrumb/business JSON-LD, natural-color social photograph, honest legal drafts and lightweight system recovery.
+- No dependencies installed/removed, no secrets read, no live inquiry sent, no push.
+- C-29 added for legal/privacy approval. O-03 remains open; analytics explicitly disabled.
+- Final verification evidence is in §4 P14; owner review and the remaining audit gates are not waived for launch.
+- Owner paused further commands, then explicitly authorized P14 commit only, no P15 and no more test runs. Final SEO rerun remains pending. A local static review server was started on port 3014 before the stop; no browser review was performed.
 
 ### Current session — 2026-10-21 (P13)
 
@@ -629,4 +648,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**Finish P13:** owner reviews Contact at 375/768/1280; obtain the confirmed receiving inbox/public Web3Forms key (C-25), contact details (C-03–C-07) and optional map pin (C-24), then get explicit permission for a production receipt test. No commit or P14 work without the owner's instruction. P3 still waits for C-01.
+**Owner reviews the whole site before P15 (D-57).** P14 implementation is marked Complete by instruction; Lighthouse, external schema validation and browser checks remain pending audit work. Do not start P15 until instructed after review. C-25 still blocks production form receipt, C-29 blocks final legal copy, and P3 waits for C-01.

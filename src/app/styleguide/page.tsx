@@ -1,4 +1,8 @@
 import type { Metadata } from 'next';
+import { LegalContent } from '@/components/sections/legal-content';
+import { SystemMessage } from '@/components/ui/system-message';
+import { PRIVACY_PAGE } from '@/data/legal';
+import { pageMetadata } from '@/lib/metadata';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { FactsTable } from '@/components/ui/facts-table';
@@ -46,7 +50,11 @@ import { Caption, Specimen, Swatch } from './_parts/specimen';
 import { readTokens } from './_parts/tokens';
 
 export const metadata: Metadata = {
-  title: 'Style guide',
+  ...pageMetadata(
+    '/styleguide',
+    'Style guide',
+    'Liyat Construction design system and component specimens.'
+  ),
   robots: { index: false, follow: false },
 };
 
@@ -581,6 +589,13 @@ export default function StyleguidePage() {
           </div>
         </div>
       </Section>
+      <SystemMessage
+        as="h2"
+        copy={siteConfig.system.error}
+        home={siteConfig.system.home}
+        contact={siteConfig.system.contact}
+      />
+      <LegalContent copy={PRIVACY_PAGE} />
       <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </div>
   );

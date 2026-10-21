@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { ContactPanel } from '@/components/sections/contact-panel';
 import { PageHeader } from '@/components/sections/page-header';
 import { siteConfig } from '@/config/site';
 import { CONTACT_PAGE } from '@/data/contact';
 
-export const metadata: Metadata = {
-  title: 'Contact us',
-  description: CONTACT_PAGE.header.description,
-};
+export const metadata: Metadata = pageMetadata(
+  '/contact',
+  CONTACT_PAGE.header.title,
+  CONTACT_PAGE.header.description
+);
 
 export default function ContactPage() {
   return (

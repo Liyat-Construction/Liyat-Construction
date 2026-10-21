@@ -1,3 +1,4 @@
+import { pageUrl, serializeJsonLd } from '@/lib/metadata';
 import type { ImageAsset } from '@/types/content';
 import { Breadcrumbs, type Crumb } from '@/components/ui/breadcrumbs';
 import { Photo } from '@/components/ui/photo';
@@ -18,6 +19,21 @@ interface PageHeaderProps {
 export function PageHeader({ title, eyebrow, intro, breadcrumbs, image }: PageHeaderProps) {
   return (
     <Section tone="stone" spacing="compact" labelledBy="page-title">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: breadcrumbs.map((crumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: crumb.label,
+              ...(crumb.href && { item: pageUrl(crumb.href) }),
+            })),
+          }),
+        }}
+      />
       <div className="gap-grid grid items-center lg:grid-cols-12">
         <div className="flex flex-col gap-8 lg:col-span-7">
           <Breadcrumbs items={breadcrumbs} />

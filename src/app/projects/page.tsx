@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
 import { ProjectGrid } from '@/components/sections/project-grid';
@@ -9,10 +10,7 @@ import { getServiceTitles } from '@/data/services';
 
 const { header } = PROJECTS_PAGE;
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: header.description,
-};
+export const metadata: Metadata = pageMetadata('/projects', header.title, header.description);
 
 // Design System §4 (Projects index)
 export default function ProjectsPage() {

@@ -270,6 +270,14 @@ export interface TestimonialsPage {
   clients: SectionCopy & { clientsTitle: string };
 }
 
+export interface LegalPage {
+  header: PageCopy;
+  notice: string;
+  updated: string;
+  sections: { title: string; paragraphs: string[] }[];
+  contact: Action;
+}
+
 export interface ContactPage {
   header: PageCopy;
   form: SectionCopy & {

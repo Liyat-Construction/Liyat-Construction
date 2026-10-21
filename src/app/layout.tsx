@@ -98,7 +98,7 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body>
-        {env.NEXT_PUBLIC_GA_ID && (
+        {siteConfig.analytics.enabled && env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GA_ID}`}

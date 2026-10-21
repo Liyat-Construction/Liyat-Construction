@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
 import { ProofStrip } from '@/components/sections/proof-strip';
@@ -12,10 +13,7 @@ import { TESTIMONIALS, TESTIMONIALS_PAGE } from '@/data/testimonials';
 
 const { header, testimonials, references, clients } = TESTIMONIALS_PAGE;
 
-export const metadata: Metadata = {
-  title: 'Testimonials',
-  description: header.description,
-};
+export const metadata: Metadata = pageMetadata('/testimonials', header.title, header.description);
 
 export default function TestimonialsPage() {
   return (

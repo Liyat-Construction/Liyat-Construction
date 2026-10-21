@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/metadata';
 import { siteConfig } from '@/config/site';
 import { socialLinks } from '@/components/social-links';
 
@@ -48,7 +49,7 @@ export function OrganizationSchema({ siteUrl }: OrganizationSchemaProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteSchema, businessSchema]) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd([websiteSchema, businessSchema]) }}
     />
   );
 }

@@ -75,13 +75,14 @@ through props. Exceptions: `layout/*` and `lib/metadata` read `siteConfig`.
 Everything is a Server Component unless it needs browser state. The complete
 list of allowed client islands:
 
-| Client island               | Why                                                                       |
-| --------------------------- | ------------------------------------------------------------------------- |
-| `layout/mobile-menu.tsx`    | opens/closes a native modal `<dialog>`                                    |
-| `layout/nav-links.tsx`      | marks the current page (`aria-current`) — replaces `header-scroll` (D-39) |
-| `ui/reveal.tsx`             | IntersectionObserver                                                      |
-| `sections/contact-form.tsx` | form state and submit                                                     |
-| `ui/map-facade.tsx`         | mounts the Google Maps iframe only after an explicit click (D-54)         |
+| Client island               | Why                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `layout/mobile-menu.tsx`    | opens/closes a native modal `<dialog>`                                          |
+| `layout/nav-links.tsx`      | marks the current page (`aria-current`) — replaces `header-scroll` (D-39)       |
+| `ui/reveal.tsx`             | IntersectionObserver                                                            |
+| `sections/contact-form.tsx` | form state and submit                                                           |
+| `app/error.tsx`             | Next.js-required error boundary; reset action through client-safe SystemMessage |
+| `ui/map-facade.tsx`         | mounts the Google Maps iframe only after an explicit click (D-54)               |
 
 Adding a client component outside this list is a decision to record in `WORKFLOW.md`.
 
@@ -90,8 +91,8 @@ then ships to every page. Use plain class strings there, and pass icons and butt
 as already-rendered props from a server component (see `layout/header.tsx`).
 `ui/field.tsx` is shared with the form island: it uses lightweight `clsx` for layout-only
 classes and direct, tree-shaken error/select icons, not the full `Icon` registry.
-Known leftover: the template `error.tsx` / `not-found.tsx` import `cn`, so tailwind-merge
-(≈ 9 KB gzip) still loads everywhere until P14 rebuilds them.
+The mandatory `app/error.tsx` client boundary uses `ui/system-message.tsx` without
+`lib/utils`; `app/not-found.tsx` is server-rendered. System recovery copy is in `siteConfig.system`.
 
 ### Content
 
@@ -193,7 +194,12 @@ Widths are set per source folder in `scripts/optimize-images.mjs`; the ratio is 
   arrays (services, projects) — never hand-maintained.
 - JSON-LD: `GeneralContractor` (organization), `BreadcrumbList` on inner pages.
 - Open Graph image 1200 × 630; project pages use their cover photo.
-- `robots`: `noindex` for `/styleguide`.
+- `robots`: `noindex` for `/styleguide` and unapproved legal drafts; exclude them from the sitemap.
+- Sitemap combines navigation and service/project data; omit fabricated modification dates.
+- `node --test scripts/seo.test.mjs` checks the built export’s canonical/social metadata,
+  local social image files, JSON-LD structure, draft indexing and recovery links.
+- `npm run images:og` prepares the natural-color 1200 × 630 default social photograph;
+  project/service metadata uses prepared photographs without invented dimensions.
 
 ## 8. Security and privacy
 
@@ -202,7 +208,10 @@ Widths are set per source folder in `scripts/optimize-images.mjs`; the ratio is 
 - The form key is a public identifier, not a secret; spam control = honeypot
   field + provider-side protection.
 - No secrets in the repo; `.env.local` is never committed.
-- No tracking without a consent decision (O-03).
+- No tracking without a consent decision (O-03). `siteConfig.analytics.enabled` is false;
+  an environment ID alone cannot activate analytics.
+- Legal pages are typed plain-text drafts in `src/data/legal.ts`, visibly marked and
+  noindex until C-29. Do not invent retention periods, payment terms or legal guarantees.
 
 ## 9. Commands
 

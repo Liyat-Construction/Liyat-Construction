@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { EquipmentGrid } from '@/components/sections/equipment-grid';
 import { FeatureGrid } from '@/components/sections/feature-grid';
@@ -15,10 +16,11 @@ const supportEquipment = EQUIPMENT.filter((item) => item.category === 'support')
 const equipmentSections = Number(drillingRigs.length > 0) + Number(supportEquipment.length > 0);
 const safetySections = equipmentSections + Number(KEY_FIGURES.length > 0);
 
-export const metadata: Metadata = {
-  title: 'Equipment & Capabilities',
-  description: header.description,
-};
+export const metadata: Metadata = pageMetadata(
+  '/equipment-capabilities',
+  header.title,
+  header.description
+);
 
 export default function EquipmentCapabilitiesPage() {
   return (

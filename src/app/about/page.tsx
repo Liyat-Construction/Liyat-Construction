@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
@@ -13,10 +14,7 @@ import { CTA_BAND } from '@/data/cta';
 const { header, story, figures, offer, audience, purpose, principles, team, credentials, safety } =
   ABOUT_PAGE;
 
-export const metadata: Metadata = {
-  title: 'About us',
-  description: header.description,
-};
+export const metadata: Metadata = pageMetadata('/about', header.title, header.description);
 
 const credentialItems = CREDENTIALS.map((credential) => ({
   title: credential.name,

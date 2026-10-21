@@ -1,3 +1,4 @@
+import { pageMetadata } from '@/lib/metadata';
 import { CtaBand } from '@/components/sections/cta-band';
 import { EquipmentTeaser } from '@/components/sections/equipment-teaser';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
@@ -14,6 +15,12 @@ import { PARTNERS } from '@/data/partners';
 import { FEATURED_PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
+
+export const metadata = pageMetadata(
+  '/',
+  siteConfig.seo.titleDefault,
+  siteConfig.seo.metaDescription
+);
 
 // Design System §4 (Home): tones alternate paper ↔ stone after the hero.
 export default function Home() {

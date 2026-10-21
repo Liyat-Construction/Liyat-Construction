@@ -86,6 +86,23 @@ export const siteConfig = {
     subjects: ['Project inquiry', 'Request a quotation', 'Partnership', 'Other'],
   },
 
+  analytics: { enabled: false },
+  system: {
+    notFound: {
+      eyebrow: '404',
+      title: 'Page not found',
+      intro: 'This page may have moved, or the address may be incorrect.',
+    },
+    error: {
+      eyebrow: 'Something went wrong',
+      title: 'We could not load this page',
+      intro: 'Please try again. If the problem continues, contact us by phone or email.',
+    },
+    retry: 'Try again',
+    home: 'Return home',
+    contact: 'Contact us',
+  },
+
   // ── SEO & Open Graph ────────────────────────────────────────────────────────
   seo: {
     titleDefault: 'Liyat Construction | Groundwater Development & Water-Well Engineering',
@@ -105,7 +122,7 @@ export const siteConfig = {
     ogDescription:
       'Ethiopian groundwater development and water-well engineering contractor serving government, institutional, and commercial clients.',
     ogImage: '/og-image.jpg',
-    ogImageAlt: 'Liyat Construction',
+    ogImageAlt: 'Water rising beside a Liyat Construction drilling rig',
   },
 
   // ── JSON-LD Structured Data ─────────────────────────────────────────────────

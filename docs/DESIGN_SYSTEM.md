@@ -225,6 +225,7 @@ type Variant = keyof typeof variants;
 | `Reveal`         | `children`, `delay?: 0 \| 1 \| 2 \| 3`                                                                                                                                    | The only animation wrapper. Client island (~0.7 KB gzip). Hides only what is still below the fold after hydration                                                                                                     |
 | `ContactList`    | `rows: { label, icon, values: { text, href? }[] }[]`                                                                                                                      | Semantic contact `<dl>` with icons and underlined phone/email links; missing values and empty rows hide.                                                                                                              |
 | `FormFeedback`   | `tone: 'neutral' \| 'success' \| 'error'`, `children?`                                                                                                                    | Persistent status/alert region; neutral border, green-tint success, Alert error. Empty content is screen-reader-only. No utility-library import.                                                                      |
+| `SystemMessage`  | `copy`, `home`, `contact`, optional `retry`, `as: 'h1' \| 'h2'`                                                                                                           | Client-safe error recovery surface; no utility-library dependency. Plain links work without a router; retry calls the error boundary reset.                                                                           |
 | `MapFacade`      | `url`, `copy`, server-rendered `icon`                                                                                                                                     | Client island (D-54). Square placeholder; iframe mounts only after a click, with an explicit Google privacy notice. Hide removes it. No URL means no map.                                                             |
 
 Variant lookups use `pick(map, key)` from `lib/utils.ts`: the `security/detect-object-injection`
@@ -281,6 +282,7 @@ Sections are props-driven (no data imports inside), so any page can reuse them.
 | `PhotoGallery`     | Project detail (reusable)  | `SectionHeading` + photos in CSS columns, each at its own shape (portrait 4:5, landscape 3:2 from `image.orientation`) — D-49; renders nothing when empty                                                                                                          |
 | `ServiceDetail`    | Service detail             | Overview + sidebar (who it is for, what you receive, CTA); then what is included beside the method `Steps`                                                                                                                                                         |
 | `CtaBand`          | End of every page          | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                                                                                       |
+| `LegalContent`     | Legal, Styleguide          | Prose-width Section, visible draft notice and update date, typed paragraphs/headings, contact Button. No injected HTML.                                                                                                                                            |
 | `ContactPanel`     | Contact, Styleguide        | White form card (7 columns) beside server-rendered contact details (5 columns); stacked below lg. Missing map hidden; unconfigured form visible but disabled. No CtaBand.                                                                                          |
 | `ContactForm`      | ContactPanel               | Client island: native FormData + zod/mini (D-55); optional organization/phone, linked errors, focus on first invalid field, persistent live status/error regions, honeypot and disabled fieldset while sending. Server-rendered submit Button arrives as children. |
 
@@ -353,7 +355,7 @@ REFERENCES is empty) → client logos (`ProofStrip`, clients only) → `CtaBand`
 
 ### System pages
 
-Privacy policy, Terms of service (`Prose`), 404, error — all use `PageHeader` + `Container size="prose"`.
+Privacy policy and Terms of service use `PageHeader` + `LegalContent` (`Section container="prose"` + `Prose`). Drafts remain visibly marked and noindex until C-29 approval. The 404 uses `PageHeader` + prose-width recovery links; the mandatory client error boundary uses the client-safe `SystemMessage` to avoid importing the server component/utility graph. Both are demonstrated on `/styleguide`.
 
 ### Style guide — `/styleguide` (development review page)
 

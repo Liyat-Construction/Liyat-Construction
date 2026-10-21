@@ -43,13 +43,7 @@ const ALLOWED = new Set(['src/styles/tokens.css']);
 // warnings so the check can pass while they still exist. Never add a file here:
 // remove each entry when the file is rebuilt or deleted. (Sole exception, D-26:
 // P2 added the template files that only the new removed-default rules caught.)
-const LEGACY = new Set([
-  'src/app/error.tsx',
-  'src/app/not-found.tsx',
-  'src/app/privacy-policy/page.tsx',
-  'src/app/terms-of-service/page.tsx',
-  'src/components/premium-button.tsx',
-]);
+const LEGACY = new Set(['src/components/premium-button.tsx']);
 
 const errors = [];
 const legacyCounts = new Map();
