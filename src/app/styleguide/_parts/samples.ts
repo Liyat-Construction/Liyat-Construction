@@ -5,10 +5,6 @@
 import type { ImageAsset, Reference } from '@/types/content';
 
 export const photos = {
-  hero: {
-    url: '/images/hero/water-column.webp',
-    alt: 'Water rising beside a Liyat drilling rig during well development',
-  },
   rigFleet: {
     url: '/images/hero/afar-rig-fleet.webp',
     alt: 'Liyat drilling rigs and support trucks on site in the Afar region',
@@ -31,13 +27,6 @@ export const photos = {
     alt: 'Drilling rig being transported to site',
   },
 } as const satisfies Record<string, ImageAsset>;
-
-export const hero = {
-  eyebrow: 'Water Well Drilling & Engineering',
-  // PLACEHOLDER(C-22): confirm the tagline is still official
-  title: 'Know better. Drill better.',
-  lead: 'We take water projects from hydrogeological survey through drilling, testing and pump installation, and document every stage for our clients.',
-};
 
 // PLACEHOLDER(C-11): project facts to be confirmed by Liyat (D-36: no invented figures)
 export const projectFacts = [

@@ -12,6 +12,8 @@ const tones = {
 const spacings = {
   default: 'py-section',
   compact: 'py-section-sm',
+  /** Full-bleed layouts (the hero) that set their own padding */
+  none: '',
 } as const satisfies Record<string, string>;
 
 export type SectionTone = keyof typeof tones;
@@ -20,7 +22,8 @@ interface SectionProps {
   children: React.ReactNode;
   tone?: SectionTone;
   spacing?: keyof typeof spacings;
-  container?: ContainerSize;
+  /** `none` renders the children edge to edge, without a Container */
+  container?: ContainerSize | 'none';
   id?: string;
   /** id of the section's heading, so the region is announced by name */
   labelledBy?: string;
@@ -45,7 +48,7 @@ export function Section({
       data-on-dark={dark || undefined}
       className={cn(pick(tones, tone), pick(spacings, spacing), className)}
     >
-      <Container size={container}>{children}</Container>
+      {container === 'none' ? children : <Container size={container}>{children}</Container>}
     </section>
   );
 }

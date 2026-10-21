@@ -8,6 +8,7 @@ const aligns = {
 } as const satisfies Record<Align, string>;
 
 const titleSizes = {
+  display: 'text-display',
   h1: 'text-h1',
   h2: 'text-h2',
 } as const satisfies Record<string, string>;
@@ -17,7 +18,9 @@ interface SectionHeadingProps {
   eyebrow?: string;
   intro?: string;
   align?: Align;
-  as?: keyof typeof titleSizes;
+  as?: 'h1' | 'h2';
+  /** Defaults to the size of the `as` level; `display` is the home hero only */
+  size?: keyof typeof titleSizes;
   /** Pass the same id to Section `labelledBy` */
   id?: string;
   className?: string;
@@ -30,13 +33,14 @@ export function SectionHeading({
   intro,
   align = 'start',
   as: Heading = 'h2',
+  size = Heading,
   id,
   className,
 }: SectionHeadingProps) {
   return (
     <div className={cn('flex max-w-3xl flex-col gap-4', pick(aligns, align), className)}>
       {eyebrow ? <Eyebrow align={align}>{eyebrow}</Eyebrow> : <Rule />}
-      <Heading id={id} className={cn('text-balance', pick(titleSizes, Heading))}>
+      <Heading id={id} className={cn('text-balance', pick(titleSizes, size))}>
         {title}
       </Heading>
       {intro && (

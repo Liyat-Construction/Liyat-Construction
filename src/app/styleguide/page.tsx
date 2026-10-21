@@ -14,7 +14,9 @@ import { Stat } from '@/components/ui/stat';
 import { Tag } from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { siteConfig } from '@/config/site';
-import { HeroPreview } from './_parts/hero-preview';
+import { Hero } from '@/components/sections/hero';
+import { WellDiagram } from '@/components/diagrams/well-diagram';
+import { HOME_PAGE } from '@/data/home';
 import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
 import { EquipmentCard } from '@/components/cards/equipment-card';
@@ -50,7 +52,6 @@ const colorRoles: Record<string, string> = {
   water: 'Water data only',
   alert: 'Form errors only',
   white: 'Cards, fields, header; text on dark',
-  scrim: 'Behind text on photos',
 };
 
 const tones: SectionTone[] = ['paper', 'stone', 'tint', 'ink', 'brand'];
@@ -271,7 +272,7 @@ export default function StyleguidePage() {
           <SectionHeading
             id="sg-photo"
             eyebrow="Photography"
-            title="Photo, ratios and the hero scrim"
+            title="Photo and ratios"
             intro="Natural color, never washed (D-27). Fixed ratios, so nothing shifts while loading."
           />
           <div className="gap-grid grid sm:grid-cols-2 lg:grid-cols-4">
@@ -374,7 +375,23 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      <HeroPreview />
+      <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
+
+      <Section labelledBy="sg-diagram">
+        <div className="gap-grid grid items-start lg:grid-cols-2">
+          <SectionHeading
+            id="sg-diagram"
+            eyebrow="Diagrams"
+            title="WellDiagram"
+            intro="Water Blue for water, Liyat Green for the well structure, Ink for pump equipment and labels. On the home page, pointing at a service highlights its part (D-45). Readable at 320 px."
+          />
+          <Specimen title="320 px wide">
+            <div className="max-w-80">
+              <WellDiagram />
+            </div>
+          </Specimen>
+        </div>
+      </Section>
 
       <Section labelledBy="sg-forms">
         <div className="gap-grid grid lg:grid-cols-2">

@@ -69,20 +69,19 @@ variables, e.g. `duration-(--duration-fast)`, `h-(--header-height)`.
 
 ### 2.1 Color
 
-| Token                | Value                  | Utility examples                    | Role                                      |
-| -------------------- | ---------------------- | ----------------------------------- | ----------------------------------------- |
-| `--color-brand`      | `#156635`              | `bg-brand` `text-brand`             | Actions, links, rule, highlights          |
-| `--color-brand-dark` | `#0F4F28`              | `hover:bg-brand-dark`               | Hover / pressed of brand elements only    |
-| `--color-brand-tint` | `#E7F0EA`              | `bg-brand-tint`                     | Callouts, table rows, selected states     |
-| `--color-ink`        | `#1D2521`              | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections     |
-| `--color-ink-muted`  | `#56615B`              | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders   |
-| `--color-paper`      | `#F8F7F3`              | `bg-paper`                          | Page background (warm off-white, D-33)    |
-| `--color-stone`      | `#EEEBE3`              | `bg-stone`                          | Alternating sections                      |
-| `--color-line`       | `#DCDAD3`              | `border-line`                       | Hairlines, card borders                   |
-| `--color-water`      | `#0B5CA0`              | `text-water` `fill-water`           | **Water data only**                       |
-| `--color-alert`      | `#B42318`              | `text-alert` `border-alert`         | Form errors only                          |
-| `--color-white`      | `#FFFFFF`              | `bg-white` `text-white`             | Cards, inputs, tags, header; text on dark |
-| `--color-scrim`      | `rgb(29 37 33 / 0.62)` | `bg-scrim`                          | Flat overlay on photographs behind text   |
+| Token                | Value     | Utility examples                    | Role                                      |
+| -------------------- | --------- | ----------------------------------- | ----------------------------------------- |
+| `--color-brand`      | `#156635` | `bg-brand` `text-brand`             | Actions, links, rule, highlights          |
+| `--color-brand-dark` | `#0F4F28` | `hover:bg-brand-dark`               | Hover / pressed of brand elements only    |
+| `--color-brand-tint` | `#E7F0EA` | `bg-brand-tint`                     | Callouts, table rows, selected states     |
+| `--color-ink`        | `#1D2521` | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections     |
+| `--color-ink-muted`  | `#56615B` | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders   |
+| `--color-paper`      | `#F8F7F3` | `bg-paper`                          | Page background (warm off-white, D-33)    |
+| `--color-stone`      | `#EEEBE3` | `bg-stone`                          | Alternating sections                      |
+| `--color-line`       | `#DCDAD3` | `border-line`                       | Hairlines, card borders                   |
+| `--color-water`      | `#0B5CA0` | `text-water` `fill-water`           | **Water data only**                       |
+| `--color-alert`      | `#B42318` | `text-alert` `border-alert`         | Form errors only                          |
+| `--color-white`      | `#FFFFFF` | `bg-white` `text-white`             | Cards, inputs, tags, header; text on dark |
 
 Plus `transparent` and `current`. Nothing else exists.
 Contrast proofs and forbidden pairs: [Brand §4](BRAND_GUIDELINES.md#4-color).
@@ -153,6 +152,7 @@ Grid: 12 columns on `lg`, gap `gap-grid` (1.5rem → 2rem). Breakpoints: Tailwin
 | `--duration-fast`  | `150ms`                                                         | Hover, focus                                                          |
 | `--duration-base`  | `300ms`                                                         | Reveal, menu open                                                     |
 | `--ease-standard`  | `cubic-bezier(.2, .7, .2, 1)`                                   | Everything                                                            |
+| `--diagram-dim`    | `0.2`                                                           | Well-diagram parts that are not highlighted (D-45)                    |
 
 Motion rules: animate only `opacity` and `transform`; reveal = fade + 12 px
 rise, once; no parallax, no auto-playing carousels, no shine/glow effects;
@@ -171,8 +171,8 @@ smooth scroll, and all animation and transition, off under reduced motion.
 (main navigation). **Mobile menu:** `body:has(dialog[open])` locks page scroll.
 
 **`on-dark:` variant (D-30).** `globals.css` defines `@custom-variant on-dark`:
-it applies inside any element with `data-on-dark` (Section `ink`/`brand`,
-`Scrim`), except inside a light surface marked `data-on-light` (`Card`).
+it applies inside any element with `data-on-dark` (Section `ink`/`brand`),
+except inside a light surface marked `data-on-light` (`Card`).
 Components style themselves for both, e.g. `text-brand on-dark:text-white`, so
 nothing needs an `onDark` prop and a dark section cannot be given light-surface
 colors by mistake. Nesting rule: dark surfaces may contain light cards; light
@@ -198,28 +198,28 @@ const variants = {
 type Variant = keyof typeof variants;
 ```
 
-| Component        | Props (essential)                                                                                                                                 | Notes                                                                                                                                     |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `Container`      | `size: 'content' \| 'wide' \| 'prose'`                                                                                                            | Max width + `px-gutter`                                                                                                                   |
-| `Section`        | `tone: 'paper' \| 'stone' \| 'tint' \| 'ink' \| 'brand'`, `spacing: 'default' \| 'compact'`, `container`, `id?`, `labelledBy?`                    | Background, vertical rhythm, text color. `ink`/`brand` set `data-on-dark`. Wraps `Container`.                                             |
-| `SectionHeading` | `eyebrow?`, `title`, `intro?`, `align: 'start' \| 'center'`, `as?: 'h1' \| 'h2'`, `id?`                                                           | Rule + eyebrow + title + intro — the one way every section starts. Pass `id` to Section `labelledBy`                                      |
-| `Eyebrow`        | `children`, `align?`                                                                                                                              | Small uppercase label, preceded by the rule                                                                                               |
-| `Rule`           | `length: 'short' \| 'full'`                                                                                                                       | The signature line. Green; white on dark surfaces by itself (no `tone` prop — D-30)                                                       |
-| `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `href?` or `type?`/`disabled?`, `icon?: 'arrow' \| 'phone' \| 'mail'`        | Renders `SmartLink` or `<button>`. Swaps to the white palette on dark surfaces by itself (replaces `onDark` — D-30). Min height 44 px     |
-| `TextLink`       | `href`, `arrow?`                                                                                                                                  | Inline link; always underlined, so color is never the only cue                                                                            |
-| `SmartLink`      | `href`                                                                                                                                            | Internal → `next/link`; tel/mailto/files → `<a>`; other sites → new tab, announced to screen readers. Used by Button, TextLink, Card      |
-| `Card`           | `as?: 'div' \| 'article' \| 'li' \| 'figure'`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                               | White surface, `border-line`, `radius-card`, `data-on-light`. Linked cards: border-brand + photo zoom on hover                            |
-| `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                          | Service labels on projects                                                                                                                |
-| `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                    | Big figure + label as `dt`/`dd`; place inside a `<dl>`. `water` for yields/levels only; every tone turns white on dark                    |
-| `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                     | Key-value technical data (projects, equipment) as a `<dl>`. Striped with `brand-tint`; renders nothing when empty                         |
-| `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'portrait' \| 'square'`, `width: 'full' \| 'half' \| 'third'`, `priority?`, `rounded?` | Wraps `next/image` (`fill`) in a fixed-ratio box — no layout shift. `width` picks the `sizes` preset; `image.focus` picks the crop (D-31) |
-| `Scrim`          | `children`                                                                                                                                        | Flat Ink panel (`--color-scrim`, 62 %) behind text on a photo, text area only (D-27). Sets `data-on-dark`                                 |
-| `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`, `label?`                                                                                                    | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used; hidden from screen readers unless `label` is given      |
-| `Logo`           | `variant: 'color' \| 'white'`, `alt`, `eager?`                                                                                                    | At least 80 px wide (Brand §3). Until P3: `logo.png`; `white` = the color logo on a white plate (D-38). P3 swaps the artwork here only    |
-| `Breadcrumbs`    | `items: { label, href? }[]`                                                                                                                       | `nav` + `ol`; the current page last, without `href`, marked `aria-current`                                                                |
-| `Prose`          | `children`                                                                                                                                        | Typography for long-form text (legal pages, project stories)                                                                              |
-| `Field`          | `id`, `label`, `hint?`, `error?`, `optional?`, `children: (control) => ReactNode` (+ `Input`, `Textarea`, `Select`)                               | Render prop passes `id`, `aria-describedby`, `aria-invalid`, `required` to the control. Fields are required unless `optional`             |
-| `Reveal`         | `children`, `delay?: 0 \| 1 \| 2 \| 3`                                                                                                            | The only animation wrapper. Client island (~0.7 KB gzip). Hides only what is still below the fold after hydration                         |
+| Component        | Props (essential)                                                                                                                                            | Notes                                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `Container`      | `size: 'content' \| 'wide' \| 'prose'`                                                                                                                       | Max width + `px-gutter`                                                                                                                   |
+| `Section`        | `tone: 'paper' \| 'stone' \| 'tint' \| 'ink' \| 'brand'`, `spacing: 'default' \| 'compact' \| 'none'`, `container` (or `'none'`), `id?`, `labelledBy?`       | Background, vertical rhythm, text color. `ink`/`brand` set `data-on-dark`. Wraps `Container`; `container="none"` for full-bleed (hero)    |
+| `SectionHeading` | `eyebrow?`, `title`, `intro?`, `align: 'start' \| 'center'`, `as?: 'h1' \| 'h2'`, `size?: 'display' \| 'h1' \| 'h2'`, `id?`                                  | Rule + eyebrow + title + intro — the one way every section starts. Pass `id` to Section `labelledBy`. `display` = home hero only          |
+| `Eyebrow`        | `children`, `align?`                                                                                                                                         | Small uppercase label, preceded by the rule                                                                                               |
+| `Rule`           | `length: 'short' \| 'full'`                                                                                                                                  | The signature line. Green; white on dark surfaces by itself (no `tone` prop — D-30)                                                       |
+| `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `href?` or `type?`/`disabled?`, `icon?: 'arrow' \| 'phone' \| 'mail'`                   | Renders `SmartLink` or `<button>`. Swaps to the white palette on dark surfaces by itself (replaces `onDark` — D-30). Min height 44 px     |
+| `TextLink`       | `href`, `arrow?`                                                                                                                                             | Inline link; always underlined, so color is never the only cue                                                                            |
+| `SmartLink`      | `href`                                                                                                                                                       | Internal → `next/link`; tel/mailto/files → `<a>`; other sites → new tab, announced to screen readers. Used by Button, TextLink, Card      |
+| `Card`           | `as?: 'div' \| 'article' \| 'li' \| 'figure'`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                                          | White surface, `border-line`, `radius-card`, `data-on-light`. Linked cards: border-brand + photo zoom on hover                            |
+| `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                                     | Service labels on projects                                                                                                                |
+| `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                               | Big figure + label as `dt`/`dd`; place inside a `<dl>`. `water` for yields/levels only; every tone turns white on dark                    |
+| `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                                | Key-value technical data (projects, equipment) as a `<dl>`. Striped with `brand-tint`; renders nothing when empty                         |
+| `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'portrait' \| 'square'`, `width: 'full' \| 'major' \| 'half' \| 'third'`, `priority?`, `rounded?` | Wraps `next/image` (`fill`) in a fixed-ratio box — no layout shift. `width` picks the `sizes` preset; `image.focus` picks the crop (D-31) |
+| `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`, `label?`                                                                                                               | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used; hidden from screen readers unless `label` is given      |
+| `Logo`           | `variant: 'color' \| 'white'`, `alt`, `eager?`                                                                                                               | At least 80 px wide (Brand §3). Until P3: `logo.png`; `white` = the color logo on a white plate (D-38). P3 swaps the artwork here only    |
+| `Subheading`     | `as: 'h3' \| 'h4'`, `size?`                                                                                                                                  | A heading inside a section, below its SectionHeading                                                                                      |
+| `Breadcrumbs`    | `items: { label, href? }[]`                                                                                                                                  | `nav` + `ol`; the current page last, without `href`, marked `aria-current`                                                                |
+| `Prose`          | `children`                                                                                                                                                   | Typography for long-form text (legal pages, project stories)                                                                              |
+| `Field`          | `id`, `label`, `hint?`, `error?`, `optional?`, `children: (control) => ReactNode` (+ `Input`, `Textarea`, `Select`)                                          | Render prop passes `id`, `aria-describedby`, `aria-invalid`, `required` to the control. Fields are required unless `optional`             |
+| `Reveal`         | `children`, `delay?: 0 \| 1 \| 2 \| 3`                                                                                                                       | The only animation wrapper. Client island (~0.7 KB gzip). Hides only what is still below the fold after hydration                         |
 
 Variant lookups use `pick(map, key)` from `lib/utils.ts`: the `security/detect-object-injection`
 lint rule rejects `map[key]`, and the key is a typed union, so the one exception lives in one place.
@@ -241,6 +241,7 @@ Two need one extra value the object cannot hold: `ProjectCard` gets `serviceName
 | `EquipmentCard`   | `Equipment`   | Photo, name, type, FactsTable of key specs (e.g. rated depth)                                                                 |
 | `TeamCard`        | `TeamMember`  | Portrait, name, role                                                                                                          |
 | `ReferenceCard`   | `Reference`   | Letter thumbnail (document icon until a scan exists), organization, month · year; links to the full scan                      |
+| `ClientCard`      | `Partner`     | The client's logo, else its name. Site photos are not shown as logos                                                          |
 
 ### 3.3 Layout — `src/components/layout/`
 
@@ -256,26 +257,28 @@ Two need one extra value the object cannot hold: `ProjectCard` gets `serviceName
 
 Sections are props-driven (no data imports inside), so any page can reuse them.
 
-| Section            | Used on              | Composition                                                                                                                                                                                       |
-| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Hero`             | Home                 | Full-bleed `Photo` (priority, natural color, never washed) + `Scrim` behind the text area only (D-27) + eyebrow + display headline + lead + 2 Buttons. Phones: text below the photo on Ink (D-31) |
-| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                                           |
-| `ProofStrip`       | Home, About          | 3–4 `Stat`s + client logo row                                                                                                                                                                     |
-| `FeaturedProjects` | Home, Service detail | `SectionHeading` + 1 large + 2 `ProjectCard`s + "Explore all projects"                                                                                                                            |
-| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well                                                                           |
-| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                                           |
-| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                    |
-| `CtaBand`          | End of every page    | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                      |
-| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                                                  |
+| Section            | Used on              | Composition                                                                                                                                                                                                                    |
+| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Hero`             | Home                 | Option C (D-44): from `lg`, text on Ink (5 columns) beside the whole photo (7 columns, priority, natural color, nothing over it); below `lg` the photo first, text below on Ink. Eyebrow + display headline + lead + 2 Buttons |
+| `PageHeader`       | All inner pages      | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right                                                                                                                                                        |
+| `ProofStrip`       | Home, About          | 3–4 `Stat`s + a row of `ClientCard`s; each part hides when empty                                                                                                                                                               |
+| `FeaturedProjects` | Home, Service detail | `SectionHeading` + "Explore all projects" + 3 equal `ProjectCard`s (2 at `md`) — D-46                                                                                                                                          |
+| `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the sticky `WellDiagram`; pointing at or focusing a service highlights its part of the well, in CSS only (`:has()`, D-45)                                                             |
+| `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                                                                        |
+| `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                                                 |
+| `CtaBand`          | End of every page    | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                                                   |
+| `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                                                                               |
 
 ### 3.5 Diagrams — `src/components/diagrams/`
 
 `WellDiagram` — inline SVG cross-section of a water well: ground layers, aquifer,
-borehole, casing, screen, gravel pack, pump, rising main, static water level.
-Colors from tokens only (`fill-water` for water, `stroke-brand` for Liyat-built
-elements, `ink`/`line` for ground). Each part has an `id` matching a service
-slug so `ServiceLifecycle` can highlight it. Must stay technically correct and
-readable at 320 px wide.
+borehole, casing, screen, gravel pack, grout seal, wellhead, pump, rising main,
+control panel, static and pumping water levels. Colors from tokens only
+(`fill-water` for water, `stroke-brand` for the well structure, `ink` for pump
+equipment and labels, `stone`/`line` for ground). Each group has `data-part` =
+the service slug that delivers it; Turnkey covers all. The highlight rules live
+in `globals.css` (one line per slug — add one with a new service). Must stay
+technically correct (Wondossen checks it, C-27) and readable at 320 px wide.
 
 ---
 

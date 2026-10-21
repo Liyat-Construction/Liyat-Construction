@@ -139,41 +139,40 @@ export interface Partner {
   url?: string;
 }
 
+/** A link shown as a button or text link. Labels are verbs in sentence case (Brand §8). */
+export interface Action {
+  label: string;
+  href: string;
+}
+
+/** The start of a section: SectionHeading props. */
+export interface SectionCopy {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+}
+
 /** The band that ends every page except Contact (Design System §3.4). */
 export interface CtaBandContent {
   title: string;
   text: string;
-  action: { label: string; href: string };
+  action: Action;
 }
 
+/** Home page copy, in section order (Design System §4). The eyebrow of the hero is the descriptor. */
 export interface HomePage {
-  heroTitleLines: [string, string, string];
-  /** Full-bleed hero background photos (cross-fade every 5s). Empty → animated gradient. */
-  heroSlides?: ImageAsset[];
-  heroSubtitle: string;
-  heroPrimaryButtonText: string;
-  heroPrimaryButtonUrl: string;
-  heroSecondaryButtonText: string;
-  heroSecondaryButtonUrl: string;
-  servicesTitle: string;
-  servicesSubtitle: string;
-  projectsTitle: string;
-  projectsSubtitle: string;
-  partnersTitle: string;
-  testimonialsTitle: string;
-  testimonialsSubtitle: string;
-  ctaTitle: string;
-  ctaSubtitle: string;
-  ctaPrimaryButtonText: string;
-  ctaPrimaryButtonUrl: string;
-  ctaSecondaryButtonText: string;
-  ctaSecondaryButtonUrl: string;
-}
-
-export interface AboutSummary {
-  title: string;
-  summary: string;
-  buttonText: string;
+  hero: {
+    title: string;
+    lead: string;
+    image: ImageAsset;
+    primary: Action;
+    secondary: Action;
+  };
+  proof: SectionCopy & { clientsTitle: string };
+  projects: SectionCopy & { link: Action };
+  lifecycle: SectionCopy;
+  equipment: SectionCopy & { link: Action };
+  testimonials: SectionCopy;
 }
 
 export interface ContactPage {

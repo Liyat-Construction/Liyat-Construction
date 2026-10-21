@@ -1,44 +1,38 @@
-import { Hero } from '@/components/hero';
-import { AboutSection } from '@/components/about-section';
-import { ServicesSection } from '@/components/services-section';
-import { ProjectsSection } from '@/components/projects-section';
-import { PartnersSection } from '@/components/partners-section';
-import { TestimonialsSection } from '@/components/testimonials-section';
-import { ContactSection } from '@/components/contact-section';
 import { CtaBand } from '@/components/sections/cta-band';
-import { CTA_BAND } from '@/data/cta';
+import { EquipmentTeaser } from '@/components/sections/equipment-teaser';
+import { FeaturedProjects } from '@/components/sections/featured-projects';
+import { Hero } from '@/components/sections/hero';
+import { ProofStrip } from '@/components/sections/proof-strip';
+import { ServiceLifecycle } from '@/components/sections/service-lifecycle';
+import { Testimonials } from '@/components/sections/testimonials';
 import { siteConfig } from '@/config/site';
+import { KEY_FIGURES } from '@/data/company';
+import { CTA_BAND } from '@/data/cta';
+import { EQUIPMENT } from '@/data/equipment';
 import { HOME_PAGE } from '@/data/home';
-import { ABOUT_SUMMARY } from '@/data/about';
-import { SERVICES } from '@/data/services';
-import { FEATURED_PROJECTS } from '@/data/projects';
 import { PARTNERS } from '@/data/partners';
+import { FEATURED_PROJECTS } from '@/data/projects';
+import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
-import { CONTACT_PAGE } from '@/data/contact';
 
+// Design System §4 (Home): tones alternate paper ↔ stone after the hero.
 export default function Home() {
+  const { hero, proof, projects, lifecycle, equipment, testimonials } = HOME_PAGE;
   return (
-    <div className="bg-white">
-      <Hero homePage={HOME_PAGE} />
-      <AboutSection about={ABOUT_SUMMARY} />
-      <ServicesSection
-        title={HOME_PAGE.servicesTitle}
-        subtitle={HOME_PAGE.servicesSubtitle}
-        services={SERVICES}
+    <>
+      <Hero eyebrow={siteConfig.descriptor} {...hero} />
+      <ProofStrip {...proof} figures={KEY_FIGURES} clients={PARTNERS} />
+      <FeaturedProjects
+        {...projects}
+        projects={FEATURED_PROJECTS.map((project) => ({
+          project,
+          serviceNames: getServiceTitles(project.services),
+        }))}
       />
-      <ProjectsSection
-        title={HOME_PAGE.projectsTitle}
-        subtitle={HOME_PAGE.projectsSubtitle}
-        projects={FEATURED_PROJECTS}
-      />
-      <PartnersSection title={HOME_PAGE.partnersTitle} partners={PARTNERS} />
-      <TestimonialsSection
-        title={HOME_PAGE.testimonialsTitle}
-        subtitle={HOME_PAGE.testimonialsSubtitle}
-        testimonials={TESTIMONIALS}
-      />
-      <ContactSection contactPage={CONTACT_PAGE} />
+      <ServiceLifecycle {...lifecycle} services={SERVICES} />
+      <EquipmentTeaser {...equipment} equipment={EQUIPMENT[0]} />
+      <Testimonials {...testimonials} testimonials={TESTIMONIALS} />
       <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
-    </div>
+    </>
   );
 }

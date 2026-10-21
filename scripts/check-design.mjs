@@ -58,16 +58,9 @@ const LEGACY = new Set([
   'src/app/services/page.tsx',
   'src/app/terms-of-service/page.tsx',
   'src/app/testimonials/page.tsx',
-  'src/components/about-section.tsx',
-  'src/components/client-logos-marquee.tsx',
   'src/components/contact-section.tsx',
-  'src/components/hero-slideshow.tsx',
-  'src/components/hero.tsx',
-  'src/components/partners-section.tsx',
   'src/components/premium-button.tsx',
-  'src/components/projects-section.tsx',
   'src/components/services-section.tsx',
-  'src/components/testimonials-section.tsx',
 ]);
 
 const errors = [];

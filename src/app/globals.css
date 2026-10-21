@@ -2,7 +2,7 @@
 @import '../styles/tokens.css';
 
 /*
- * `on-dark:` applies inside a dark surface (Section ink/brand tones, Scrim), so
+ * `on-dark:` applies inside a dark surface (Section ink/brand tones), so
  * components adapt by themselves: `text-brand on-dark:text-white`. A light
  * surface inside a dark one (a Card) sets data-on-light and switches back.
  */
@@ -57,6 +57,33 @@
   /* The open mobile menu (a modal <dialog>) locks the page behind it */
   body:has(dialog[open]) {
     overflow: hidden;
+  }
+
+  /*
+   * ServiceLifecycle (D-45): pointing at or focusing a service dims every other
+   * part of the well diagram. CSS only, so no client JavaScript. One line per
+   * service slug; Turnkey covers the whole well.
+   */
+  [data-part] {
+    transition: opacity var(--duration-base) var(--ease-standard);
+  }
+
+  [data-lifecycle]:has([data-service]:is(:hover, :focus-within)) [data-part] {
+    opacity: var(--diagram-dim);
+  }
+
+  [data-lifecycle]:has([data-service='hydrogeological-survey']:is(:hover, :focus-within))
+    [data-part='hydrogeological-survey'],
+  [data-lifecycle]:has([data-service='well-drilling']:is(:hover, :focus-within))
+    [data-part='well-drilling'],
+  [data-lifecycle]:has([data-service='pumping-tests']:is(:hover, :focus-within))
+    [data-part='pumping-tests'],
+  [data-lifecycle]:has([data-service='wellhead-rehabilitation']:is(:hover, :focus-within))
+    [data-part='wellhead-rehabilitation'],
+  [data-lifecycle]:has([data-service='pump-installation']:is(:hover, :focus-within))
+    [data-part='pump-installation'],
+  [data-lifecycle]:has([data-service='turnkey-projects']:is(:hover, :focus-within)) [data-part] {
+    opacity: 1;
   }
 
   /* Anchored sections clear the sticky header */

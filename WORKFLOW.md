@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                  |
-| --------------------- | -------------------------------------------------------------------------------- |
-| **Current step**      | **P7 — Home page + well diagram** (not started)                                  |
-| **Last completed**    | P5 — Site shell (2026-10-21)                                                     |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                               |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch   |
-| **Next action**       | Start P7: read §4 P7 (hero plan D-27, panel choice D-34), propose, get approval. |
+|                       |                                                                                |
+| --------------------- | ------------------------------------------------------------------------------ |
+| **Current step**      | **P8 — Services pages** (in progress)                                          |
+| **Last completed**    | P7 — Home page + well diagram (2026-10-21)                                     |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                             |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch |
+| **Next action**       | Build P8–P13 back to back (D-43); owner reviews the whole site at the end.     |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -74,7 +74,7 @@
 | P4  | Component library + `/styleguide`     | P2                    | **Owner — main aesthetic gate** | Complete    |
 | P5  | Site shell: header, menu, footer      | P4, P6 (D-37)         | Owner                           | Complete    |
 | P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Complete    |
-| P7  | Home page + well diagram              | P5, P6                | Owner                           | Not started |
+| P7  | Home page + well diagram              | P5, P6                | Owner                           | Complete    |
 | P8  | Services pages                        | P7                    | Owner                           | Not started |
 | P9  | Projects pages                        | P7                    | Owner                           | Not started |
 | P10 | About page                            | P7                    | Owner                           | Not started |
@@ -184,11 +184,11 @@
   - Long official service names make long tags ("Pump Installation & Electromechanical Works" wraps to two lines on cards).
   - Card photos exceed the image budget (R-09).
 
-### P7 — Home page + well diagram
+### P7 — Home page + well diagram · `Complete` (2026-10-21)
 
 - **What:** Sections in the order of Design System §4 (Home). Build `WellDiagram` and the `ServiceLifecycle` interaction. Choose the hero photo (rig + water at the surface).
 - **Hero plan (D-27, owner, 2026-10-20):**
-  - **Image:** `public/hero/hero-water-column.webp` (1920 × 1280): a water column rising beside the rig against a clear sky. After P2 removed the template's green gradient, the owner saw it in natural color and called it "just beautiful". It is the leading candidate, compared against the C-18 originals when they arrive.
+  - **Image:** `assets/images/hero/water-column.webp`, served as `/images/hero/water-column.webp` since P6 (1920 × 1280): a water column rising beside the rig against a clear sky. After P2 removed the template's green gradient, the owner saw it in natural color and called it "just beautiful". It is the leading candidate, compared against the C-18 originals when they arrive.
   - **Treatment:** natural color, no wash. A flat Ink scrim behind the text side only (Brand §7, ≤ 70%), tuned to the lightest opacity at which the headline and lead reach 4.5 : 1 over the brightest pixels behind them. The white spray must never sit behind text. Check the mobile crop (`object-position`) so the water column stays clear of the headline.
   - **Measured sky:** `#5A8FE8`–`#6DADF5` (≈ `#5E94EB`). White on it = 2.3–3.2 : 1, so text on the bare sky fails WCAG.
   - **Sky blue as a brand color (raised by the owner, not decided):** the owner is open to a sky-blue brand color, "not the navy". The agent objects: it fails contrast in both directions (2.3–3.2 : 1); the accessible version is the existing Water Blue `#0B5CA0`; it would compete with the photography that made the look work; and green is Liyat's only existing recognition (logo, brochure, vehicles, uniforms). Brand colors also change only by a management decision (Brand §12, Wondossen). The owner will review it again when the hero is built. Any change needs a new decision row, plus client approval.
@@ -196,6 +196,21 @@
   - **Panel choice (moved here from P4, D-34):** compare the translucent scrim panel with text on a solid Ink band at the bottom of the photo, at 375/768/1280, before building the hero. Seen at P4: at 1280 the panel's right edge already overlaps the rig mast and the edge of the water column.
 - **Why:** The home page carries most of the first impression and proves the system works end to end.
 - **Done when:** LCP < 2.0 s on mobile simulation; diagram readable at 320 px; owner approves.
+- **Session 2026-10-21:**
+  - Owner agreed: sections whose facts are missing (figures, equipment, testimonials) show marked fillers while building and hide when empty at launch; "Trusted by" shows all 7 clients (D-42); P7–P13 are built back to back today (D-43).
+  - Hero comparison built first, as the owner asked to see options before big code: `/styleguide/hero-options` (temporary; `_parts/hero-options.tsx`). A = scrim panel over the photo; B = photo, then text on an Ink band; C = side by side from `lg` (text on Ink left, whole photo right). At 375 and 768 B and C are identical. Agent recommends C: at 1280 B's photo is 853 px tall, so the headline starts below the fold; A's panel covers the rig mast at 768 and 1280.
+  - Owner chose **C** (D-44). Comparison page deleted.
+- **Built (2026-10-21):**
+  - Sections: `hero` (option C), `proof-strip`, `featured-projects`, `service-lifecycle`, `equipment-teaser`, `testimonials`; card `client-card`; primitive `subheading`; `diagrams/well-diagram.tsx` (on `/styleguide`, with the real Hero).
+  - Primitives: Section `spacing="none"` / `container="none"` (full bleed); SectionHeading `size="display"`; Photo `width="major"`. `Scrim` and `--color-scrim` deleted (unused after D-44, D-47).
+  - Data: `HomePage` rewritten (hero, proof, projects, lifecycle, equipment, testimonials; shared `Action` and `SectionCopy` types); `CtaBandContent.action` uses `Action`. `ABOUT_SUMMARY` removed (no About section on the home blueprint).
+  - Deleted template files (owner agreed): `hero`, `hero-slideshow`, `about-section`, `partners-section`, `client-logos-marquee`, `projects-section`, `testimonials-section`, `_parts/hero-preview`; their LEGACY entries removed.
+  - Home has no contact form any more: first-load JS 251.9 → **167.4 KB** gzip (R-07 closed for home).
+- **Owner review:** at the end of today's run (D-43), with the whole site.
+- **Open points:**
+  - The well diagram is drawn from standard practice; Wondossen should confirm it matches how Liyat builds wells (C-27).
+  - Figures, equipment and testimonials show marked fillers until C-10, C-16, C-12; each section hides when its data is empty.
+  - LCP measured only indirectly (the hero is the one priority image, 640 px = 19 KB on phones); Lighthouse needs `npx lighthouse` (a download) — run in P15 with the owner's OK.
 
 ### P8 — Services · P9 — Projects · P10 — About · P11 — Equipment · P12 — Testimonials
 
@@ -265,6 +280,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-23 | Correct spelling of the client: "CREDOCS" or "CREDOCKS"                                                                                                        | P9        | Must                   | Open   |
 | C-24 | Map location (Google Maps pin of the office)                                                                                                                   | P13       | Should                 | Open   |
 | C-25 | Inbox that should receive website inquiries                                                                                                                    | P13       | Must                   | Open   |
+| C-27 | Wondossen checks the well cross-section drawing (home and services) matches how Liyat builds wells                                                             | P16       | Should                 | Open   |
 | C-26 | Approval of Brand Guidelines v1.1 by Wondossen                                                                                                                 | P18       | Must                   | Open   |
 
 ## 6. Decisions log
@@ -314,6 +330,12 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-39 | 2026-10-21 | No shadow after scroll: the header's green rule separates it. The client island `layout/header-scroll.tsx` is replaced by `layout/nav-links.tsx` (marks the current page with `aria-current`)                                                                                                    | Brand: shadows almost absent. Current-page state helps keyboard and screen-reader users; the JS budget stays the same                                                                                                                               |
 | D-40 | 2026-10-21 | The root layout owns the single `<main id="main">` (skip-link target); pages render no `<main>`                                                                                                                                                                                                  | One target, and new pages cannot forget it                                                                                                                                                                                                          |
 | D-41 | 2026-10-21 | `CtaBand` replaces the template `CTASection` on every page now; `navbar.tsx`, `footer.tsx`, `cta-section.tsx`, `telegram-chat-button.tsx` deleted (owner approved). The floating Telegram button returns only if O-06 says so                                                                    | Removes legacy code and gives every page the final ending now                                                                                                                                                                                       |
+| D-42 | 2026-10-21 | "Trusted by" shows all 7 client names and logos in `partners.ts`; the owner confirms they come from Liyat. A written OK to be named is still requested from each client (C-11)                                                                                                                   | Owner supplied the fact; the agent had proposed showing only the 2 confirmed clients and changed position on this new information                                                                                                                   |
+| D-43 | 2026-10-21 | Today P7–P13 are built back to back: every step passes the checks and gets its own commit, and the owner reviews the whole site at the end instead of after each step. Exception: the hero layout is chosen first from a comparison                                                              | Owner wants the full structure today. Risk accepted: a dislike that repeats across pages is fixed on several pages, mostly in shared components                                                                                                     |
+| D-44 | 2026-10-21 | Home hero = option C: from `lg` the text on Ink at the left and the whole photo at the right; below `lg` the photo, then the text on Ink. Chosen by the owner from an A/B/C comparison (closes D-34's panel question)                                                                            | Nothing covers the photo; headline and buttons above the fold at 1280 (B pushed them below); contrast does not depend on the photo, so it survives the C-18 swap                                                                                    |
+| D-45 | 2026-10-21 | ServiceLifecycle highlights the well-diagram part with CSS `:has()` in `globals.css`, not a client island; removed from the client-island list (Engineering §3)                                                                                                                                  | Zero JavaScript; works with keyboard focus; supported by all current browsers                                                                                                                                                                       |
+| D-46 | 2026-10-21 | FeaturedProjects shows 3 equal cards (2 at `md`), not "1 large + 2"                                                                                                                                                                                                                              | Most project photos are portrait; a large 4:3 card beside two stacked ones leaves uneven heights. Equal cards are calmer                                                                                                                            |
+| D-47 | 2026-10-21 | `Scrim` primitive and `--color-scrim` token deleted                                                                                                                                                                                                                                              | No text sits on a photo after D-44; Brand §7 still allows a scrim if a future layout needs one                                                                                                                                                      |
 
 ### Open decisions
 
@@ -327,17 +349,17 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 ## 7. Risks
 
-| ID   | Risk                                                                                                                                                                                                                                                         | Mitigation                                                                                                    | Status |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ------ |
-| R-01 | Real content arrives late or incomplete                                                                                                                                                                                                                      | Build with marked placeholders; sections hide when data is empty                                              | Open   |
-| R-02 | Unverified claims or client names published                                                                                                                                                                                                                  | Every claim tied to a C-xx item; `check:placeholders` launch gate                                             | Open   |
-| R-03 | Low-resolution logo and some photos                                                                                                                                                                                                                          | P3 vector logo; request originals (C-18)                                                                      | Open   |
-| R-04 | Legal text is generic                                                                                                                                                                                                                                        | Client or qualified party reviews before launch                                                               | Open   |
-| R-05 | No automated UI tests                                                                                                                                                                                                                                        | Typed data, `check:design`, styleguide review, manual QA in P15                                               | Open   |
-| R-06 | Contact details on the current site may be invented                                                                                                                                                                                                          | Confirm C-03…C-05 before anything is published                                                                | Open   |
-| R-07 | Contact form adds ~79 KB gzip (zod + react-hook-form) to every page that renders it — today home and contact                                                                                                                                                 | Home blueprint has no form (P7 drops it); P13 uses `zod/mini` or native constraint validation and measures it | Open   |
-| R-09 | Card photos at 800 px are 54–208 KB (budget 70 KB); recompressed social-media sources compress badly, and quality 50 still gives ~70 KB on a 4:3 crop                                                                                                        | Originals (C-18), then `npm run images`; if still over, card-ratio crops in the script. Re-measure in P15     | Open   |
-| R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                       | Open   |
+| ID   | Risk                                                                                                                                                                                                                                                         | Mitigation                                                                                                    | Status                                 |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| R-01 | Real content arrives late or incomplete                                                                                                                                                                                                                      | Build with marked placeholders; sections hide when data is empty                                              | Open                                   |
+| R-02 | Unverified claims or client names published                                                                                                                                                                                                                  | Every claim tied to a C-xx item; `check:placeholders` launch gate                                             | Open                                   |
+| R-03 | Low-resolution logo and some photos                                                                                                                                                                                                                          | P3 vector logo; request originals (C-18)                                                                      | Open                                   |
+| R-04 | Legal text is generic                                                                                                                                                                                                                                        | Client or qualified party reviews before launch                                                               | Open                                   |
+| R-05 | No automated UI tests                                                                                                                                                                                                                                        | Typed data, `check:design`, styleguide review, manual QA in P15                                               | Open                                   |
+| R-06 | Contact details on the current site may be invented                                                                                                                                                                                                          | Confirm C-03…C-05 before anything is published                                                                | Open                                   |
+| R-07 | Contact form adds ~79 KB gzip (zod + react-hook-form) to every page that renders it — today home and contact                                                                                                                                                 | Home blueprint has no form (P7 drops it); P13 uses `zod/mini` or native constraint validation and measures it | Home closed (P7) — contact page in P13 |
+| R-09 | Card photos at 800 px are 54–208 KB (budget 70 KB); recompressed social-media sources compress badly, and quality 50 still gives ~70 KB on a 4:3 crop                                                                                                        | Originals (C-18), then `npm run images`; if still over, card-ratio crops in the script. Re-measure in P15     | Open                                   |
+| R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                       | Open                                   |
 
 ## 8. Handoff
 
@@ -420,6 +442,13 @@ reused.
 - Removed `PROJECT_WORKFLOW.md` and `PROJECT_DOCUMENTATION.md` (superseded).
 
 ### Verification evidence
+
+P7, 2026-10-21:
+
+- `npm run validate` → pass. `npm run check:design` → pass (LEGACY shrank by 7). Clean `npm run build:static` → pass, 29 pages.
+- Home captured at 1280 and 768 (headless Edge) and 375 (iframe) and reviewed. Found and fixed: client cards with a logo collapsed to an empty strip at 375 (`flex-1` on the logo box); the "Wellhead" label touched the ground line.
+- Browser (static `out/`, port 3007): one `h1` ("Know better. Drill better."), one `<main>`; the only eager images are the logo and the hero (`water-column-640.webp` at 375); no horizontal overflow at 375. Hovering "Pumping Tests" leaves the water levels at full strength and fades the other parts (screenshot). Console: only the R-08 `__PAGE__.txt` prefetch 404s.
+- JS first load (gzip, without the polyfill): home 167.4 KB (was 251.9), `/projects` 167.4 KB.
 
 P5, 2026-10-21:
 

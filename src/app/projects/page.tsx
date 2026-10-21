@@ -53,7 +53,7 @@ export default function ProjectsPage() {
               Our Work
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-              {HOME_PAGE.projectsSubtitle}
+              {HOME_PAGE.projects.intro}
             </p>
           </div>
         </Container>

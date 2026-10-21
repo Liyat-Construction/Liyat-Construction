@@ -29,7 +29,6 @@
   --color-water: #0b5ca0;
   --color-alert: #b42318;
   --color-white: #ffffff;
-  --color-scrim: rgb(29 37 33 / 0.62);
 
   /* 2.2 Type scale — fluid from 375 px to 1440 px viewports */
   --text-display: clamp(2.5rem, 1.8838rem + 2.6291vw, 4.25rem);
@@ -100,6 +99,9 @@
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Opacity of the well-diagram parts that are not highlighted (D-45) */
+  --diagram-dim: 0.2;
 }
 
 /*

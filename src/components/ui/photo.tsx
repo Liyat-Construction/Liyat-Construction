@@ -14,6 +14,8 @@ const ratios = {
 // How wide the photo is in the layout. Never write `sizes` by hand.
 const widths = {
   full: '100vw',
+  /** 7 of 12 columns from lg, edge to edge (the home hero) */
+  major: '(min-width: 1024px) 60vw, 100vw',
   half: '(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw',
   third: '(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
 } as const satisfies Record<string, string>;

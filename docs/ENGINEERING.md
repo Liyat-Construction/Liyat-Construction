@@ -75,13 +75,12 @@ through props. Exceptions: `layout/*` and `lib/metadata` read `siteConfig`.
 Everything is a Server Component unless it needs browser state. The complete
 list of allowed client islands:
 
-| Client island                                 | Why                                                                       |
-| --------------------------------------------- | ------------------------------------------------------------------------- |
-| `layout/mobile-menu.tsx`                      | opens/closes a native modal `<dialog>`                                    |
-| `layout/nav-links.tsx`                        | marks the current page (`aria-current`) — replaces `header-scroll` (D-39) |
-| `ui/reveal.tsx`                               | IntersectionObserver                                                      |
-| `sections/service-lifecycle` interaction part | hover/focus highlight of the diagram                                      |
-| `sections/contact-form.tsx`                   | form state and submit                                                     |
+| Client island               | Why                                                                       |
+| --------------------------- | ------------------------------------------------------------------------- |
+| `layout/mobile-menu.tsx`    | opens/closes a native modal `<dialog>`                                    |
+| `layout/nav-links.tsx`      | marks the current page (`aria-current`) — replaces `header-scroll` (D-39) |
+| `ui/reveal.tsx`             | IntersectionObserver                                                      |
+| `sections/contact-form.tsx` | form state and submit                                                     |
 
 Adding a client component outside this list is a decision to record in `WORKFLOW.md`.
 

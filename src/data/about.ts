@@ -1,17 +1,7 @@
 /**
  * About Content
- * ABOUT_SUMMARY  → the short About section on the homepage
  * ABOUT_PAGE_SECTIONS → the full /about page
  */
-
-import type { AboutSummary } from '@/types/content';
-
-export const ABOUT_SUMMARY: AboutSummary = {
-  title: 'Water Works Built on Experience',
-  summary:
-    'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor. We combine hydrogeological insight, modern drilling capability, and disciplined execution to deliver water systems that meet the demands of institutions, commercial developments, and communities.',
-  buttonText: 'Discover Our Story',
-};
 
 export const ABOUT_PAGE_SECTIONS = {
   whoWeAre: {

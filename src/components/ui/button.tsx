@@ -2,7 +2,7 @@ import { cn, pick } from '@/lib/utils';
 import { Icon } from './icon';
 import { SmartLink } from './smart-link';
 
-// Each variant adapts to dark surfaces (ink, brand, photo scrim) by itself.
+// Each variant adapts to dark surfaces (ink, brand) by itself.
 const variants = {
   primary:
     'bg-brand text-white hover:bg-brand-dark on-dark:bg-white on-dark:text-brand on-dark:hover:bg-brand-tint',

@@ -1,54 +1,49 @@
 /**
- * Home Page Content
- * Hero, section headings and call-to-action copy for the homepage.
+ * Home page copy, in section order (Design System §4). The figures, projects,
+ * services, equipment and quotes come from their own data files.
  */
 
 import type { HomePage } from '@/types/content';
 
 export const HOME_PAGE: HomePage = {
-  heroTitleLines: ['Groundwater', 'Development', 'Engineered Right'],
-  heroSlides: [
-    {
+  hero: {
+    // PLACEHOLDER(C-22): confirm "Know better. Drill better." is still the official tagline
+    title: 'Know better. Drill better.',
+    lead: 'We take water projects from hydrogeological survey through drilling, testing and pump installation, and document every stage for our clients.',
+    image: {
       url: '/images/hero/water-column.webp',
-      alt: 'Water column rising from a newly developed Liyat well',
+      alt: 'Water rising beside a Liyat drilling rig during well development',
     },
-    {
-      url: '/images/hero/afar-rig-fleet.webp',
-      alt: 'Liyat drilling rig and support fleet at Afdera, Afar Region',
-    },
-    { url: '/images/hero/ethiopian-airlines.webp', alt: 'Pumping test for Ethiopian Airlines' },
-    {
-      url: '/images/hero/credocs-shoring.webp',
-      alt: 'Drilling rig in the 14 m deep shored excavation for CREDOCS Digital Service',
-    },
-    {
-      url: '/images/hero/yekatit-12.webp',
-      alt: 'Well development at Yekatit 12 Hospital Medical College',
-    },
-  ],
-  heroSubtitle:
-    'Liyat Construction PLC delivers groundwater investigation, water-well drilling, pumping tests, and turnkey water works across Ethiopia for institutional and commercial clients.',
-  heroPrimaryButtonText: 'Contact Us',
-  heroPrimaryButtonUrl: '/contact',
-  heroSecondaryButtonText: 'Explore Projects',
-  heroSecondaryButtonUrl: '/projects',
-
-  servicesTitle: 'What We Do',
-  servicesSubtitle:
-    'From hydrogeological investigation to final pump installation, we provide the full range of groundwater and water-well services your project needs.',
-  projectsTitle: 'Selected Projects',
-  projectsSubtitle:
-    'Trusted by government agencies, international organizations, and leading Ethiopian institutions for water works that perform.',
-  partnersTitle: 'Trusted By',
-  testimonialsTitle: 'What Clients Say',
-  testimonialsSubtitle:
-    'Feedback from institutional and commercial clients who rely on Liyat for groundwater and water works.',
-
-  ctaTitle: 'Start Your Water Project Today',
-  ctaSubtitle:
-    'Tell us what you need. We will review your requirements and respond with a clear, practical plan.',
-  ctaPrimaryButtonText: 'Contact Us',
-  ctaPrimaryButtonUrl: '/contact',
-  ctaSecondaryButtonText: 'View Services',
-  ctaSecondaryButtonUrl: '/services',
+    primary: { label: 'Contact us', href: '/contact' },
+    secondary: { label: 'Explore projects', href: '/projects' },
+  },
+  proof: {
+    eyebrow: 'Track record',
+    title: 'Our work in figures',
+    clientsTitle: 'Clients we have worked for',
+  },
+  projects: {
+    eyebrow: 'Projects',
+    title: 'Selected projects',
+    intro:
+      'Pumping tests, pump installations and well development for institutional and commercial clients.',
+    link: { label: 'Explore all projects', href: '/projects' },
+  },
+  lifecycle: {
+    eyebrow: 'Services',
+    // The brand promise (Brand §1)
+    title: 'Every well surveyed, drilled and proven.',
+    intro:
+      'Six services, in the order a water source is built. The drawing shows the part of the well each one delivers.',
+  },
+  equipment: {
+    eyebrow: 'Equipment',
+    title: 'The equipment we bring to site',
+    intro: 'Rigs, compressors and test pumps, named with the capacity they are rated for.',
+    link: { label: 'See our equipment', href: '/equipment-capabilities' },
+  },
+  testimonials: {
+    eyebrow: 'Clients',
+    title: 'What clients say',
+  },
 };
