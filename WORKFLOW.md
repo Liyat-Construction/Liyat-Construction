@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                            |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Current step**      | **P12 — Testimonials page** (not started)                                                                                                  |
-| **Last completed**    | P11 — Equipment & Capabilities page (2026-10-21; committed pending owner review, D-43)                                                     |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                         |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                 |
-| **Next action**       | New session: start P12 (§4 P12; blueprint in Design System §4). One phase per session; the owner reviews the whole site at the end (D-43). |
+|                       |                                                                                                                              |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **P13 — Contact page and form** (not started)                                                                                |
+| **Last completed**    | P12 — Testimonials page (2026-10-21; committed pending owner review, D-43)                                                   |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                           |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                   |
+| **Next action**       | New session: start P13 (§4 P13). Needs decision O-01 (form provider — recommendation: Web3Forms) and client items C-24/C-25. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -79,7 +79,7 @@
 | P9  | Projects pages                        | P7                    | Owner                           | Complete    |
 | P10 | About page                            | P7                    | Owner                           | Complete    |
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Review      |
-| P12 | Testimonials page                     | P7                    | Owner                           | Not started |
+| P12 | Testimonials page                     | P7                    | Owner                           | Review      |
 | P13 | Contact page and form                 | P7, O-01              | Owner                           | Not started |
 | P14 | SEO, metadata, legal and system pages | P8–P13                | Technical                       | Not started |
 | P15 | Quality and performance audit         | P14                   | Technical + owner               | Not started |
@@ -256,10 +256,14 @@
 - **Verified:** screenshots at 375/768/1280 taken (`.p11-*.png`). `validate`, `check:design`, `check:placeholders` and `build:static` were **not re-run** — the owner instructed commit without verification this session; run them at P12 start or in P15.
 - **Open points:** all machine specs, figures and practices are marked placeholders until C-16, C-10, C-17; the rigs section holds a single card until more rigs are confirmed.
 
-### P12 — Testimonials
+### P12 — Testimonials · `Review`
 
-- **What:** `/testimonials` exactly as its blueprint in Design System §4: PageHeader → Testimonials (TestimonialCard grid) → reference letters (ReferenceCard) → client logos → CtaBand. A new component is added to the library (and the styleguide) first, never inside a page.
-- **Done when:** Definition of done plus owner approval (D-43: review at end of run).
+- **Built:** `/testimonials` = PageHeader → Testimonials (paper) → ReferenceGrid (stone, hidden while REFERENCES is empty — C-13) → ProofStrip with `figures={[]}` + `clients={PARTNERS}` (stone, switches to paper when references render) → CtaBand.
+- New in the library, shown on `/styleguide`: `sections/reference-grid` (4 columns from `lg`, hides when empty); DS §3.4 + blueprint updated. New `TestimonialsPage` type; `TESTIMONIALS_PAGE` copy; the template's "references available on request" callout became the references intro.
+- Template page (122 lines) replaced; its `check:design` LEGACY entry removed. Template `Container`/`PremiumButton`/`cn` no longer used here.
+- **Verified:** `format:check`, `check:design`, `build:static` pass; `check:placeholders` lists the expected open items; type-check + lint passed earlier in `validate` (format check was the only failure, fixed). Screenshots at 375/768/1280 (`.p12-*.png`) reviewed — section order, alternation and card stacking correct. Console errors not captured (headless capture only).
+- Tooling: added `.prettierignore` and `.*-browser/` in `.gitignore` — headless Edge profile dirs (`.p11-browser`, still locked by a stray process) and `.p*-*.png` screenshots are now excluded from format check and commits. Screenshot profiles now write to `%TEMP%`.
+- **Open points:** all quotes are marked placeholders (C-12); without C-12/C-13 the page at launch is header + clients + CtaBand.
 
 ### P13 — Contact page and form
 
@@ -416,16 +420,22 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 ### Current state of the code
 
-Home, Services, Projects, About and Equipment are rebuilt in the final design
-system (P7–P11). Testimonials and Contact are still template pages on the
-`check:design` LEGACY list; P12–P13 rebuild them next. Content and photos in
+Home, Services, Projects, About, Equipment and Testimonials are rebuilt in the
+final design system (P7–P12). Contact is the last template page on the
+`check:design` LEGACY list; P13 rebuilds it next. Content and photos in
 `src/data/` and `public/` carry `PLACEHOLDER(C-xx)` markers until P16.
 
-### Last session — 2026-10-21 (P11)
+### Last session — 2026-10-21 (P12)
+
+- Built and verified P12 (see §4 P12): new `ReferenceGrid` section, `TestimonialsPage`/`TESTIMONIALS_PAGE`, template page and LEGACY entry removed.
+- `validate` (type-check + lint), `format:check`, `check:design`, `build:static` pass; `check:placeholders` = expected open items. Screenshots reviewed at 375/768/1280.
+- `.prettierignore` + `.*-browser/` gitignore rule added (headless Edge profiles broke `format:check`).
+
+### Earlier session — 2026-10-21 (P11)
 
 - P11 was found already built in the working tree (uncommitted) by a prior session: new `EquipmentGrid` section, `Equipment.category`, `EquipmentPage`/`EQUIPMENT_PAGE`, styleguide updated, LEGACY entry removed, screenshots taken.
 - Owner: keep `CAPABILITIES` for now (no consumer after the rebuild); commit without running checks; move to P12.
-- P11 committed; status `Review` — checks not re-run this session, owner aesthetic review deferred to end of run (D-43).
+- P11 committed as `81ef7fd` (pre-commit lint-staged ran eslint/prettier clean); status `Review` — checks not re-run this session, owner aesthetic review deferred to end of run (D-43).
 
 ### Earlier session — 2026-10-21 (P10)
 
@@ -588,4 +598,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P12 — Testimonials page.** See §4 P12 and the Testimonials blueprint in Design System §4. P3 still waits for C-01.
+**P13 — Contact page and form.** Needs O-01 (form provider) decided and the client's receiving inbox (C-25) + map pin (C-24). P3 still waits for C-01.

@@ -33,6 +33,7 @@ import { COMPANY_FACTS, KEY_FIGURES, TEAM } from '@/data/company';
 import { CTA_BAND } from '@/data/cta';
 import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
 import { EquipmentGrid } from '@/components/sections/equipment-grid';
+import { ReferenceGrid } from '@/components/sections/reference-grid';
 import { getProjectBySlug, PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
@@ -403,6 +404,14 @@ export default function StyleguidePage() {
         {...EQUIPMENT_PAGE.support}
         equipment={EQUIPMENT.filter((item) => item.category === 'support')}
         presentation="specifications"
+      />
+
+      <ReferenceGrid
+        id="sg-references"
+        eyebrow="Sections"
+        title="ReferenceGrid"
+        intro="ReferenceCards, four columns from lg; hidden while REFERENCES is empty (C-13). Sample data below."
+        references={[reference, { ...reference, organization: 'Organization B (C-13)' }]}
       />
 
       <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />

@@ -4,7 +4,35 @@
  * Only real quotes with name, role, organization and permission to publish (C-12).
  */
 
-import type { Testimonial } from '@/types/content';
+import type { Testimonial, TestimonialsPage } from '@/types/content';
+
+export const TESTIMONIALS_PAGE: TestimonialsPage = {
+  header: {
+    eyebrow: 'Client feedback',
+    title: 'Testimonials',
+    intro:
+      'What clients say about working with Liyat Construction, and the references behind the words.',
+    description:
+      'Client feedback and references for Liyat Construction PLC groundwater development and water-well engineering projects in Ethiopia.',
+  },
+  testimonials: {
+    eyebrow: 'In their words',
+    title: 'What clients say',
+    intro:
+      'Published with each client’s permission. Quotes are placeholders until approved testimonials arrive (C-12).',
+  },
+  references: {
+    eyebrow: 'On record',
+    title: 'Reference and completion letters',
+    intro:
+      'Scans of letters from completed projects. Further references are available on request (C-13).',
+  },
+  clients: {
+    eyebrow: 'Who we work for',
+    title: 'Clients',
+    clientsTitle: 'Organizations Liyat has worked with',
+  },
+};
 
 // PLACEHOLDER(C-12): every entry below is for layout review only (D-36); replace with approved quotes or empty the list
 export const TESTIMONIALS: Testimonial[] = [

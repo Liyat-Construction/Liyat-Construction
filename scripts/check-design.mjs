@@ -49,7 +49,6 @@ const LEGACY = new Set([
   'src/app/not-found.tsx',
   'src/app/privacy-policy/page.tsx',
   'src/app/terms-of-service/page.tsx',
-  'src/app/testimonials/page.tsx',
   'src/components/contact-section.tsx',
   'src/components/premium-button.tsx',
 ]);

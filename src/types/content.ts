@@ -262,6 +262,14 @@ export interface EquipmentPage {
   safety: SectionCopy;
 }
 
+/** /testimonials, in section order (Design System §4). */
+export interface TestimonialsPage {
+  header: PageCopy;
+  testimonials: SectionCopy;
+  references: SectionCopy;
+  clients: SectionCopy & { clientsTitle: string };
+}
+
 export interface ContactPage {
   title: string;
   description: string;

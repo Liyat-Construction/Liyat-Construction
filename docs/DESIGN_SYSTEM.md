@@ -270,6 +270,7 @@ Sections are props-driven (no data imports inside), so any page can reuse them.
 | `EquipmentGrid`    | Equipment, Styleguide      | Heading beside a single EquipmentCard, or above a two-column grid; `presentation="specifications"` uses FeatureCard + FactsTable without photos. Empty lists hide the section.                                                 |
 | `EquipmentTeaser`  | Home                       | Photo + 3 key specs + link to Equipment                                                                                                                                                                                        |
 | `Testimonials`     | Home, Testimonials         | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                                                 |
+| `ReferenceGrid`    | Testimonials               | `SectionHeading` + `ReferenceCard`s, 4 columns from `lg`; renders nothing while REFERENCES is empty                                                                                                                            |
 | `FeatureGrid`      | Services, About, Equipment | `SectionHeading` + 2–4 columns of `FeatureCard`s; renders nothing when empty                                                                                                                                                   |
 | `ProjectGrid`      | Projects                   | Every `ProjectCard`, 3 columns from `lg`, 2 from `md`; renders nothing when empty                                                                                                                                              |
 | `ProjectDetail`    | Project detail             | About the project (scope, approach, result in `Prose`; empty parts hidden) beside a `FeatureCard` "Project facts" (`FactsTable`, yield in Water Blue) and a contact button                                                     |
@@ -338,8 +339,8 @@ when none; tone alternates) → `CtaBand`.
 
 ### Testimonials — `/testimonials`
 
-`PageHeader` → `Testimonials` → reference letters (`ReferenceCard`) → client
-logos → `CtaBand`.
+`PageHeader` → `Testimonials` → reference letters (`ReferenceGrid`, hidden while
+REFERENCES is empty) → client logos (`ProofStrip`, clients only) → `CtaBand`.
 
 ### Contact — `/contact`
 

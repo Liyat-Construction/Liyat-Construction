@@ -52,3 +52,6 @@ next-env.d.ts
 
 # cache
 .turbo/
+
+# session tooling artifacts (headless browser profiles)
+/.*-browser/
