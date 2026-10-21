@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                              |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **P13 — Contact page and form** (not started)                                                                                |
-| **Last completed**    | P12 — Testimonials page (2026-10-21; committed pending owner review, D-43)                                                   |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                           |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                   |
-| **Next action**       | New session: start P13 (§4 P13). Needs decision O-01 (form provider — recommendation: Web3Forms) and client items C-24/C-25. |
+|                       |                                                                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **P13 — Contact page and form** (Review; production delivery blocked on C-25)                                                                   |
+| **Last completed**    | P12 — Testimonials page (2026-10-21; committed pending owner review, D-43)                                                                      |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                                           |
+| **Next action**       | Owner authorized P13 commit and P14 implementation + commit; all UI review deferred until after P15 (D-56). C-25 still blocks delivery testing. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -80,7 +80,7 @@
 | P10 | About page                            | P7                    | Owner                           | Complete    |
 | P11 | Equipment & Capabilities page         | P7                    | Owner                           | Review      |
 | P12 | Testimonials page                     | P7                    | Owner                           | Review      |
-| P13 | Contact page and form                 | P7, O-01              | Owner                           | Not started |
+| P13 | Contact page and form                 | P7, O-01              | Owner                           | Review      |
 | P14 | SEO, metadata, legal and system pages | P8–P13                | Technical                       | Not started |
 | P15 | Quality and performance audit         | P14                   | Technical + owner               | Not started |
 | P16 | Real content swap                     | P15, client checklist | Owner + client                  | Not started |
@@ -265,10 +265,17 @@
 - Tooling: added `.prettierignore` and `.*-browser/` in `.gitignore` — headless Edge profile dirs (`.p11-browser`, still locked by a stray process) and `.p*-*.png` screenshots are now excluded from format check and commits. Screenshot profiles now write to `%TEMP%`.
 - **Open points:** all quotes are marked placeholders (C-12); without C-12/C-13 the page at launch is header + clients + CtaBand.
 
-### P13 — Contact page and form
+### P13 — Contact page and form · `Review`
 
 - **What:** `ContactPanel`: form (name, organization, email, phone, subject, message, honeypot), two phones, email, address, hours, map facade. Provider per O-01.
 - **Done when:** A real submission arrives at the client's inbox from the production configuration; errors and success states are accessible.
+- **Owner approved:** P13 plan, Web3Forms (O-01 → D-53), and removal of the superseded `contact-section.tsx`. No commit or push authorized in this session.
+- **Built:** `PageHeader` → `ContactPanel`; white form card beside two phones, email, address and hours. Contact details stay server-rendered; form and click-to-load map are isolated client islands. Missing map URL hides the facade. Unconfigured form is visibly disabled with an explanation, not a working-looking submit button (D-54).
+- **Form:** optional organization and phone; native FormData + `zod/mini` (D-55), international names, digit-count phone validation, subject allow-list, linked errors with first-invalid focus, persistent live status/error regions, honeypot, in-flight lock, 15-second timeout, input retained on failure and reset on acknowledged success. Web3Forms must explicitly return `success: true`.
+- **Shared library:** `ContactList`, `FormFeedback`, `MapFacade`, `ContactPanel` and `ContactForm` shown on `/styleguide`; map specimen uses only a blank local frame, never an invented office pin. Field uses lightweight `clsx` and direct icons so the form does not import the icon registry or tailwind-merge. Footer shares both published phone placeholders.
+- **Cleanup:** removed the old 502-line `contact-section.tsx` and both Contact LEGACY entries. Legal/system pages and `premium-button` remain on LEGACY for P14; the earlier handoff's “last template page” claim was inaccurate.
+- **Verification:** static build (29 routes), lint, design check and seven focused Node tests pass. Final `npm run validate` passes (type-check, lint and format check); `git diff --check` passes. Browser screenshots reviewed at 375/768/1280 (`.p13-*.png`); no horizontal overflow, one h1/main, no captured runtime/console-API errors (the existing static-host prefetch issue R-08 remains for P17). Enabled-form fixture verifies first-invalid focus, linked errors, sending/disabled states, failed submission retention and successful reset; both provider responses mocked in-browser, no real requests. Map specimen mounts only after click and removes on hide; no external requests. Contact first-load JS = **181.6 KiB gzip**, home = **167.7 KiB** (excludes nomodule polyfill; within 190 KiB guard rail). Analyzer run recorded below.
+- **Delivery blockers:** C-25 inbox + public provider key and provider-side abuse protection; client-approved phones/email/address/hours (C-03–C-07); map waits for C-24. No real inquiry sent. P13 cannot reach Complete until production receipt is verified with explicit owner permission.
 
 ### P14 — SEO, metadata, legal and system pages
 
@@ -390,12 +397,17 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-50 | 2026-10-21 | About keeps the three template-era sections — "What we offer", "The real purpose" (now "Our purpose"), "Who we serve" — rewritten in the design system                                                                                                                                           | Owner's call. Agent's objection, recorded: "What we offer" repeats the Services page; the audience list claims client types Liyat hasn't confirmed (C-28); the purpose quote was unattributed — it now renders as a company statement, not a quote  |
 | D-51 | 2026-10-21 | About shows company facts both ways: a figures row (`ABOUT_FIGURES`) and a "Company at a glance" FactsTable beside the story                                                                                                                                                                     | Owner chose "both" over replacing the figures row with the table (the agent's recommendation: "Addis Ababa" and licence grades are words, not numbers)                                                                                              |
 | D-52 | 2026-10-21 | Root `src/app/loading.tsx` deleted (closes O-10)                                                                                                                                                                                                                                                 | It wrapped every page in `<div hidden>` until a script revealed it — without JavaScript the content stayed hidden. Pages are static; there is nothing to wait for                                                                                   |
+| D-53 | 2026-10-21 | Web3Forms selected for P13 (closes O-01). Public key stays empty until C-25 confirms the receiving inbox.                                                                                                                                                                                        | Owner approved the P13 recommendation; static-host compatible with no backend or new dependency.                                                                                                                                                    |
+| D-54 | 2026-10-21 | Contact shows a disabled form preview while unconfigured; map hides without C-24. `ui/map-facade.tsx` is an allowed client island and mounts an iframe only after a deliberate click.                                                                                                            | Makes configuration status honest; prevents Google requests before interaction.                                                                                                                                                                     |
+| D-55 | 2026-10-21 | P13 uses native FormData + zod/mini instead of react-hook-form + full zod. Installed packages remain unchanged.                                                                                                                                                                                  | Measured react-hook-form + zod/mini route was 191.0 KiB gzip, over 190; native controls retain the same linked-error/focus behavior with less JavaScript.                                                                                           |
+
+Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit P14 next, and defer owner UI review for all pages until after P15. This supersedes the per-step aesthetic/commit gates for this sequence only. P13 remains Review with production receipt blocked by C-25; committing does not imply delivery or aesthetic approval. Agent concern: delayed review can require shared-component rework; no launch gate or client-content requirement is waived.
 
 ### Open decisions
 
 | ID   | Question                                      | Recommendation                                                                                          | Needed by |
 | ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
-| O-01 | Form provider                                 | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter          | P13       |
+| O-01 | Form provider                                 | **Closed by D-53:** Web3Forms; receiving inbox/key still needed (C-25)                                  | —         |
 | O-02 | Hosting                                       | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise | P17       |
 | O-03 | Analytics                                     | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner    | P14       |
 | O-05 | `/styleguide` at launch                       | Keep it, `noindex` and unlinked — useful for future maintenance                                         | P17       |
@@ -404,26 +416,36 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 ## 7. Risks
 
-| ID   | Risk                                                                                                                                                                                                                                                         | Mitigation                                                                                                    | Status                                 |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| R-01 | Real content arrives late or incomplete                                                                                                                                                                                                                      | Build with marked placeholders; sections hide when data is empty                                              | Open                                   |
-| R-02 | Unverified claims or client names published                                                                                                                                                                                                                  | Every claim tied to a C-xx item; `check:placeholders` launch gate                                             | Open                                   |
-| R-03 | Low-resolution logo and some photos                                                                                                                                                                                                                          | P3 vector logo; request originals (C-18)                                                                      | Open                                   |
-| R-04 | Legal text is generic                                                                                                                                                                                                                                        | Client or qualified party reviews before launch                                                               | Open                                   |
-| R-05 | No automated UI tests                                                                                                                                                                                                                                        | Typed data, `check:design`, styleguide review, manual QA in P15                                               | Open                                   |
-| R-06 | Contact details on the current site may be invented                                                                                                                                                                                                          | Confirm C-03…C-05 before anything is published                                                                | Open                                   |
-| R-07 | Contact form adds ~79 KB gzip (zod + react-hook-form) to every page that renders it — today home and contact                                                                                                                                                 | Home blueprint has no form (P7 drops it); P13 uses `zod/mini` or native constraint validation and measures it | Home closed (P7) — contact page in P13 |
-| R-09 | Card photos at 800 px are 54–208 KB (budget 70 KB); recompressed social-media sources compress badly, and quality 50 still gives ~70 KB on a 4:3 crop                                                                                                        | Originals (C-18), then `npm run images`; if still over, card-ratio crops in the script. Re-measure in P15     | Open                                   |
-| R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                       | Open                                   |
+| ID   | Risk                                                                                                                                                                                                                                                         | Mitigation                                                                                                | Status                                 |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| R-01 | Real content arrives late or incomplete                                                                                                                                                                                                                      | Build with marked placeholders; sections hide when data is empty                                          | Open                                   |
+| R-02 | Unverified claims or client names published                                                                                                                                                                                                                  | Every claim tied to a C-xx item; `check:placeholders` launch gate                                         | Open                                   |
+| R-03 | Low-resolution logo and some photos                                                                                                                                                                                                                          | P3 vector logo; request originals (C-18)                                                                  | Open                                   |
+| R-04 | Legal text is generic                                                                                                                                                                                                                                        | Client or qualified party reviews before launch                                                           | Open                                   |
+| R-05 | No automated UI tests                                                                                                                                                                                                                                        | Typed data, `check:design`, styleguide review, manual QA in P15                                           | Open                                   |
+| R-06 | Contact details on the current site may be invented                                                                                                                                                                                                          | Confirm C-03…C-05 before anything is published                                                            | Open                                   |
+| R-07 | Contact form adds ~79 KB gzip (zod + react-hook-form) to every page that renders it — today home and contact                                                                                                                                                 | Home has no form; P13 uses native FormData + zod/mini (181.6 KiB total gzip; D-55)                        | Closed for home (P7) and Contact (P13) |
+| R-09 | Card photos at 800 px are 54–208 KB (budget 70 KB); recompressed social-media sources compress badly, and quality 50 still gives ~70 KB on a 4:3 crop                                                                                                        | Originals (C-18), then `npm run images`; if still over, card-ratio crops in the script. Re-measure in P15 | Open                                   |
+| R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                   | Open                                   |
 
 ## 8. Handoff
 
 ### Current state of the code
 
-Home, Services, Projects, About, Equipment and Testimonials are rebuilt in the
-final design system (P7–P12). Contact is the last template page on the
-`check:design` LEGACY list; P13 rebuilds it next. Content and photos in
-`src/data/` and `public/` carry `PLACEHOLDER(C-xx)` markers until P16.
+All seven main pages are rebuilt in the final design system (P7–P13).
+P13 is in Review; production form delivery still needs C-25 and explicit
+permission for a real receipt test. Legal/system pages and `premium-button` remain on the
+`check:design` LEGACY list for P14. Content and photos in `src/data/` and
+`public/` carry `PLACEHOLDER(C-xx)` markers until P16.
+
+### Current session — 2026-10-21 (P13)
+
+- Owner approved implementation and Web3Forms; D-53–D-55 capture configuration, map privacy and the measured form-library trade-off.
+- Contact rebuilt with shared components; old contact section deleted with approval. Nothing committed or pushed.
+- Seven focused Node tests cover validation, submission payload and provider/network failures with mocked fetch only. Node's TypeScript module-format warning is informational; project module settings were not changed to suppress it.
+- Existing P11/P12 screenshots remain untracked. New P13 screenshots are also local review artifacts; no images were deleted or added to git.
+- Browser review at all three widths and mocked interaction tests pass (see P13 evidence). Temporary browser test harness removed; screenshots remain local. Next: owner review and client configuration, not P14.
+- `check:placeholders` exits 1 with 38 hits, expected during development: includes the three new C-04/C-24/C-25 markers and existing broad-pattern false positives (two styleguide emails and Equipment's “discuss” copy). This is not a launch-ready placeholder count.
 
 ### Last session — 2026-10-21 (P12)
 
@@ -531,6 +553,15 @@ final design system (P7–P12). Contact is the last template page on the
 
 ### Verification evidence
 
+P13, 2026-10-21:
+
+- `npm run build:static` → pass, 29 routes. `npm run lint`, `npm run check:design`, `node --test scripts/contact-form.test.mjs` → pass (7 tests). `npm run analyze -- --output` → pass on the final native-form implementation. Final `validate` status is recorded in §4 P13.
+- `npm run check:placeholders` → expected exit 1, 38 hits; not launch-ready.
+- Browser: screenshots at 375/768/1280 reviewed; document scroll widths 375/753/1265, with one h1 and one main at each width. Form visibly disabled without a key; no iframe or provider request. Contact details stack below the form until lg.
+- A browser-only HTML fixture supplies a dummy public key without changing repository config; provider fetch is mocked before page scripts run and all external requests are blocked. Invalid submit focuses name and links errors; two valid attempts verify pending lock, provider rejection with input retained, then success with reset. No captured runtime/console-API errors in baseline or enabled fixture.
+- Styleguide map preview: zero iframes before click, one local `about:blank` frame after click, zero after hide; no external requests. Real Google Maps cannot be verified until C-24.
+- Measured gzip of each route's initial script URLs, excluding `nomodule`: Contact **181.6 KiB**, Home **167.7 KiB**. The earlier react-hook-form + zod/mini attempt was **191.0 KiB**; D-55 records its replacement. Lighthouse/accessibility conformance and actual inbox delivery are not claimed.
+
 P9, 2026-10-21:
 
 - `npm run validate` → pass. `npm run check:design` → pass (LEGACY shrank by 3). Clean `npm run build:static` → pass, 8 project pages.
@@ -598,4 +629,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P13 — Contact page and form.** Needs O-01 (form provider) decided and the client's receiving inbox (C-25) + map pin (C-24). P3 still waits for C-01.
+**Finish P13:** owner reviews Contact at 375/768/1280; obtain the confirmed receiving inbox/public Web3Forms key (C-25), contact details (C-03–C-07) and optional map pin (C-24), then get explicit permission for a production receipt test. No commit or P14 work without the owner's instruction. P3 still waits for C-01.

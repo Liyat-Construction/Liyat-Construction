@@ -271,9 +271,38 @@ export interface TestimonialsPage {
 }
 
 export interface ContactPage {
-  title: string;
-  description: string;
-  formTitle: string;
-  formDescription: string;
-  successMessage: string;
+  header: PageCopy;
+  form: SectionCopy & {
+    fields: Record<'name' | 'organization' | 'email' | 'phone' | 'subject' | 'message', string>;
+    subjectPrompt: string;
+    messageHint: string;
+    submit: string;
+    sending: string;
+    success: string;
+    error: string;
+    unavailable: string;
+    privacy: string;
+    privacyLink: Action;
+    noScript: string;
+    validation: {
+      name: string;
+      organization: string;
+      email: string;
+      phone: string;
+      subject: string;
+      message: string;
+    };
+  };
+  details: SectionCopy & {
+    phone: string;
+    email: string;
+    address: string;
+    hours: string;
+  };
+  map: {
+    title: string;
+    notice: string;
+    load: string;
+    hide: string;
+  };
 }

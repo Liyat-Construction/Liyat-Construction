@@ -8,15 +8,15 @@
 
 ## 1. Stack
 
-| Layer     | Choice                                                        | Why                                                    |
-| --------- | ------------------------------------------------------------- | ------------------------------------------------------ |
-| Framework | Next.js 16 (App Router), React 19                             | Static generation, file routing, image + font handling |
-| Language  | TypeScript strict, no `any`                                   | Content shapes are checked at build time               |
-| Styling   | Tailwind CSS 4, tokens in `@theme`                            | Utilities generated from one token file                |
-| Icons     | lucide-react (tree-shaken)                                    | Line icons matching the brand                          |
-| Forms     | react-hook-form + zod                                         | Small, accessible validation                           |
-| Output    | Static HTML (`npm run build:static` → `out/`) or Next.js host | Works on cPanel, Vercel, any static host               |
-| Content   | TypeScript files in `src/data/`                               | No CMS (out of scope); type-safe; versioned in git     |
+| Layer     | Choice                                                        | Why                                                               |
+| --------- | ------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Framework | Next.js 16 (App Router), React 19                             | Static generation, file routing, image + font handling            |
+| Language  | TypeScript strict, no `any`                                   | Content shapes are checked at build time                          |
+| Styling   | Tailwind CSS 4, tokens in `@theme`                            | Utilities generated from one token file                           |
+| Icons     | lucide-react (tree-shaken)                                    | Line icons matching the brand                                     |
+| Forms     | Native FormData + zod/mini                                    | Accessible validation without react-hook-form's route cost (D-55) |
+| Output    | Static HTML (`npm run build:static` → `out/`) or Next.js host | Works on cPanel, Vercel, any static host                          |
+| Content   | TypeScript files in `src/data/`                               | No CMS (out of scope); type-safe; versioned in git                |
 
 **No new dependency without the owner's approval.** Removing one is always welcome.
 
@@ -81,12 +81,15 @@ list of allowed client islands:
 | `layout/nav-links.tsx`      | marks the current page (`aria-current`) — replaces `header-scroll` (D-39) |
 | `ui/reveal.tsx`             | IntersectionObserver                                                      |
 | `sections/contact-form.tsx` | form state and submit                                                     |
+| `ui/map-facade.tsx`         | mounts the Google Maps iframe only after an explicit click (D-54)         |
 
 Adding a client component outside this list is a decision to record in `WORKFLOW.md`.
 
 Client islands never import `lib/utils`: it builds tailwind-merge at load time, which
 then ships to every page. Use plain class strings there, and pass icons and buttons in
 as already-rendered props from a server component (see `layout/header.tsx`).
+`ui/field.tsx` is shared with the form island: it uses lightweight `clsx` for layout-only
+classes and direct, tree-shaken error/select icons, not the full `Icon` registry.
 Known leftover: the template `error.tsx` / `not-found.tsx` import `cn`, so tailwind-merge
 (≈ 9 KB gzip) still loads everywhere until P14 rebuilds them.
 
@@ -212,6 +215,7 @@ npm run build:static        # static export → out/
 npm run images              # prepare web images from assets/images (after adding photos)
 npm run build               # Next.js hosting build
 npm run analyze             # bundle analyzer
+node --test scripts/contact-form.test.mjs # focused contact tests (Node 22.18+; no live requests)
 ```
 
 (`analyze` runs `next experimental-analyze`, the Turbopack bundle analyzer — D-21.)

@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
-import { Icon } from './icon';
+import { clsx as cn } from 'clsx';
+import { ChevronDown, CircleAlert } from 'lucide-react';
 
 /** Props a control needs so its label, hint and error are announced. */
 export interface ControlProps {
@@ -55,7 +55,7 @@ export function Field({
       })}
       {error && (
         <p id={errorId} className="text-small text-alert flex items-center gap-1.5 font-medium">
-          <Icon name="alert" size="sm" />
+          <CircleAlert aria-hidden="true" strokeWidth={1.5} className="size-4 shrink-0" />
           {error}
         </p>
       )}
@@ -86,10 +86,10 @@ export function Select({ className, children, ...props }: SelectProps) {
       <select {...props} className={cn(control, 'min-h-11 appearance-none pe-10')}>
         {children}
       </select>
-      <Icon
-        name="chevron-down"
-        size="sm"
-        className="text-ink-muted pointer-events-none absolute end-3 top-1/2 -translate-y-1/2"
+      <ChevronDown
+        aria-hidden="true"
+        strokeWidth={1.5}
+        className="text-ink-muted pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2"
       />
     </div>
   );

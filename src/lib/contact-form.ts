@@ -5,50 +5,62 @@
  * Provider and key are configured in src/config/site.ts → contactForm.
  */
 
-import { z } from 'zod';
-import { siteConfig } from '@/config/site';
+import * as z from 'zod/mini';
+import type { ContactFormProvider } from '@/config/site';
+import type { ContactPage } from '@/types/content';
 
 // Digits with optional +, spaces, dashes and parentheses; 7–20 characters.
 const phonePattern = /^\+?[\d\s()-]{7,20}$/;
 
-const { provider, formKey } = siteConfig.contactForm;
+export interface ContactFormConfiguration {
+  provider: ContactFormProvider;
+  formKey: string;
+  subjects: string[];
+}
 
-export const isContactFormEnabled = provider !== 'none' && formKey.trim().length > 0;
+export function isContactFormEnabled({ provider, formKey }: ContactFormConfiguration) {
+  return provider !== 'none' && formKey.trim().length > 0;
+}
 
-export const contactFormSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, 'Name must be at least 2 characters')
-    .max(80, 'Name too long')
-    .regex(/^[\p{L}\p{M}\s'.-]+$/u, 'Name contains invalid characters'),
-  email: z.string().trim().min(1, 'Email is required').email('Invalid email address').max(120),
-  phone: z
-    .string()
-    .optional()
-    .transform((value) => (value ?? '').trim() || undefined)
-    .refine((value) => value === undefined || phonePattern.test(value), 'Invalid phone number'),
-  subject: z.string().min(1, 'Please choose a subject'),
-  message: z
-    .string()
-    .trim()
-    .min(10, 'Message must be at least 10 characters')
-    .max(2000, 'Message too long'),
-});
+export function createContactFormSchema(
+  messages: ContactPage['form']['validation'],
+  subjects: string[]
+) {
+  return z.object({
+    name: z.string().check(z.trim(), z.minLength(2, messages.name), z.maxLength(80, messages.name)),
+    organization: z.string().check(z.trim(), z.maxLength(120, messages.organization)),
+    email: z.string().check(z.trim(), z.email(messages.email), z.maxLength(120, messages.email)),
+    phone: z.string().check(
+      z.trim(),
+      z.refine((value) => {
+        const digits = value.replace(/\D/g, '').length;
+        return !value || (phonePattern.test(value) && digits >= 7 && digits <= 15);
+      }, messages.phone)
+    ),
+    subject: z.string().check(z.refine((value) => subjects.includes(value), messages.subject)),
+    message: z
+      .string()
+      .check(z.trim(), z.minLength(10, messages.message), z.maxLength(2000, messages.message)),
+  });
+}
 
-export type ContactFormInput = z.input<typeof contactFormSchema>;
-export type ContactFormValues = z.output<typeof contactFormSchema>;
+export type ContactFormValues = z.output<ReturnType<typeof createContactFormSchema>>;
 
-export async function submitContactForm(values: ContactFormValues): Promise<void> {
-  if (!isContactFormEnabled) throw new Error('Contact form is not configured');
+export async function submitContactForm(
+  values: ContactFormValues,
+  configuration: ContactFormConfiguration,
+  sender: string
+): Promise<void> {
+  if (!isContactFormEnabled(configuration)) throw new Error('Contact form is not configured');
 
-  const subject = `${values.subject} — ${siteConfig.name} website`;
+  const { provider, formKey } = configuration;
+  const subject = `${values.subject} — ${sender} website`;
 
   const request =
     provider === 'web3forms'
       ? {
           url: 'https://api.web3forms.com/submit',
-          body: { access_key: formKey, from_name: siteConfig.name, ...values, subject },
+          body: { access_key: formKey, from_name: sender, ...values, subject, botcheck: false },
         }
       : {
           url: `https://formspree.io/f/${encodeURIComponent(formKey)}`,
@@ -59,11 +71,18 @@ export async function submitContactForm(values: ContactFormValues): Promise<void
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(request.body),
+    signal: AbortSignal.timeout(15000),
   });
 
-  const result = (await response.json().catch(() => ({}))) as { success?: boolean };
+  const result: unknown = await response.json();
+  const accepted =
+    result &&
+    typeof result === 'object' &&
+    (provider === 'web3forms'
+      ? 'success' in result && result.success === true
+      : !('success' in result) || result.success !== false);
 
-  if (!response.ok || result.success === false) {
+  if (!response.ok || !accepted) {
     throw new Error('Form submission failed');
   }
 }

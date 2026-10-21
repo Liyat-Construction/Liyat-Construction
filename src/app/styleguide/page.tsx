@@ -34,6 +34,10 @@ import { CTA_BAND } from '@/data/cta';
 import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
 import { EquipmentGrid } from '@/components/sections/equipment-grid';
 import { ReferenceGrid } from '@/components/sections/reference-grid';
+import { ContactPanel } from '@/components/sections/contact-panel';
+import { FormFeedback } from '@/components/ui/form-feedback';
+import { MapFacade } from '@/components/ui/map-facade';
+import { CONTACT_PAGE } from '@/data/contact';
 import { getProjectBySlug, PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
@@ -413,6 +417,38 @@ export default function StyleguidePage() {
         intro="ReferenceCards, four columns from lg; hidden while REFERENCES is empty (C-13). Sample data below."
         references={[reference, { ...reference, organization: 'Organization B (C-13)' }]}
       />
+
+      <ContactPanel
+        copy={CONTACT_PAGE}
+        contact={siteConfig.contact}
+        configuration={{ ...siteConfig.contactForm, formKey: '' }}
+        sender={siteConfig.name}
+      />
+
+      <Section tone="stone" labelledBy="sg-contact-feedback">
+        <div className="gap-grid grid lg:grid-cols-2">
+          <Specimen title="FormFeedback" note="neutral · success · error; persistent live regions">
+            <div className="flex flex-col gap-4">
+              <SectionHeading id="sg-contact-feedback" title="Contact feedback" />
+              <FormFeedback>{CONTACT_PAGE.form.unavailable}</FormFeedback>
+              <FormFeedback tone="success">{CONTACT_PAGE.form.success}</FormFeedback>
+              <FormFeedback tone="error">{CONTACT_PAGE.form.error}</FormFeedback>
+            </div>
+          </Specimen>
+          <Specimen title="MapFacade" note="Local blank preview; no office location is implied">
+            <MapFacade
+              url="about:blank"
+              copy={{
+                ...CONTACT_PAGE.map,
+                title: 'Styleguide map preview (blank)',
+                notice:
+                  'This specimen loads a local blank frame, not Google Maps. The office map waits for C-24.',
+              }}
+              icon={<Icon name="map-pin" size="lg" />}
+            />
+          </Specimen>
+        </div>
+      </Section>
 
       <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
 

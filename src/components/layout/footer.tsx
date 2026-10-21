@@ -6,7 +6,7 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 
 const { main, cta, legal } = siteConfig.navigation;
-const { phone, email, address, officeHours } = siteConfig.contact;
+const { phone, secondaryPhone, email, address, officeHours } = siteConfig.contact;
 
 const linkStyle =
   'text-white underline-offset-4 decoration-1 hover:underline ease-standard transition-colors duration-(--duration-fast)';
@@ -50,14 +50,14 @@ export function Footer() {
           <div className="flex flex-col gap-4 lg:col-span-4">
             <h2 className="text-eyebrow text-white/80 uppercase">Contact</h2>
             <ul className="flex flex-col gap-3">
-              {phone && (
-                <li className="flex items-start gap-3">
+              {[phone, secondaryPhone].filter(Boolean).map((number) => (
+                <li key={number} className="flex items-start gap-3">
                   <Icon name="phone" className="mt-0.5" />
-                  <a href={`tel:${phone.replaceAll(' ', '')}`} className={linkStyle}>
-                    {phone}
+                  <a href={`tel:${number.replaceAll(' ', '')}`} className={linkStyle}>
+                    {number}
                   </a>
                 </li>
-              )}
+              ))}
               {email && (
                 <li className="flex items-start gap-3">
                   <Icon name="mail" className="mt-0.5" />
