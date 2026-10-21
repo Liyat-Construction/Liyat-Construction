@@ -75,15 +75,21 @@ through props. Exceptions: `layout/*` and `lib/metadata` read `siteConfig`.
 Everything is a Server Component unless it needs browser state. The complete
 list of allowed client islands:
 
-| Client island                                 | Why                                  |
-| --------------------------------------------- | ------------------------------------ |
-| `layout/mobile-menu.tsx`                      | open/close state, focus trap         |
-| `layout/header-scroll.tsx`                    | adds shadow after scroll             |
-| `ui/reveal.tsx`                               | IntersectionObserver                 |
-| `sections/service-lifecycle` interaction part | hover/focus highlight of the diagram |
-| `sections/contact-form.tsx`                   | form state and submit                |
+| Client island                                 | Why                                                                       |
+| --------------------------------------------- | ------------------------------------------------------------------------- |
+| `layout/mobile-menu.tsx`                      | opens/closes a native modal `<dialog>`                                    |
+| `layout/nav-links.tsx`                        | marks the current page (`aria-current`) — replaces `header-scroll` (D-39) |
+| `ui/reveal.tsx`                               | IntersectionObserver                                                      |
+| `sections/service-lifecycle` interaction part | hover/focus highlight of the diagram                                      |
+| `sections/contact-form.tsx`                   | form state and submit                                                     |
 
 Adding a client component outside this list is a decision to record in `WORKFLOW.md`.
+
+Client islands never import `lib/utils`: it builds tailwind-merge at load time, which
+then ships to every page. Use plain class strings there, and pass icons and buttons in
+as already-rendered props from a server component (see `layout/header.tsx`).
+Known leftover: the template `error.tsx` / `not-found.tsx` import `cn`, so tailwind-merge
+(≈ 9 KB gzip) still loads everywhere until P14 rebuilds them.
 
 ### Content
 

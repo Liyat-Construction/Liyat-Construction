@@ -2,9 +2,10 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
-import { CTASection } from '@/components/cta-section';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
+import { siteConfig } from '@/config/site';
 import { PremiumButton } from '@/components/premium-button';
-import { HOME_PAGE } from '@/data/home';
 import { CAPABILITIES } from '@/data/equipment';
 import { ChevronRight, Home, Check } from 'lucide-react';
 
@@ -23,7 +24,7 @@ const BODY = 'text-lg leading-relaxed text-text-secondary';
 
 export default function EquipmentCapabilitiesPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -143,7 +144,7 @@ export default function EquipmentCapabilitiesPage() {
         </Container>
       </section>
 
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }

@@ -4,9 +4,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
-import { CTASection } from '@/components/cta-section';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
 import { PROJECTS, getProjectBySlug } from '@/data/projects';
-import { HOME_PAGE } from '@/data/home';
 import { siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
 import { ArrowLeft, Calendar, Home, ChevronRight, MapPin } from 'lucide-react';
@@ -85,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const gallery = project.gallery ?? [];
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-28">
         <div className="from-brand-primary to-brand-primary-dark absolute inset-0 bg-gradient-to-b" />
@@ -223,7 +223,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </Container>
       </section>
 
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }

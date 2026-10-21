@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { Container } from '@/components/container';
 import { ContactSection } from '@/components/contact-section';
 import { CONTACT_PAGE } from '@/data/contact';
-import { HOME_PAGE } from '@/data/home';
-import { CTASection } from '@/components/cta-section';
 import { ChevronRight, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -15,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -58,8 +56,6 @@ export default function ContactPage() {
       </section>
 
       <ContactSection contactPage={CONTACT_PAGE} />
-
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+    </div>
   );
 }

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Inter, Manrope } from 'next/font/google';
-import { Navbar } from '@/components/navbar';
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/layout/footer';
+import { Header } from '@/components/layout/header';
+import { SkipLink } from '@/components/layout/skip-link';
 import { OrganizationSchema } from '@/components/organization-schema';
-import { TelegramChatButton } from '@/components/telegram-chat-button';
 import { env, siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
 import './globals.css';
@@ -115,12 +115,15 @@ export default function RootLayout({
           </>
         )}
         <OrganizationSchema siteUrl={siteUrl} />
+        <SkipLink />
         <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <div className="flex-1">{children}</div>
+          <Header />
+          {/* The page's only <main> and the skip-link target (D-40) */}
+          <main id="main" className="flex-1">
+            {children}
+          </main>
           <Footer />
         </div>
-        <TelegramChatButton />
       </body>
     </html>
   );

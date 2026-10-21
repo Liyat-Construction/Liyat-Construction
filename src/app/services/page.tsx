@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/container';
-import { CTASection } from '@/components/cta-section';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
+import { siteConfig } from '@/config/site';
 import { ServicesSection } from '@/components/services-section';
 import { SERVICES } from '@/data/services';
-import { HOME_PAGE } from '@/data/home';
 import { ChevronRight, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -66,7 +67,7 @@ export default function ServicesPage() {
       />
 
       {/* ── CTA ───────────────────────────────────────────────── */}
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }

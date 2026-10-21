@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                         |
-| --------------------- | --------------------------------------------------------------------------------------- |
-| **Current step**      | **P5 — Site shell: header, menu, footer** (not started; built with placeholders — D-37) |
-| **Last completed**    | P6 — Content model, data and domain cards (2026-10-21)                                  |
-| **Blocked on client** | Logo vector files (C-01) — P3 only                                                      |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch          |
-| **Next action**       | Start P5: Header, MobileMenu, Footer, SkipLink, PageHeader, CtaBand (§4 P5).            |
+|                       |                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------- |
+| **Current step**      | **P7 — Home page + well diagram** (not started)                                  |
+| **Last completed**    | P5 — Site shell (2026-10-21)                                                     |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                               |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch   |
+| **Next action**       | Start P7: read §4 P7 (hero plan D-27, panel choice D-34), propose, get approval. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -72,7 +72,7 @@
 | P2  | Design tokens                         | P1                    | Technical                       | Complete    |
 | P3  | Logo master files                     | P2, C-01              | Owner + client                  | Not started |
 | P4  | Component library + `/styleguide`     | P2                    | **Owner — main aesthetic gate** | Complete    |
-| P5  | Site shell: header, menu, footer      | P4, P6 (D-37)         | Owner                           | Not started |
+| P5  | Site shell: header, menu, footer      | P4, P6 (D-37)         | Owner                           | Complete    |
 | P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Complete    |
 | P7  | Home page + well diagram              | P5, P6                | Owner                           | Not started |
 | P8  | Services pages                        | P7                    | Owner                           | Not started |
@@ -139,11 +139,24 @@
   - The hero photo is a recompressed social-media image; JPEG artifacts are visible full-bleed at 1280. The originals (C-18) matter.
   - The old template navbar still overlaps the top of `/styleguide`; P5 replaces it.
 
-### P5 — Site shell
+### P5 — Site shell · `Complete` (2026-10-21)
 
 - **What:** `Header` (white, sticky, logo, nav, Contact us), `MobileMenu`, `Footer` (Ink, white logo, contact, legal name + Amharic), `SkipLink`, `PageHeader`, `CtaBand`. Update `navigation` in `site.ts`: "Contact us" CTA, not "Get started".
 - **Why:** Every page shares it; it sets the first impression.
 - **Done when:** Keyboard and screen-reader pass on the menu; no layout shift on scroll; owner approves.
+- **Plan agreed 2026-10-21** with recommendations 1–4 → D-38 (footer logo plate), D-39 (`nav-links` island instead of scroll shadow), D-40 (layout owns `<main>`), D-41 (CtaBand everywhere, template shell files deleted).
+- **Built (2026-10-21):**
+  - `ui/logo.tsx` (PNG until P3, ≥ 80 px), `ui/breadcrumbs.tsx`; `layout/`: `skip-link`, `header`, `nav-links` (client), `mobile-menu` (client, native `<dialog>`), `footer`; `sections/`: `page-header`, `cta-band`.
+  - `siteConfig.navigation` = `main` (5 links) + `cta` "Contact us" + `legal`; new `descriptor`, `legalName`, `legalNameAmharic` (C-21); footer description = Brand §10.
+  - Layout: SkipLink → Header → `<main id="main">` → Footer; Telegram button removed. 13 template pages: `<main>` → `<div>`; `CTASection` → `CtaBand` (copy in `src/data/cta.ts`), none on Contact. Deleted `navbar`, `footer`, `cta-section`, `telegram-chat-button` (and their LEGACY entries).
+  - `globals.css`: `current:` variant (`aria-current="page"`), body scroll lock while the menu is open.
+  - `/styleguide` now opens with `PageHeader` and ends with `CtaBand`; the old navbar no longer overlaps it.
+- **Owner, 2026-10-21:** approved; committed.
+- **Open points:**
+  - The logo PNG green (`#006000`) sits next to brand green `#156635` in the header and on the green band's neighbours; P3 fixes it.
+  - The footer logo plate is a stopgap (D-38).
+  - Template sections under the new header still look unfinished; P7–P13 rebuild them.
+  - Header is 74 px tall (72 + 2 px rule); `--header-height` (72) is used for anchor offsets, a 2 px difference.
 
 ### P6 — Content model, data and domain cards · `Complete` (2026-10-21)
 
@@ -297,6 +310,10 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-35 | 2026-10-21 | `sharp` is an explicit devDependency (version Next already installs) for `scripts/optimize-images.mjs`; images move to `public/images/{hero,projects/<slug>,clients}/` (closes O-04)                                                                                                             | Only transitively installed before, so a Next update could break the script; responsive widths are required by the image budget (Engineering §4–5)                                                                                                  |
 | D-36 | 2026-10-21 | Unconfirmed **facts** use obviously fake placeholders ("Name Surname", "Rig model (C-16)", no invented figures); only text length stays realistic. Cards render nothing for a missing figure. Refines D-17                                                                                       | Fake quotes under realistic names and invented depths beside real client names could ship by accident or be read as fact (R-02)                                                                                                                     |
 | D-37 | 2026-10-21 | P5 no longer waits for the client: built with marked placeholder contact details and the current `logo.png`, swapped at P3/P16. P5 runs right after P6                                                                                                                                           | D-17 allows placeholders; otherwise the critical path P5 → P7 → every page waits on client content                                                                                                                                                  |
+| D-38 | 2026-10-21 | Until P3, the footer shows the full-color logo on a small white plate (`Logo variant="white"`, marked C-01); P3 swaps the vector white logo in `ui/logo.tsx`                                                                                                                                     | The PNG cannot be recolored: the L's counter is opaque white, so a white tint fills the letter. A plate keeps the mark recognizable without altering it                                                                                             |
+| D-39 | 2026-10-21 | No shadow after scroll: the header's green rule separates it. The client island `layout/header-scroll.tsx` is replaced by `layout/nav-links.tsx` (marks the current page with `aria-current`)                                                                                                    | Brand: shadows almost absent. Current-page state helps keyboard and screen-reader users; the JS budget stays the same                                                                                                                               |
+| D-40 | 2026-10-21 | The root layout owns the single `<main id="main">` (skip-link target); pages render no `<main>`                                                                                                                                                                                                  | One target, and new pages cannot forget it                                                                                                                                                                                                          |
+| D-41 | 2026-10-21 | `CtaBand` replaces the template `CTASection` on every page now; `navbar.tsx`, `footer.tsx`, `cta-section.tsx`, `telegram-chat-button.tsx` deleted (owner approved). The floating Telegram button returns only if O-06 says so                                                                    | Removes legacy code and gives every page the final ending now                                                                                                                                                                                       |
 
 ### Open decisions
 
@@ -331,7 +348,14 @@ The site is still the **Digital Aksumite template filled with Liyat content**
 rebuild the visual layer. Content and photos in `src/data/` and `public/` are
 reused.
 
-### Last session — 2026-10-21 (P6, passes 1 and 2)
+### Last session — 2026-10-21 (P5)
+
+- P6 committed (`e2aba3d`) on the owner's instruction. P5 planned, approved (D-38…D-41) and built; owner approved P5; committed.
+- One `build:static` failed with a Turbopack "next/font/google queries have exactly one entry" error and passed unchanged on retry — likely the other session's dev server sharing `.next`. Retry before debugging.
+- My first JS measurement wrongly counted the polyfill (`noModule` attribute, case); corrected figures below.
+- Removed two client-bundle leaks found while measuring: the icon map (MobileMenu imported Icon/Button) and tailwind-merge from `nav-links`. Rule added to Engineering §3.
+
+### Earlier session — 2026-10-21 (P6, passes 1 and 2)
 
 - Owner approved the P6 plan and D-35…D-37. Built both passes; owner asked to commit P6 → `Complete`, committed.
 - New preview config `static-out-3007` (`autoPort: false`): port 3005 was taken by another session's server. The built-in browser pane renders stale frames while the app window is hidden, so 1280/768 captures were made with headless Edge, and 375 through a 375 px iframe.
@@ -397,6 +421,14 @@ reused.
 
 ### Verification evidence
 
+P5, 2026-10-21:
+
+- `npm run validate` → pass. `npm run check:design` → pass (LEGACY shrank by 4). Clean `npm run build:static` → pass, 29 pages.
+- Browser (static `out/`, port 3007): one `<main id="main">` per page and one h1; first Tab = "Skip to content" (visible at top left, green outline); Enter → `#main`, next Tab lands inside main. Header `position: sticky`, white, 2 px `rgb(21 102 53)` bottom border, `box-shadow: none`; logo 84 px wide. Current page green with `aria-current="page"` (Projects, Testimonials, Services, Equipment checked).
+- Mobile menu at 375: button 44 × 44 named "Open menu"; Enter opens a modal dialog (375 × 812), focus on "Close menu", body overflow hidden; 9 × Tab stays inside; Esc closes, focus back on the button, scroll restored. Following "Services" navigates and closes the menu.
+- No horizontal overflow at 375 (375), 768 (753 + scrollbar) or 1280. Footer at 768: brand block full width, Pages and Contact side by side. Header, CtaBand and footer captured at 1280, 768 and 375 and reviewed. No console errors besides the R-08 prefetch 404s.
+- JS first load (gzip, without the `noModule` polyfill): `/projects` 167.4 KB, `/styleguide` 168.1 KB (P4: ≈ 171 KB), home 251.9 KB (contact form, R-07). No icon map in client chunks.
+
 P6, 2026-10-21:
 
 - `npm run validate` → pass. `npm run check:design` → pass (no file added to LEGACY). `npm run check:placeholders` → 25 hits: C-03, C-04, C-05, C-07, C-08, C-09, C-10, C-11, C-12, C-13, C-14, C-15, C-16, C-23 in data/config, C-22 on the styleguide, plus 2 `example.com` false positives.
@@ -441,4 +473,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P5 — Site shell.** See §4 P5. Built with marked placeholder contact details and the current `logo.png` (D-37); P3 waits for C-01.
+**P7 — Home page + well diagram.** See §4 P7. P3 still waits for C-01.

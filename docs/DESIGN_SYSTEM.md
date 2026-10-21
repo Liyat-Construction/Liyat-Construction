@@ -142,17 +142,17 @@ Grid: 12 columns on `lg`, gap `gap-grid` (1.5rem → 2rem). Breakpoints: Tailwin
 
 ### 2.4 Shape, depth, motion
 
-| Token              | Value                                                           | Use                                              |
-| ------------------ | --------------------------------------------------------------- | ------------------------------------------------ |
-| `--radius-control` | `6px`                                                           | Buttons, inputs, tags                            |
-| `--radius-card`    | `8px`                                                           | Cards, images                                    |
-| `--shadow-raise`   | `0 1px 2px rgb(29 37 33 / .06), 0 8px 24px rgb(29 37 33 / .08)` | Sticky header after scroll, menus. Nothing else. |
-| `--rule-width`     | `2px`                                                           | The signature rule                               |
-| `--focus-width`    | `2px`                                                           | Focus outline width                              |
-| `--focus-offset`   | `2px`                                                           | Focus outline offset                             |
-| `--duration-fast`  | `150ms`                                                         | Hover, focus                                     |
-| `--duration-base`  | `300ms`                                                         | Reveal, menu open                                |
-| `--ease-standard`  | `cubic-bezier(.2, .7, .2, 1)`                                   | Everything                                       |
+| Token              | Value                                                           | Use                                                                   |
+| ------------------ | --------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `--radius-control` | `6px`                                                           | Buttons, inputs, tags                                                 |
+| `--radius-card`    | `8px`                                                           | Cards, images                                                         |
+| `--shadow-raise`   | `0 1px 2px rgb(29 37 33 / .06), 0 8px 24px rgb(29 37 33 / .08)` | The focused skip link, menus. Nothing else (no header shadow — D-39). |
+| `--rule-width`     | `2px`                                                           | The signature rule                                                    |
+| `--focus-width`    | `2px`                                                           | Focus outline width                                                   |
+| `--focus-offset`   | `2px`                                                           | Focus outline offset                                                  |
+| `--duration-fast`  | `150ms`                                                         | Hover, focus                                                          |
+| `--duration-base`  | `300ms`                                                         | Reveal, menu open                                                     |
+| `--ease-standard`  | `cubic-bezier(.2, .7, .2, 1)`                                   | Everything                                                            |
 
 Motion rules: animate only `opacity` and `transform`; reveal = fade + 12 px
 rise, once; no parallax, no auto-playing carousels, no shine/glow effects;
@@ -166,6 +166,9 @@ headings in `font-heading`; `:focus-visible` = `--focus-width` Brand outline at
 (`Section` sets it on `ink` and `brand` tones, and on photo overlays);
 `::selection` White on Brand; `[id]` anchors offset by header height + gutter;
 smooth scroll, and all animation and transition, off under reduced motion.
+
+**`current:` variant.** `@custom-variant current` styles a link whose `aria-current` is `page`
+(main navigation). **Mobile menu:** `body:has(dialog[open])` locks page scroll.
 
 **`on-dark:` variant (D-30).** `globals.css` defines `@custom-variant on-dark`:
 it applies inside any element with `data-on-dark` (Section `ink`/`brand`,
@@ -212,6 +215,8 @@ type Variant = keyof typeof variants;
 | `Photo`          | `image: ImageAsset`, `ratio: 'hero' \| 'wide' \| 'card' \| 'portrait' \| 'square'`, `width: 'full' \| 'half' \| 'third'`, `priority?`, `rounded?` | Wraps `next/image` (`fill`) in a fixed-ratio box — no layout shift. `width` picks the `sizes` preset; `image.focus` picks the crop (D-31) |
 | `Scrim`          | `children`                                                                                                                                        | Flat Ink panel (`--color-scrim`, 62 %) behind text on a photo, text area only (D-27). Sets `data-on-dark`                                 |
 | `Icon`           | `name`, `size: 'sm' \| 'md' \| 'lg'`, `label?`                                                                                                    | Wraps lucide-react with stroke 1.5. Only icons registered in the map can be used; hidden from screen readers unless `label` is given      |
+| `Logo`           | `variant: 'color' \| 'white'`, `alt`, `eager?`                                                                                                    | At least 80 px wide (Brand §3). Until P3: `logo.png`; `white` = the color logo on a white plate (D-38). P3 swaps the artwork here only    |
+| `Breadcrumbs`    | `items: { label, href? }[]`                                                                                                                       | `nav` + `ol`; the current page last, without `href`, marked `aria-current`                                                                |
 | `Prose`          | `children`                                                                                                                                        | Typography for long-form text (legal pages, project stories)                                                                              |
 | `Field`          | `id`, `label`, `hint?`, `error?`, `optional?`, `children: (control) => ReactNode` (+ `Input`, `Textarea`, `Select`)                               | Render prop passes `id`, `aria-describedby`, `aria-invalid`, `required` to the control. Fields are required unless `optional`             |
 | `Reveal`         | `children`, `delay?: 0 \| 1 \| 2 \| 3`                                                                                                            | The only animation wrapper. Client island (~0.7 KB gzip). Hides only what is still below the fold after hydration                         |
@@ -239,12 +244,13 @@ Two need one extra value the object cannot hold: `ProjectCard` gets `serviceName
 
 ### 3.3 Layout — `src/components/layout/`
 
-| Component    | Behavior                                                                                                                                                                                                                                  |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Header`     | White, sticky, full-color logo, nav from `siteConfig.navigation`, primary "Contact us" button, green rule bottom edge; gains `shadow-raise` after scroll. Server component; only `MobileMenu` and the scroll listener are client islands. |
-| `MobileMenu` | Full-height panel below `lg`; focus trap, Esc to close, body scroll lock, closes on route change.                                                                                                                                         |
-| `Footer`     | Ink. All-white logo, descriptor, company description, nav, contact details, legal name + Amharic name, legal links.                                                                                                                       |
-| `SkipLink`   | "Skip to content" — first focusable element.                                                                                                                                                                                              |
+| Component    | Behavior                                                                                                                                                                                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Header`     | White, sticky, full-color logo + name + descriptor, `NavLinks` from `siteConfig.navigation.main`, primary "Contact us" button (hidden below `sm`, in the menu instead), green rule bottom edge, no shadow (D-39). Server component; `NavLinks` and `MobileMenu` are the client islands. |
+| `MobileMenu` | Below `lg`. Native modal `<dialog>`, full height: page behind inert, Esc closes, focus returns to the button, body scroll locked, closes on navigation. Icons and the button arrive pre-rendered from `Header`.                                                                         |
+| `NavLinks`   | The main links as a bar (header) or a stack (menu); the current section is green and underlined with the rule width, `aria-current="page"`.                                                                                                                                             |
+| `Footer`     | Ink, green rule on the top edge. White logo (plate until P3), descriptor, Brand §10 description, pages, contact details (rows hide when empty), © legal name + Amharic name, legal links.                                                                                               |
+| `SkipLink`   | "Skip to content" — first focusable element; targets the layout's single `<main id="main">` (D-40). Pages render no `<main>`.                                                                                                                                                           |
 
 ### 3.4 Sections — `src/components/sections/`
 
@@ -259,7 +265,7 @@ Sections are props-driven (no data imports inside), so any page can reuse them.
 | `ServiceLifecycle` | Home, Services       | Promise heading; 6 `ServiceCard`s beside the `WellDiagram`; hovering/focusing a service highlights its part of the well                                                                           |
 | `EquipmentTeaser`  | Home                 | Photo + 3 key specs + link to Equipment                                                                                                                                                           |
 | `Testimonials`     | Home, Testimonials   | `TestimonialCard` grid; renders nothing when the list is empty                                                                                                                                    |
-| `CtaBand`          | End of every page    | Brand tone, h2, one sentence, `Button primary` + phone link                                                                                                                                       |
+| `CtaBand`          | End of every page    | Brand tone, compact; h2, one sentence, `Button primary` (white on green) + phone as a text button. Copy in `src/data/cta.ts`; not on Contact                                                      |
 | `ContactPanel`     | Contact              | Form + details + lazy map facade                                                                                                                                                                  |
 
 ### 3.5 Diagrams — `src/components/diagrams/`

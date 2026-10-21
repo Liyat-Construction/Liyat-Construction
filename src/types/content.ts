@@ -139,6 +139,13 @@ export interface Partner {
   url?: string;
 }
 
+/** The band that ends every page except Contact (Design System §3.4). */
+export interface CtaBandContent {
+  title: string;
+  text: string;
+  action: { label: string; href: string };
+}
+
 export interface HomePage {
   heroTitleLines: [string, string, string];
   /** Full-bleed hero background photos (cross-fade every 5s). Empty → animated gradient. */

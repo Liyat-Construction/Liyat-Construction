@@ -15,6 +15,8 @@ import { Tag } from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { siteConfig } from '@/config/site';
 import { HeroPreview } from './_parts/hero-preview';
+import { CtaBand } from '@/components/sections/cta-band';
+import { PageHeader } from '@/components/sections/page-header';
 import { EquipmentCard } from '@/components/cards/equipment-card';
 import { ProjectCard } from '@/components/cards/project-card';
 import { ReferenceCard } from '@/components/cards/reference-card';
@@ -22,6 +24,7 @@ import { ServiceCard } from '@/components/cards/service-card';
 import { TeamCard } from '@/components/cards/team-card';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
 import { KEY_FIGURES, TEAM } from '@/data/company';
+import { CTA_BAND } from '@/data/cta';
 import { EQUIPMENT } from '@/data/equipment';
 import { getProjectBySlug, PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
@@ -66,15 +69,13 @@ export default function StyleguidePage() {
   const typeScale = readTokens('text');
 
   return (
-    <main id="main">
-      <Section tone="stone" spacing="compact">
-        <SectionHeading
-          as="h1"
-          eyebrow="P6 · design review"
-          title="Liyat design system"
-          intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it."
-        />
-      </Section>
+    <div>
+      <PageHeader
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Style guide' }]}
+        eyebrow="P5 · design review"
+        title="Liyat design system"
+        intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it. This header is the PageHeader every inner page uses; the green band at the end is the CtaBand."
+      />
 
       {/* ── Tokens ─────────────────────────────────────────── */}
       <Section labelledBy="sg-tokens" container="wide">
@@ -462,6 +463,7 @@ export default function StyleguidePage() {
           </div>
         </div>
       </Section>
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }

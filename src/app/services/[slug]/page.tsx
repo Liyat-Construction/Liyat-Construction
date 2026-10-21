@@ -3,10 +3,11 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
-import { CTASection } from '@/components/cta-section';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
+import { siteConfig } from '@/config/site';
 import { PremiumButton } from '@/components/premium-button';
 import { SERVICES } from '@/data/services';
-import { HOME_PAGE } from '@/data/home';
 import { ChevronRight, Home, Check, ArrowLeft } from 'lucide-react';
 
 export const dynamicParams = false;
@@ -44,7 +45,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const BODY = 'text-lg leading-relaxed text-text-secondary';
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -165,7 +166,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────── */}
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }

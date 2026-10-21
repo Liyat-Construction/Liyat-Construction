@@ -3,7 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
-import { CTASection } from '@/components/cta-section';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
 import { PROJECTS as projects } from '@/data/projects';
 import { HOME_PAGE } from '@/data/home';
 import { siteConfig } from '@/config/site';
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -75,8 +76,8 @@ export default function ProjectsPage() {
         </Container>
       </section>
 
-      <CTASection homePage={HOME_PAGE} />
-    </main>
+      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+    </div>
   );
 }
 

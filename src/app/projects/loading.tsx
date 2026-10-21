@@ -16,7 +16,7 @@ function SkeletonCard() {
 
 export default function ProjectsLoading() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero skeleton */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         <Container className="relative z-10">
@@ -41,6 +41,6 @@ export default function ProjectsLoading() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

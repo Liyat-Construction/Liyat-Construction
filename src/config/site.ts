@@ -13,22 +13,19 @@ export const siteConfig = {
   // ── Navigation ──────────────────────────────────────────────────────────────
   // One source of truth for nav links across desktop, tablet and mobile.
   navigation: {
-    desktop: [
-      { href: '/', label: 'Home' },
+    // Header, mobile menu and footer. Home is the logo; Contact is the button (Brand §8).
+    main: [
       { href: '/about', label: 'About' },
       { href: '/services', label: 'Services' },
       { href: '/projects', label: 'Projects' },
       { href: '/equipment-capabilities', label: 'Equipment' },
       { href: '/testimonials', label: 'Testimonials' },
-      { href: '/contact', label: 'Contact' },
     ],
-    tablet: [
-      { href: '/', label: 'Home' },
-      { href: '/about', label: 'About' },
-      { href: '/services', label: 'Services' },
-      { href: '/projects', label: 'Projects' },
+    cta: { href: '/contact', label: 'Contact us' },
+    legal: [
+      { href: '/privacy-policy', label: 'Privacy policy' },
+      { href: '/terms-of-service', label: 'Terms of service' },
     ],
-    cta: { href: '/contact', label: 'Get Started' },
   },
 
   // ── Brand Identity ──────────────────────────────────────────────────────────
@@ -37,7 +34,12 @@ export const siteConfig = {
   description:
     'Liyat Construction PLC is an Ethiopian company specializing in groundwater development, water-well drilling, pumping tests, and turnkey water works for institutional, governmental, and commercial clients.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  logoAlt: 'Liyat Construction Logo',
+  logoAlt: 'Liyat Construction',
+  /** Shown with the logo wherever someone meets us first (Brand §1) */
+  descriptor: 'Water Well Drilling & Engineering',
+  legalName: 'Liyat Construction PLC',
+  // PLACEHOLDER(C-21): exact Amharic legal name, as printed on the brochure
+  legalNameAmharic: 'ልያት ኮንስትራክሽን ኃ.የተ.የግል ማህበር',
   // Open Graph locale (e.g. 'en_US', 'am_ET') and <html lang> value
   locale: 'en_US',
   language: 'en',
@@ -123,8 +125,9 @@ export const siteConfig = {
 
   // ── Footer ──────────────────────────────────────────────────────────────────
   footer: {
+    // The company description, used unchanged (Brand §10)
     description:
-      'Groundwater development, water-well drilling, and turnkey water works for institutional and commercial clients across Ethiopia.',
+      'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
     copyrightEntity: 'Liyat Construction PLC',
   },
 

@@ -8,6 +8,9 @@
  */
 @custom-variant on-dark (&:where([data-on-dark] *):not(:where([data-on-light] *)));
 
+/* `current:` styles the link to the page being viewed (nav, breadcrumb). */
+@custom-variant current (&[aria-current='page']);
+
 /*
  * Base styles only. Every value comes from a token; component styling lives in
  * src/components/ui and src/components/cards.
@@ -49,6 +52,11 @@
   ::selection {
     background-color: var(--color-brand);
     color: var(--color-white);
+  }
+
+  /* The open mobile menu (a modal <dialog>) locks the page behind it */
+  body:has(dialog[open]) {
+    overflow: hidden;
   }
 
   /* Anchored sections clear the sticky header */

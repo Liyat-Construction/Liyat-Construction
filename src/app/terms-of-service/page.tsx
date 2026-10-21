@@ -138,7 +138,7 @@ export default function TermsOfServicePage() {
   const sections = defaultSections;
 
   return (
-    <main className={cn('min-h-screen', 'bg-surface-warm')}>
+    <div className={cn('min-h-screen', 'bg-surface-warm')}>
       {/* Hero Section */}
       <section className="bg-brand-primary relative overflow-hidden py-20 md:py-24">
         {/* Breadcrumb */}
@@ -379,6 +379,6 @@ export default function TermsOfServicePage() {
           </div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }
