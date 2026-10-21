@@ -31,7 +31,8 @@ import { TeamGrid } from '@/components/sections/team-grid';
 import { Statement } from '@/components/ui/statement';
 import { COMPANY_FACTS, KEY_FIGURES, TEAM } from '@/data/company';
 import { CTA_BAND } from '@/data/cta';
-import { EQUIPMENT } from '@/data/equipment';
+import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
+import { EquipmentGrid } from '@/components/sections/equipment-grid';
 import { getProjectBySlug, PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
@@ -390,6 +391,19 @@ export default function StyleguidePage() {
           </div>
         </div>
       </Section>
+
+      <EquipmentGrid
+        id="sg-rigs"
+        {...EQUIPMENT_PAGE.rigs}
+        equipment={EQUIPMENT.filter((item) => item.category === 'rig')}
+      />
+      <EquipmentGrid
+        id="sg-support"
+        tone="stone"
+        {...EQUIPMENT_PAGE.support}
+        equipment={EQUIPMENT.filter((item) => item.category === 'support')}
+        presentation="specifications"
+      />
 
       <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
 

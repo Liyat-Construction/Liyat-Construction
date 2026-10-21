@@ -10,11 +10,11 @@
 
 |                       |                                                                                                                                            |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Current step**      | **P11 — Equipment & Capabilities page** (not started)                                                                                      |
-| **Last completed**    | P10 — About page (2026-10-21)                                                                                                              |
+| **Current step**      | **P12 — Testimonials page** (not started)                                                                                                  |
+| **Last completed**    | P11 — Equipment & Capabilities page (2026-10-21; committed pending owner review, D-43)                                                     |
 | **Blocked on client** | Logo vector files (C-01) — P3 only                                                                                                         |
 | **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                 |
-| **Next action**       | New session: start P11 (§4 P11; blueprint in Design System §4). One phase per session; the owner reviews the whole site at the end (D-43). |
+| **Next action**       | New session: start P12 (§4 P12; blueprint in Design System §4). One phase per session; the owner reviews the whole site at the end (D-43). |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -78,7 +78,7 @@
 | P8  | Services pages                        | P7                    | Owner                           | Complete    |
 | P9  | Projects pages                        | P7                    | Owner                           | Complete    |
 | P10 | About page                            | P7                    | Owner                           | Complete    |
-| P11 | Equipment & Capabilities page         | P7                    | Owner                           | Not started |
+| P11 | Equipment & Capabilities page         | P7                    | Owner                           | Review      |
 | P12 | Testimonials page                     | P7                    | Owner                           | Not started |
 | P13 | Contact page and form                 | P7, O-01              | Owner                           | Not started |
 | P14 | SEO, metadata, legal and system pages | P8–P13                | Technical                       | Not started |
@@ -247,10 +247,19 @@
   - "Who we serve" and the practices in "How we work" make claims Liyat must confirm (C-28, C-09).
   - Console errors at the three widths not yet captured; full browser/aesthetic review happens at the end (D-43).
 
-### P11 — Equipment · P12 — Testimonials
+### P11 — Equipment & Capabilities · `Review`
 
-- **What:** Each page exactly as its blueprint in Design System §4, composed from existing sections and cards. A new component is added to the library (and the styleguide) first, never inside a page.
-- **Done when:** Per page: definition of done plus owner approval.
+- **Built:** `/equipment-capabilities` = PageHeader → EquipmentGrid "Drilling rigs" (`EquipmentCard`, paper) → EquipmentGrid "Equipment specifications" (`presentation="specifications"`: FeatureCard + FactsTable, stone) → ProofStrip "Capability in the field" (`KEY_FIGURES`) → FeatureGrid "Safety and site practice" (`SAFETY_PRACTICES`) → CtaBand. Tones alternate from whichever equipment sections render.
+- New in the library, shown on `/styleguide`: `sections/equipment-grid`. `EquipmentCard` gained `photoWidth` ('half' beside a single card's heading). `Equipment` gained `category: 'rig' | 'support'`; new `EquipmentPage` type; `EQUIPMENT_PAGE` copy.
+- Template page (177 lines, gradient/blur markup) replaced; its `check:design` LEGACY entry removed. Template `Container`/`PremiumButton` no longer used here.
+- **`CAPABILITIES` kept (owner, 2026-10-21):** the four disciplines have no consumer after the rebuild — the blueprint's "capability figures" is the ProofStrip. Owner chose to keep the data for now; likely homes are a disciplines FeatureGrid on this page or deletion at P16.
+- **Verified:** screenshots at 375/768/1280 taken (`.p11-*.png`). `validate`, `check:design`, `check:placeholders` and `build:static` were **not re-run** — the owner instructed commit without verification this session; run them at P12 start or in P15.
+- **Open points:** all machine specs, figures and practices are marked placeholders until C-16, C-10, C-17; the rigs section holds a single card until more rigs are confirmed.
+
+### P12 — Testimonials
+
+- **What:** `/testimonials` exactly as its blueprint in Design System §4: PageHeader → Testimonials (TestimonialCard grid) → reference letters (ReferenceCard) → client logos → CtaBand. A new component is added to the library (and the styleguide) first, never inside a page.
+- **Done when:** Definition of done plus owner approval (D-43: review at end of run).
 
 ### P13 — Contact page and form
 
@@ -407,18 +416,24 @@ Decisions that constrain future work. Change one only by adding a new row that s
 
 ### Current state of the code
 
-Home, Services, Projects and About are rebuilt in the final design system
-(P7–P10). Equipment, Testimonials and Contact are still template pages on the
-`check:design` LEGACY list; P11–P13 rebuild them next. Content and photos in
+Home, Services, Projects, About and Equipment are rebuilt in the final design
+system (P7–P11). Testimonials and Contact are still template pages on the
+`check:design` LEGACY list; P12–P13 rebuild them next. Content and photos in
 `src/data/` and `public/` carry `PLACEHOLDER(C-xx)` markers until P16.
 
-### Last session — 2026-10-21 (P10)
+### Last session — 2026-10-21 (P11)
+
+- P11 was found already built in the working tree (uncommitted) by a prior session: new `EquipmentGrid` section, `Equipment.category`, `EquipmentPage`/`EQUIPMENT_PAGE`, styleguide updated, LEGACY entry removed, screenshots taken.
+- Owner: keep `CAPABILITIES` for now (no consumer after the rebuild); commit without running checks; move to P12.
+- P11 committed; status `Review` — checks not re-run this session, owner aesthetic review deferred to end of run (D-43).
+
+### Earlier session — 2026-10-21 (P10)
 
 - Owner answered the four P10 questions one at a time: keep the old sections (D-50), facts both ways (D-51), delete `loading.tsx` (D-52), build.
 - Built and verified P10; `validate`, `check:design`, `check:placeholders` (expected markers) and `build:static` pass; `/about` serves its content directly.
 - Screenshots at 375/768/1280 taken; 1280 reviewed and correct. Remaining: owner's whole-site review at the end (D-43).
 - Tooling: PIL is not installed, so cropping the tall screenshot failed; view captures directly or re-screenshot per section.
-- P10 commit `P10: About page` is still pending the owner's OK.
+- P10 committed as `b6565c7` (`P10: About page`), verified in git during P11 orientation.
 
 ### Earlier session — 2026-10-21 (P9)
 
@@ -573,4 +588,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P10 — About page.** See §4 P10. P3 still waits for C-01.
+**P12 — Testimonials page.** See §4 P12 and the Testimonials blueprint in Design System §4. P3 still waits for C-01.

@@ -96,6 +96,7 @@ export interface Testimonial {
 }
 
 export interface Equipment {
+  category: 'rig' | 'support';
   name: string;
   /** e.g. 'Drilling rig', 'Air compressor' */
   type: string;
@@ -251,6 +252,14 @@ export interface HomePage {
   lifecycle: SectionCopy;
   equipment: SectionCopy & { link: Action };
   testimonials: SectionCopy;
+}
+
+export interface EquipmentPage {
+  header: PageCopy;
+  rigs: SectionCopy;
+  support: SectionCopy;
+  figures: SectionCopy;
+  safety: SectionCopy;
 }
 
 export interface ContactPage {

@@ -4,11 +4,46 @@
  * CAPABILITIES → the disciplines on /equipment-capabilities
  */
 
-import type { Capability, Equipment } from '@/types/content';
+import type { Capability, Equipment, EquipmentPage } from '@/types/content';
+
+export const EQUIPMENT_PAGE: EquipmentPage = {
+  header: {
+    eyebrow: 'Equipment and field capacity',
+    title: 'Equipment & capabilities',
+    intro:
+      'Drilling rigs, support equipment and pumping-test specifications for planning a groundwater project. Contact us to discuss the equipment required for your site.',
+    description:
+      'Explore Liyat Construction’s drilling and support equipment, pumping-test specifications and site practices for groundwater projects in Ethiopia.',
+  },
+  rigs: {
+    eyebrow: 'Drilling equipment',
+    title: 'Drilling rigs',
+    intro:
+      'Makes, models and rated specifications are awaiting confirmation (C-16). Rated capacity is a machine specification, not a guaranteed depth at every site.',
+  },
+  support: {
+    eyebrow: 'Support and testing',
+    title: 'Equipment specifications',
+    intro:
+      'Compressor and test-pump details are awaiting the confirmed equipment inventory (C-16). Ask us for the specifications required by your tender.',
+  },
+  figures: {
+    eyebrow: 'Project record',
+    title: 'Capability in the field',
+    intro:
+      'These figures describe completed work, not equipment ratings. Values are placeholders until supporting project records are supplied (C-10).',
+  },
+  safety: {
+    eyebrow: 'Site responsibility',
+    title: 'Safety and site practice',
+    intro: 'The practices below are placeholders awaiting confirmation from Liyat (C-17).',
+  },
+};
 
 // PLACEHOLDER(C-16): makes, models, rated depths and photos per machine (D-36: no invented specs)
 export const EQUIPMENT: Equipment[] = [
   {
+    category: 'rig',
     name: 'Rig model (C-16)',
     type: 'Drilling rig',
     image: {
@@ -21,6 +56,7 @@ export const EQUIPMENT: Equipment[] = [
     ],
   },
   {
+    category: 'support',
     name: 'Compressor model (C-16)',
     type: 'Air compressor',
     specs: [
@@ -29,6 +65,7 @@ export const EQUIPMENT: Equipment[] = [
     ],
   },
   {
+    category: 'support',
     name: 'Test pump model (C-16)',
     type: 'Pumping-test equipment',
     specs: [{ label: 'Test capacity', value: '— L/s (C-16)' }],

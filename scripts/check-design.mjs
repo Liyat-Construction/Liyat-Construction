@@ -45,7 +45,6 @@ const ALLOWED = new Set(['src/styles/tokens.css']);
 // P2 added the template files that only the new removed-default rules caught.)
 const LEGACY = new Set([
   'src/app/contact/page.tsx',
-  'src/app/equipment-capabilities/page.tsx',
   'src/app/error.tsx',
   'src/app/not-found.tsx',
   'src/app/privacy-policy/page.tsx',
