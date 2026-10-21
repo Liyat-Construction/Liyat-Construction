@@ -11,27 +11,15 @@ import type { Service } from '@/types/content';
 
 // Icon mapping from service slugs to React components
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  'hydrogeological-investigations': SearchIcon,
+  'hydrogeological-survey': SearchIcon,
   'well-drilling': DrillIcon,
   'pumping-tests': GaugeIcon,
   'wellhead-rehabilitation': WrenchIcon,
-  'pump-installation-electromechanical': CogIcon,
-  'turnkey-water-projects': DropletIcon,
+  'pump-installation': CogIcon,
+  'turnkey-projects': DropletIcon,
 };
 
-type ServiceCardData = Pick<
-  Service,
-  'title' | 'description' | 'slug' | 'tag' | 'isHighlighted' | 'forWho' | 'ctaText'
->;
-
-const tagColors: Record<string, string> = {
-  Investigation: 'bg-brand-accent/15 text-brand-accent',
-  Drilling: 'bg-emerald-100 text-emerald-800',
-  Testing: 'bg-blue-100 text-blue-700',
-  Rehabilitation: 'bg-amber-100 text-amber-800',
-  Electromechanical: 'bg-slate-100 text-slate-700',
-  Turnkey: 'bg-cyan-100 text-cyan-800',
-};
+type ServiceCardData = Pick<Service, 'title' | 'summary' | 'slug' | 'forWho' | 'cta'>;
 
 interface ServicesSectionProps {
   title: string;
@@ -92,16 +80,12 @@ function ServiceCard({
   service: ServiceCardData;
   IconComponent: React.ComponentType<{ className?: string }>;
 }) {
-  const tagColor = tagColors[service.tag ?? ''] ?? tagColors['Primary'];
-
   return (
     <Link href={`/services/${service.slug}`} className="block h-full">
       <div
         className={cn(
           'group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border p-8',
-          service.isHighlighted
-            ? 'border-brand-accent/50 ring-brand-accent/20 bg-white shadow-lg ring-1'
-            : 'border-gray-100 bg-white shadow-sm',
+          'border-gray-100 bg-white shadow-sm',
           'transition-all duration-500',
           'hover:border-brand-accent/30 hover:shadow-[0_8px_30px_rgba(15,42,68,0.08)]',
           'hover:-translate-y-1'
@@ -122,11 +106,6 @@ function ServiceCard({
           >
             <IconComponent className="text-brand-accent h-6 w-6" />
           </div>
-          {service.tag && (
-            <span className={cn('rounded-full px-2.5 py-1 text-xs font-semibold', tagColor)}>
-              {service.tag}
-            </span>
-          )}
         </div>
 
         {/* Title */}
@@ -155,12 +134,12 @@ function ServiceCard({
             'text-text-secondary'
           )}
         >
-          {service.description}
+          {service.summary}
         </p>
 
         {/* CTA */}
         <div className="text-brand-accent relative mt-6 flex items-center gap-1.5 text-sm font-medium transition-all duration-300 group-hover:gap-2.5">
-          <span>{service.ctaText ?? 'Learn more'}</span>
+          <span>{service.cta}</span>
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </div>
 

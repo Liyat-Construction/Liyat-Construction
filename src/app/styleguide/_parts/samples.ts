@@ -2,32 +2,32 @@
  * Realistic Liyat content for the style guide only, so the look is judged with
  * real-length text. Unconfirmed facts carry their client checklist item.
  */
-import type { ImageAsset, Stat } from '@/types/content';
+import type { ImageAsset, Reference } from '@/types/content';
 
 export const photos = {
   hero: {
-    url: '/hero/hero-water-column.webp',
+    url: '/images/hero/water-column.webp',
     alt: 'Water rising beside a Liyat drilling rig during well development',
   },
   rigFleet: {
-    url: '/hero/hero-afar-rig-fleet.webp',
+    url: '/images/hero/afar-rig-fleet.webp',
     alt: 'Liyat drilling rigs and support trucks on site in the Afar region',
   },
   pumpingTest: {
-    url: '/projects/tsedey-bank-pumping-test.webp',
+    url: '/images/projects/tsedey-bank-pumping-test/cover.webp',
     alt: 'Pumping test discharge at the Tsedey Bank site',
   },
   pumpingTestTop: {
-    url: '/projects/tsedey-bank-pumping-test.webp',
+    url: '/images/projects/tsedey-bank-pumping-test/cover.webp',
     alt: 'Pumping test discharge at the Tsedey Bank site',
     focus: 'top',
   },
   airlift: {
-    url: '/projects/well-airlift-development.webp',
+    url: '/images/site/well-airlift-development.webp',
     alt: 'Airlift development of a new well',
   },
   rigTransport: {
-    url: '/projects/rig-transport.webp',
+    url: '/images/equipment/rig-transport.webp',
     alt: 'Drilling rig being transported to site',
   },
 } as const satisfies Record<string, ImageAsset>;
@@ -39,23 +39,23 @@ export const hero = {
   lead: 'We take water projects from hydrogeological survey through drilling, testing and pump installation, and document every stage for our clients.',
 };
 
-// PLACEHOLDER(C-10): figures to be supplied by Liyat
-export const stats: Stat[] = [
-  { value: '120', unit: '+', label: 'Wells completed' },
-  { value: '350', unit: 'm', label: 'Deepest well drilled' },
-  { value: '18', unit: 'L/s', label: 'Highest tested yield', water: true },
-];
-
-// PLACEHOLDER(C-11): project facts to be confirmed by Liyat
+// PLACEHOLDER(C-11): project facts to be confirmed by Liyat (D-36: no invented figures)
 export const projectFacts = [
   { label: 'Client', value: 'Tsedey Bank' },
   { label: 'Location', value: 'Addis Ababa' },
-  { label: 'Year', value: '2024' },
+  { label: 'Year', value: '— (C-11)' },
   { label: 'Services', value: 'Pumping Tests' },
-  { label: 'Depth', value: '220 m' },
-  { label: 'Tested yield', value: '6.5 L/s' },
-  { label: 'Duration', value: '72-hour constant-rate test' },
+  { label: 'Depth', value: '— m (C-11)' },
+  { label: 'Tested yield', value: '— L/s (C-11)' },
+  { label: 'Duration', value: '— (C-11)' },
 ];
+
+// PLACEHOLDER(C-13): REFERENCES is empty until letters arrive; this sample shows the card only
+export const reference: Reference = {
+  organization: 'Organization (C-13)',
+  date: '2025-03-14',
+  file: '#cards',
+};
 
 export const services = [
   'Hydrogeological & Geophysical Survey',

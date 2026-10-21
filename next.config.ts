@@ -33,10 +33,13 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
 
   images: {
-    // Static hosts have no image optimizer, so images are served as-is there
-    unoptimized: isDev || isStaticExport,
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
+    // Images are prepared ahead of time by `npm run images` (Engineering §5, D-35);
+    // the loader picks a prepared width, on every host and in dev.
+    loader: 'custom',
+    loaderFile: './src/lib/image-loader.ts',
+    // The widths srcset asks for; the loader maps each to the nearest prepared one
+    deviceSizes: [400, 640, 800, 1024, 1600, 1920],
+    imageSizes: [],
   },
 
   // Security headers (Vercel / Node hosting). Static hosts ignore this —

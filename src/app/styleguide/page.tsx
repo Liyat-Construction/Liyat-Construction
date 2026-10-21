@@ -15,7 +15,18 @@ import { Tag } from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { siteConfig } from '@/config/site';
 import { HeroPreview } from './_parts/hero-preview';
-import { photos, projectFacts, prose, sectionCopy, services, stats } from './_parts/samples';
+import { EquipmentCard } from '@/components/cards/equipment-card';
+import { ProjectCard } from '@/components/cards/project-card';
+import { ReferenceCard } from '@/components/cards/reference-card';
+import { ServiceCard } from '@/components/cards/service-card';
+import { TeamCard } from '@/components/cards/team-card';
+import { TestimonialCard } from '@/components/cards/testimonial-card';
+import { KEY_FIGURES, TEAM } from '@/data/company';
+import { EQUIPMENT } from '@/data/equipment';
+import { getProjectBySlug, PROJECTS } from '@/data/projects';
+import { getServiceTitles, SERVICES } from '@/data/services';
+import { TESTIMONIALS } from '@/data/testimonials';
+import { photos, projectFacts, prose, reference, sectionCopy, services } from './_parts/samples';
 import { Caption, Specimen, Swatch } from './_parts/specimen';
 import { readTokens } from './_parts/tokens';
 
@@ -40,6 +51,15 @@ const colorRoles: Record<string, string> = {
 };
 
 const tones: SectionTone[] = ['paper', 'stone', 'tint', 'ink', 'brand'];
+const statTones = ['ink', 'brand', 'water'] as const;
+
+// Figures (D-36: placeholders until C-10) and three projects: with a yield, without one, and without services
+const stats = KEY_FIGURES.slice(0, 3);
+const sampleProjects = [
+  PROJECTS[0],
+  getProjectBySlug('british-embassy-pump-installation'),
+  getProjectBySlug('credocs-shoring'),
+].filter((project) => project !== undefined);
 
 export default function StyleguidePage() {
   const colors = readTokens('color');
@@ -50,7 +70,7 @@ export default function StyleguidePage() {
       <Section tone="stone" spacing="compact">
         <SectionHeading
           as="h1"
-          eyebrow="P4 · design review"
+          eyebrow="P6 · design review"
           title="Liyat design system"
           intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it."
         />
@@ -227,9 +247,15 @@ export default function StyleguidePage() {
           <div className="gap-grid grid lg:grid-cols-2">
             <Specimen title="Stat" note="ink · brand · water (water data only)">
               <dl className="gap-grid grid grid-cols-3">
-                <Stat value="120" unit="+" label="Wells completed" />
-                <Stat value="350" unit="m" label="Deepest well" tone="brand" />
-                <Stat value="18" unit="L/s" label="Tested yield" tone="water" />
+                {stats.map((stat, index) => (
+                  <Stat
+                    key={stat.label}
+                    value={stat.value}
+                    unit={stat.unit}
+                    label={stat.label}
+                    tone={statTones.at(index) ?? 'ink'}
+                  />
+                ))}
               </dl>
             </Specimen>
             <Specimen title="FactsTable">
@@ -270,11 +296,80 @@ export default function StyleguidePage() {
                 <Photo image={photos.pumpingTest} width="third" />
                 <div className="flex flex-col gap-2 p-6">
                   <h3 className="text-h3">Tsedey Bank pumping test</h3>
-                  <p className="text-small text-ink-muted">Addis Ababa · 2024</p>
+                  <p className="text-small text-ink-muted">Addis Ababa</p>
                 </div>
               </Card>
             </div>
           </Specimen>
+        </div>
+      </Section>
+
+      <Section id="cards" labelledBy="sg-cards">
+        <div className="flex flex-col gap-16">
+          <SectionHeading
+            id="sg-cards"
+            eyebrow="Cards"
+            title="Domain cards, with the site's data"
+            intro="Each card takes one object from src/data. Facts Liyat has not confirmed are marked (C-xx) and render nothing when missing."
+          />
+          <Specimen
+            title="ProjectCard"
+            note="with a tested yield · without a figure · without a listed service"
+          >
+            <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+              {sampleProjects.map((project) => (
+                <li key={project.slug}>
+                  <ProjectCard
+                    project={project}
+                    serviceNames={getServiceTitles(project.services)}
+                  />
+                </li>
+              ))}
+            </ul>
+          </Specimen>
+          <Specimen title="ServiceCard" note="lifecycle order, 01–06">
+            <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+              {SERVICES.map((service, index) => (
+                <li key={service.slug}>
+                  <ServiceCard service={service} number={index + 1} />
+                </li>
+              ))}
+            </ul>
+          </Specimen>
+          <Specimen title="TestimonialCard" note="layout placeholders (C-12)">
+            <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+              {TESTIMONIALS.map((testimonial, index) => (
+                <li key={index}>
+                  <TestimonialCard testimonial={testimonial} />
+                </li>
+              ))}
+            </ul>
+          </Specimen>
+          <Specimen title="EquipmentCard" note="with and without a photo (C-16)">
+            <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
+              {EQUIPMENT.map((equipment) => (
+                <li key={equipment.name}>
+                  <EquipmentCard equipment={equipment} />
+                </li>
+              ))}
+            </ul>
+          </Specimen>
+          <div className="gap-grid grid lg:grid-cols-4">
+            <Specimen title="TeamCard" note="no portraits yet (C-15)" className="lg:col-span-3">
+              <ul className="gap-grid grid sm:grid-cols-3">
+                {TEAM.map((member, index) => (
+                  <li key={index}>
+                    <TeamCard member={member} />
+                  </li>
+                ))}
+              </ul>
+            </Specimen>
+            <Specimen title="ReferenceCard" note="no scan yet (C-13)">
+              <div className="max-w-xs">
+                <ReferenceCard reference={reference} />
+              </div>
+            </Specimen>
+          </div>
         </div>
       </Section>
 

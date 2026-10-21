@@ -9,7 +9,7 @@ const paddings = {
 
 interface CardProps {
   children: React.ReactNode;
-  as?: 'div' | 'article' | 'li';
+  as?: 'div' | 'article' | 'li' | 'figure';
   /** Makes the whole card one link; its Photo zooms and the border turns green on hover */
   href?: string;
   padding?: keyof typeof paddings;

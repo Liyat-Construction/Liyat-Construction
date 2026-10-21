@@ -77,12 +77,14 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <div className="flex items-center gap-4">
         <div className="from-brand-primary to-brand-primary-light relative h-12 w-12 overflow-hidden rounded-full bg-gradient-to-br">
           <div className="flex h-full w-full items-center justify-center font-semibold text-white">
-            {(testimonial.clientName || 'A').charAt(0)}
+            {(testimonial.name || 'A').charAt(0)}
           </div>
         </div>
         <div>
-          <div className={cn('font-semibold', 'text-brand-primary')}>{testimonial.clientName}</div>
-          <div className="text-text-muted text-sm">{testimonial.company}</div>
+          <div className={cn('font-semibold', 'text-brand-primary')}>{testimonial.name}</div>
+          <div className="text-text-muted text-sm">
+            {testimonial.role}, {testimonial.organization}
+          </div>
         </div>
       </div>
 

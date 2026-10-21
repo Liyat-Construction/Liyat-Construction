@@ -107,7 +107,6 @@ function PartnerCard({ partner }: { partner: Partner }) {
           alt={partner.name}
           fill
           sizes="256px"
-          unoptimized
           className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
         />
       ) : partner.photo ? (
@@ -117,7 +116,6 @@ function PartnerCard({ partner }: { partner: Partner }) {
             alt=""
             fill
             sizes="256px"
-            unoptimized
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="from-brand-primary-dark/90 via-brand-primary-dark/30 absolute inset-0 bg-gradient-to-t to-transparent" />

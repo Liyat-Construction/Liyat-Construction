@@ -1,33 +1,32 @@
 /**
  * Testimonials
- * Shown on the homepage and /testimonials.
- *
- * NOTE: The testimonials below are placeholders for layout review only.
- * They must be replaced with approved, real client quotes before the site
- * is published. Names, companies, and quotes are not verified.
+ * Shown on the homepage and /testimonials; the section hides when the list is empty.
+ * Only real quotes with name, role, organization and permission to publish (C-12).
  */
-
-// PLACEHOLDER(C-12): every entry below; replace with approved testimonials
 
 import type { Testimonial } from '@/types/content';
 
+// PLACEHOLDER(C-12): every entry below is for layout review only (D-36); replace with approved quotes or empty the list
 export const TESTIMONIALS: Testimonial[] = [
   {
-    clientName: 'Alemayew Bayew',
-    company: 'Facilities Director, Addis Ababa',
     quote:
-      'Liyat Construction delivered a thorough pumping test and clear report that helped us size our pump system correctly. Their team was professional and responsive throughout the project.',
+      'The pumping test report was clear enough for our engineers to size the pump system directly from it. The team kept us informed at every stage.',
+    name: 'Name Surname',
+    role: 'Role',
+    organization: 'Organization (C-12)',
   },
   {
-    clientName: 'Tigist Haile',
-    company: 'Project Manager, International NGO',
     quote:
-      'We needed a reliable groundwater source in a remote location, and Liyat managed the investigation, drilling, and installation from start to finish. The well has performed as expected.',
+      'Liyat ran the survey, drilling and pump installation as one project. The well has performed as the test predicted.',
+    name: 'Name Surname',
+    role: 'Role',
+    organization: 'Organization (C-12)',
   },
   {
-    clientName: 'Yonas Tadesse',
-    company: 'Operations Lead, Commercial Development',
     quote:
-      'From site investigation to final pump installation, Liyat showed strong technical discipline. Their documentation made it easy for us to report back to our board and donors.',
+      'Their documentation made it straightforward to report back to our board and our funders.',
+    name: 'Name Surname',
+    role: 'Role',
+    organization: 'Organization (C-12)',
   },
 ];

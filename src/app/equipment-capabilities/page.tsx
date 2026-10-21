@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { CTASection } from '@/components/cta-section';
 import { PremiumButton } from '@/components/premium-button';
 import { HOME_PAGE } from '@/data/home';
+import { CAPABILITIES } from '@/data/equipment';
 import { ChevronRight, Home, Check } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -19,49 +20,6 @@ const CARD_ACCENT =
   'absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-brand-accent to-brand-accent/50';
 const LABEL = 'text-sm font-semibold tracking-widest text-brand-accent uppercase';
 const BODY = 'text-lg leading-relaxed text-text-secondary';
-
-const CAPABILITY_CARDS = [
-  {
-    title: 'Drilling Operations',
-    body: 'Deep and shallow well drilling using rotary, percussion, and air-drilling methods matched to formation conditions. Our crews are experienced in installing casing, screen, and gravel pack across a range of geological settings.',
-    items: [
-      'Rotary and percussion drilling rigs',
-      'Air drilling and down-the-hole hammer capability',
-      'Casing, screen, and gravel-pack installation',
-      'Borehole development and surging',
-    ],
-  },
-  {
-    title: 'Pumping Tests & Evaluation',
-    body: 'In-house pumping-test capability to verify well yield, determine aquifer parameters, and support pump selection. We monitor drawdown, recovery, and water quality to produce reports for design and compliance.',
-    items: [
-      'Step-drawdown and constant-rate tests',
-      'Water-level data logging',
-      'Recovery analysis and aquifer parameter estimation',
-      'Yield and sustainability assessment',
-    ],
-  },
-  {
-    title: 'Pump & Electromechanical',
-    body: 'Installation of submersible and surface pumps, motors, control panels, rising mains, and generators. We commission systems and verify performance against design before handover.',
-    items: [
-      'Submersible and surface pump installation',
-      'Control panels and electrical works',
-      'Generator and backup power integration',
-      'System commissioning and performance verification',
-    ],
-  },
-  {
-    title: 'Investigation & Geophysics',
-    body: 'Desk studies, field reconnaissance, and geophysical surveys to identify drilling targets and reduce dry-hole risk before mobilizing a rig.',
-    items: [
-      'Hydrogeological desk reviews',
-      'Vertical electrical sounding (VES)',
-      'Resistivity profiling and interpretation',
-      'Drilling recommendation reports',
-    ],
-  },
-];
 
 export default function EquipmentCapabilitiesPage() {
   return (
@@ -148,7 +106,7 @@ export default function EquipmentCapabilitiesPage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {CAPABILITY_CARDS.map((card) => (
+            {CAPABILITIES.map((card) => (
               <div
                 key={card.title}
                 className={cn(

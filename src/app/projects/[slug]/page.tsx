@@ -9,7 +9,8 @@ import { PROJECTS, getProjectBySlug } from '@/data/projects';
 import { HOME_PAGE } from '@/data/home';
 import { siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
-import { ArrowLeft, Calendar, Home, ChevronRight, MapPin, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Home, ChevronRight, MapPin } from 'lucide-react';
+import { preparedImageUrl } from '@/lib/image-loader';
 
 export const dynamicParams = false;
 
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   const projectUrl = `${siteUrl}/projects/${slug}`;
-  const imageUrl = toAbsoluteUrl(project.image?.url ?? siteConfig.seo.ogImage);
+  const imageUrl = toAbsoluteUrl(preparedImageUrl(project.image.url));
   const description = project.summary || `Explore our work at ${siteConfig.name}.`;
 
   return {
@@ -137,15 +138,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.location}
                 </span>
               )}
-              {project.completedDate && (
-                <span className="flex items-center gap-2">
+              {project.year && (
+                <span className="flex items-center gap-2 text-sm">
                   <Calendar className="text-brand-accent h-4 w-4" />
-                  <time dateTime={project.completedDate} className="text-sm">
-                    {new Date(project.completedDate).toLocaleDateString(siteConfig.language, {
-                      year: 'numeric',
-                      month: 'long',
-                    })}
-                  </time>
+                  {project.year}
                 </span>
               )}
             </div>
@@ -187,58 +183,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {project.description}
               </p>
             </div>
-
-            {/* Tags */}
-            {project.tags.length > 0 && (
-              <div className="mb-10">
-                <h2
-                  className={cn(
-                    'mb-4 flex items-center gap-2 text-lg font-semibold',
-                    'text-brand-primary'
-                  )}
-                >
-                  <Tag className="text-brand-accent h-5 w-5" />
-                  Highlights
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="border-brand-accent/20 bg-brand-accent/10 text-brand-accent rounded-full border px-4 py-1.5 text-sm font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* External link */}
-            {project.url && (
-              <div className="mb-10">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-brand-primary inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--brand-primary)_40%,transparent)]"
-                >
-                  Visit Project
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </a>
-              </div>
-            )}
           </div>
 
           {/* Gallery */}

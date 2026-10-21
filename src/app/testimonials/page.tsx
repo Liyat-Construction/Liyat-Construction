@@ -84,14 +84,14 @@ export default function TestimonialsPage() {
                   <div className="flex items-center gap-4">
                     <div className="from-brand-primary to-brand-primary-light flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
                       <span className="font-semibold text-white">
-                        {(testimonial.clientName || 'A').charAt(0)}
+                        {(testimonial.name || 'A').charAt(0)}
                       </span>
                     </div>
                     <div>
-                      <div className="text-brand-primary font-semibold">
-                        {testimonial.clientName}
+                      <div className="text-brand-primary font-semibold">{testimonial.name}</div>
+                      <div className="text-text-muted text-sm">
+                        {testimonial.role}, {testimonial.organization}
                       </div>
-                      <div className="text-text-muted text-sm">{testimonial.company}</div>
                     </div>
                   </div>
                 </div>

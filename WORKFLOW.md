@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **P6 — Content model, data and domain cards** (not started; P3 and P5 blocked on the client)                        |
-| **Last completed**    | P4 — Component library + `/styleguide` (2026-10-21; cards moved to P6, hero choice to P7 — D-34)                    |
-| **Blocked on client** | Logo vector files (C-01) — needed by P3; contact details (C-03…C-06) — needed by P5                                 |
-| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-04 image script dependency · O-05 styleguide at launch       |
-| **Next action**       | Start P6: finish the content types and data, then build the six §3.2 cards on `/styleguide` for the owner's review. |
+|                       |                                                                                         |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| **Current step**      | **P5 — Site shell: header, menu, footer** (not started; built with placeholders — D-37) |
+| **Last completed**    | P6 — Content model, data and domain cards (2026-10-21)                                  |
+| **Blocked on client** | Logo vector files (C-01) — P3 only                                                      |
+| **Open decisions**    | O-01 form provider · O-02 hosting · O-03 analytics · O-05 styleguide at launch          |
+| **Next action**       | Start P5: Header, MobileMenu, Footer, SkipLink, PageHeader, CtaBand (§4 P5).            |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -72,8 +72,8 @@
 | P2  | Design tokens                         | P1                    | Technical                       | Complete    |
 | P3  | Logo master files                     | P2, C-01              | Owner + client                  | Not started |
 | P4  | Component library + `/styleguide`     | P2                    | **Owner — main aesthetic gate** | Complete    |
-| P5  | Site shell: header, menu, footer      | P3, P4                | Owner                           | Not started |
-| P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Not started |
+| P5  | Site shell: header, menu, footer      | P4, P6 (D-37)         | Owner                           | Not started |
+| P6  | Content model, data and domain cards  | P4                    | Technical + owner (cards)       | Complete    |
 | P7  | Home page + well diagram              | P5, P6                | Owner                           | Not started |
 | P8  | Services pages                        | P7                    | Owner                           | Not started |
 | P9  | Projects pages                        | P7                    | Owner                           | Not started |
@@ -145,7 +145,7 @@
 - **Why:** Every page shares it; it sets the first impression.
 - **Done when:** Keyboard and screen-reader pass on the menu; no layout shift on scroll; owner approves.
 
-### P6 — Content model, data and domain cards
+### P6 — Content model, data and domain cards · `Complete` (2026-10-21)
 
 - **What:**
   - Types were added in P4 as optional fields (D-28). P6 makes the essential ones required and replaces `Testimonial.company` with `role` + `organization`.
@@ -156,6 +156,20 @@
   - **Cards (from P4, D-34):** ProjectCard, ServiceCard, TestimonialCard, EquipmentCard, TeamCard, ReferenceCard in `src/components/cards/`, typed by the finished data shapes, shown on `/styleguide` with real data.
 - **Why:** Pages built in P7–P13 consume finished shapes; data changes later become type errors, not silent bugs. Cards built against final shapes are built once.
 - **Done when:** All data files are typed; `check:placeholders` lists exactly the open client items; the owner approves the cards on `/styleguide`.
+- **Plan agreed 2026-10-21:** two passes (data + images, then cards); D-35 (`sharp`, `public/images/`), D-36 (obvious placeholders), D-37 (P5 unblocked).
+- **Pass 1 done (2026-10-21):**
+  - Types (`content.ts`): `ServiceSlug` union; `Service` = slug, official name, summary, intro, overview, forWho, includes, method, deliverables, cta; `Project` requires client, location, image, gallery, `services: ServiceSlug[]`; year/depth/yield/duration/approach/result optional (unknown facts render nothing); `tags`, `completedDate`, `url`, `keyFigure` removed; `Testimonial` = quote, name, role, organization; new `Spec`, `Capability`; `Reference.thumbnail` optional.
+  - Data: six official services (Brand §9) with new slugs and verb-first CTAs; projects rewritten in sentence case, CREDOCS spelled one way (C-23) with no service (C-09), Entoto client replaced by "Client name (C-11)"; new `equipment.ts` (EQUIPMENT, CAPABILITIES moved out of the Equipment page) and `company.ts` (KEY_FIGURES, CREDENTIALS, TEAM, REFERENCES = []); every unknown marked, including the contact details in `site.ts`.
+  - Images: sources `git mv`-ed to `assets/images/`; `npm run images` writes 28 images × widths to `public/images/`; custom next/image loader; Open Graph uses `preparedImageUrl`.
+  - Template pages patched only to compile (service tags, project tags/links, testimonial fields); they are rebuilt in P7–P12.
+  - I narrowed claims I could not source: dropped "percussion drilling", "VFDs/generators", and turnkey "treatment, storage and distribution networks"; all service wording is marked C-09.
+- **Pass 2 done (2026-10-21):** `src/components/cards/`: ProjectCard, ServiceCard, TestimonialCard, EquipmentCard, TeamCard, ReferenceCard; shown on `/styleguide` → "Cards" with the site's data. `Card` gained `as="figure"`. Styleguide samples no longer invent figures (D-36).
+- **Owner, 2026-10-21:** "if done 6 commit it" — committed on that instruction; the cards were not given a separate visual sign-off, so they are reviewed again when P7–P12 place them on pages (as D-34: Wondossen reviews the whole site at the end).
+- **Open points for later review:**
+  - Placeholder cards (team, equipment, testimonials) look deliberately empty; judge spacing and hierarchy, not content.
+  - An equipment card without a photo sits beside one with a photo and looks unbalanced; real photos (C-16) fix it, or the page groups them.
+  - Long official service names make long tags ("Pump Installation & Electromechanical Works" wraps to two lines on cards).
+  - Card photos exceed the image budget (R-09).
 
 ### P7 — Home page + well diagram
 
@@ -280,17 +294,19 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-32 | 2026-10-20 | `pick(map, key)` helper for variant lookups holds the only `security/detect-object-injection` exception; `cn()` extends tailwind-merge with the token names                                                                                                                                      | The lint rule rejects `map[key]`; plain tailwind-merge reads `text-body` as a color and drops it next to `text-white`                                                                                                                               |
 | D-33 | 2026-10-21 | Surfaces: page `paper` = **`#F8F7F3`** (warm off-white), `stone` = **`#EEEBE3`**, cards/inputs/tags/header = `white` `#FFFFFF`. Owner chose option B of an A/B/C comparison on `/styleguide` (closes O-08). Changes Brand §4/§11 "white pages"; covered by Wondossen's guideline approval (C-26) | Owner wanted page and cards distinct while both read as white. An off-white page alone sits within ΔE 1.8 of the old Stone, so Stone deepened with it. All text pairs still pass AA: Ink 14.6/13.2, Ink Muted 6.0/5.4, Green 6.6/5.9 on Paper/Stone |
 | D-34 | 2026-10-21 | P4 is complete with the primitives and `/styleguide`; the six domain cards move to P6 and the hero panel choice to P7. Owner decision: commit now, Wondossen reviews the whole site at the end                                                                                                   | Agent's objection, recorded: P4 was meant to judge the cards before they multiply. Risk is low because no page uses a card before P7, and P6 builds them against the final data shapes, so they are reviewed at P6 instead                          |
+| D-35 | 2026-10-21 | `sharp` is an explicit devDependency (version Next already installs) for `scripts/optimize-images.mjs`; images move to `public/images/{hero,projects/<slug>,clients}/` (closes O-04)                                                                                                             | Only transitively installed before, so a Next update could break the script; responsive widths are required by the image budget (Engineering §4–5)                                                                                                  |
+| D-36 | 2026-10-21 | Unconfirmed **facts** use obviously fake placeholders ("Name Surname", "Rig model (C-16)", no invented figures); only text length stays realistic. Cards render nothing for a missing figure. Refines D-17                                                                                       | Fake quotes under realistic names and invented depths beside real client names could ship by accident or be read as fact (R-02)                                                                                                                     |
+| D-37 | 2026-10-21 | P5 no longer waits for the client: built with marked placeholder contact details and the current `logo.png`, swapped at P3/P16. P5 runs right after P6                                                                                                                                           | D-17 allows placeholders; otherwise the critical path P5 → P7 → every page waits on client content                                                                                                                                                  |
 
 ### Open decisions
 
-| ID   | Question                                                         | Recommendation                                                                                                           | Needed by |
-| ---- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------- |
-| O-01 | Form provider                                                    | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter                           | P13       |
-| O-02 | Hosting                                                          | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise                  | P17       |
-| O-03 | Analytics                                                        | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner                     | P14       |
-| O-04 | Add `sharp` as a devDependency for `scripts/optimize-images.mjs` | **Yes**: responsive image sizes are required for the performance budget; it is already installed transitively by Next.js | P6        |
-| O-05 | `/styleguide` at launch                                          | Keep it, `noindex` and unlinked — useful for future maintenance                                                          | P17       |
-| O-06 | Floating WhatsApp/Telegram button                                | Only if the client actively answers that channel (C-20)                                                                  | P5        |
+| ID   | Question                          | Recommendation                                                                                          | Needed by |
+| ---- | --------------------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| O-01 | Form provider                     | **Web3Forms**: free tier sufficient, works on static hosting, no backend, built-in spam filter          | P13       |
+| O-02 | Hosting                           | **Vercel** if the client accepts it (headers, HTTPS, previews included); cPanel static export otherwise | P17       |
+| O-03 | Analytics                         | None at launch, or a cookieless option (e.g. Vercel Analytics / Plausible) — avoids a consent banner    | P14       |
+| O-05 | `/styleguide` at launch           | Keep it, `noindex` and unlinked — useful for future maintenance                                         | P17       |
+| O-06 | Floating WhatsApp/Telegram button | Only if the client actively answers that channel (C-20)                                                 | P5        |
 
 ## 7. Risks
 
@@ -303,6 +319,7 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | R-05 | No automated UI tests                                                                                                                                                                                                                                        | Typed data, `check:design`, styleguide review, manual QA in P15                                               | Open   |
 | R-06 | Contact details on the current site may be invented                                                                                                                                                                                                          | Confirm C-03…C-05 before anything is published                                                                | Open   |
 | R-07 | Contact form adds ~79 KB gzip (zod + react-hook-form) to every page that renders it — today home and contact                                                                                                                                                 | Home blueprint has no form (P7 drops it); P13 uses `zod/mini` or native constraint validation and measures it | Open   |
+| R-09 | Card photos at 800 px are 54–208 KB (budget 70 KB); recompressed social-media sources compress badly, and quality 50 still gives ~70 KB on a 4:3 crop                                                                                                        | Originals (C-18), then `npm run images`; if still over, card-ratio crops in the script. Re-measure in P15     | Open   |
 | R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                       | Open   |
 
 ## 8. Handoff
@@ -314,7 +331,14 @@ The site is still the **Digital Aksumite template filled with Liyat content**
 rebuild the visual layer. Content and photos in `src/data/` and `public/` are
 reused.
 
-### Last session — 2026-10-21 (P4 complete)
+### Last session — 2026-10-21 (P6, passes 1 and 2)
+
+- Owner approved the P6 plan and D-35…D-37. Built both passes; owner asked to commit P6 → `Complete`, committed.
+- New preview config `static-out-3007` (`autoPort: false`): port 3005 was taken by another session's server. The built-in browser pane renders stale frames while the app window is hidden, so 1280/768 captures were made with headless Edge, and 375 through a 375 px iframe.
+- `check:placeholders` still lists two `example.com` strings on `/styleguide` (false positives); they fail the launch gate unless O-05 removes or excludes the styleguide.
+- Next: P5 with placeholder contact details and the current `logo.png` (D-37).
+
+### Earlier session — 2026-10-21 (P4 complete)
 
 - Owner asked to commit P4 and move on (D-34). Cards → P6, hero panel choice → P7. Screenshots for Wondossen made from `/styleguide`.
 - P4 committed.
@@ -373,6 +397,14 @@ reused.
 
 ### Verification evidence
 
+P6, 2026-10-21:
+
+- `npm run validate` → pass. `npm run check:design` → pass (no file added to LEGACY). `npm run check:placeholders` → 25 hits: C-03, C-04, C-05, C-07, C-08, C-09, C-10, C-11, C-12, C-13, C-14, C-15, C-16, C-23 in data/config, C-22 on the styleguide, plus 2 `example.com` false positives.
+- Clean `npm run build:static` → pass, 29 pages; new slugs generated (`/services/hydrogeological-survey`…, `/projects/credocs-shoring`).
+- Every `src`/`srcset` in the built home, projects, styleguide and CREDOCS pages resolves to a file in `out/` (229 refs checked; the client logos needed `unoptimized` removed). Srcset example: `cover-400.webp 400w, cover-800.webp 800w, cover-901.webp 1024w`. Project OG image → `…/cover-901.webp`.
+- Image sizes (`npm run images`): hero water column 19/34/56/72 KB at 640/1024/1600/1920 (budget 180 KB ✔); project covers at 800 px 92–208 KB (budget 70 KB ✘ → R-09); 400 px 24–67 KB.
+- Browser (static `out/` on port 3007): network shows every image 200; console errors are only the R-08 `__PAGE__.txt` prefetch 404s. No horizontal overflow at 375 (scrollWidth 375). Cards captured at 1280 and 768 (headless Edge) and 375 (iframe) and reviewed; fixed the testimonial divider touching the quote, and the styleguide's testimonial (3 → 2 columns at 768) and reference (max width) layout.
+
 P4 pass 1, 2026-10-20:
 
 - `npm run validate` → pass. `npm run check:design` → pass (no file added to LEGACY). `npm run check:placeholders` → 5 hits: C-12 (testimonials) plus C-22, C-10, C-11 and C-09 on the styleguide samples, as intended.
@@ -409,4 +441,4 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**P6 — Content model, data and domain cards.** See §4 P6. P3 waits for C-01 (logo files); P5 waits for C-03…C-05 (contact details).
+**P5 — Site shell.** See §4 P5. Built with marked placeholder contact details and the current `logo.png` (D-37); P3 waits for C-01.

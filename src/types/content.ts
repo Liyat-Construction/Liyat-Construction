@@ -1,13 +1,15 @@
 /**
  * Content Type Definitions
- * Shapes for the content files in src/data/*
+ * Shapes for the content files in src/data/*. Cards take these objects directly
+ * (Design System §3.2), so a change here shows up as a type error.
+ * Facts the client has not confirmed are optional: a missing fact renders nothing.
  */
 
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
 export type ImageFocus = 'center' | 'top' | 'bottom' | 'left' | 'right';
 
 export interface ImageAsset {
-  /** Path under /public, e.g. '/projects/villa.jpg' */
+  /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (Engineering §5) */
   url: string;
   alt: string;
   /** Defaults to 'center' */
@@ -22,43 +24,71 @@ export interface Stat {
   water?: boolean;
 }
 
-// Fields marked "P6" are optional until P6 fills the data; P6 makes the essential ones required.
-export interface Project {
+/** A label/value row of technical data (FactsTable). */
+export interface Spec {
+  label: string;
+  value: string;
+}
+
+/** The six services (Brand §9), in lifecycle order. Also the ids of the well-diagram parts. */
+export type ServiceSlug =
+  | 'hydrogeological-survey'
+  | 'well-drilling'
+  | 'pumping-tests'
+  | 'wellhead-rehabilitation'
+  | 'pump-installation'
+  | 'turnkey-projects';
+
+export interface Service {
+  slug: ServiceSlug;
+  /** The official name (Brand §9), used identically everywhere */
   title: string;
-  slug: string;
-  client?: string;
-  location?: string;
+  /** One line, on the service card */
   summary: string;
-  description: string;
-  image?: ImageAsset;
-  gallery?: ImageAsset[];
-  tags: string[];
-  completedDate?: string;
-  /** Optional external link (e.g. a live website or case study) */
-  url?: string;
-  featured: boolean;
-  /** P6: year completed */
+  /** Lead paragraph of the service page */
+  intro: string;
+  overview: string;
+  forWho: string;
+  includes: string[];
+  /** Method steps, in order */
+  method: string[];
+  /** What the client receives */
+  deliverables: string[];
+  /** Verb-first button text, e.g. 'Request a site survey' (Brand §8) */
+  cta: string;
+}
+
+export interface Project {
+  slug: string;
+  title: string;
+  client: string;
+  location: string;
+  /** Year completed */
   year?: number;
-  /** P6: e.g. { value: '180', unit: 'm' } */
+  summary: string;
+  /** The scope of work */
+  description: string;
+  approach?: string;
+  result?: string;
+  /** Cover photo: cards, page header, Open Graph */
+  image: ImageAsset;
+  gallery: ImageAsset[];
+  /** Services delivered, in lifecycle order; empty when the work is outside the six (C-09) */
+  services: ServiceSlug[];
+  /** Well depth, e.g. { value: '180', unit: 'm', label: 'Well depth' } */
   depth?: Stat;
-  /** P6: tested yield, e.g. { value: '6.5', unit: 'L/s', water: true } */
+  /** Tested yield (water: true). The project card shows it before depth */
   yield?: Stat;
-  /** P6: e.g. '6 weeks' */
+  /** e.g. '6 weeks' */
   duration?: string;
-  /** P6: service slugs, in lifecycle order */
-  services?: string[];
-  /** P6: the one figure shown on the project card */
-  keyFigure?: Stat;
+  featured: boolean;
 }
 
 export interface Testimonial {
   quote: string;
-  clientName: string;
-  company: string;
-  /** P6: replaces the role half of `company` */
-  role?: string;
-  /** P6: replaces the organization half of `company` */
-  organization?: string;
+  name: string;
+  role: string;
+  organization: string;
 }
 
 export interface Equipment {
@@ -66,8 +96,15 @@ export interface Equipment {
   /** e.g. 'Drilling rig', 'Air compressor' */
   type: string;
   image?: ImageAsset;
-  /** Key specs, e.g. rated depth, as label/value pairs */
-  specs: { label: string; value: string }[];
+  /** Key specs, e.g. rated depth */
+  specs: Spec[];
+}
+
+/** A discipline on the Equipment & Capabilities page. */
+export interface Capability {
+  title: string;
+  body: string;
+  items: string[];
 }
 
 export interface TeamMember {
@@ -80,8 +117,8 @@ export interface Reference {
   organization: string;
   /** ISO date, e.g. '2025-03-14' */
   date: string;
-  /** Letter thumbnail */
-  thumbnail: ImageAsset;
+  /** Scan of the first page; without it the card shows a document icon */
+  thumbnail?: ImageAsset;
   /** Path under /public to the full scan (PDF or image) */
   file: string;
 }
@@ -95,26 +132,11 @@ export interface Credential {
 
 export interface Partner {
   name: string;
-  /** Path under /public, e.g. '/partners/acme.png'. Without a logo, the name is shown as text. */
+  /** Prepared image path, e.g. '/images/clients/acme.webp'. Without a logo, the name is shown as text. */
   logo?: string;
   /** Site/project photo shown with the partner name when no logo is available. */
   photo?: string;
   url?: string;
-}
-
-export interface Service {
-  title: string;
-  slug: string;
-  description: string;
-  fullDescription: string;
-  heroText?: string;
-  howToStart?: string;
-  howToStartTagline?: string;
-  tag: string;
-  isHighlighted?: boolean;
-  forWho: string;
-  includes: string[];
-  ctaText: string;
 }
 
 export interface HomePage {

@@ -127,18 +127,6 @@ function ProjectCard({ project }: { project: Project }) {
           >
             {project.summary}
           </p>
-          {project.tags.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tags.map((tech) => (
-                <span
-                  key={tech}
-                  className="border-brand-accent/20 bg-brand-accent/10 text-brand-accent rounded-full border px-3 py-1 text-xs font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
 
         <div className="from-brand-accent via-brand-accent to-brand-accent absolute right-0 bottom-0 left-0 h-1 scale-x-0 bg-gradient-to-r transition-transform duration-500 group-hover:scale-x-100" />

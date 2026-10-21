@@ -51,6 +51,7 @@ npm run validate            # type-check + lint + format — must pass
 npm run check:design        # no raw design values outside tokens.css — must pass
 npm run check:placeholders  # PLACEHOLDER markers; must be zero at launch
 npm run build:static        # static export → out/ — must pass
+npm run images              # prepare web images from assets/images/
 ```
 
 ## Finishing a session

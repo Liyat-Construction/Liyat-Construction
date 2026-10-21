@@ -44,9 +44,13 @@ export const siteConfig = {
 
   // ── Contact Details ─────────────────────────────────────────────────────────
   contact: {
+    // PLACEHOLDER(C-05): does this mailbox exist? Brochure: liyatdrilling2021@gmail.com
     email: 'hello@liyatconstruction.com',
+    // PLACEHOLDER(C-04): numbers to publish (brochure also lists +251 90 680 8182)
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
+    // PLACEHOLDER(C-03): brochure says Eldasol Building, 2nd floor, Office 202, Bole, Woreda 04
     address: '301 Mickey Leland St, Addis Ababa, Ethiopia',
+    // PLACEHOLDER(C-07): office hours and working days
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
     // Google Maps → Share → Embed a map → copy only the src="..." URL
     mapEmbedUrl: '',

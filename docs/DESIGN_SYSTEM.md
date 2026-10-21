@@ -205,7 +205,7 @@ type Variant = keyof typeof variants;
 | `Button`         | `variant: 'primary' \| 'secondary' \| 'text'`, `size: 'md' \| 'lg'`, `href?` or `type?`/`disabled?`, `icon?: 'arrow' \| 'phone' \| 'mail'`        | Renders `SmartLink` or `<button>`. Swaps to the white palette on dark surfaces by itself (replaces `onDark` — D-30). Min height 44 px     |
 | `TextLink`       | `href`, `arrow?`                                                                                                                                  | Inline link; always underlined, so color is never the only cue                                                                            |
 | `SmartLink`      | `href`                                                                                                                                            | Internal → `next/link`; tel/mailto/files → `<a>`; other sites → new tab, announced to screen readers. Used by Button, TextLink, Card      |
-| `Card`           | `as?`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                                                                       | White surface, `border-line`, `radius-card`, `data-on-light`. Linked cards: border-brand + photo zoom on hover                            |
+| `Card`           | `as?: 'div' \| 'article' \| 'li' \| 'figure'`, `href?` (makes whole card a link), `padding: 'md' \| 'lg' \| 'none'`                               | White surface, `border-line`, `radius-card`, `data-on-light`. Linked cards: border-brand + photo zoom on hover                            |
 | `Tag`            | `children`, `tone: 'neutral' \| 'brand'`                                                                                                          | Service labels on projects                                                                                                                |
 | `Stat`           | `value`, `unit?`, `label`, `tone: 'ink' \| 'brand' \| 'water'`                                                                                    | Big figure + label as `dt`/`dd`; place inside a `<dl>`. `water` for yields/levels only; every tone turns white on dark                    |
 | `FactsTable`     | `rows: { label: string; value: ReactNode }[]`                                                                                                     | Key-value technical data (projects, equipment) as a `<dl>`. Striped with `brand-tint`; renders nothing when empty                         |
@@ -224,15 +224,18 @@ lint rule rejects `map[key]`, and the key is a typed union, so the one exception
 
 Domain cards compose primitives. Each takes **one data object** typed from
 `src/types/content.ts`, so a change in the data shape shows up as a type error.
+Two need one extra value the object cannot hold: `ProjectCard` gets `serviceNames`
+(from `getServiceTitles(project.services)`, so cards never import data) and
+`ServiceCard` gets its lifecycle `number`. A fact that is missing renders nothing (D-36).
 
-| Card              | Data          | Content                                                                          |
-| ----------------- | ------------- | -------------------------------------------------------------------------------- |
-| `ProjectCard`     | `Project`     | Photo (card ratio), client, title, location · year, one key figure, service tags |
-| `ServiceCard`     | `Service`     | Number (01–06), icon, title, one-line summary, link                              |
-| `TestimonialCard` | `Testimonial` | Quote, name, role, organization                                                  |
-| `EquipmentCard`   | `Equipment`   | Photo, name, type, FactsTable of key specs (e.g. rated depth)                    |
-| `TeamCard`        | `TeamMember`  | Portrait, name, role                                                             |
-| `ReferenceCard`   | `Reference`   | Letter thumbnail, organization, date, link to full scan                          |
+| Card              | Data          | Content                                                                                                                       |
+| ----------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `ProjectCard`     | `Project`     | Photo (card ratio), client, title, location · year, key figure (tested yield, else depth), service tags; links to the project |
+| `ServiceCard`     | `Service`     | Number (01–06), icon (slug → icon map in the card), official name, one-line summary; links to the service                     |
+| `TestimonialCard` | `Testimonial` | Rule, quote, name, role, organization (`figure` + `blockquote` + `figcaption`)                                                |
+| `EquipmentCard`   | `Equipment`   | Photo, name, type, FactsTable of key specs (e.g. rated depth)                                                                 |
+| `TeamCard`        | `TeamMember`  | Portrait, name, role                                                                                                          |
+| `ReferenceCard`   | `Reference`   | Letter thumbnail (document icon until a scan exists), organization, month · year; links to the full scan                      |
 
 ### 3.3 Layout — `src/components/layout/`
 

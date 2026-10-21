@@ -27,25 +27,14 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
   return {
     title: service.title,
-    description: service.fullDescription,
+    description: service.summary,
   };
 }
-
-const tagHeroColors: Record<string, string> = {
-  Investigation: 'border-brand-accent/40 bg-brand-accent/15 text-brand-accent',
-  Drilling: 'border-emerald-400/40 bg-emerald-400/15 text-emerald-300',
-  Testing: 'border-blue-400/40 bg-blue-400/15 text-blue-300',
-  Rehabilitation: 'border-amber-400/40 bg-amber-400/15 text-amber-300',
-  Electromechanical: 'border-slate-400/40 bg-slate-400/15 text-slate-300',
-  Turnkey: 'border-cyan-400/40 bg-cyan-400/15 text-cyan-300',
-};
 
 export default async function ServicePage({ params }: ServicePageProps) {
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) notFound();
-
-  const heroTagColor = tagHeroColors[service.tag] ?? tagHeroColors['Primary'];
 
   const SECTION_BG = 'bg-white';
   const CARD = 'relative overflow-hidden rounded-2xl border border-gray-200 bg-white';
@@ -79,24 +68,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </span>
           </nav>
           <div className="mt-10 max-w-3xl">
-            <span
-              className={cn(
-                'mb-4 inline-block rounded-full border px-3.5 py-1 text-sm font-semibold',
-                heroTagColor
-              )}
-            >
-              {service.tag}
-            </span>
             <h1 className="text-3xl leading-tight font-bold text-white md:text-4xl lg:text-5xl">
               {service.title}
             </h1>
             <p className="mt-3 text-sm font-medium text-white/60 italic">For: {service.forWho}</p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-              {service.heroText || service.description}
+              {service.intro}
             </p>
             <div className="mt-8">
               <PremiumButton href="/#contact" variant="primary">
-                {service.ctaText}
+                {service.cta}
               </PremiumButton>
             </div>
           </div>
@@ -113,7 +94,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </div>
             <div className={cn(CARD, 'p-8 md:p-10')}>
               <div className={CARD_ACCENT} />
-              <p className={cn(BODY, 'pl-2')}>{service.fullDescription}</p>
+              <p className={cn(BODY, 'pl-2')}>{service.overview}</p>
             </div>
           </div>
         </Container>
@@ -163,16 +144,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <span className={LABEL}>How to start</span>
             </div>
             <h2 className="text-brand-primary text-2xl font-bold md:text-3xl">How we work.</h2>
-            <p className={cn('mt-4', BODY)}>
-              {service.howToStart ||
-                'We begin every engagement with a discovery session to understand your requirements, constraints, and goals. From there we scope, architect, and deliver in clearly defined phases.'}
-            </p>
+            <p className={cn('mt-4', BODY)}>{service.method.join(' · ')}</p>
             <p className="text-text-muted mt-3 text-base leading-relaxed">
-              {service.howToStartTagline || 'Clear scope. Clean build. Confident launch.'}
+              {service.deliverables.join(' · ')}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <PremiumButton href="/#contact" variant="primary">
-                {service.ctaText}
+                {service.cta}
               </PremiumButton>
               <Link
                 href="/#services"

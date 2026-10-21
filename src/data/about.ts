@@ -18,7 +18,8 @@ export const ABOUT_PAGE_SECTIONS = {
     sectionLabel: 'Who we are',
     headline: 'Liyat Construction PLC',
     body: 'Liyat Construction PLC is an Ethiopian company operating in groundwater development, water-well drilling, and related water works. We serve government ministries, international organizations, embassies, commercial businesses, and property developers who need reliable water systems and technically sound execution.',
-    origin: '[Company origin story to be supplied and approved for publication.]',
+    // PLACEHOLDER(C-08): founding year, founders, milestones
+    origin: 'Company story (C-08).',
   },
 
   whatWeBuild: {

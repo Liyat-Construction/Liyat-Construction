@@ -1,150 +1,165 @@
 /**
  * Services
- * Shown on the homepage, /services and /services/[slug].
- * Slugs map to icons in src/components/services-section.tsx (iconMap).
+ * The six official services (Brand §9), in lifecycle order. Shown on the
+ * homepage, /services and /services/[slug]; the order sets the 01–06 numbers.
  */
 
-import type { Service } from '@/types/content';
+import type { Service, ServiceSlug } from '@/types/content';
 
+// PLACEHOLDER(C-09): confirm the service list, the scope lists and the method/deliverable wording with Liyat
 export const SERVICES: Service[] = [
   {
-    title: 'Hydrogeological & Geophysical Investigations',
-    slug: 'hydrogeological-investigations',
-    tag: 'Investigation',
-    isHighlighted: true,
-    forWho: 'Project owners, developers, and institutions planning new water sources',
-    description:
-      'We assess subsurface conditions using hydrogeological and geophysical methods to identify viable drilling locations and reduce project risk before a rig is mobilized.',
-    heroText:
-      'Find the right water source before you drill. Our investigations combine desktop studies, field surveys, and geophysical profiling to guide your project with confidence.',
-    fullDescription:
-      'Liyat Construction PLC provides hydrogeological and geophysical investigation services for clients who need reliable, evidence-based site selection for water wells and water supply systems. Our team reviews existing data, conducts field reconnaissance, and applies electrical resistivity and other geophysical techniques to locate productive aquifers and estimate yield potential. The result is a clear drilling recommendation that reduces dry-hole risk, controls cost, and supports permitting and donor reporting.',
+    slug: 'hydrogeological-survey',
+    title: 'Hydrogeological & Geophysical Survey',
+    summary: 'We read the ground before a rig moves, so the well is drilled where the water is.',
+    intro:
+      'Find the right water source before you drill. A survey combines existing data, field reconnaissance and geophysical soundings into one drilling recommendation.',
+    overview:
+      'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
+    forWho: 'Project owners, developers and institutions planning a new water source',
     includes: [
       'Desk review of hydrogeological and hydrological data',
       'Field reconnaissance and site screening',
       'Vertical electrical sounding (VES) and resistivity profiling',
       'Aquifer potential assessment and yield estimate',
-      'Drilling recommendation report',
     ],
-    howToStart:
-      'Share your project location, expected water demand, and any existing reports. We will propose an investigation scope and schedule that fits your timeline and budget.',
-    howToStartTagline: 'Investigate first. Drill smarter.',
-    ctaText: 'Start an Investigation',
+    method: [
+      'Collect existing maps, logs and nearby well records',
+      'Visit the site and screen candidate locations',
+      'Run resistivity soundings at the candidate points',
+      'Interpret the results and rank the sites',
+    ],
+    deliverables: ['Survey report with the recommended drilling site, depth and expected yield'],
+    cta: 'Request a site survey',
   },
   {
-    title: 'Deep & Shallow Well Drilling',
     slug: 'well-drilling',
-    tag: 'Drilling',
+    title: 'Well Drilling',
+    summary: 'Deep and shallow production wells, cased, screened and developed to specification.',
+    intro:
+      'Production wells built to specification: drilled, cased, screened and developed for water supply, dewatering and monitoring.',
+    overview:
+      'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximize yield and minimize sediment. Every stage is logged and supervised.',
     forWho:
-      'Institutional, commercial, and industrial clients needing production or monitoring wells',
-    description:
-      'We construct deep and shallow water wells using appropriate drilling techniques, casing, and screen selection matched to the geological conditions and intended use.',
-    heroText:
-      'Production wells built to specification. We drill, case, screen, and develop boreholes for water supply, dewatering, and monitoring applications across Ethiopia.',
-    fullDescription:
-      'Our drilling services cover the construction of deep and shallow water wells for drinking water supply, irrigation, industrial use, dewatering, and environmental monitoring. We select the appropriate drilling method — rotary, percussion, or air drilling — based on formation conditions and project requirements. Each well is completed with suitable casing and screen, gravel pack, and well development to maximize yield and minimize sediment. Work is documented and supervised to meet the standards expected by institutional clients and funding partners.',
+      'Institutional, commercial and industrial clients who need production or monitoring wells',
     includes: [
-      'Rotary, percussion, and air drilling capabilities',
+      'Rotary and air drilling',
       'Casing and screen selection and installation',
       'Gravel pack and well development',
-      'Borehole logging and construction records',
-      'Handover documentation and as-built reports',
+      'Borehole log and construction records',
     ],
-    howToStart:
-      'Provide the site location, intended use, and required yield. We will confirm the drilling approach, mobilization plan, and delivery schedule.',
-    howToStartTagline: 'From first meter to final completion.',
-    ctaText: 'Request Drilling Services',
+    method: [
+      'Mobilize the rig and set up the site',
+      'Drill and log the formation',
+      'Install casing, screen and gravel pack',
+      'Develop the well until the water runs clear',
+    ],
+    deliverables: ['Drilling log', 'As-built well construction drawing'],
+    cta: 'Request a drilling quote',
   },
   {
-    title: 'Pumping Tests & Hydrogeological Evaluation',
     slug: 'pumping-tests',
-    tag: 'Testing',
+    title: 'Pumping Tests',
+    summary: 'Step and constant-rate tests that prove what a well can deliver before you invest.',
+    intro:
+      'Know what your well can deliver. A pumping test measures yield, drawdown and recovery, so pumps and pipes are sized on evidence.',
+    overview:
+      'A pumping test confirms that a well meets its design demand. We run step-drawdown and constant-rate tests, record water levels through drawdown and recovery, and interpret the results to find the sustainable yield and the aquifer parameters your engineers design from.',
     forWho: 'Clients who need verified well performance and aquifer parameters',
-    description:
-      'We conduct pumping tests and hydrogeological evaluations to confirm well yield, aquifer properties, and sustainable abstraction rates.',
-    heroText:
-      'Know what your well can deliver. Our pumping tests measure yield, drawdown, and recovery so you can size pumps and design distribution systems with confidence.',
-    fullDescription:
-      'Pumping tests are essential for confirming that a well will meet design demand and for sizing pumps and water-supply infrastructure correctly. Liyat performs step-drawdown and constant-rate pumping tests, monitors water levels and recovery, and interprets results to determine aquifer transmissivity, storativity, and sustainable yield. Our reports support pump selection, system design, and regulatory or donor compliance.',
     includes: [
-      'Step-drawdown and constant-rate pumping tests',
+      'Step-drawdown and constant-rate tests',
       'Water-level monitoring and recovery analysis',
       'Aquifer parameter estimation',
       'Sustainable yield assessment',
-      'Test report for design and compliance',
     ],
-    howToStart:
-      'Let us know the well details and the information you need. We will mobilize test equipment and produce a report within an agreed timeframe.',
-    howToStartTagline: 'Test before you invest in permanent infrastructure.',
-    ctaText: 'Book a Pumping Test',
+    method: [
+      'Step-drawdown test to find the safe pumping rate',
+      'Constant-rate test to confirm the well sustains it',
+      'Recovery monitoring after the pump stops',
+      'Analysis and report',
+    ],
+    deliverables: ['Pumping test report with the recommended pumping rate'],
+    cta: 'Book a pumping test',
   },
   {
-    title: 'Wellhead Construction & Rehabilitation',
     slug: 'wellhead-rehabilitation',
-    tag: 'Rehabilitation',
-    forWho: 'Owners of underperforming or damaged wells and boreholes',
-    description:
-      'We build durable wellhead structures and rehabilitate existing wells to restore yield, improve water quality, and extend service life.',
-    heroText:
-      'Protect and restore your water assets. We construct wellheads, platforms, and rehabilitation works that keep wells operational for the long term.',
-    fullDescription:
-      'Wellhead construction and rehabilitation protect your investment and ensure continued performance. Liyat constructs concrete aprons, platforms, and sanitary seals; rehabilitates clogged or damaged wells through air-lifting, brushing, chemical treatment, and screen cleaning; and replaces worn pumps and rising mains where needed. Our rehabilitation work is a practical alternative to drilling a new well when the borehole structure remains sound.',
+    title: 'Wellhead Construction & Rehabilitation',
+    summary: 'Protective wellheads for new wells and restored yield for wells that underperform.',
+    intro:
+      'Protect and restore your water source. We build sealed wellheads and bring underperforming wells back to service.',
+    overview:
+      'A sealed wellhead keeps surface water and contamination out of a new well. For existing wells that have lost yield, rehabilitation by airlifting, brushing and screen cleaning is often a cheaper alternative to a new borehole when the structure is sound.',
+    forWho: 'Owners of new wells, and of underperforming or damaged wells',
     includes: [
-      'Concrete wellhead, apron, and platform construction',
-      'Sanitary sealing and protection works',
-      'Air-lifting, brushing, and chemical rehabilitation',
-      'Screen and gravel-pack cleaning',
-      'Condition assessment and rehabilitation recommendations',
+      'Concrete wellhead, apron and platform',
+      'Sanitary seal and protection works',
+      'Airlifting, brushing and screen cleaning',
+      'Condition assessment',
     ],
-    howToStart:
-      'Send us the well history, current problems, and any available logs. We will inspect, test, and propose the most cost-effective rehabilitation plan.',
-    howToStartTagline: 'Restore performance without starting over.',
-    ctaText: 'Assess Rehabilitation Needs',
+    method: [
+      'Inspect the well and review its history',
+      'Test the current yield',
+      'Clean and redevelop, or build the wellhead',
+      'Test again to confirm the result',
+    ],
+    deliverables: ['Before-and-after test results', 'Works report'],
+    cta: 'Request a well assessment',
   },
   {
+    slug: 'pump-installation',
     title: 'Pump Installation & Electromechanical Works',
-    slug: 'pump-installation-electromechanical',
-    tag: 'Electromechanical',
+    summary: 'Pumps, power and controls sized from the test results, installed and commissioned.',
+    intro:
+      'From borehole to tap. We install the pump, power and controls that turn a tested well into a working water supply.',
+    overview:
+      'We size the pump from the pumping test results and the demand, then supply and install the pump, motor, rising main, control panel and power connection. Every installation is commissioned and checked against its design before handover.',
     forWho: 'Clients ready to turn a completed well into a working water supply',
-    description:
-      'We supply, install, and commission pumps, electrical systems, and control panels to make wells fully operational.',
-    heroText:
-      'From borehole to tap. We install submersible and surface pumps, electrical and control systems, and piping to deliver water where it is needed.',
-    fullDescription:
-      'Pump installation and electromechanical works are the final step in making a well productive. Liyat selects and installs submersible and surface pumps, motors, control panels, variable frequency drives, generators, and rising mains based on site yield and client demand. We commission the system, verify performance against design, and hand over operational documentation. Our installations serve hospitals, embassies, industrial facilities, and large residential developments.',
     includes: [
-      'Submersible and surface pump supply and installation',
-      'Electrical, control, and generator integration',
-      'Rising main and distribution piping',
-      'System commissioning and performance verification',
-      'As-built and operation manuals',
+      'Submersible and surface pumps',
+      'Control panel, electrical and generator connection',
+      'Rising main and connection piping',
+      'Commissioning and performance check',
     ],
-    howToStart:
-      'Share the well test results, required flow rate, and distribution layout. We will size and install the right pump and electrical package.',
-    howToStartTagline: 'Sized right. Installed right. Running right.',
-    ctaText: 'Plan Pump Installation',
+    method: [
+      'Size the pump from the test results and demand',
+      'Install the pump, rising main and controls',
+      'Connect power and commission the system',
+      'Hand over with operating instructions',
+    ],
+    deliverables: ['Commissioning record', 'Operation and maintenance notes'],
+    cta: 'Plan a pump installation',
   },
   {
-    title: 'Turnkey Water Supply Projects',
-    slug: 'turnkey-water-projects',
-    tag: 'Turnkey',
-    forWho: 'Organizations that want a single contractor accountable for the complete water system',
-    description:
-      'We design and deliver complete water supply projects — from source development through treatment, storage, and distribution — under one contract.',
-    heroText:
-      'One contractor, complete water system. We manage investigation, drilling, electromechanical works, storage, and distribution from start to finish.',
-    fullDescription:
-      'For clients who need a complete water supply solution, Liyat acts as a turnkey contractor. We coordinate hydrogeological investigation, well drilling, pumping tests, pump and electromechanical installation, storage tanks, treatment where required, and distribution networks. A single point of accountability reduces coordination risk and helps institutional clients meet project deadlines and reporting requirements.',
+    slug: 'turnkey-projects',
+    title: 'Turnkey Water Projects',
+    summary: 'One contractor accountable for the whole water source, from survey to handover.',
+    intro:
+      'One contractor for the complete water source: survey, drilling, testing, wellhead and pump, under one contract.',
+    overview:
+      'For clients who want a single point of accountability, we run the whole project: survey, drilling, pumping test, wellhead and pump installation, with one schedule, one team and one handover file.',
+    forWho: 'Organizations that want one contractor accountable for the complete water source',
     includes: [
-      'Integrated project planning and coordination',
-      'Source development and well construction',
-      'Pump, electrical, and control systems',
-      'Storage, treatment, and distribution networks',
-      'Commissioning, documentation, and handover',
+      'Planning and coordination of every stage',
+      'Survey, drilling and testing',
+      'Wellhead, pump and electrical works',
+      'Commissioning and handover',
     ],
-    howToStart:
-      'Provide the project scope, location, and water demand. We will prepare a turnkey proposal covering schedule, deliverables, and responsibilities.',
-    howToStartTagline: 'End-to-end delivery for complex water needs.',
-    ctaText: 'Request Turnkey Proposal',
+    method: [
+      'Agree scope, schedule and deliverables',
+      'Survey and drill',
+      'Test, then equip the well',
+      'Commission and hand over',
+    ],
+    deliverables: ['Handover file with every report from survey to commissioning'],
+    cta: 'Request a turnkey proposal',
   },
 ];
+
+export function getServiceBySlug(slug: string): Service | undefined {
+  return SERVICES.find((service) => service.slug === slug);
+}
+
+/** Official names of the given services, in lifecycle order. */
+export function getServiceTitles(slugs: ServiceSlug[]): string[] {
+  return SERVICES.filter((service) => slugs.includes(service.slug)).map((service) => service.title);
+}

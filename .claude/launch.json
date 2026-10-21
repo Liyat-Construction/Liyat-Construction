@@ -12,6 +12,13 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "3005", "-d", "out"],
       "port": 3005
+    },
+    {
+      "name": "static-out-3007",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3007", "-d", "out"],
+      "port": 3007,
+      "autoPort": false
     }
   ]
 }
