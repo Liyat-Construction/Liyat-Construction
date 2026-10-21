@@ -2,14 +2,13 @@ import type { Equipment, SectionCopy } from '@/types/content';
 import { EquipmentCard } from '@/components/cards/equipment-card';
 import { FeatureCard } from '@/components/cards/feature-card';
 import { FactsTable } from '@/components/ui/facts-table';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface EquipmentGridProps extends SectionCopy {
   id: string;
   equipment: Equipment[];
   presentation?: 'cards' | 'specifications';
-  tone?: SectionTone;
 }
 
 export function EquipmentGrid({
@@ -19,11 +18,10 @@ export function EquipmentGrid({
   intro,
   equipment,
   presentation = 'cards',
-  tone = 'paper',
 }: EquipmentGridProps) {
   if (equipment.length === 0) return;
   return (
-    <Section tone={tone} labelledBy={`${id}-title`}>
+    <Section labelledBy={`${id}-title`}>
       <div
         className={
           equipment.length === 1

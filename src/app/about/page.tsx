@@ -22,7 +22,7 @@ const credentialItems = CREDENTIALS.map((credential) => ({
 }));
 
 // Design System §4 (About), with the template's offer, audience and purpose sections kept (D-50)
-// and the facts shown both beside the story and as figures (D-51). Tones alternate paper ↔ stone.
+// and the facts shown both beside the story and as figures (D-51).
 export default function AboutPage() {
   return (
     <>
@@ -40,15 +40,14 @@ export default function AboutPage() {
         paragraphs={story.paragraphs}
         facts={{ title: story.factsTitle, rows: COMPANY_FACTS }}
       />
-      <ProofStrip tone="stone" {...figures} figures={ABOUT_FIGURES} />
+      <ProofStrip {...figures} figures={ABOUT_FIGURES} />
       <FeatureGrid id="offer" {...offer} />
-      <Story id="audience" tone="stone" {...audience} />
+      <Story id="audience" {...audience} />
       <Story id="purpose" {...purpose} />
-      <FeatureGrid id="principles" tone="stone" {...principles} />
+      <FeatureGrid id="principles" {...principles} />
       <TeamGrid {...team} members={TEAM} />
       <FeatureGrid
         id="credentials"
-        tone="stone"
         icon="document"
         columns={2}
         {...credentials}

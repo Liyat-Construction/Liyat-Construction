@@ -3,7 +3,7 @@ import { FeatureCard } from '@/components/cards/feature-card';
 import { Button } from '@/components/ui/button';
 import { FactsTable } from '@/components/ui/facts-table';
 import { Prose } from '@/components/ui/prose';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Statement } from '@/components/ui/statement';
 
@@ -15,7 +15,6 @@ interface StoryProps extends SectionCopy {
   /** A short company statement beside the text */
   statement?: string;
   action?: Action;
-  tone?: SectionTone;
 }
 
 /** Running text beside an optional facts card or statement, with an optional button. */
@@ -28,11 +27,10 @@ export function Story({
   facts,
   statement,
   action,
-  tone = 'paper',
 }: StoryProps) {
   const showFacts = facts !== undefined && facts.rows.length > 0;
   return (
-    <Section tone={tone} labelledBy={`${id}-title`}>
+    <Section labelledBy={`${id}-title`}>
       <div className="gap-grid grid items-start max-lg:gap-y-12 lg:grid-cols-12">
         <div className="flex flex-col gap-6 lg:col-span-7">
           <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />

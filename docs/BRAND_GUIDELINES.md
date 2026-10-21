@@ -79,19 +79,19 @@ stands for the work.
 Liyat runs on **one brand color, one dark neutral and white**, with two
 supporting tones and one meaningful accent. No other colors are used.
 
-| Token           | HEX       | Role                                                                                  |
-| --------------- | --------- | ------------------------------------------------------------------------------------- |
-| **Liyat Green** | `#156635` | The brand. Buttons, links, active states, the signature rule, key highlights, logo.   |
-| Green Dark      | `#0F4F28` | Hover and pressed state of green elements only.                                       |
-| Green Tint      | `#E7F0EA` | Callout boxes, table rows, selected states. (The brochure's soft sage, made legal.)   |
-| **Ink**         | `#1D2521` | Body text, headings, footer, dark sections. A charcoal with a green undertone.        |
-| Ink Muted       | `#56615B` | Secondary text, captions, metadata, form borders.                                     |
-| **Paper**       | `#F8F7F3` | Main background of every page. A warm off-white, so white cards stand out from it.    |
-| **White**       | `#FFFFFF` | Cards, form fields, header; text on dark backgrounds.                                 |
-| Stone           | `#EEEBE3` | Alternating section background. Warm neutral taken from the earth in our photographs. |
-| Line            | `#DCDAD3` | Hairline dividers and card borders (decorative only — never the only cue).            |
-| **Water Blue**  | `#0B5CA0` | **Water only**: yields, water levels, flow figures, the water in technical drawings.  |
-| Alert Red       | `#B42318` | Form errors only. Functional, never decorative.                                       |
+| Token           | HEX       | Role                                                                                   |
+| --------------- | --------- | -------------------------------------------------------------------------------------- |
+| **Liyat Green** | `#156635` | The brand. Buttons, links, active states, the signature rule, key highlights, logo.    |
+| Green Dark      | `#0F4F28` | Hover and pressed state of green elements only.                                        |
+| Green Tint      | `#E7F0EA` | Callout boxes, table rows, selected states. (The brochure's soft sage, made legal.)    |
+| **Ink**         | `#1D2521` | Body text, headings, footer, dark sections. A charcoal with a green undertone.         |
+| Ink Muted       | `#56615B` | Secondary text, captions, metadata, form borders.                                      |
+| **Paper**       | `#F8F7F3` | Main background of every page. A warm off-white, so white cards stand out from it.     |
+| **White**       | `#FFFFFF` | Cards, form fields, header; text on dark backgrounds.                                  |
+| Stone           | `#EEEBE3` | Header band of inner pages only. Warm neutral taken from the earth in our photographs. |
+| Line            | `#DCDAD3` | Hairline dividers and card borders (decorative only — never the only cue).             |
+| **Water Blue**  | `#0B5CA0` | **Water only**: yields, water levels, flow figures, the water in technical drawings.   |
+| Alert Red       | `#B42318` | Form errors only. Functional, never decorative.                                        |
 
 ### Why these colors
 
@@ -121,7 +121,7 @@ Vehicles, uniforms and signs carry far more green.
 | Text / element on background        | Ratio           | Use                               |
 | ----------------------------------- | --------------- | --------------------------------- |
 | Ink on White / Paper                | 15.7 / 14.6     | Body text                         |
-| Ink on Stone                        | 13.2            | Body text on alternating sections |
+| Ink on Stone                        | 13.2            | Body text in the page header band |
 | Ink Muted on White / Paper          | 6.5 / 6.0       | Secondary text                    |
 | Ink Muted on Stone                  | 5.4             | Secondary text                    |
 | Green on White / Paper              | 7.0 / 6.6       | Links, labels, figures            |
@@ -275,19 +275,19 @@ Used unchanged wherever a short introduction to Liyat is needed:
 
 ## 11. The brand in use
 
-| Item                  | Standard                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Website**           | Warm Paper pages with White cards, Stone alternating sections, green buttons and links, white header with full-color logo, Ink footer with all-white logo. Real projects near the top of the home page. |
-| Letterhead            | Logo top left on white. Contact details in Inter 8 pt at the foot, under a thin green rule.                                                                                                             |
-| Business cards        | Front: logo and descriptor on white. Back: name, title, contact in Ink, with a green edge.                                                                                                              |
-| Proposals and reports | White cover, logo, Manrope title, one strong site photograph. Green rule under section headers.                                                                                                         |
-| Presentations         | White slides, one idea and one photograph each. Green only for title slide and section breaks.                                                                                                          |
-| Vehicles              | White body, Liyat Green band low along both sides, all-white logo on the band. Descriptor and phone readable from 20 m.                                                                                 |
-| Rigs and equipment    | Logo and descriptor on a white panel where it shows in site photographs.                                                                                                                                |
-| Site signboards       | White board, green header strip. Project, client, contractor in Manrope Bold.                                                                                                                           |
-| Uniforms and PPE      | Green or Ink workwear, logo on left chest. White helmets with a small logo.                                                                                                                             |
-| Social media          | Profile picture: the mark (C + drop) on white. Posts lead with real site photographs.                                                                                                                   |
-| Email signature       | Name, title, phone, website in Inter, then the logo at 150 px. No quotes or banners.                                                                                                                    |
+| Item                  | Standard                                                                                                                                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Website**           | Warm Paper pages with White cards, a Stone header band on inner pages, green buttons and links, white header with full-color logo, Ink footer with all-white logo. Real projects near the top of the home page. |
+| Letterhead            | Logo top left on white. Contact details in Inter 8 pt at the foot, under a thin green rule.                                                                                                                     |
+| Business cards        | Front: logo and descriptor on white. Back: name, title, contact in Ink, with a green edge.                                                                                                                      |
+| Proposals and reports | White cover, logo, Manrope title, one strong site photograph. Green rule under section headers.                                                                                                                 |
+| Presentations         | White slides, one idea and one photograph each. Green only for title slide and section breaks.                                                                                                                  |
+| Vehicles              | White body, Liyat Green band low along both sides, all-white logo on the band. Descriptor and phone readable from 20 m.                                                                                         |
+| Rigs and equipment    | Logo and descriptor on a white panel where it shows in site photographs.                                                                                                                                        |
+| Site signboards       | White board, green header strip. Project, client, contractor in Manrope Bold.                                                                                                                                   |
+| Uniforms and PPE      | Green or Ink workwear, logo on left chest. White helmets with a small logo.                                                                                                                                     |
+| Social media          | Profile picture: the mark (C + drop) on white. Posts lead with real site photographs.                                                                                                                           |
+| Email signature       | Name, title, phone, website in Inter, then the logo at 150 px. No quotes or banners.                                                                                                                            |
 
 ## 12. Looking after the brand
 
@@ -304,14 +304,15 @@ unmistakably Liyat.**
 
 ## 13. Change log
 
-| Version | Date       | Change                                                                                                                | Reason                                                                                                               |
-| ------- | ---------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| 1.1     | 2026-10-21 | Page background White → **Paper `#F8F7F3`**; Stone `#F4F2ED` → **`#EEEBE3`**; White kept for cards, fields and header | Owner wanted page and cards distinct while both read as white; Stone deepened so it stays distinct from Paper (D-33) |
-| 1.1     | 2026-10-20 | Green `#176B45` → **`#156635`**                                                                                       | Measured from Liyat's own brochure; v1.0 value was an estimate                                                       |
-| 1.1     | 2026-10-20 | Technical Blue `#174A70` removed; **Water Blue `#0B5CA0`** added for water data only                                  | Navy competed with green; blue now carries meaning, taken from the logo drop                                         |
-| 1.1     | 2026-10-20 | Charcoal `#252B30` → **Ink `#1D2521`**; added Ink Muted, Stone, Line, Green Dark, Green Tint, Alert Red               | Green-undertone neutral harmonizes with the brand; web needs hover, surface and error states                         |
-| 1.1     | 2026-10-20 | Gold from the brochure explicitly **not** adopted                                                                     | 2.6 : 1 contrast; competes with yellow machinery; luxury tone                                                        |
-| 1.1     | 2026-10-20 | Tagline "Know better. Drill better." adopted; promise kept for the lifecycle section                                  | Client-owned asset already in print                                                                                  |
-| 1.1     | 2026-10-20 | Service names aligned to company-provided list (6, lifecycle order)                                                   | v1.0 list was not client-sourced                                                                                     |
-| 1.1     | 2026-10-20 | Website header white (was blue); footer Ink                                                                           | Logo shows in true colors; no green-on-blue conflict                                                                 |
-| 1.0     | 2026-10-19 | First draft                                                                                                           | —                                                                                                                    |
+| Version | Date       | Change                                                                                                                  | Reason                                                                                                               |
+| ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 1.1     | 2026-10-22 | Sections no longer alternate Paper and Stone: every content section is Paper; Stone only for the inner-page header band | Two near-whites in alternation read as a slight colour error, not a design choice; one page colour is calmer (D-58)  |
+| 1.1     | 2026-10-21 | Page background White → **Paper `#F8F7F3`**; Stone `#F4F2ED` → **`#EEEBE3`**; White kept for cards, fields and header   | Owner wanted page and cards distinct while both read as white; Stone deepened so it stays distinct from Paper (D-33) |
+| 1.1     | 2026-10-20 | Green `#176B45` → **`#156635`**                                                                                         | Measured from Liyat's own brochure; v1.0 value was an estimate                                                       |
+| 1.1     | 2026-10-20 | Technical Blue `#174A70` removed; **Water Blue `#0B5CA0`** added for water data only                                    | Navy competed with green; blue now carries meaning, taken from the logo drop                                         |
+| 1.1     | 2026-10-20 | Charcoal `#252B30` → **Ink `#1D2521`**; added Ink Muted, Stone, Line, Green Dark, Green Tint, Alert Red                 | Green-undertone neutral harmonizes with the brand; web needs hover, surface and error states                         |
+| 1.1     | 2026-10-20 | Gold from the brochure explicitly **not** adopted                                                                       | 2.6 : 1 contrast; competes with yellow machinery; luxury tone                                                        |
+| 1.1     | 2026-10-20 | Tagline "Know better. Drill better." adopted; promise kept for the lifecycle section                                    | Client-owned asset already in print                                                                                  |
+| 1.1     | 2026-10-20 | Service names aligned to company-provided list (6, lifecycle order)                                                     | v1.0 list was not client-sourced                                                                                     |
+| 1.1     | 2026-10-20 | Website header white (was blue); footer Ink                                                                             | Logo shows in true colors; no green-on-blue conflict                                                                 |
+| 1.0     | 2026-10-19 | First draft                                                                                                             | —                                                                                                                    |

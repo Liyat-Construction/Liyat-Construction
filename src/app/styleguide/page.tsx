@@ -65,7 +65,7 @@ const colorRoles: Record<string, string> = {
   ink: 'Text, footer, dark sections',
   'ink-muted': 'Secondary text, borders',
   paper: 'Page background (warm)',
-  stone: 'Alternating sections',
+  stone: 'Inner-page header band',
   line: 'Hairlines, card borders',
   water: 'Water data only',
   alert: 'Form errors only',
@@ -291,7 +291,7 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      <Section tone="stone" labelledBy="sg-photo">
+      <Section labelledBy="sg-photo">
         <div className="flex flex-col gap-16">
           <SectionHeading
             id="sg-photo"
@@ -412,7 +412,6 @@ export default function StyleguidePage() {
       />
       <EquipmentGrid
         id="sg-support"
-        tone="stone"
         {...EQUIPMENT_PAGE.support}
         equipment={EQUIPMENT.filter((item) => item.category === 'support')}
         presentation="specifications"
@@ -433,7 +432,7 @@ export default function StyleguidePage() {
         sender={siteConfig.name}
       />
 
-      <Section tone="stone" labelledBy="sg-contact-feedback">
+      <Section labelledBy="sg-contact-feedback">
         <div className="gap-grid grid lg:grid-cols-2">
           <Specimen title="FormFeedback" note="neutral · success · error; persistent live regions">
             <div className="flex flex-col gap-4">
@@ -470,7 +469,6 @@ export default function StyleguidePage() {
 
       <Story
         id="sg-story"
-        tone="stone"
         eyebrow="Sections"
         title="Story"
         paragraphs={[sectionCopy.body]}
@@ -563,7 +561,7 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      <Section tone="stone" labelledBy="sg-motion">
+      <Section labelledBy="sg-motion">
         <div className="flex flex-col gap-12">
           <SectionHeading
             id="sg-motion"

@@ -7,6 +7,8 @@ import { cn, pick } from '@/lib/utils';
 const variants = {
   color: '',
   white: 'rounded-control bg-white p-1.5',
+  /** The header: color on white, and on its white plate while floating over a photo */
+  adaptive: 'rounded-control over-photo:bg-white p-1.5',
 } as const satisfies Record<string, string>;
 
 interface LogoProps {

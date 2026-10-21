@@ -1,26 +1,18 @@
 import type { Reference, SectionCopy } from '@/types/content';
 import { ReferenceCard } from '@/components/cards/reference-card';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface ReferenceGridProps extends SectionCopy {
   id: string;
   references: Reference[];
-  tone?: SectionTone;
 }
 
 /** Reference and completion letters as cards. Renders nothing while there are none (C-13). */
-export function ReferenceGrid({
-  id,
-  eyebrow,
-  title,
-  intro,
-  references,
-  tone = 'paper',
-}: ReferenceGridProps) {
+export function ReferenceGrid({ id, eyebrow, title, intro, references }: ReferenceGridProps) {
   if (references.length === 0) return;
   return (
-    <Section tone={tone} labelledBy={`${id}-title`}>
+    <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
         <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
         <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-4">

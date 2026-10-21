@@ -77,7 +77,7 @@ variables, e.g. `duration-(--duration-fast)`, `h-(--header-height)`.
 | `--color-ink`        | `#1D2521` | `text-ink` `bg-ink`                 | Text, headings, footer, dark sections     |
 | `--color-ink-muted`  | `#56615B` | `text-ink-muted` `border-ink-muted` | Secondary text, captions, input borders   |
 | `--color-paper`      | `#F8F7F3` | `bg-paper`                          | Page background (warm off-white, D-33)    |
-| `--color-stone`      | `#EEEBE3` | `bg-stone`                          | Alternating sections                      |
+| `--color-stone`      | `#EEEBE3` | `bg-stone`                          | Inner-page header band only (D-58)        |
 | `--color-line`       | `#DCDAD3` | `border-line`                       | Hairlines, card borders                   |
 | `--color-water`      | `#0B5CA0` | `text-water` `fill-water`           | **Water data only**                       |
 | `--color-alert`      | `#B42318` | `text-alert` `border-alert`         | Form errors only                          |
@@ -167,6 +167,12 @@ headings in `font-heading`; `:focus-visible` = `--focus-width` Brand outline at
 `::selection` White on Brand; `[id]` anchors offset by header height + gutter;
 smooth scroll, and all animation and transition, off under reduced motion.
 
+**`over-photo:` variant (hero review, 2026-10-22).** Styles the site header while it floats
+see-through over a hero marked `data-header-overlay`: white text, logo on its white plate, white
+primary button. `layout/header-solid.tsx` sets `data-solid` once the hero has scrolled past, and
+the header turns white again. Wrapped in `@media (scripting: enabled)`, so without JavaScript the
+header stays white; the mobile-menu dialog is excluded.
+
 **`current:` variant.** `@custom-variant current` styles a link whose `aria-current` is `page`
 (main navigation). **Mobile menu:** `body:has(dialog[open])` locks page scroll.
 
@@ -226,6 +232,9 @@ type Variant = keyof typeof variants;
 | `ContactList`    | `rows: { label, icon, values: { text, href? }[] }[]`                                                                                                                      | Semantic contact `<dl>` with icons and underlined phone/email links; missing values and empty rows hide.                                                                                                              |
 | `FormFeedback`   | `tone: 'neutral' \| 'success' \| 'error'`, `children?`                                                                                                                    | Persistent status/alert region; neutral border, green-tint success, Alert error. Empty content is screen-reader-only. No utility-library import.                                                                      |
 | `SystemMessage`  | `copy`, `home`, `contact`, optional `retry`, `as: 'h1' \| 'h2'`                                                                                                           | Client-safe error recovery surface; no utility-library dependency. Plain links work without a router; retry calls the error boundary reset.                                                                           |
+| `Fade`           | `edge: 'top' \| 'left' \| 'bottom'`                                                                                                                                       | Ink fade over a photo's edge so it melts into an Ink surface; smoothstep-eased (`--fade-*` tokens) so no line shows. Functional exception to "no gradients" (owner, hero review)                                      |
+| `Backdrop`       | `image`, `caption?`                                                                                                                                                       | Full-bleed photo behind white text: flat Ink scrim (60 % phones, 40 % lg, measured), top `Fade`, slow one-time drift. Fills its positioned parent                                                                     |
+| `DraftLabel`     | `children`                                                                                                                                                                | Fixed "Design option X · draft for review" label on review-only pages. Temporary                                                                                                                                      |
 | `MapFacade`      | `url`, `copy`, server-rendered `icon`                                                                                                                                     | Client island (D-54). Square placeholder; iframe mounts only after a click, with an explicit Google privacy notice. Hide removes it. No URL means no map.                                                             |
 
 Variant lookups use `pick(map, key)` from `lib/utils.ts`: the `security/detect-object-injection`
@@ -267,6 +276,8 @@ Sections are props-driven (no data imports inside), so any page can reuse them.
 
 | Section            | Used on                    | Composition                                                                                                                                                                                                                                                        |
 | ------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `HeroBackdrop`     | `/preview/option-a`        | **Under review (client meeting).** Option A: full-bleed `Backdrop` (Afar fleet) under the see-through header; headline centred high over the mountains from lg, low over the ground on phones. Marked `data-header-overlay`                                        |
+| `HeroBlend`        | `/preview/option-b`        | **Under review (client meeting).** Option B: text on Ink in the header's Container (aligned with the logo); photo fills the right 7/12 and fades into the panel (left, top; bottom on phones). Marked `data-header-overlay`                                        |
 | `Hero`             | Home                       | Option C (D-44): from `lg`, text on Ink (5 columns) beside the whole photo (7 columns, priority, natural color, nothing over it); below `lg` the photo first, text below on Ink. Eyebrow + display headline + lead + 2 Buttons                                     |
 | `PageHeader`       | All inner pages            | Stone tone; breadcrumb, eyebrow, h1, intro; optional photo on the right (`feature` ratio when `image.orientation` is `portrait`, else `wide` — D-48)                                                                                                               |
 | `ProofStrip`       | Home, About                | 3–4 `Stat`s + a row of `ClientCard`s; each part hides when empty                                                                                                                                                                                                   |
@@ -301,8 +312,10 @@ technically correct (Wondossen checks it, C-27) and readable at 320 px wide.
 
 ## 4. Page blueprints
 
-Every page ends with `CtaBand`, then the footer. Section tones alternate
-paper ↔ stone; Ink only for the footer; Brand only for `CtaBand`.
+Every page ends with `CtaBand`, then the footer. Every content section is Paper (D-58):
+no alternating bands; the rule and eyebrow mark where a section starts. Stone only for
+`PageHeader`; Ink for the hero and footer; Brand only for `CtaBand`. Content sections take
+no `tone` prop, so a page cannot reintroduce alternation.
 
 ### Home — `/`
 
@@ -310,11 +323,14 @@ paper ↔ stone; Ink only for the footer; Brand only for `CtaBand`.
 | --- | ------------------ | ----- | --------------------------------------------------------------------------------- |
 | 1   | `Hero`             | photo | Identity: descriptor, "Know better. Drill better.", Contact us / Explore projects |
 | 2   | `ProofStrip`       | paper | Credibility at a glance: figures + client logos                                   |
-| 3   | `FeaturedProjects` | stone | Evidence near the top (brand rule: real projects up front)                        |
+| 3   | `FeaturedProjects` | paper | Evidence near the top (brand rule: real projects up front)                        |
 | 4   | `ServiceLifecycle` | paper | Services + "Every well surveyed, drilled and proven." + well diagram              |
-| 5   | `EquipmentTeaser`  | stone | Capability: rig by name, rated depth                                              |
+| 5   | `EquipmentTeaser`  | paper | Capability: rig by name, rated depth                                              |
 | 6   | `Testimonials`     | paper | Client confidence (hidden if empty)                                               |
 | 7   | `CtaBand`          | brand | Primary action                                                                    |
+
+Sections 2–7 live in one place, `src/app/_home/home-sections.tsx` (`HomeSections`), shared by `/`
+and the hero preview pages; only the hero differs between them.
 
 ### About — `/about`
 
@@ -336,8 +352,8 @@ Index: `PageHeader` → `ProjectGrid` (sorted newest first; undated projects kee
 Detail: `PageHeader` (client as eyebrow, title, summary, cover photo — D-48 replaces the
 full-width photo) → `ProjectDetail`: scope / approach / result beside the `FactsTable` (client,
 location, year, services linked to their pages, depth, yield, duration) → `PhotoGallery`
-(stone, hidden when empty) → related projects (`FeaturedProjects`, shared service, hidden
-when none; tone alternates) → `CtaBand`.
+(hidden when empty) → related projects (`FeaturedProjects`, shared service, hidden
+when none) → `CtaBand`.
 
 ### Equipment & Capabilities — `/equipment-capabilities`
 

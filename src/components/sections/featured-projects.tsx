@@ -1,6 +1,6 @@
 import type { Action, Project, SectionCopy } from '@/types/content';
 import { ProjectCard } from '@/components/cards/project-card';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { TextLink } from '@/components/ui/text-link';
 
@@ -8,7 +8,6 @@ interface FeaturedProjectsProps extends SectionCopy {
   /** Up to three; with their service names (getServiceTitles) */
   projects: { project: Project; serviceNames: string[] }[];
   link?: Action;
-  tone?: SectionTone;
   id?: string;
 }
 
@@ -22,12 +21,11 @@ export function FeaturedProjects({
   intro,
   projects,
   link,
-  tone = 'stone',
   id = 'featured-projects',
 }: FeaturedProjectsProps) {
   if (projects.length === 0) return;
   return (
-    <Section tone={tone} labelledBy={`${id}-title`}>
+    <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
         <div className="gap-grid flex flex-col md:flex-row md:items-end md:justify-between">
           <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />

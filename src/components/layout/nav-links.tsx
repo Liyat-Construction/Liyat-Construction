@@ -10,7 +10,7 @@ export interface NavItem {
 
 // Plain strings, no cn()/pick(): importing lib/utils would ship tailwind-merge to every page
 const base =
-  'text-ink hover:text-brand current:text-brand current:underline current:decoration-(length:--rule-width) current:underline-offset-8 ease-standard flex items-center font-medium transition-colors duration-(--duration-fast)';
+  'text-ink hover:text-brand current:text-brand over-photo:text-white over-photo:hover:text-white/80 over-photo:current:text-white current:underline current:decoration-(length:--rule-width) current:underline-offset-8 ease-standard flex items-center font-medium transition-colors duration-(--duration-fast)';
 
 const layouts = {
   bar: { list: 'flex items-center gap-1', link: `${base} min-h-11 px-3 text-body` },

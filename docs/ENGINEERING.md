@@ -83,6 +83,7 @@ list of allowed client islands:
 | `sections/contact-form.tsx` | form state and submit                                                           |
 | `app/error.tsx`             | Next.js-required error boundary; reset action through client-safe SystemMessage |
 | `ui/map-facade.tsx`         | mounts the Google Maps iframe only after an explicit click (D-54)               |
+| `layout/header-solid.tsx`   | turns the see-through header white once its hero scrolls past (hero review)     |
 
 Adding a client component outside this list is a decision to record in `WORKFLOW.md`.
 

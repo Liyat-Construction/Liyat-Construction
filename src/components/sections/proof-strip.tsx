@@ -1,6 +1,6 @@
 import type { Partner, SectionCopy, Stat as StatData } from '@/types/content';
 import { ClientCard } from '@/components/cards/client-card';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Stat } from '@/components/ui/stat';
 import { Subheading } from '@/components/ui/subheading';
@@ -10,7 +10,6 @@ interface ProofStripProps extends SectionCopy {
   /** Heading of the client row; the row hides when `clients` is empty */
   clientsTitle?: string;
   clients?: Partner[];
-  tone?: SectionTone;
 }
 
 /** Credibility at a glance: key figures and the clients behind them. Renders nothing when both are empty. */
@@ -21,11 +20,10 @@ export function ProofStrip({
   figures,
   clientsTitle,
   clients = [],
-  tone = 'paper',
 }: ProofStripProps) {
   if (figures.length === 0 && clients.length === 0) return;
   return (
-    <Section tone={tone} labelledBy="proof-title">
+    <Section labelledBy="proof-title">
       <div className="flex flex-col gap-12">
         <SectionHeading id="proof-title" eyebrow={eyebrow} title={title} intro={intro} />
         {figures.length > 0 && (

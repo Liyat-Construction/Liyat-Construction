@@ -2,10 +2,11 @@ import { cn, pick } from '@/lib/utils';
 import { Icon } from './icon';
 import { SmartLink } from './smart-link';
 
-// Each variant adapts to dark surfaces (ink, brand) by itself.
+// Each variant adapts to dark surfaces (ink, brand) by itself, and the header's
+// primary button to the see-through header over a photo (`over-photo:`).
 const variants = {
   primary:
-    'bg-brand text-white hover:bg-brand-dark on-dark:bg-white on-dark:text-brand on-dark:hover:bg-brand-tint',
+    'bg-brand text-white hover:bg-brand-dark on-dark:bg-white on-dark:text-brand on-dark:hover:bg-brand-tint over-photo:bg-white over-photo:text-brand over-photo:hover:bg-brand-tint',
   secondary:
     'border border-brand text-brand hover:bg-brand-tint on-dark:border-white on-dark:text-white on-dark:hover:bg-white/10',
   text: 'text-brand underline-offset-4 hover:underline on-dark:text-white',

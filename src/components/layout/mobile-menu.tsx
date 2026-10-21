@@ -13,7 +13,7 @@ interface MobileMenuProps {
 }
 
 const iconButton =
-  'text-ink hover:bg-brand-tint rounded-control inline-flex size-11 items-center justify-center';
+  'text-ink hover:bg-brand-tint over-photo:text-white over-photo:hover:bg-white/10 rounded-control inline-flex size-11 items-center justify-center';
 
 /**
  * Full-height menu below `lg`, on a native modal <dialog>: the page behind is

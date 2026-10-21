@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                  |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **Owner whole-site review before P15** (D-57); P14 implementation complete; owner authorized commit only, then whole-site review |
-| **Last completed**    | P14 — implementation complete (D-57 exception); P13 committed as 97d0686, real receipt remains blocked                           |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                            |
-| **Next action**       | Owner reviews the whole site before P15 (D-57). P15 is Not started; wait for instruction after review.                           |
+|                       |                                                                                                                                                |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **Owner whole-site review before P15** (D-57): hero options A and B ready for the client meeting (`/preview/option-a`, `/preview/option-b`)    |
+| **Last completed**    | P14 — implementation complete (D-57 exception); P13 committed as 97d0686, real receipt remains blocked                                         |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only               |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button                                                          |
+| **Next action**       | Review the rest of the home page (edit `src/app/_home/home-sections.tsx`); then the client meeting picks hero A or B. P15 waits for the owner. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -344,6 +344,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-27 | Wondossen checks the well cross-section drawing (home and services) matches how Liyat builds wells                                                             | P16       | Should                 | Open   |
 | C-26 | Approval of Brand Guidelines v1.1 by Wondossen                                                                                                                 | P18       | Must                   | Open   |
 | C-28 | Confirm the client types named on About (the template listed hospitals and manufacturers)                                                                      | P16       | Should                 | Open   |
+| C-30 | A real drilling log from one Liyat well (layers, depths, casing/screen, water level) for the home hero, if the borehole-log hero is adopted                    | P16       | Should                 | Open   |
 | C-29 | Client and qualified reviewer approve privacy practices, providers, retention, requests and website terms; replace legal drafts before launch                  | P16       | Must                   | Open   |
 
 ## 6. Decisions log
@@ -406,6 +407,7 @@ Decisions that constrain future work. Change one only by adding a new row that s
 | D-52 | 2026-10-21 | Root `src/app/loading.tsx` deleted (closes O-10)                                                                                                                                                                                                                                                 | It wrapped every page in `<div hidden>` until a script revealed it — without JavaScript the content stayed hidden. Pages are static; there is nothing to wait for                                                                                   |
 | D-53 | 2026-10-21 | Web3Forms selected for P13 (closes O-01). Public key stays empty until C-25 confirms the receiving inbox.                                                                                                                                                                                        | Owner approved the P13 recommendation; static-host compatible with no backend or new dependency.                                                                                                                                                    |
 | D-54 | 2026-10-21 | Contact shows a disabled form preview while unconfigured; map hides without C-24. `ui/map-facade.tsx` is an allowed client island and mounts an iframe only after a deliberate click.                                                                                                            | Makes configuration status honest; prevents Google requests before interaction.                                                                                                                                                                     |
+| D-58 | 2026-10-22 | One page color: every content section is Paper `#F8F7F3`; sections no longer alternate with Stone. Stone `#EEEBE3` only for the inner-page `PageHeader` band. Cards stay White `#FFFFFF`. Content sections lost their `tone` prop. Refines D-33 (values unchanged)                               | Owner's decision on the agent's recommendation. Stone vs Paper is only 1.11 : 1, so alternating near-whites read as a color error, not intent; the band colors flipped when a section hid; the rule + eyebrow + spacing already separate sections   |
 | D-55 | 2026-10-21 | P13 uses native FormData + zod/mini instead of react-hook-form + full zod. Installed packages remain unchanged.                                                                                                                                                                                  | Measured react-hook-form + zod/mini route was 191.0 KiB gzip, over 190; native controls retain the same linked-error/focus behavior with less JavaScript.                                                                                           |
 
 Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit P14 next, and defer owner UI review for all pages until after P15. This supersedes the per-step aesthetic/commit gates for this sequence only. P13 remains Review with production receipt blocked by C-25; committing does not imply delivery or aesthetic approval. Agent concern: delayed review can require shared-component rework; no launch gate or client-content requirement is waived.
@@ -448,7 +450,61 @@ Only unused `premium-button.tsx` remains on the design LEGACY list; no deletion 
 Legal copy remains visibly marked, noindex drafts pending C-29. Client placeholders remain until P16.
 P14 browser/Lighthouse/external schema checks are pending, not passed. Do not start P15 yet.
 
-### Current session — 2026-10-21 (P14)
+### Current session — 2026-10-21/22 (whole-site review: hero)
+
+- Owner review started with the hero. Agent advised against a transparent header over the photo: white links over sky/cloud fail contrast without a wash (D-27), and there is no white logo until P3. Advised keeping the printed tagline punctuation (C-22). Owner has not decided either point yet.
+- Agent's honest view: the current hero (D-44) is correct but generic. It is about 50 % Ink on a Paper brand, the vertical water column sits small in a wide crop, and the brand's technical-drawing signature is absent.
+- First candidate, the "cutaway" (photo standing on a strata band with a borehole below it): **owner rejected it**, along with the current hero ("both are bad", weak on mobile). Its files were deleted.
+- Second candidate, a **borehole-log hero** (no photo; the headline beside a drilling log): owner rejected it for the hero ("it must be an image, it can't be white") but wants the log kept for elsewhere on the site. `sections/hero-log.tsx` deleted; **parked:** `diagrams/borehole-log.tsx`, type `BoreholeLogData`, `HOME_PAGE.hero.log` (PLACEHOLDER C-30), tokens `--animate-drill`/`--animate-fill`. Likely home: Services.
+- Owner then asked for an image hero and showed four reference sites (Lidiya, MATT, Sunshine, Key). Agent's view: MATT works best because its photo is real and dark; Lidiya and Key use stock; Sunshine's light photo makes white text hard to read. Agent argued against AI-generated or composited images (Brand §8 "What we cannot show, we do not say"; §6 editing). AI restoration of a real photo is acceptable; owner chose not to restore now.
+- Third candidate, a full-bleed Afar photo hero. The owner liked it, but **rejected the bottom service strip** ("just so bad"); `cards/service-step.tsx` was deleted.
+- **Owner decision, 2026-10-22: two hero options go to the client meeting** (Wondossen). Each is a whole home page with a fixed "Design option X · draft for review" label, not indexed: `/preview/option-a` and `/preview/option-b`. They are shown on the owner's laptop. The real `/` is unchanged apart from the shorter lead; `/styleguide/hero-preview` was deleted.
+  - **Option A** (`sections/hero-backdrop.tsx`): the Afar rig-fleet photo fills the whole first screen.
+    - Flat Ink scrim: 60 % on phones, 40 % from lg. These are the measured minimums for 4.5 : 1 at the 98th-percentile brightest pixel behind the text (58 % and 34 %).
+    - The photo settles in slowly once: a 20 s scale from 1.08, transform only, off under reduced motion.
+    - Text centred high over the mountains from lg; low over the open ground on phones. Caption "On site in the Afar region".
+  - **Option B** (`sections/hero-blend.tsx`): text on Ink at the left; the photo fills the right 7/12 of the first screen.
+    - Instead of a hard seam it fades into the Ink panel (Mekan reference): a left fade from lg, a bottom fade into the text on phones, and a top fade under the header.
+    - **Revised, 2026-10-22 (owner):**
+      - The first version's fade showed a "straight vertical line". Cause: piecewise-linear gradients have a kink at each stop, which the eye reads as an edge. All fades are now smoothstep-eased: 11 stops in tokens `--fade-stops` / `--fade-to-*`, flat at both ends.
+      - The muddy grey "smoke" came from Ink fading into bright blue sky (hue clash). Agent advised against a green or navy panel (green on blue makes teal mud and breaks the colour balance; navy was rejected in D-07).
+      - The photo changed (owner chose the agent's recommendation) from the water column to the **Ethiopian Airlines pumping test** (`hero.blendImage`, focus right): overcast sky that blends with Ink; rig, water and crew in one frame; a sharp source. Its cluttered left foreground sits under the fade.
+      - The eyebrow above the headline was removed: the header descriptor shows the same words. The owner asked to keep the descriptor in the header logo block.
+      - The text now sits in the header's Container, so the logo, the rule and the headline all start at the same x (measured 107.5 px at 1366).
+      - Owner tried a brand-green panel and fades (`#156635`). They **went back to Ink**, agreeing with the agent: green fades tint the photo olive (a wash, against D-27), and green should stay reserved for actions. Ink was judged the best panel colour; the alternatives (forest green, earth brown, navy, black) were discussed and rejected.
+      - Kept from the experiment: Fade takes `tone: 'ink' | 'brand'` (default ink), and the `--fade-stops` tokens use `currentColor`. Rendering is unchanged.
+      - Possible next tweak (discussed, not requested): a shorter left fade (about 1/3 instead of 1/2) shows more photo. Check that the plastic bottle at the photo's lower left stays hidden.
+  - **Both options use a see-through header** (agent's recommendation, so the client compares only the hero; owner delegated the choice).
+    - The header floats over a hero marked `data-header-overlay`, with white text, the logo on its white plate, and a white "Contact us" button.
+    - Once the hero has scrolled past, it turns white with the green rule again. Pages without such a hero, including `/`, keep the white header.
+    - CSS variant `over-photo:` in `globals.css`, wrapped in `@media (scripting: enabled)` so the header stays white without JavaScript, and excluding the mobile-menu dialog.
+    - New client island `layout/header-solid.tsx`: a scroll listener that toggles `data-solid`, under 1 KB. **This adds to the Engineering §3 island list.**
+  - The top fade over A's pale sky and B's white clouds keeps the white links readable. Estimated alpha at the link row is about 0.86 on A and about 0.77 on B, against about 0.62 needed over pure white.
+  - New in the library: `ui/fade.tsx` (top/left/bottom Ink fades), `ui/backdrop.tsx`, `ui/draft-label.tsx`; Photo ratio `fill`, `drift`, focus `upper-left`; Logo variant `adaptive`; Button primary `over-photo:` styles. Tokens: `--animate-drift`, and in a `:root` block (Tailwind drops unused `@theme` variables) `--focus-upper-left` and `--header-total`. Data: `hero.backdrop`, `backdropCaption`, `src/data/preview.ts`.
+  - **Brand exceptions to record when one option is adopted:**
+    - The fades are gradients. Brand §7 bans decorative gradients; these are functional (readability) and the owner's decision.
+    - Option A also changes Brand §6 ("rig + water at the surface") and D-27 ("scrim limited to the text area").
+    - The adopted option needs a decision row superseding D-44, the DS §3.3/§3.4 updates, and the Engineering §3 island entry.
+  - **After the client chooses:** move the chosen hero to `/`; delete the other hero, `src/app/preview/`, `data/preview.ts` and `ui/draft-label.tsx`.
+  - **One place for everything below the hero:** `src/app/_home/home-sections.tsx` (`HomeSections`). `/`, `/preview/option-a` and `/preview/option-b` each render only their own hero plus `<HomeSections />`, so any change below the hero (component, data or section order) shows on all three. Edit sections there, not in the page files.
+  - Agent's note for the meeting: both photos are phone photos (C-18 originals or a shoot would improve either). B's frame shows site rubbish (bags, a puddle) at the bottom right; Brand §6 asks for a tidy frame.
+- Verified: type-check, lint, Prettier, `check:design`, `build:static` pass; the built CSS contains the `over-photo` rule.
+  - Browser at 1280 × 720, 768 and 375 for both options: no horizontal overflow, one h1.
+  - A real wheel scroll turns the header white: Ink links, green button, green rule. The real `/` header stays white.
+  - The open mobile menu keeps Ink links on white.
+  - Seams at B's fade edges (the photo edge on a fractional pixel) were fixed with a 1 px overhang. After the eased fades, a zoomed capture of B's fade at 1366 × 640 shows no line.
+  - B re-checked at 1366 × 640 (the owner's laptop size), 768 and 375 after the revision; `build:static` lists `/`, `/preview/option-a` and `/preview/option-b`.
+  - The hidden browser pane pauses scroll events for programmatic scrolling and paints photos late; checks used real wheel scrolls and computed styles.
+
+### Current session — 2026-10-22 (whole-site review: section colors)
+
+- Owner asked why the page alternates near-whites. Agent recommended one page color; owner chose Paper `#F8F7F3` → **D-58**. Cards stay White (one card color already; a tinted card on Paper would look darker than the page, i.e. dirty).
+- Done in the shared sections: the `tone` prop was removed from every content section (ProofStrip, FeaturedProjects, ServiceLifecycle, EquipmentTeaser, Testimonials, FeatureGrid, Story, TeamGrid, ReferenceGrid, PhotoGallery, ProjectGrid, EquipmentGrid); ServiceDetail's second part is Paper; pages lost their alternation logic. PageHeader keeps Stone (agent's recommendation; one line to change if the owner wants Paper there too).
+- Docs: DS §2.1, §4 and Brand §4/§11 + change log updated.
+- **Checkpoint commit (owner, 2026-10-22):** the hero options and D-58 were committed together as a review checkpoint, although the whole-site review is not Complete (exception to §3's one-commit-per-completed-step rule). Reason: two days of uncommitted work, and the client meeting should see a frozen version. Screenshots (`.p*-*.png`) and `brand-assets/` were left out. From here, each review change gets its own small commit.
+- Verified: type-check, lint, `check:design`, `build:static` pass. Prettier passes for our files; it flags only the untracked `brand-assets/Liyat Construction qr/README.md` (not ours, left alone). Browser (dev, port 3000): home option B at 1280 and 375, About at 768: every content section `rgb(248 247 243)`, About header Stone, no horizontal overflow, no console errors. Gap between sections at 1280 is ≈ 205 px of Paper (two section paddings); reads calm, but it is the thing to watch.
+
+### Earlier session — 2026-10-21 (P14)
 
 - Owner authorized P13/P14 commits and deferred review (D-56), then changed the next gate to review before P15 (D-57).
 - P13 committed as 97d0686 with pre-commit eslint/prettier passing. P14 adds shared metadata, sitemap alignment, escaped breadcrumb/business JSON-LD, natural-color social photograph, honest legal drafts and lightweight system recovery.
@@ -648,4 +704,9 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-**Owner reviews the whole site before P15 (D-57).** P14 implementation is marked Complete by instruction; Lighthouse, external schema validation and browser checks remain pending audit work. Do not start P15 until instructed after review. C-25 still blocks production form receipt, C-29 blocks final legal copy, and P3 waits for C-01.
+**Tomorrow (2026-10-23):**
+
+1. Continue the owner's whole-site review with the rest of the home page, below the hero. Change it in `src/app/_home/home-sections.tsx` and the shared components, so both preview options stay identical below the hero.
+2. Then the client meeting picks hero A or B (`/preview/option-a`, `/preview/option-b`, run with `npm run dev`). Afterwards, follow "After the client chooses" in the hero session notes above.
+
+Then: **owner reviews the whole site before P15 (D-57).** P14 implementation is marked Complete by instruction; Lighthouse, external schema validation and browser checks remain pending audit work. Do not start P15 until instructed after review. C-25 still blocks production form receipt, C-29 blocks final legal copy, and P3 waits for C-01.

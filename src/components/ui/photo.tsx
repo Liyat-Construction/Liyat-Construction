@@ -11,6 +11,8 @@ const ratios = {
   card: 'aspect-card',
   portrait: 'aspect-portrait',
   square: 'aspect-square',
+  /** Fills a parent that sets its size (full-bleed backdrop) */
+  fill: 'size-full',
 } as const satisfies Record<string, string>;
 
 // How wide the photo is in the layout. Never write `sizes` by hand.
@@ -28,6 +30,7 @@ const focuses = {
   bottom: 'object-bottom',
   left: 'object-left',
   right: 'object-right',
+  'upper-left': 'object-(--focus-upper-left)',
 } as const satisfies Record<ImageFocus, string>;
 
 interface PhotoProps {
@@ -38,6 +41,8 @@ interface PhotoProps {
   priority?: boolean;
   /** Rounded corners; off for full-bleed and for photos inside a Card */
   rounded?: boolean;
+  /** The photo settles slowly into place once (full-bleed hero only) */
+  drift?: boolean;
   className?: string;
 }
 
@@ -51,6 +56,7 @@ export function Photo({
   width = 'full',
   priority = false,
   rounded = false,
+  drift = false,
   className,
 }: PhotoProps) {
   return (
@@ -70,7 +76,8 @@ export function Photo({
         priority={priority}
         className={cn(
           'ease-standard object-cover transition-transform duration-(--duration-base) group-hover/card:scale-105',
-          pick(focuses, image.focus ?? 'center')
+          pick(focuses, image.focus ?? 'center'),
+          drift && 'animate-drift'
         )}
       />
     </div>

@@ -25,13 +25,8 @@ export default function TestimonialsPage() {
         intro={header.intro}
       />
       <Testimonials {...testimonials} testimonials={TESTIMONIALS} />
-      <ReferenceGrid id="references" tone="stone" {...references} references={REFERENCES} />
-      <ProofStrip
-        {...clients}
-        figures={[]}
-        clients={PARTNERS}
-        tone={REFERENCES.length > 0 ? 'paper' : 'stone'}
-      />
+      <ReferenceGrid id="references" {...references} references={REFERENCES} />
+      <ProofStrip {...clients} figures={[]} clients={PARTNERS} />
       <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );

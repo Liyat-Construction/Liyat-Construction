@@ -1,12 +1,11 @@
 import type { SectionCopy, Service } from '@/types/content';
 import { ServiceCard } from '@/components/cards/service-card';
 import { WellDiagram } from '@/components/diagrams/well-diagram';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface ServiceLifecycleProps extends SectionCopy {
   services: Service[];
-  tone?: SectionTone;
 }
 
 /**
@@ -15,15 +14,9 @@ interface ServiceLifecycleProps extends SectionCopy {
  * (`:has()` in globals.css, D-45), so no JavaScript ships. Phones see the
  * diagram first, then the cards.
  */
-export function ServiceLifecycle({
-  eyebrow,
-  title,
-  intro,
-  services,
-  tone = 'paper',
-}: ServiceLifecycleProps) {
+export function ServiceLifecycle({ eyebrow, title, intro, services }: ServiceLifecycleProps) {
   return (
-    <Section tone={tone} labelledBy="lifecycle-title">
+    <Section labelledBy="lifecycle-title">
       <div data-lifecycle className="gap-grid grid lg:grid-cols-12 lg:items-start">
         <SectionHeading
           id="lifecycle-title"

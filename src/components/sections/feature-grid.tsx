@@ -1,7 +1,7 @@
 import type { Action, Feature, SectionCopy } from '@/types/content';
 import { FeatureCard } from '@/components/cards/feature-card';
 import type { IconName } from '@/components/ui/icon';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { TextLink } from '@/components/ui/text-link';
 import { cn, pick } from '@/lib/utils';
@@ -19,7 +19,6 @@ interface FeatureGridProps extends SectionCopy {
   columns?: keyof typeof columns;
   /** A link beside the heading, e.g. to the page that covers the topic in full */
   link?: Action;
-  tone?: SectionTone;
   id: string;
 }
 
@@ -32,12 +31,11 @@ export function FeatureGrid({
   icon,
   columns: count = 3,
   link,
-  tone = 'paper',
   id,
 }: FeatureGridProps) {
   if (items.length === 0) return;
   return (
-    <Section tone={tone} labelledBy={`${id}-title`}>
+    <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
         <div className="gap-grid flex flex-col md:flex-row md:items-end md:justify-between">
           <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />

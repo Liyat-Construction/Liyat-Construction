@@ -23,7 +23,7 @@ export default function ServicesPage() {
         intro={header.intro}
       />
       <ServiceLifecycle {...lifecycle} services={SERVICES} />
-      <FeatureGrid id="deliverables" tone="stone" columns={4} icon="document" {...deliverables} />
+      <FeatureGrid id="deliverables" columns={4} icon="document" {...deliverables} />
       <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );

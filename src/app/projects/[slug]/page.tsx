@@ -57,11 +57,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         image={project.image}
       />
       <ProjectDetail project={project} labels={detail} services={services} />
-      <PhotoGallery id="gallery" tone="stone" {...detail.gallery} images={project.gallery} />
+      <PhotoGallery id="gallery" {...detail.gallery} images={project.gallery} />
       <FeaturedProjects
         id="related-projects"
-        // Tones alternate: stone after the gallery, else after the paper body
-        tone={project.gallery.length > 0 ? 'paper' : 'stone'}
         title={detail.related}
         projects={related}
         link={detail.allProjects}

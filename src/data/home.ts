@@ -9,13 +9,42 @@ export const HOME_PAGE: HomePage = {
   hero: {
     // PLACEHOLDER(C-22): confirm "Know better. Drill better." is still the official tagline
     title: 'Know better. Drill better.',
-    lead: 'We take water projects from hydrogeological survey through drilling, testing and pump installation, and document every stage for our clients.',
+    lead: 'Survey, drilling, testing and pump installation, with every stage documented.',
     image: {
       url: '/images/hero/water-column.webp',
       alt: 'Water rising beside a Liyat drilling rig during well development',
     },
     primary: { label: 'Contact us', href: '/contact' },
     secondary: { label: 'Explore projects', href: '/projects' },
+    backdrop: {
+      url: '/images/hero/afar-rig-fleet.webp',
+      alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
+      // Keeps the rig (far left) in view on narrow screens and the mountains behind the text
+      focus: 'upper-left',
+    },
+    backdropCaption: 'On site in the Afar region',
+    blendImage: {
+      url: '/images/hero/ethiopian-airlines.webp',
+      alt: 'Water discharging into a test tank during a Liyat pumping test for Ethiopian Airlines, the drilling rig behind it',
+      // The tank, the water and the crew are on the right; the cluttered foreground is on the left
+      focus: 'right',
+    },
+    // PLACEHOLDER(C-30): illustrative log; replace with a real Liyat drilling log
+    log: {
+      title: 'Borehole log',
+      caption: 'Illustrative log. Depths in metres.',
+      layers: [
+        { name: 'Topsoil', from: 0, to: 4, material: 'soil' },
+        { name: 'Clay', from: 4, to: 16, material: 'clay' },
+        { name: 'Weathered rock', from: 16, to: 48, material: 'weathered' },
+        { name: 'Hard rock', from: 48, to: 84, material: 'rock' },
+        { name: 'Aquifer', from: 84, to: 120, material: 'aquifer' },
+      ],
+      casingTo: 84,
+      screenTo: 116,
+      waterLevel: 36,
+      waterLevelLabel: 'Water level',
+    },
   },
   proof: {
     eyebrow: 'Track record',

@@ -2,7 +2,7 @@ import type { Action, Equipment, SectionCopy } from '@/types/content';
 import { Button } from '@/components/ui/button';
 import { FactsTable } from '@/components/ui/facts-table';
 import { Photo } from '@/components/ui/photo';
-import { Section, type SectionTone } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Subheading } from '@/components/ui/subheading';
 
@@ -10,21 +10,13 @@ interface EquipmentTeaserProps extends SectionCopy {
   /** The machine to lead with, usually the main rig */
   equipment?: Equipment;
   link: Action;
-  tone?: SectionTone;
 }
 
 /** Capability in one view: the main rig's photo, name and up to three key specs. Renders nothing without it. */
-export function EquipmentTeaser({
-  eyebrow,
-  title,
-  intro,
-  equipment,
-  link,
-  tone = 'stone',
-}: EquipmentTeaserProps) {
+export function EquipmentTeaser({ eyebrow, title, intro, equipment, link }: EquipmentTeaserProps) {
   if (!equipment) return;
   return (
-    <Section tone={tone} labelledBy="equipment-title">
+    <Section labelledBy="equipment-title">
       <div className="gap-grid grid items-center lg:grid-cols-12">
         {equipment.image && (
           <Photo

@@ -6,7 +6,7 @@
  */
 
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
-export type ImageFocus = 'center' | 'top' | 'bottom' | 'left' | 'right';
+export type ImageFocus = 'center' | 'top' | 'bottom' | 'left' | 'right' | 'upper-left';
 
 export interface ImageAsset {
   /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (Engineering §5) */
@@ -150,6 +150,29 @@ export interface Action {
   href: string;
 }
 
+/** Ground material of a log layer; picks its fill and hatching in BoreholeLog. */
+export type LogMaterial = 'soil' | 'clay' | 'weathered' | 'rock' | 'aquifer';
+
+/** One layer of a borehole log, depths in metres from the surface. */
+export interface LogLayer {
+  name: string;
+  from: number;
+  to: number;
+  material: LogMaterial;
+}
+
+/** A drilling log: the ground as drilled, and how the well was built in it. Depths in metres. */
+export interface BoreholeLogData {
+  title: string;
+  caption: string;
+  layers: LogLayer[];
+  /** Solid casing from the surface to this depth; the screen continues below it */
+  casingTo: number;
+  screenTo: number;
+  waterLevel: number;
+  waterLevelLabel: string;
+}
+
 /** The start of a section: SectionHeading props. */
 export interface SectionCopy {
   eyebrow?: string;
@@ -246,6 +269,13 @@ export interface HomePage {
     image: ImageAsset;
     primary: Action;
     secondary: Action;
+    /** Full-bleed hero candidate under review: the photo behind the text, and its caption */
+    backdrop: ImageAsset;
+    backdropCaption: string;
+    /** Hero option B under review: the photo that fades into the Ink panel */
+    blendImage: ImageAsset;
+    /** Parked: the borehole log, rejected for the hero, kept for Services */
+    log: BoreholeLogData;
   };
   proof: SectionCopy & { clientsTitle: string };
   projects: SectionCopy & { link: Action };

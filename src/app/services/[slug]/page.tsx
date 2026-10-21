@@ -53,7 +53,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <ServiceDetail service={service} labels={SERVICES_PAGE.detail} />
       <FeaturedProjects
         id="related-projects"
-        tone="paper"
         title={SERVICES_PAGE.detail.related}
         projects={related}
         link={SERVICES_PAGE.detail.allProjects}

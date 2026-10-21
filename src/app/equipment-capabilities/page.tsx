@@ -13,8 +13,6 @@ import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
 const { header, rigs, support, figures, safety } = EQUIPMENT_PAGE;
 const drillingRigs = EQUIPMENT.filter((item) => item.category === 'rig');
 const supportEquipment = EQUIPMENT.filter((item) => item.category === 'support');
-const equipmentSections = Number(drillingRigs.length > 0) + Number(supportEquipment.length > 0);
-const safetySections = equipmentSections + Number(KEY_FIGURES.length > 0);
 
 export const metadata: Metadata = pageMetadata(
   '/equipment-capabilities',
@@ -36,23 +34,13 @@ export default function EquipmentCapabilitiesPage() {
       <EquipmentGrid id="rigs" {...rigs} equipment={drillingRigs} />
       <EquipmentGrid
         id="support-equipment"
-        tone={drillingRigs.length > 0 ? 'stone' : 'paper'}
         {...support}
         equipment={supportEquipment}
         presentation="specifications"
       />
       {/* Capabilities Grid */}
-      <ProofStrip
-        {...figures}
-        figures={KEY_FIGURES}
-        tone={equipmentSections % 2 === 0 ? 'paper' : 'stone'}
-      />
-      <FeatureGrid
-        id="safety"
-        tone={safetySections % 2 === 0 ? 'paper' : 'stone'}
-        {...safety}
-        items={SAFETY_PRACTICES}
-      />
+      <ProofStrip {...figures} figures={KEY_FIGURES} />
+      <FeatureGrid id="safety" {...safety} items={SAFETY_PRACTICES} />
       <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );

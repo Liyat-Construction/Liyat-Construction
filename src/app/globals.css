@@ -8,6 +8,23 @@
  */
 @custom-variant on-dark (&:where([data-on-dark] *):not(:where([data-on-light] *)));
 
+/*
+ * `over-photo:` styles the site header while it floats see-through over a hero
+ * marked `data-header-overlay`. HeaderSolid sets `data-solid` on the header once
+ * the hero has scrolled past, which turns it back to white. Without JavaScript
+ * the header stays white (scripting: enabled). The mobile menu is excluded.
+ */
+@custom-variant over-photo {
+  @media (scripting: enabled) {
+    &:where(
+        body:has([data-header-overlay]) [data-site-header]:not([data-solid]),
+        body:has([data-header-overlay]) [data-site-header]:not([data-solid]) *
+      ):not(:where(dialog *)) {
+      @slot;
+    }
+  }
+}
+
 /* `current:` styles the link to the page being viewed (nav, breadcrumb). */
 @custom-variant current (&[aria-current='page']);
 
@@ -45,7 +62,10 @@
     outline-offset: var(--focus-offset);
   }
 
-  [data-on-dark] :focus-visible:not([data-on-light] *) {
+  [data-on-dark] :focus-visible:not([data-on-light] *),
+  body:has([data-header-overlay])
+    [data-site-header]:not([data-solid])
+    :focus-visible:not(dialog *) {
     outline-color: var(--color-white);
   }
 

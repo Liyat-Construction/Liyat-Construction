@@ -41,7 +41,7 @@ export function ServiceDetail({ service, labels }: ServiceDetailProps) {
         </div>
       </Section>
 
-      <Section tone="stone" labelledBy="service-includes">
+      <Section labelledBy="service-includes">
         <div className="gap-grid grid max-lg:gap-y-16 lg:grid-cols-2">
           <div className="flex flex-col gap-8">
             <SectionHeading id="service-includes" title={labels.includes} />
