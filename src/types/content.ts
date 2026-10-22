@@ -35,10 +35,10 @@ export interface Spec {
 /** The six services (Brand §9), in lifecycle order. Also the ids of the well-diagram parts. */
 export type ServiceSlug =
   | 'hydrogeological-survey'
-  | 'well-drilling'
+  | 'borehole-drilling'
   | 'pumping-tests'
-  | 'wellhead-rehabilitation'
-  | 'pump-installation'
+  | 'borehole-rehabilitation'
+  | 'pump-supply-installation'
   | 'turnkey-projects';
 
 export interface Service {
@@ -139,8 +139,6 @@ export interface Partner {
   name: string;
   /** Prepared image path, e.g. '/images/clients/acme.webp'. Without a logo, the name is shown as text. */
   logo?: string;
-  /** Site/project photo shown with the partner name when no logo is available. */
-  photo?: string;
   url?: string;
 }
 
@@ -190,7 +188,10 @@ export interface Feature {
 export interface PageCopy {
   eyebrow?: string;
   title: string;
+  /** One sentence, at most about 20 words (D-73) */
   intro?: string;
+  /** Landscape photo behind the page header (D-72) */
+  image?: ImageAsset;
   /** Meta description for search results */
   description: string;
 }
@@ -202,6 +203,8 @@ export interface ServicesPage {
   deliverables: SectionCopy & { items: Feature[] };
   /** Headings of the sections on every /services/[slug] page */
   detail: {
+    /** Eyebrow on a service page, followed by its number */
+    eyebrow: string;
     overview: string;
     forWho: string;
     includes: string;
@@ -215,6 +218,8 @@ export interface ServicesPage {
 /** /projects and the headings of every /projects/[slug] page (Design System §4). */
 export interface ProjectsPage {
   header: PageCopy;
+  /** The clients row under the projects */
+  clients: SectionCopy;
   detail: {
     overview: string;
     approach: string;
@@ -259,6 +264,8 @@ export interface CtaBandContent {
   title: string;
   text: string;
   action: Action;
+  /** Label of the call button, e.g. 'Call us now'; the number is in its link and read to screen readers */
+  call: string;
 }
 
 /** Home page copy, in section order (Design System §4). The eyebrow of the hero is the descriptor. */
@@ -266,20 +273,18 @@ export interface HomePage {
   hero: {
     title: string;
     lead: string;
-    image: ImageAsset;
     primary: Action;
     secondary: Action;
-    /** Full-bleed hero candidate under review: the photo behind the text, and its caption */
-    backdrop: ImageAsset;
-    backdropCaption: string;
-    /** Hero option B under review: the photo that fades into the Ink panel */
-    blendImage: ImageAsset;
+    /** The full-screen photo behind the headline (D-81), and its corner caption */
+    image: ImageAsset;
+    caption: string;
     /** Parked: the borehole log, rejected for the hero, kept for Services */
     log: BoreholeLogData;
   };
-  proof: SectionCopy & { clientsTitle: string };
-  projects: SectionCopy & { link: Action };
+  /** "Who we are": text, a landscape photo and the key figures (D-61) */
+  about: StoryCopy & { image: ImageAsset; action: Action };
   lifecycle: SectionCopy;
+  projects: SectionCopy & { link: Action; clientsTitle: string };
   equipment: SectionCopy & { link: Action };
   testimonials: SectionCopy;
 }

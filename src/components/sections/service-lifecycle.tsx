@@ -6,6 +6,8 @@ import { SectionHeading } from '@/components/ui/section-heading';
 
 interface ServiceLifecycleProps extends SectionCopy {
   services: Service[];
+  /** Anchor for the navigation (`/#services`) */
+  id?: string;
 }
 
 /**
@@ -14,12 +16,13 @@ interface ServiceLifecycleProps extends SectionCopy {
  * (`:has()` in globals.css, D-45), so no JavaScript ships. Phones see the
  * diagram first, then the cards.
  */
-export function ServiceLifecycle({ eyebrow, title, intro, services }: ServiceLifecycleProps) {
+export function ServiceLifecycle({ id, eyebrow, title, intro, services }: ServiceLifecycleProps) {
   return (
-    <Section labelledBy="lifecycle-title">
+    <Section id={id} labelledBy="lifecycle-title">
       <div data-lifecycle className="gap-grid grid lg:grid-cols-12 lg:items-start">
         <SectionHeading
           id="lifecycle-title"
+          align="center"
           eyebrow={eyebrow}
           title={title}
           intro={intro}

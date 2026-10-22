@@ -1,60 +1,60 @@
 import type { Action, ImageAsset } from '@/types/content';
+import { Backdrop } from '@/components/ui/backdrop';
 import { Button } from '@/components/ui/button';
-import { Photo } from '@/components/ui/photo';
+import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface HeroProps {
-  eyebrow: string;
   title: string;
   lead: string;
   image: ImageAsset;
+  /** Where and what the photo shows, in the corner */
+  caption: string;
   primary: Action;
   secondary: Action;
-  /** h2 where the page already has its h1 (the style guide) */
-  as?: 'h1' | 'h2';
 }
 
 /**
- * Home hero, option C (D-44): from lg, the text on Ink at the left and the
- * whole photo at the right, so nothing covers the photo and the headline is
- * above the fold. Below lg the photo comes first and the text sits under it.
- * The photo is the page's LCP image.
+ * The home hero (D-81, was option A): one site photograph fills the whole first
+ * screen, under the see-through header (`data-header-overlay`, pulled up by the
+ * header's height). From lg the headline is centred high over the calm part of
+ * the frame (the mountains) with the fleet below it; on phones it sits low over
+ * the open ground, with the rig above. The crop is anchored upper-left so the
+ * rig stays in view.
  */
-export function Hero({ eyebrow, title, lead, image, primary, secondary, as = 'h1' }: HeroProps) {
+export function Hero({ title, lead, image, caption, primary, secondary }: HeroProps) {
   return (
-    <Section
-      tone="ink"
-      spacing="none"
-      container="none"
-      labelledBy="hero-title"
-      className="lg:grid lg:grid-cols-12"
-    >
-      <Photo
-        image={image}
-        ratio="hero"
-        width="major"
-        priority
-        className="lg:order-last lg:col-span-7"
-      />
-      <div className="px-gutter flex flex-col gap-8 py-12 md:py-16 lg:col-span-5 lg:justify-center lg:px-12 xl:px-16">
-        <SectionHeading
-          as={as}
-          size="display"
-          id="hero-title"
-          eyebrow={eyebrow}
-          title={title}
-          intro={lead}
-        />
-        <div className="flex flex-wrap gap-4">
-          <Button href={primary.href} size="lg">
-            {primary.label}
-          </Button>
-          <Button href={secondary.href} size="lg" variant="secondary">
-            {secondary.label}
-          </Button>
-        </div>
-      </div>
-    </Section>
+    <div data-header-overlay className="-mt-(--header-total)">
+      <Section
+        tone="ink"
+        spacing="none"
+        container="none"
+        labelledBy="hero-title"
+        className="relative flex min-h-svh max-lg:items-end"
+      >
+        <Backdrop image={image} caption={caption} />
+        <Container className="relative flex flex-col items-center gap-8 pt-(--header-total) pb-16 lg:pb-24">
+          <div className="flex flex-col items-center gap-8 lg:pt-16">
+            <SectionHeading
+              as="h1"
+              size="display"
+              align="center"
+              id="hero-title"
+              title={title}
+              intro={lead}
+            />
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button href={primary.href} size="lg">
+                {primary.label}
+              </Button>
+              <Button href={secondary.href} size="lg" variant="secondary">
+                {secondary.label}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </div>
   );
 }

@@ -13,7 +13,13 @@ export function TeamGrid({ eyebrow, title, intro, members }: TeamGridProps) {
   return (
     <Section labelledBy="team-title">
       <div className="flex flex-col gap-12">
-        <SectionHeading id="team-title" eyebrow={eyebrow} title={title} intro={intro} />
+        <SectionHeading
+          id="team-title"
+          align="center"
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+        />
         <ul className="gap-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {members.map((member, index) => (
             <li key={`${member.name}-${index}`}>

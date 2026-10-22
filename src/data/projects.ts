@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
       portraitTop
     ),
     gallery: [],
-    services: ['pump-installation'],
+    services: ['pump-supply-installation'],
     featured: true,
   },
   {
@@ -99,7 +99,7 @@ export const PROJECTS: Project[] = [
       'Liyat drilling rig and support fleet at Afdera, Afar Region'
     ),
     gallery: [],
-    services: ['well-drilling'],
+    services: ['borehole-drilling'],
     featured: true,
   },
   {
@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
       portrait
     ),
     gallery: [],
-    services: ['well-drilling'],
+    services: ['borehole-drilling'],
     featured: true,
   },
   {
@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
       portrait
     ),
     gallery: [],
-    services: ['well-drilling'],
+    services: ['borehole-drilling'],
     featured: false,
   },
   {
@@ -154,7 +154,7 @@ export const PROJECTS: Project[] = [
       portrait
     ),
     gallery: [],
-    services: ['well-drilling'],
+    services: ['borehole-drilling'],
     featured: false,
   },
   {
@@ -191,12 +191,20 @@ export const PROJECTS: Project[] = [
 // PLACEHOLDER(C-11): the intro describes the current list; check it when the facts arrive
 export const PROJECTS_PAGE: ProjectsPage = {
   header: {
-    eyebrow: 'Projects',
-    title: 'Projects we have delivered',
+    eyebrow: 'Our work',
+    title: 'Wells we have drilled, tested and equipped',
     intro:
-      'Well drilling, pumping tests and pump installations for institutional and commercial clients. Each project lists the work we did and the facts we can document.',
+      'For embassies, banks, colleges and developers. Each project lists only the facts we can document.',
+    image: {
+      url: '/images/hero/yekatit-12.webp',
+      alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
+    },
     description:
       'Water well drilling, pumping test and pump installation projects by Liyat Construction for institutional and commercial clients in Ethiopia.',
+  },
+  clients: {
+    eyebrow: 'Our clients',
+    title: 'Clients we have worked for',
   },
   detail: {
     overview: 'About the project',
@@ -213,7 +221,7 @@ export const PROJECTS_PAGE: ProjectsPage = {
     gallery: { title: 'Photos from the site' },
     related: 'Related projects',
     allProjects: { label: 'Explore all projects', href: '/projects' },
-    contact: { label: 'Discuss a similar project', href: '/contact' },
+    contact: { label: 'Discuss a similar project', href: '/#contact' },
   },
 };
 

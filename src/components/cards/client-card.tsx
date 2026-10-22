@@ -8,12 +8,12 @@ interface ClientCardProps {
 }
 
 /**
- * A client in the "Clients we have worked for" row: the logo when there is one,
- * otherwise the name. Site photos are not logos, so they are not used here.
+ * A client in the "Clients we have worked for" row (ClientList, which supplies the list
+ * item): the logo when there is one, otherwise the name.
  */
 export function ClientCard({ client, className }: ClientCardProps) {
   return (
-    <Card as="li" className={className}>
+    <Card className={className}>
       {/* Fixed height, centered in a taller row; flex-1 would collapse it to 0 around the absolute logo */}
       <div className="my-auto flex min-h-16 items-center justify-center">
         {client.logo ? (
@@ -27,7 +27,10 @@ export function ClientCard({ client, className }: ClientCardProps) {
             />
           </div>
         ) : (
-          <p className="font-heading text-h4 text-center text-balance">{client.name}</p>
+          // hyphens-auto: long words ("Manufacturing") fit a half-width card on phones
+          <p className="font-heading text-h4 text-center text-balance hyphens-auto">
+            {client.name}
+          </p>
         )}
       </div>
     </Card>

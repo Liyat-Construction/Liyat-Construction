@@ -8,7 +8,6 @@ import {
   CircleAlert,
   Clock,
   Cog,
-  Construction,
   Download,
   Drill,
   ExternalLink,
@@ -16,6 +15,7 @@ import {
   Gauge,
   House,
   KeyRound,
+  Instagram,
   Mail,
   MapPin,
   Menu,
@@ -23,6 +23,7 @@ import {
   Ruler,
   ScanSearch,
   Timer,
+  Wrench,
   X,
   type LucideIcon,
 } from 'lucide-react';
@@ -41,6 +42,8 @@ const icons = {
   'external-link': ExternalLink,
   document: FileText,
   home: House,
+  // Brand mark (lucide's brand icons are deprecated but kept); only for the agency credit (D-79)
+  instagram: Instagram,
   mail: Mail,
   'map-pin': MapPin,
   menu: Menu,
@@ -52,7 +55,7 @@ const icons = {
   survey: ScanSearch,
   drilling: Drill,
   'pumping-test': Gauge,
-  wellhead: Construction,
+  rehabilitation: Wrench,
   pump: Cog,
   turnkey: KeyRound,
 } as const satisfies Record<string, LucideIcon>;

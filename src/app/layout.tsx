@@ -7,6 +7,9 @@ import { SkipLink } from '@/components/layout/skip-link';
 import { OrganizationSchema } from '@/components/organization-schema';
 import { env, siteUrl } from '@/config/env';
 import { siteConfig } from '@/config/site';
+import { CtaBand } from '@/components/sections/cta-band';
+import { CTA_BAND } from '@/data/cta';
+import { SERVICES } from '@/data/services';
 import './globals.css';
 
 // Fonts and weights: Brand §5. Exposed to tokens.css as --font-heading / --font-body.
@@ -122,7 +125,14 @@ export default function RootLayout({
           <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
+          {/* The closing section on every page, Home included (D-69) */}
+          <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+          <Footer
+            services={SERVICES.map((service) => ({
+              href: `/services/${service.slug}`,
+              label: service.title,
+            }))}
+          />
         </div>
       </body>
     </html>

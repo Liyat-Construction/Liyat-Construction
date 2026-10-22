@@ -5,10 +5,10 @@ import { pick } from '@/lib/utils';
 
 const icons = {
   'hydrogeological-survey': 'survey',
-  'well-drilling': 'drilling',
+  'borehole-drilling': 'drilling',
   'pumping-tests': 'pumping-test',
-  'wellhead-rehabilitation': 'wellhead',
-  'pump-installation': 'pump',
+  'borehole-rehabilitation': 'rehabilitation',
+  'pump-supply-installation': 'pump',
   'turnkey-projects': 'turnkey',
 } as const satisfies Record<ServiceSlug, IconName>;
 

@@ -49,10 +49,10 @@ export const reference: Reference = {
 
 export const services = [
   'Hydrogeological & Geophysical Survey',
-  'Well Drilling',
+  'Borehole Drilling',
   'Pumping Tests',
-  'Wellhead Construction & Rehabilitation',
-  'Pump Installation & Electromechanical Works',
+  'Borehole Rehabilitation',
+  'Pump Supply & Installation',
   'Turnkey Water Projects',
 ];
 

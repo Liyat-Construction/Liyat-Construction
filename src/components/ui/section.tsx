@@ -22,6 +22,10 @@ interface SectionProps {
   children: React.ReactNode;
   tone?: SectionTone;
   spacing?: keyof typeof spacings;
+  /** `grid`: the drawing grid on plain Ink (D-71). Never over a photo */
+  pattern?: 'none' | 'grid';
+  /** The green signature rule along the top edge, where a dark block starts */
+  rule?: boolean;
   /** `none` renders the children edge to edge, without a Container */
   container?: ContainerSize | 'none';
   id?: string;
@@ -35,6 +39,8 @@ export function Section({
   children,
   tone = 'paper',
   spacing = 'default',
+  pattern = 'none',
+  rule = false,
   container = 'content',
   id,
   labelledBy,
@@ -46,8 +52,20 @@ export function Section({
       id={id}
       aria-labelledby={labelledBy}
       data-on-dark={dark || undefined}
-      className={cn(pick(tones, tone), pick(spacings, spacing), className)}
+      className={cn(
+        pick(tones, tone),
+        pick(spacings, spacing),
+        pattern === 'grid' && 'relative isolate',
+        rule && 'border-brand border-t-(length:--rule-width)',
+        className
+      )}
     >
+      {pattern === 'grid' && (
+        <div
+          aria-hidden="true"
+          className="pattern-grid pointer-events-none absolute inset-0 -z-10"
+        />
+      )}
       {container === 'none' ? children : <Container size={container}>{children}</Container>}
     </section>
   );

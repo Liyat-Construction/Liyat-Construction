@@ -36,7 +36,7 @@ export function SystemMessage({
           <a href="/" className={`${action} border-brand text-brand hover:bg-brand-tint border`}>
             {home}
           </a>
-          <a href="/contact" className={`${action} text-brand underline underline-offset-4`}>
+          <a href="/#contact" className={`${action} text-brand underline underline-offset-4`}>
             {contact}
           </a>
         </div>

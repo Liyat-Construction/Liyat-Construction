@@ -1,12 +1,9 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
-import { CtaBand } from '@/components/sections/cta-band';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
 import { PageHeader } from '@/components/sections/page-header';
 import { ServiceDetail } from '@/components/sections/service-detail';
-import { siteConfig } from '@/config/site';
-import { CTA_BAND } from '@/data/cta';
 import { getProjectsByService } from '@/data/projects';
 import { getServiceBySlug, getServiceTitles, SERVICES, SERVICES_PAGE } from '@/data/services';
 
@@ -42,10 +39,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <PageHeader
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
+          { label: 'Services', href: '/#services' },
           { label: service.title },
         ]}
-        eyebrow={`${SERVICES_PAGE.header.eyebrow} · ${String(number).padStart(2, '0')}`}
+        eyebrow={`${SERVICES_PAGE.detail.eyebrow} · ${String(number).padStart(2, '0')}`}
         title={service.title}
         intro={service.intro}
         image={service.image}
@@ -57,7 +54,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
         projects={related}
         link={SERVICES_PAGE.detail.allProjects}
       />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );
 }

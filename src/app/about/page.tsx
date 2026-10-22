@@ -1,15 +1,12 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
-import { CtaBand } from '@/components/sections/cta-band';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { Story } from '@/components/sections/story';
 import { TeamGrid } from '@/components/sections/team-grid';
-import { siteConfig } from '@/config/site';
 import { ABOUT_PAGE } from '@/data/about';
 import { ABOUT_FIGURES, COMPANY_FACTS, CREDENTIALS, SAFETY_PRACTICES, TEAM } from '@/data/company';
-import { CTA_BAND } from '@/data/cta';
 
 const { header, story, figures, offer, audience, purpose, principles, team, credentials, safety } =
   ABOUT_PAGE;
@@ -54,7 +51,6 @@ export default function AboutPage() {
         items={credentialItems}
       />
       <FeatureGrid id="safety" {...safety} items={SAFETY_PRACTICES} />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );
 }

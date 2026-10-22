@@ -1,12 +1,13 @@
 /**
  * Call to action
- * The band at the end of every page except Contact.
+ * The closing section above the footer, on every page (D-69).
  */
 
 import type { CtaBandContent } from '@/types/content';
 
 export const CTA_BAND: CtaBandContent = {
-  title: 'Planning a new water source?',
-  text: 'Tell us where the site is and how much water you need. We will tell you what it takes, from survey to handover.',
-  action: { label: 'Contact us', href: '/contact' },
+  title: 'Planning a water project?',
+  text: 'Tell us where your site is and what you need. We reply with a clear next step.',
+  action: { label: 'Contact us', href: '/#contact' },
+  call: 'Call us now',
 };

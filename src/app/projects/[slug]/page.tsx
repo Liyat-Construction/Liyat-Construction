@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { CtaBand } from '@/components/sections/cta-band';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
 import { PageHeader } from '@/components/sections/page-header';
 import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { ProjectDetail } from '@/components/sections/project-detail';
 import { pageMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/config/site';
-import { CTA_BAND } from '@/data/cta';
 import { getProjectBySlug, getRelatedProjects, PROJECTS, PROJECTS_PAGE } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 
@@ -64,7 +61,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         projects={related}
         link={detail.allProjects}
       />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );
 }

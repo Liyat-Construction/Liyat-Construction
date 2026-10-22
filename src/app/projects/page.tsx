@@ -1,18 +1,17 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
-import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
 import { ProjectGrid } from '@/components/sections/project-grid';
-import { siteConfig } from '@/config/site';
-import { CTA_BAND } from '@/data/cta';
+import { ProofStrip } from '@/components/sections/proof-strip';
+import { PARTNERS } from '@/data/partners';
 import { PROJECTS_NEWEST_FIRST, PROJECTS_PAGE } from '@/data/projects';
 import { getServiceTitles } from '@/data/services';
 
-const { header } = PROJECTS_PAGE;
+const { header, clients } = PROJECTS_PAGE;
 
 export const metadata: Metadata = pageMetadata('/projects', header.title, header.description);
 
-// Design System §4 (Projects index)
+// Design System §4 (Projects): the header, every project, then the clients
 export default function ProjectsPage() {
   const projects = PROJECTS_NEWEST_FIRST.map((project) => ({
     project,
@@ -26,9 +25,11 @@ export default function ProjectsPage() {
         eyebrow={header.eyebrow}
         title={header.title}
         intro={header.intro}
+        image={header.image}
       />
       <ProjectGrid projects={projects} />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+      {/* The clients behind the projects; the section heading names them, so no sub-heading */}
+      <ProofStrip {...clients} figures={[]} clients={PARTNERS} />
     </>
   );
 }

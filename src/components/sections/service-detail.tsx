@@ -34,7 +34,7 @@ export function ServiceDetail({ service, labels }: ServiceDetailProps) {
                 <CheckList items={service.deliverables} />
               </FeatureCard>
             )}
-            <Button href="/contact" icon="arrow" className="self-start">
+            <Button href="/#contact" icon="arrow" className="self-start">
               {service.cta}
             </Button>
           </div>

@@ -25,13 +25,13 @@ export function Header() {
     >
       <HeaderSolid />
       <Container className="flex h-(--header-height) items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <Logo variant="adaptive" alt="" eager />
           <span className="flex flex-col">
             <span className="font-heading text-h4 text-ink over-photo:text-white font-bold">
               {siteConfig.name}
             </span>
-            <span className="text-small text-ink-muted over-photo:text-white/80 max-sm:sr-only">
+            <span className="text-small text-ink-muted over-photo:text-white/80 max-sm:sr-only lg:max-xl:sr-only">
               {siteConfig.descriptor}
             </span>
           </span>
@@ -40,7 +40,7 @@ export function Header() {
           <nav aria-label="Main" className="max-lg:hidden">
             <NavLinks links={main} layout="bar" />
           </nav>
-          <Button href={cta.href} className="max-sm:hidden">
+          <Button href={cta.href} className="shrink-0 max-sm:hidden">
             {cta.label}
           </Button>
           <MobileMenu

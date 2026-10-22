@@ -16,10 +16,14 @@ interface StatProps {
   className?: string;
 }
 
-/** Big tabular figure + label. Place several inside a <dl>. */
+/**
+ * Big tabular figure + label. Place several inside a <dl>. The figure stays at the
+ * top of its cell (`justify-end` in a reversed column), so a row of figures lines
+ * up even when one label wraps to two lines.
+ */
 export function Stat({ value, unit, label, tone = 'ink', className }: StatProps) {
   return (
-    <div className={cn('flex flex-col-reverse gap-2', className)}>
+    <div className={cn('flex flex-col-reverse justify-end gap-2', className)}>
       <dt className="text-small text-ink-muted on-dark:text-white/80">{label}</dt>
       <dd
         className={cn(

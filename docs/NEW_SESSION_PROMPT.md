@@ -1,10 +1,60 @@
 # New session prompt
 
-Paste everything inside the box into a new AI chat (Claude, Devin, Cursor, …)
-before starting work. It works for any project that keeps a `WORKFLOW.md`.
-Replace the one bracketed line with the project name and a one-sentence description.
+## Liyat — review and restructure phase (use this one now)
+
+Paste the box into a new AI chat. The AI reads the documents, tells you where we
+are, proposes the next step, and asks what you want to work on before touching code.
+
+```text
+PROJECT: Liyat Construction website — review and restructure phase.
+
+START (read, don't change anything)
+1. Read AGENTS.md, then WORKFLOW.md completely, then docs/ENGINEERING.md,
+   docs/DESIGN_SYSTEM.md and docs/BRAND_GUIDELINES.md.
+2. Skim the code the current step touches: src/config/site.ts,
+   src/components (ui, cards, sections, layout), the pages in src/app,
+   src/data and src/styles/tokens.css.
+3. Don't browse the web unless I ask.
+
+FIRST REPLY (short), then wait for me
+- Where we are: the current step from "You are here", the last thing done,
+  and what is blocked on the client.
+- Next: the next S-step in WORKFLOW.md §4 and your plan for it in a few lines
+  (files, shared components, how you will verify it).
+- Mismatches: anything in the code that contradicts the documents.
+- Then ask me: go ahead with that step, or do I want to raise a concern first?
+
+HOW WE WORK
+- One topic at a time: my concern, or the next step. Give me your honest view
+  as a senior engineer and UI/UX designer: agree or disagree, concrete reasons,
+  and the better option if there is one. We discuss, I decide, then you build.
+- Decisions in WORKFLOW.md §6 are settled. Reopen one only with a new fact.
+- Build in the shared layer: raw values only in src/styles/tokens.css, looks in
+  src/components/ui and cards, layout in sections. Never a one-off fix on a page.
+- After each change: look at it in the browser at 375, 768 and 1280, run
+  npm run validate, check:design and build:static, and show me the evidence.
+- Never invent facts; use PLACEHOLDER(C-xx) markers. No new dependencies, and
+  no deleting files or pages, without my OK.
+
+HONESTY
+Be 100% honest: no flattery, no agreeing to please me. Hold your position unless
+I give you a new fact or a better argument. If I overrule you, build it well and
+record my decision and your objection in WORKFLOW.md §6.
+
+BEFORE YOU STOP
+Update WORKFLOW.md ("You are here", step status, evidence, decisions, handoff,
+next action), and the design docs if a design decision changed.
+
+LIMITS
+P15–P17 wait until I say the structure and look of the site are right.
+Nothing gets committed or pushed unless I ask.
+```
 
 ---
+
+## General prompt (any project with a WORKFLOW.md)
+
+Replace the one bracketed line with the project name and a one-sentence description.
 
 ```text
 PROJECT: [Project name — one sentence on what it is and who it is for]

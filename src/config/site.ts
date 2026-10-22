@@ -4,7 +4,7 @@
  * Page copy lives in src/data/*; design values live in src/styles/tokens.css.
  *
  * Rule of thumb: an empty string hides the related UI (no phone → no phone row,
- * no telegram → no floating Telegram button, no map → no map, etc.).
+ * no map → no map, etc.).
  */
 
 export type ContactFormProvider = 'none' | 'formspree' | 'web3forms';
@@ -13,15 +13,19 @@ export const siteConfig = {
   // ── Navigation ──────────────────────────────────────────────────────────────
   // One source of truth for nav links across desktop, tablet and mobile.
   navigation: {
-    // Header, mobile menu and footer. Home is the logo; Contact is the button (Brand §8).
+    // Header, mobile menu and footer, in the home page's section order (D-59). Links go
+    // to pages; Services and Testimonials have no page and jump to their home section.
+    // `match` marks the link current on other paths (service pages mark "Services").
+    // Contact is the button (Brand §8).
     main: [
+      { href: '/', label: 'Home' },
       { href: '/about', label: 'About' },
-      { href: '/services', label: 'Services' },
+      { href: '/#services', label: 'Services', match: '/services' },
       { href: '/projects', label: 'Projects' },
       { href: '/equipment-capabilities', label: 'Equipment' },
-      { href: '/testimonials', label: 'Testimonials' },
+      { href: '/#testimonials', label: 'Testimonials' },
     ],
-    cta: { href: '/contact', label: 'Contact us' },
+    cta: { href: '/#contact', label: 'Contact us' },
     legal: [
       { href: '/privacy-policy', label: 'Privacy policy' },
       { href: '/terms-of-service', label: 'Terms of service' },
@@ -38,7 +42,8 @@ export const siteConfig = {
   /** Shown with the logo wherever someone meets us first (Brand §1) */
   descriptor: 'Water Well Drilling & Engineering',
   legalName: 'Liyat Construction PLC',
-  // PLACEHOLDER(C-21): exact Amharic legal name, as printed on the brochure
+  // PLACEHOLDER(C-21): exact Amharic legal name, as printed on the brochure. Shown only in About's
+  // "Company at a glance"; the footer uses the English legal name only (D-80)
   legalNameAmharic: 'ልያት ኮንስትራክሽን ኃ.የተ.የግል ማህበር',
   // Open Graph locale (e.g. 'en_US', 'am_ET') and <html lang> value
   locale: 'en_US',
@@ -150,6 +155,26 @@ export const siteConfig = {
     description:
       'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
     copyrightEntity: 'Liyat Construction PLC',
+    /** After "© {year} {legal name}." in the bottom bar */
+    rights: 'All rights reserved.',
+    // PLACEHOLDER(C-31): Wondwossen approves the agency credit and its two icon links (D-64, D-79)
+    credit: {
+      label: 'Built by Digital Aksumite',
+      href: 'https://digitalaksumite.com',
+      // Icon links beside the credit; the labels name the agency so they are not read as Liyat's own
+      links: [
+        {
+          icon: 'mail' as const,
+          label: 'Email Digital Aksumite',
+          href: 'mailto:hello@digitalaksumite.com',
+        },
+        {
+          icon: 'instagram' as const,
+          label: 'Digital Aksumite on Instagram',
+          href: 'https://www.instagram.com/digitalaksumite/',
+        },
+      ],
+    },
   },
 
   // ── Legal Pages ─────────────────────────────────────────────────────────────

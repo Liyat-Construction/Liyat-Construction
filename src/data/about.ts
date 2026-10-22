@@ -8,10 +8,10 @@ import type { AboutPage } from '@/types/content';
 
 export const ABOUT_PAGE: AboutPage = {
   header: {
-    eyebrow: 'About us',
+    eyebrow: 'Who we are',
     title: 'Groundwater engineering, from survey to handover',
-    intro:
-      'Liyat Construction is an Ethiopian groundwater development company. We survey, drill, test and equip water wells, and document every stage for our clients.',
+    // From Liyat's brochure (founded 2019; founder and General Manager a hydrogeologist with 19 years of drilling experience)
+    intro: 'Founded in 2019 and led by a hydrogeologist with 19 years of drilling experience.',
     description:
       'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor for public bodies, embassies, NGOs, institutions and commercial clients.',
     image: {
@@ -20,7 +20,7 @@ export const ABOUT_PAGE: AboutPage = {
     },
   },
   story: {
-    eyebrow: 'Who we are',
+    eyebrow: 'Our story',
     title: 'Liyat Construction PLC',
     paragraphs: [
       // The company description, used unchanged (Brand §10)
@@ -50,10 +50,10 @@ export const ABOUT_PAGE: AboutPage = {
       },
       {
         title: 'Equip',
-        text: 'Pumping tests, wellhead construction, pump installation and electromechanical works.',
+        text: 'Pumping tests, borehole rehabilitation, and pump supply and installation with the electromechanical works.',
       },
     ],
-    link: { label: 'See all six services', href: '/services' },
+    link: { label: 'See all six services', href: '/#services' },
   },
   audience: {
     eyebrow: 'Who we serve',
@@ -63,7 +63,7 @@ export const ABOUT_PAGE: AboutPage = {
       'We work for government agencies, embassies, international NGOs, institutions and commercial developers that need groundwater developed in Ethiopia. Other client types (C-28): hospitals, manufacturers.',
       'If your project needs a dependable water source and a contractor who works to institutional standards, we should talk.',
     ],
-    action: { label: 'Contact us', href: '/contact' },
+    action: { label: 'Contact us', href: '/#contact' },
   },
   purpose: {
     eyebrow: 'Our purpose',

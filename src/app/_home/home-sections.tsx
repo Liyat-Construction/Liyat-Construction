@@ -1,12 +1,12 @@
-import { CtaBand } from '@/components/sections/cta-band';
+import { ContactPanel } from '@/components/sections/contact-panel';
 import { EquipmentTeaser } from '@/components/sections/equipment-teaser';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
-import { ProofStrip } from '@/components/sections/proof-strip';
 import { ServiceLifecycle } from '@/components/sections/service-lifecycle';
+import { Story } from '@/components/sections/story';
 import { Testimonials } from '@/components/sections/testimonials';
 import { siteConfig } from '@/config/site';
-import { KEY_FIGURES } from '@/data/company';
-import { CTA_BAND } from '@/data/cta';
+import { HOME_FIGURES } from '@/data/company';
+import { CONTACT_PAGE } from '@/data/contact';
 import { EQUIPMENT } from '@/data/equipment';
 import { HOME_PAGE } from '@/data/home';
 import { PARTNERS } from '@/data/partners';
@@ -15,26 +15,35 @@ import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
 
 /**
- * Everything on the home page below the hero, in Design System §4 order, all on
- * Paper (one page color). Shared by `/` and the hero preview pages, so a
- * change here shows on all of them; only the hero differs.
+ * Everything on the home page below the hero, in the navigation order (D-59, D-61),
+ * each section with the `id` its nav anchor uses, all on Paper (one page color).
+ * The closing section and footer come from the layout (D-69).
  */
 export function HomeSections() {
-  const { proof, projects, lifecycle, equipment, testimonials } = HOME_PAGE;
+  const { about, lifecycle, projects, equipment, testimonials } = HOME_PAGE;
   return (
     <>
-      <ProofStrip {...proof} figures={KEY_FIGURES} clients={PARTNERS} />
+      <Story id="about" {...about} figures={HOME_FIGURES} />
+      <ServiceLifecycle id="services" {...lifecycle} services={SERVICES} />
       <FeaturedProjects
+        id="projects"
         {...projects}
         projects={FEATURED_PROJECTS.map((project) => ({
           project,
           serviceNames: getServiceTitles(project.services),
         }))}
+        clients={PARTNERS}
       />
-      <ServiceLifecycle {...lifecycle} services={SERVICES} />
-      <EquipmentTeaser {...equipment} equipment={EQUIPMENT[0]} />
-      <Testimonials {...testimonials} testimonials={TESTIMONIALS} />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
+      <EquipmentTeaser id="equipment" {...equipment} equipment={EQUIPMENT[0]} />
+      <Testimonials id="testimonials" {...testimonials} testimonials={TESTIMONIALS} />
+      {/* The contact page moved here (D-74); the nav button and every "Contact us" go to /#contact */}
+      <ContactPanel
+        id="contact"
+        copy={CONTACT_PAGE}
+        contact={siteConfig.contact}
+        configuration={siteConfig.contactForm}
+        sender={siteConfig.name}
+      />
     </>
   );
 }

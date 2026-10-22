@@ -17,7 +17,13 @@ export function PhotoGallery({ eyebrow, title, intro, images, id }: PhotoGallery
   return (
     <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+        <SectionHeading
+          id={`${id}-title`}
+          align="center"
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+        />
         <ul className="gap-grid columns-1 sm:columns-2 lg:columns-3">
           {images.map((image) => (
             <li key={image.url} className="mb-grid break-inside-avoid">

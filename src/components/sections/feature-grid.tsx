@@ -37,8 +37,14 @@ export function FeatureGrid({
   return (
     <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <div className="gap-grid flex flex-col md:flex-row md:items-end md:justify-between">
-          <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+        <div className="flex flex-col items-center gap-6">
+          <SectionHeading
+            id={`${id}-title`}
+            align="center"
+            eyebrow={eyebrow}
+            title={title}
+            intro={intro}
+          />
           {link && (
             <TextLink href={link.href} arrow className="shrink-0">
               {link.label}

@@ -1,6 +1,7 @@
 /**
  * Company facts
- * KEY_FIGURES      → ProofStrip on the homepage
+ * HOME_FIGURES     → the "Who we are" section on the homepage
+ * KEY_FIGURES      → ProofStrip on /equipment-capabilities
  * ABOUT_FIGURES    → ProofStrip on /about
  * COMPANY_FACTS    → "Company at a glance" on /about
  * CREDENTIALS      → licences and certifications on /about
@@ -26,6 +27,14 @@ const REGIONS: Stat = { value: '0', label: 'Regions worked in (C-10)' };
 // PLACEHOLDER(C-14): the grade on the water works contractor licence
 const CONTRACTOR_GRADE: Stat = { value: '0', label: 'Water works contractor grade (C-14)' };
 
+// From Liyat's brochure (client document, received 2026-10-22): founded 2019; the General Manager's
+// 19 years of drilling experience; Chaka House, 600 m, the deepest well in its project list
+export const HOME_FIGURES: Stat[] = [
+  { value: '2019', label: 'Founded' },
+  { value: '19', unit: 'years', label: "Our General Manager's drilling experience" },
+  { value: '600', unit: 'm', label: 'Deepest well drilled' },
+];
+
 export const KEY_FIGURES: Stat[] = [WELLS_COMPLETED, DEEPEST_WELL, HIGHEST_YIELD, REGIONS];
 
 export const ABOUT_FIGURES: Stat[] = [CONTRACTOR_GRADE, WELLS_COMPLETED, DEEPEST_WELL, REGIONS];
@@ -35,8 +44,8 @@ export const COMPANY_FACTS: Spec[] = [
   { label: 'In Amharic', value: siteConfig.legalNameAmharic },
   // Both candidate addresses (C-03) are in Addis Ababa
   { label: 'Headquarters', value: 'Addis Ababa, Ethiopia' },
-  // PLACEHOLDER(C-08): founding year
-  { label: 'Founded', value: 'Year (C-08)' },
+  // From Liyat's brochure: founded 2019, renamed Liyat Construction PLC in May 2022
+  { label: 'Founded', value: '2019' },
 ];
 
 // PLACEHOLDER(C-14): trade licence, Water Works Construction Authority grade, certifications

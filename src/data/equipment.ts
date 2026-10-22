@@ -8,10 +8,14 @@ import type { Capability, Equipment, EquipmentPage } from '@/types/content';
 
 export const EQUIPMENT_PAGE: EquipmentPage = {
   header: {
-    eyebrow: 'Equipment and field capacity',
-    title: 'Equipment & capabilities',
+    eyebrow: 'Our equipment',
+    title: 'Rigs and crews for deep and shallow wells',
     intro:
-      'Drilling rigs, support equipment and pumping-test specifications for planning a groundwater project. Contact us to discuss the equipment required for your site.',
+      'The drilling, support and pumping-test equipment we bring to site, with the specifications for planning.',
+    image: {
+      url: '/images/equipment/rig-transport.webp',
+      alt: 'Liyat drilling rig on its carrier, on the way to site',
+    },
     description:
       'Explore Liyat Construction’s drilling and support equipment, pumping-test specifications and site practices for groundwater projects in Ethiopia.',
   },

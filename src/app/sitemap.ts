@@ -9,10 +9,12 @@ export const dynamic = 'force-static';
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     '/',
+    // Anchor links (/#services, /#contact) point into the home page and are dropped below
     ...siteConfig.navigation.main.map((link) => link.href),
-    siteConfig.navigation.cta.href,
     ...SERVICES.map((service) => `/services/${service.slug}`),
     ...PROJECTS.map((project) => `/projects/${project.slug}`),
   ];
-  return [...new Set(paths)].map((path) => ({ url: pageUrl(path) }));
+  return [...new Set(paths.filter((path) => !path.includes('#')))].map((path) => ({
+    url: pageUrl(path),
+  }));
 }

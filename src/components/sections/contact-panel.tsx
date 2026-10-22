@@ -17,12 +17,14 @@ interface ContactPanelProps {
   contact: SiteConfig['contact'];
   configuration: ContactFormConfiguration;
   sender: string;
+  /** Anchor for the navigation (`/#contact`) */
+  id?: string;
 }
 
-export function ContactPanel({ copy, contact, configuration, sender }: ContactPanelProps) {
+export function ContactPanel({ copy, contact, configuration, sender, id }: ContactPanelProps) {
   const phones = [contact.phone, contact.secondaryPhone].filter(Boolean);
   return (
-    <Section labelledBy="contact-form-title">
+    <Section id={id} labelledBy="contact-form-title">
       <div className="gap-grid grid items-start lg:grid-cols-12">
         <Card className="lg:col-span-7">
           <div className="flex flex-col gap-8">

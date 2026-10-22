@@ -18,10 +18,8 @@ import { Stat } from '@/components/ui/stat';
 import { Tag } from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
 import { siteConfig } from '@/config/site';
-import { Hero } from '@/components/sections/hero';
 import { WellDiagram } from '@/components/diagrams/well-diagram';
 import { HOME_PAGE } from '@/data/home';
-import { CtaBand } from '@/components/sections/cta-band';
 import { PageHeader } from '@/components/sections/page-header';
 import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { EquipmentCard } from '@/components/cards/equipment-card';
@@ -33,8 +31,7 @@ import { TestimonialCard } from '@/components/cards/testimonial-card';
 import { Story } from '@/components/sections/story';
 import { TeamGrid } from '@/components/sections/team-grid';
 import { Statement } from '@/components/ui/statement';
-import { COMPANY_FACTS, KEY_FIGURES, TEAM } from '@/data/company';
-import { CTA_BAND } from '@/data/cta';
+import { COMPANY_FACTS, HOME_FIGURES, KEY_FIGURES, TEAM } from '@/data/company';
 import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
 import { EquipmentGrid } from '@/components/sections/equipment-grid';
 import { ReferenceGrid } from '@/components/sections/reference-grid';
@@ -65,7 +62,7 @@ const colorRoles: Record<string, string> = {
   ink: 'Text, footer, dark sections',
   'ink-muted': 'Secondary text, borders',
   paper: 'Page background (warm)',
-  stone: 'Inner-page header band',
+  stone: 'Fills: placeholders, diagram ground',
   line: 'Hairlines, card borders',
   water: 'Water data only',
   alert: 'Form errors only',
@@ -91,9 +88,9 @@ export default function StyleguidePage() {
     <div>
       <PageHeader
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Style guide' }]}
-        eyebrow="P5 · design review"
+        eyebrow="Design review"
         title="Liyat design system"
-        intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it. This header is the PageHeader every inner page uses; the green band at the end is the CtaBand."
+        intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it. This header is the Ink PageHeader every inner page uses (with a landscape photo behind it on About and Borehole Drilling); the green band at the end is the CtaBand."
       />
 
       {/* ── Tokens ─────────────────────────────────────────── */}
@@ -158,10 +155,13 @@ export default function StyleguidePage() {
               />
               <p className="max-w-prose">
                 {sectionCopy.body}{' '}
-                <TextLink href="/services">Read about our survey method</TextLink>.
+                <TextLink href="/services/hydrogeological-survey">
+                  Read about our survey method
+                </TextLink>
+                .
               </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Button href="/contact">Contact us</Button>
+                <Button href="/#contact">Contact us</Button>
                 <Button href="/projects" variant="secondary">
                   Explore projects
                 </Button>
@@ -214,7 +214,7 @@ export default function StyleguidePage() {
           <Specimen title="Button" note="primary · secondary · text, md and lg, icons, disabled">
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap items-center gap-4">
-                <Button href="/contact">Contact us</Button>
+                <Button href="/#contact">Contact us</Button>
                 <Button href="/projects" variant="secondary">
                   Explore projects
                 </Button>
@@ -223,7 +223,7 @@ export default function StyleguidePage() {
                 </Button>
               </div>
               <div className="flex flex-wrap items-center gap-4">
-                <Button href="/contact" size="lg" icon="arrow">
+                <Button href="/#contact" size="lg" icon="arrow">
                   Request a site survey
                 </Button>
                 <Button href="mailto:hello@example.com" size="lg" variant="secondary" icon="mail">
@@ -328,7 +328,7 @@ export default function StyleguidePage() {
             </Specimen>
             <Specimen
               title="feature: 3:2, 4:5 from lg"
-              note="portrait photos in page headers (orientation: portrait)"
+              note="portrait photos beside text (orientation: portrait)"
             >
               <Photo image={photos.pumpingTestTop} ratio="feature" width="third" rounded />
             </Specimen>
@@ -457,8 +457,6 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      <Hero as="h2" eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
-
       <PhotoGallery
         id="sg-gallery"
         eyebrow="Sections"
@@ -474,7 +472,17 @@ export default function StyleguidePage() {
         paragraphs={[sectionCopy.body]}
         facts={{ title: 'Company at a glance', rows: COMPANY_FACTS }}
         statement="Every successful well begins with understanding the ground beneath it."
-        action={{ label: 'Contact us', href: '/contact' }}
+        action={{ label: 'Contact us', href: '/#contact' }}
+      />
+
+      <Story
+        id="sg-story-photo"
+        eyebrow="Sections"
+        title="Story with a photo"
+        paragraphs={[sectionCopy.body]}
+        image={HOME_PAGE.about.image}
+        figures={HOME_FIGURES}
+        action={HOME_PAGE.about.action}
       />
 
       <TeamGrid
@@ -554,7 +562,7 @@ export default function StyleguidePage() {
                 ))}
               </ul>
               <p>
-                Questions about a test report? <a href="/contact">Contact our engineers</a>.
+                Questions about a test report? <a href="/#contact">Contact our engineers</a>.
               </p>
             </Prose>
           </div>
@@ -594,7 +602,6 @@ export default function StyleguidePage() {
         contact={siteConfig.system.contact}
       />
       <LegalContent copy={PRIVACY_PAGE} />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </div>
   );
 }

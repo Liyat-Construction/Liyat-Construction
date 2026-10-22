@@ -29,7 +29,14 @@ export function EquipmentGrid({
             : 'flex flex-col gap-12'
         }
       >
-        <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+        {/* Beside a single card: left; above a grid: centred (D-76) */}
+        <SectionHeading
+          id={`${id}-title`}
+          align={equipment.length === 1 ? 'start' : 'center'}
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+        />
         <ul className={equipment.length === 1 ? 'grid' : 'gap-grid grid md:grid-cols-2'}>
           {equipment.map((item) => (
             <li key={item.name} className="flex flex-col">

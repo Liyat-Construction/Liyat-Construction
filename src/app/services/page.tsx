@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
-import { CtaBand } from '@/components/sections/cta-band';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
 import { ServiceLifecycle } from '@/components/sections/service-lifecycle';
-import { siteConfig } from '@/config/site';
-import { CTA_BAND } from '@/data/cta';
 import { SERVICES, SERVICES_PAGE } from '@/data/services';
 
 const { header, lifecycle, deliverables } = SERVICES_PAGE;
@@ -24,7 +21,6 @@ export default function ServicesPage() {
       />
       <ServiceLifecycle {...lifecycle} services={SERVICES} />
       <FeatureGrid id="deliverables" columns={4} icon="document" {...deliverables} />
-      <CtaBand {...CTA_BAND} phone={siteConfig.contact.phone} />
     </>
   );
 }

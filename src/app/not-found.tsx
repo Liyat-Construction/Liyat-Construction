@@ -9,12 +9,12 @@ export default function NotFound() {
     <>
       <PageHeader
         {...system.notFound}
-        breadcrumbs={[{ label: system.home, href: '/' }, { label: system.notFound.title }]}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: system.notFound.title }]}
       />
       <Section container="prose">
         <div className="flex flex-wrap gap-4">
           <Button href="/">{system.home}</Button>
-          <Button href="/contact" variant="secondary">
+          <Button href="/#contact" variant="secondary">
             {system.contact}
           </Button>
         </div>

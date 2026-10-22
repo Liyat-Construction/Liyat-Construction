@@ -1,13 +1,12 @@
 import type { Partner, SectionCopy, Stat as StatData } from '@/types/content';
-import { ClientCard } from '@/components/cards/client-card';
+import { ClientList } from '@/components/sections/client-list';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Stat } from '@/components/ui/stat';
-import { Subheading } from '@/components/ui/subheading';
 
 interface ProofStripProps extends SectionCopy {
   figures: StatData[];
-  /** Heading of the client row; the row hides when `clients` is empty */
+  /** Sub-heading of the client row; leave out when the section heading names the clients */
   clientsTitle?: string;
   clients?: Partner[];
 }
@@ -25,7 +24,13 @@ export function ProofStrip({
   return (
     <Section labelledBy="proof-title">
       <div className="flex flex-col gap-12">
-        <SectionHeading id="proof-title" eyebrow={eyebrow} title={title} intro={intro} />
+        <SectionHeading
+          id="proof-title"
+          align="center"
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+        />
         {figures.length > 0 && (
           <dl className="gap-grid grid grid-cols-2 lg:grid-cols-4">
             {figures.map((figure) => (
@@ -39,16 +44,7 @@ export function ProofStrip({
             ))}
           </dl>
         )}
-        {clients.length > 0 && clientsTitle && (
-          <div className="flex flex-col gap-6">
-            <Subheading size="h4">{clientsTitle}</Subheading>
-            <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {clients.map((client) => (
-                <ClientCard key={client.name} client={client} />
-              ))}
-            </ul>
-          </div>
-        )}
+        <ClientList clients={clients} title={clientsTitle} />
       </div>
     </Section>
   );

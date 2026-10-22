@@ -10,25 +10,16 @@ export const HOME_PAGE: HomePage = {
     // PLACEHOLDER(C-22): confirm "Know better. Drill better." is still the official tagline
     title: 'Know better. Drill better.',
     lead: 'Survey, drilling, testing and pump installation, with every stage documented.',
-    image: {
-      url: '/images/hero/water-column.webp',
-      alt: 'Water rising beside a Liyat drilling rig during well development',
-    },
-    primary: { label: 'Contact us', href: '/contact' },
+    primary: { label: 'Contact us', href: '/#contact' },
     secondary: { label: 'Explore projects', href: '/projects' },
-    backdrop: {
+    // The whole first screen behind the headline (D-81)
+    image: {
       url: '/images/hero/afar-rig-fleet.webp',
       alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
       // Keeps the rig (far left) in view on narrow screens and the mountains behind the text
       focus: 'upper-left',
     },
-    backdropCaption: 'On site in the Afar region',
-    blendImage: {
-      url: '/images/hero/ethiopian-airlines.webp',
-      alt: 'Water discharging into a test tank during a Liyat pumping test for Ethiopian Airlines, the drilling rig behind it',
-      // The tank, the water and the crew are on the right; the cluttered foreground is on the left
-      focus: 'right',
-    },
+    caption: 'On site in the Afar region',
     // PLACEHOLDER(C-30): illustrative log; replace with a real Liyat drilling log
     log: {
       title: 'Borehole log',
@@ -46,17 +37,19 @@ export const HOME_PAGE: HomePage = {
       waterLevelLabel: 'Water level',
     },
   },
-  proof: {
-    eyebrow: 'Track record',
-    title: 'Our work in figures',
-    clientsTitle: 'Clients we have worked for',
-  },
-  projects: {
-    eyebrow: 'Projects',
-    title: 'Selected projects',
-    intro:
-      'Pumping tests, pump installations and well development for institutional and commercial clients.',
-    link: { label: 'Explore all projects', href: '/projects' },
+  // "Who we are" (client content, 2026-10-22; facts from Liyat's brochure). The figures come from company.ts
+  about: {
+    eyebrow: 'Who we are',
+    title: 'One team from the first survey to a working pump',
+    paragraphs: [
+      'Founded in 2019, Liyat Construction is led by its General Manager, a hydrogeologist with 19 years of hands-on drilling experience.',
+      'Our own teams carry out the drilling, the pumping tests and the electromechanical works. A dedicated pumping test crew brings a crane, generators and variable-discharge pumps to site.',
+    ],
+    image: {
+      url: '/images/hero/yekatit-12.webp',
+      alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
+    },
+    action: { label: 'Read our story', href: '/about' },
   },
   lifecycle: {
     eyebrow: 'Services',
@@ -65,6 +58,14 @@ export const HOME_PAGE: HomePage = {
     intro:
       'Six services, in the order a water source is built. The drawing shows the part of the well each one delivers.',
   },
+  projects: {
+    eyebrow: 'Projects',
+    title: 'Selected projects',
+    intro:
+      'Pumping tests, pump installations and well development for institutional and commercial clients.',
+    link: { label: 'Explore all projects', href: '/projects' },
+    clientsTitle: 'Clients we have worked for',
+  },
   equipment: {
     eyebrow: 'Equipment',
     title: 'The equipment we bring to site',
@@ -72,7 +73,7 @@ export const HOME_PAGE: HomePage = {
     link: { label: 'See our equipment', href: '/equipment-capabilities' },
   },
   testimonials: {
-    eyebrow: 'Clients',
-    title: 'What clients say',
+    eyebrow: 'Testimonials',
+    title: 'What our clients say',
   },
 };

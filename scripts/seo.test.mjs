@@ -21,7 +21,8 @@ const content = (html, name) => {
 };
 
 test('sitemap has unique public routes and excludes draft/legal/system specimens', () => {
-  assert.ok(urls.length >= 20);
+  // Home, About, Projects, Equipment and the six service pages at minimum (D-60, D-74)
+  assert.ok(urls.length >= 10);
   assert.equal(new Set(urls.map(String)).size, urls.length);
   for (const url of urls)
     assert.doesNotMatch(url.pathname, /styleguide|privacy-policy|terms-of-service|404/);
@@ -76,6 +77,6 @@ test('legal drafts and styleguide are noindex and 404 supplies real recovery lin
   }
   const missing = read('404.html');
   assert.match(missing, /Page not found/);
-  assert.match(missing, /href="\/contact\/?"/);
+  assert.match(missing, /href="\/#contact"/);
   assert.doesNotMatch(read('terms-of-service/index.html'), /50%|fourteen \(14\)/);
 });

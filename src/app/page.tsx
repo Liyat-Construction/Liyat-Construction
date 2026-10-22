@@ -10,11 +10,11 @@ export const metadata = pageMetadata(
   siteConfig.seo.metaDescription
 );
 
-// Design System §4 (Home): the hero, then the shared home sections.
+// Design System §4 (Home): the full-screen photo hero (D-81), then the home sections.
 export default function Home() {
   return (
     <>
-      <Hero eyebrow={siteConfig.descriptor} {...HOME_PAGE.hero} />
+      <Hero {...HOME_PAGE.hero} />
       <HomeSections />
     </>
   );

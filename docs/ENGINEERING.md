@@ -252,7 +252,7 @@ A step in `WORKFLOW.md` is **Complete** only when:
 | Add a button style              | Add a key to `variants` in `button.tsx`, document it in Design System §3.1, show it on `/styleguide`                                           |
 | Add a project                   | Photos → `assets/images/projects/<slug>/`, run `npm run images`; entry → `src/data/projects.ts`. Page, sitemap and cards update automatically. |
 | Add a service                   | Slug → `ServiceSlug` in `content.ts`; entry → `src/data/services.ts`; icon → `ui/icon.tsx` map + `cards/service-card.tsx`; diagram part id     |
-| Change homepage section order   | `src/app/page.tsx` — reorder the section components                                                                                            |
+| Change homepage section order   | `src/app/_home/home-sections.tsx` — reorder the section components                                                                             |
 | Change contact details          | `src/config/site.ts` → `contact`                                                                                                               |
 | Add a nav link                  | `src/config/site.ts` → `navigation`                                                                                                            |
 | Turn on the contact form        | `src/config/site.ts` → `contactForm.provider` + `formKey`                                                                                      |

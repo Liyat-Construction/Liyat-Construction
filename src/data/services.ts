@@ -13,7 +13,7 @@ export const SERVICES: Service[] = [
     title: 'Hydrogeological & Geophysical Survey',
     summary: 'We read the ground before a rig moves, so the well is drilled where the water is.',
     intro:
-      'Find the right water source before you drill. A survey combines existing data, field reconnaissance and geophysical soundings into one drilling recommendation.',
+      'Find the right water source before you drill, with a survey that names the site, depth and likely yield.',
     overview:
       'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
     forWho: 'Project owners, developers and institutions planning a new water source',
@@ -31,13 +31,17 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Survey report with the recommended drilling site, depth and expected yield'],
     cta: 'Request a site survey',
+    // No photo shows a survey; the Afar site shows the ground it reads
+    image: {
+      url: '/images/hero/afar-rig-fleet.webp',
+      alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
+    },
   },
   {
-    slug: 'well-drilling',
-    title: 'Well Drilling',
-    summary: 'Deep and shallow production wells, cased, screened and developed to specification.',
-    intro:
-      'Production wells built to specification: drilled, cased, screened and developed for water supply, dewatering and monitoring.',
+    slug: 'borehole-drilling',
+    title: 'Borehole Drilling',
+    summary: 'Deep and shallow boreholes, cased, screened and developed to specification.',
+    intro: 'Deep and shallow boreholes, drilled, cased, screened and developed to specification.',
     overview:
       'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximize yield and minimize sediment. Every stage is logged and supervised.',
     forWho:
@@ -65,8 +69,7 @@ export const SERVICES: Service[] = [
     slug: 'pumping-tests',
     title: 'Pumping Tests',
     summary: 'Step and constant-rate tests that prove what a well can deliver before you invest.',
-    intro:
-      'Know what your well can deliver. A pumping test measures yield, drawdown and recovery, so pumps and pipes are sized on evidence.',
+    intro: 'Know what your well can deliver before you size the pump and pipes.',
     overview:
       'A pumping test confirms that a well meets its design demand. We run step-drawdown and constant-rate tests, record water levels through drawdown and recovery, and interpret the results to find the sustainable yield and the aquifer parameters your engineers design from.',
     forWho: 'Clients who need verified well performance and aquifer parameters',
@@ -85,47 +88,53 @@ export const SERVICES: Service[] = [
     deliverables: ['Pumping test report with the recommended pumping rate'],
     cta: 'Book a pumping test',
     image: {
-      url: '/images/projects/ethiopian-airlines-pumping-test/cover.webp',
-      alt: 'Water discharging during the pumping test for Ethiopian Airlines',
-      orientation: 'portrait',
+      url: '/images/hero/ethiopian-airlines.webp',
+      alt: 'Water discharging into a test tank during a Liyat pumping test for Ethiopian Airlines',
+      focus: 'right',
     },
   },
   {
-    slug: 'wellhead-rehabilitation',
-    title: 'Wellhead Construction & Rehabilitation',
-    summary: 'Protective wellheads for new wells and restored yield for wells that underperform.',
-    intro:
-      'Protect and restore your water source. We build sealed wellheads and bring underperforming wells back to service.',
+    slug: 'borehole-rehabilitation',
+    title: 'Borehole Rehabilitation',
+    summary: 'Restored yield for boreholes that have slowed down, silted up or stopped.',
+    intro: 'Bring an existing borehole back to service, often for less than drilling a new one.',
     overview:
-      'A sealed wellhead keeps surface water and contamination out of a new well. For existing wells that have lost yield, rehabilitation by airlifting, brushing and screen cleaning is often a cheaper alternative to a new borehole when the structure is sound.',
-    forWho: 'Owners of new wells, and of underperforming or damaged wells',
+      'Boreholes lose yield as screens clog and sediment builds up. We assess the well, test what it delivers today, then clean and redevelop it by airlifting, brushing and screen cleaning, and test it again so you can see the result.',
+    forWho: 'Owners of boreholes that underperform, pump sand or have stopped',
     includes: [
-      'Concrete wellhead, apron and platform',
-      'Sanitary seal and protection works',
-      'Airlifting, brushing and screen cleaning',
       'Condition assessment',
+      'Yield test before and after the works',
+      'Airlifting, brushing and screen cleaning',
+      'Redevelopment of the well',
     ],
     method: [
       'Inspect the well and review its history',
       'Test the current yield',
-      'Clean and redevelop, or build the wellhead',
+      'Clean and redevelop the well',
       'Test again to confirm the result',
     ],
     deliverables: ['Before-and-after test results', 'Works report'],
     cta: 'Request a well assessment',
+    // Airlift development: the same technique rehabilitation uses
+    image: {
+      url: '/images/hero/yekatit-12.webp',
+      alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
+    },
   },
   {
-    slug: 'pump-installation',
-    title: 'Pump Installation & Electromechanical Works',
-    summary: 'Pumps, power and controls sized from the test results, installed and commissioned.',
+    slug: 'pump-supply-installation',
+    title: 'Pump Supply & Installation',
+    summary: 'Submersible and hand pumps, supplied, installed and commissioned.',
     intro:
-      'From borehole to tap. We install the pump, power and controls that turn a tested well into a working water supply.',
+      'Submersible and hand pumps, supplied and installed to turn a tested well into a working supply.',
     overview:
-      'We size the pump from the pumping test results and the demand, then supply and install the pump, motor, rising main, control panel and power connection. Every installation is commissioned and checked against its design before handover.',
-    forWho: 'Clients ready to turn a completed well into a working water supply',
+      'Deep boreholes get a submersible pump, sized from the pumping test results and the demand, with its motor, rising main, control panel and power connection. Shallow community wells get a hand pump. Every installation is commissioned and checked against its design before handover.',
+    forWho:
+      'Clients ready to turn a completed or rehabilitated well into a working water supply, from a motorized borehole to a community hand pump',
     includes: [
-      'Submersible and surface pumps',
-      'Control panel, electrical and generator connection',
+      'Submersible pump supply and installation',
+      'Hand pump supply and installation',
+      'Electromechanical works: control panel, electrical and generator connection',
       'Rising main and connection piping',
       'Commissioning and performance check',
     ],
@@ -137,19 +146,17 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Commissioning record', 'Operation and maintenance notes'],
     cta: 'Plan a pump installation',
+    // No landscape photo of a pump yet (C-18); the water it delivers
     image: {
-      url: '/images/projects/british-embassy-pump-installation/cover.webp',
-      alt: 'Pump installation works at the British Embassy, Addis Ababa',
-      focus: 'top',
-      orientation: 'portrait',
+      url: '/images/hero/water-column.webp',
+      alt: 'Water rising beside a Liyat drilling rig during well development',
     },
   },
   {
     slug: 'turnkey-projects',
     title: 'Turnkey Water Projects',
     summary: 'One contractor accountable for the whole water source, from survey to handover.',
-    intro:
-      'One contractor for the complete water source: survey, drilling, testing, wellhead and pump, under one contract.',
+    intro: 'One contractor for the whole water source, from survey to handover.',
     overview:
       'For clients who want a single point of accountability, we run the whole project: survey, drilling, pumping test, wellhead and pump installation, with one schedule, one team and one handover file.',
     forWho: 'Organizations that want one contractor accountable for the complete water source',
@@ -167,6 +174,10 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Handover file with every report from survey to commissioning'],
     cta: 'Request a turnkey proposal',
+    image: {
+      url: '/images/hero/water-column.webp',
+      alt: 'Water rising beside a Liyat drilling rig during well development',
+    },
   },
 ];
 
@@ -178,7 +189,7 @@ export const SERVICES_PAGE: ServicesPage = {
     intro:
       'Six services that take a water source from the first survey to a working supply. Choose one stage, or let us run the whole project.',
     description:
-      'Hydrogeological survey, well drilling, pumping tests, wellhead construction, pump installation and turnkey water projects by Liyat Construction in Ethiopia.',
+      'Hydrogeological survey, borehole drilling, pumping tests, borehole rehabilitation, pump supply and installation, and turnkey water projects by Liyat Construction in Ethiopia.',
   },
   lifecycle: {
     eyebrow: 'The lifecycle',
@@ -211,6 +222,7 @@ export const SERVICES_PAGE: ServicesPage = {
     ],
   },
   detail: {
+    eyebrow: 'Our services',
     overview: 'About this service',
     forWho: 'Who it is for',
     includes: 'What is included',

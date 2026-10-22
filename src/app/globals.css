@@ -25,6 +25,25 @@
   }
 }
 
+/*
+ * `on-photo:` styles text inside a PageHeader that has a background photo
+ * (`data-on-photo`): full white instead of white/80, for 4.5 : 1 over the scrim.
+ */
+@custom-variant on-photo (&:where([data-on-photo] *));
+
+/*
+ * The drawing grid layer (Section pattern="grid"): the tile and its edge fade come from
+ * tokens. On its own layer, so the fade masks only the lines, never the content.
+ */
+@layer components {
+  /* A plain class, not an @utility: always emitted, so a running dev server cannot miss it */
+  .pattern-grid {
+    background-image: var(--pattern-grid);
+    background-position: center;
+    mask-image: var(--pattern-grid-mask);
+  }
+}
+
 /* `current:` styles the link to the page being viewed (nav, breadcrumb). */
 @custom-variant current (&[aria-current='page']);
 
@@ -93,15 +112,15 @@
   }
 
   [data-lifecycle]:has([data-service='hydrogeological-survey']:is(:hover, :focus-within))
-    [data-part='hydrogeological-survey'],
-  [data-lifecycle]:has([data-service='well-drilling']:is(:hover, :focus-within))
-    [data-part='well-drilling'],
+    [data-part~='hydrogeological-survey'],
+  [data-lifecycle]:has([data-service='borehole-drilling']:is(:hover, :focus-within))
+    [data-part~='borehole-drilling'],
   [data-lifecycle]:has([data-service='pumping-tests']:is(:hover, :focus-within))
-    [data-part='pumping-tests'],
-  [data-lifecycle]:has([data-service='wellhead-rehabilitation']:is(:hover, :focus-within))
-    [data-part='wellhead-rehabilitation'],
-  [data-lifecycle]:has([data-service='pump-installation']:is(:hover, :focus-within))
-    [data-part='pump-installation'],
+    [data-part~='pumping-tests'],
+  [data-lifecycle]:has([data-service='borehole-rehabilitation']:is(:hover, :focus-within))
+    [data-part~='borehole-rehabilitation'],
+  [data-lifecycle]:has([data-service='pump-supply-installation']:is(:hover, :focus-within))
+    [data-part~='pump-supply-installation'],
   [data-lifecycle]:has([data-service='turnkey-projects']:is(:hover, :focus-within)) [data-part] {
     opacity: 1;
   }

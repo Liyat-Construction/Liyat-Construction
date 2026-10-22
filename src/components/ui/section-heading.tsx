@@ -4,7 +4,7 @@ import { Rule } from './rule';
 
 const aligns = {
   start: 'items-start text-left',
-  center: 'items-center text-center',
+  center: 'mx-auto items-center text-center',
 } as const satisfies Record<Align, string>;
 
 const titleSizes = {
@@ -44,7 +44,9 @@ export function SectionHeading({
         {title}
       </Heading>
       {intro && (
-        <p className="text-lead text-ink-muted on-dark:text-white/80 max-w-prose">{intro}</p>
+        <p className="text-lead text-ink-muted on-dark:text-white/80 on-photo:text-white max-w-prose">
+          {intro}
+        </p>
       )}
     </div>
   );

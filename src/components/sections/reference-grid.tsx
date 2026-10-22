@@ -14,7 +14,13 @@ export function ReferenceGrid({ id, eyebrow, title, intro, references }: Referen
   return (
     <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <SectionHeading id={`${id}-title`} eyebrow={eyebrow} title={title} intro={intro} />
+        <SectionHeading
+          id={`${id}-title`}
+          align="center"
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+        />
         <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-4">
           {references.map((reference) => (
             <li key={reference.organization} className="flex flex-col">

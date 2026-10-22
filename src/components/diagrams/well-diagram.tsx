@@ -5,8 +5,10 @@ import type { ServiceSlug } from '@/types/content';
  * Cross-section of a drilled water well (Design System §3.5), drawn to read at
  * 320 px wide. Colors are tokens only: water in Water Blue, the well structure
  * Liyat builds in Liyat Green, pump equipment and labels in Ink, ground in the
- * neutrals. Each group carries `data-part` = the service that delivers it, so
- * ServiceLifecycle can highlight it (globals.css, D-45). Turnkey covers all parts.
+ * neutrals. Each group carries `data-part` = the services that work on it (a
+ * space-separated list), so ServiceLifecycle can highlight it (globals.css,
+ * D-45). Rehabilitation cleans the screen and gravel pack that drilling built.
+ * Turnkey covers all parts.
  *
  * Ground, top to bottom: topsoil, weathered rock, rock, aquifer. The aquifer is
  * confined, so the static water level stands above it. The pump hangs below the
@@ -36,8 +38,8 @@ function Leader({ from, y }: { from: number; y: number }) {
   return <line x1={from} y1={y} x2={238} y2={y} className="stroke-ink-muted" strokeWidth={1} />;
 }
 
-function Group({ part, children }: { part: Part; children: React.ReactNode }) {
-  return <g data-part={part}>{children}</g>;
+function Group({ parts, children }: { parts: Part[]; children: React.ReactNode }) {
+  return <g data-part={parts.join(' ')}>{children}</g>;
 }
 
 interface WellDiagramProps {
@@ -83,7 +85,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       </defs>
 
       {/* Survey: the ground and the aquifer it locates */}
-      <Group part="hydrogeological-survey">
+      <Group parts={['hydrogeological-survey']}>
         <rect x={0} y={SURFACE} width={360} height={40} className="fill-stone" />
         <rect x={0} y={140} width={360} height={110} className="fill-line" />
         <rect x={0} y={250} width={360} height={130} className="fill-stone" />
@@ -105,9 +107,28 @@ export function WellDiagram({ className }: WellDiagramProps) {
       </Group>
       <line x1={0} y1={SURFACE} x2={360} y2={SURFACE} className="stroke-ink" strokeWidth={1.5} />
 
-      {/* Drilling: borehole, casing, screen, gravel pack */}
-      <Group part="well-drilling">
+      {/* Drilling: borehole and casing */}
+      <Group parts={['borehole-drilling']}>
         <rect x={150} y={SURFACE} width={60} height={BOTTOM + 6 - SURFACE} className="fill-paper" />
+        {[164, 196].map((x) => (
+          <line
+            key={x}
+            x1={x}
+            y1={64}
+            x2={x}
+            y2={SCREEN_TOP}
+            className="stroke-brand"
+            strokeWidth={3}
+          />
+        ))}
+        <Leader from={196} y={165} />
+        <Label x={244} y={169}>
+          Casing
+        </Label>
+      </Group>
+
+      {/* Drilling builds the screen and gravel pack; rehabilitation cleans them */}
+      <Group parts={['borehole-drilling', 'borehole-rehabilitation']}>
         <rect
           x={150}
           y={SCREEN_TOP - 20}
@@ -124,16 +145,11 @@ export function WellDiagram({ className }: WellDiagramProps) {
         />
         {[164, 196].map((x) => (
           <g key={x} className="stroke-brand" strokeWidth={3}>
-            <line x1={x} y1={64} x2={x} y2={SCREEN_TOP} />
             <line x1={x} y1={SCREEN_TOP} x2={x} y2={SCREEN_BOTTOM} strokeDasharray="6 4" />
             <line x1={x} y1={SCREEN_BOTTOM} x2={x} y2={BOTTOM} />
           </g>
         ))}
         <line x1={164} y1={BOTTOM} x2={196} y2={BOTTOM} className="stroke-brand" strokeWidth={3} />
-        <Leader from={196} y={165} />
-        <Label x={244} y={169}>
-          Casing
-        </Label>
         <Leader from={196} y={450} />
         <Label x={244} y={454}>
           Screen
@@ -153,8 +169,8 @@ export function WellDiagram({ className }: WellDiagramProps) {
         className="fill-water/25"
       />
 
-      {/* Wellhead: grout seal, concrete apron, well cap */}
-      <Group part="wellhead-rehabilitation">
+      {/* Wellhead, built when the borehole is completed: grout seal, concrete apron, well cap */}
+      <Group parts={['borehole-drilling']}>
         <rect x={150} y={SURFACE} width={14} height={50} className="fill-ink-muted/50" />
         <rect x={196} y={SURFACE} width={14} height={50} className="fill-ink-muted/50" />
         <rect
@@ -172,8 +188,8 @@ export function WellDiagram({ className }: WellDiagramProps) {
         </Label>
       </Group>
 
-      {/* Pump installation: control panel, cable, rising main, submersible pump */}
-      <Group part="pump-installation">
+      {/* Pump supply and installation: control panel, cable, rising main, submersible pump */}
+      <Group parts={['pump-supply-installation']}>
         <rect
           x={56}
           y={40}
@@ -201,7 +217,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       </Group>
 
       {/* Pumping tests: static and pumping water levels */}
-      <Group part="pumping-tests">
+      <Group parts={['pumping-tests']}>
         <line
           x1={140}
           y1={STATIC_LEVEL}

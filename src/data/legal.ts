@@ -47,11 +47,11 @@ export const PRIVACY_PAGE: LegalPage = {
     {
       title: 'Use, retention and requests',
       paragraphs: [
-        'Inquiry details are intended for responding to your request and discussing the relevant water project. Liyat must approve its access controls, retention periods and process for handling access, correction or deletion requests before launch. Contact Liyat using the contact page for questions about information you have shared.',
+        'Inquiry details are intended for responding to your request and discussing the relevant water project. Liyat must approve its access controls, retention periods and process for handling access, correction or deletion requests before launch. Contact Liyat using the contact section on our home page for questions about information you have shared.',
       ],
     },
   ],
-  contact: { label: 'Contact us about privacy', href: '/contact' },
+  contact: { label: 'Contact us about privacy', href: '/#contact' },
 };
 
 // PLACEHOLDER(C-29): client and qualified reviewer must approve website terms before launch.
@@ -94,7 +94,7 @@ export const TERMS_PAGE: LegalPage = {
     {
       title: 'Availability and external services',
       paragraphs: [
-        'Website availability and third-party inquiry or map services may be interrupted. If the form is unavailable or a submission fails, use the phone or email details on the contact page. External services operate under their own terms and privacy notices.',
+        'Website availability and third-party inquiry or map services may be interrupted. If the form is unavailable or a submission fails, use the phone or email details on the contact section on our home page. External services operate under their own terms and privacy notices.',
       ],
     },
     {
@@ -104,5 +104,5 @@ export const TERMS_PAGE: LegalPage = {
       ],
     },
   ],
-  contact: { label: 'Contact us about these terms', href: '/contact' },
+  contact: { label: 'Contact us about these terms', href: '/#contact' },
 };

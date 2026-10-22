@@ -10,13 +10,22 @@ interface EquipmentTeaserProps extends SectionCopy {
   /** The machine to lead with, usually the main rig */
   equipment?: Equipment;
   link: Action;
+  /** Anchor for the navigation order on Home (`/#equipment`) */
+  id?: string;
 }
 
 /** Capability in one view: the main rig's photo, name and up to three key specs. Renders nothing without it. */
-export function EquipmentTeaser({ eyebrow, title, intro, equipment, link }: EquipmentTeaserProps) {
+export function EquipmentTeaser({
+  id,
+  eyebrow,
+  title,
+  intro,
+  equipment,
+  link,
+}: EquipmentTeaserProps) {
   if (!equipment) return;
   return (
-    <Section labelledBy="equipment-title">
+    <Section id={id} labelledBy="equipment-title">
       <div className="gap-grid grid items-center lg:grid-cols-12">
         {equipment.image && (
           <Photo

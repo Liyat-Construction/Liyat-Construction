@@ -4,23 +4,35 @@ import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface CtaBandProps extends CtaBandContent {
-  /** Shown as a second action; omitted when empty */
+  /** Dialled by the second button ("Call us now"); omitted when empty */
   phone?: string;
 }
 
-/** Green band that ends every page except Contact: heading, one sentence, the primary action and the phone. */
-export function CtaBand({ title, text, action, phone }: CtaBandProps) {
+/**
+ * The closing section on every page (D-69), rendered once by the layout above the
+ * footer: Ink with the drawing grid, the green rule on its top edge, a centred
+ * question and line, then two buttons: contact, and "Call us now", which dials
+ * the number (shown in the footer right below). With the footer it forms
+ * one dark ending.
+ */
+export function CtaBand({ title, text, action, call, phone }: CtaBandProps) {
   return (
-    <Section tone="brand" spacing="compact" labelledBy="cta-band-title">
-      <div className="gap-grid grid items-end lg:grid-cols-12">
-        <SectionHeading id="cta-band-title" title={title} intro={text} className="lg:col-span-8" />
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 lg:col-span-4 lg:justify-end">
-          <Button href={action.href} size="lg">
+    <Section tone="ink" pattern="grid" rule labelledBy="cta-band-title">
+      <div className="flex flex-col items-center gap-10">
+        <SectionHeading id="cta-band-title" align="center" title={title} intro={text} />
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button href={action.href} size="lg" icon="arrow">
             {action.label}
           </Button>
           {phone && (
-            <Button href={`tel:${phone.replaceAll(' ', '')}`} variant="text" icon="phone">
-              {phone}
+            <Button
+              href={`tel:${phone.replaceAll(' ', '')}`}
+              size="lg"
+              variant="secondary"
+              icon="phone"
+            >
+              {call}
+              <span className="sr-only">, {phone}</span>
             </Button>
           )}
         </div>
