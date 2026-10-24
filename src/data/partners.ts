@@ -19,11 +19,15 @@ export const PARTNERS: Partner[] = [
   { name: 'Ovid Group', logo: '/images/clients/ovid-group.webp' },
   { name: 'Tsedey Bank', logo: '/images/clients/tsedey-bank.webp' },
   // Ongoing: Horn of Africa Groundwater Resilience Project (World Bank financed)
-  { name: 'Ministry of Water and Energy' },
-  { name: 'Yekatit 12 Hospital Medical College' },
-  { name: 'Arada Luxury Mall' },
-  { name: 'Chaka House' },
-  { name: 'SD Salt Manufacturing' },
+  {
+    name: 'Ministry of Water and Energy',
+    logo: '/images/clients/ministry-of-water-and-energy.webp',
+  },
+  {
+    name: 'Yekatit 12 Hospital Medical College',
+    logo: '/images/clients/yekatit-12-hospital-logo.webp',
+  },
+  { name: 'SD Salt Manufacturing', logo: '/images/clients/sd-salt-manufacturing.webp' },
   // PLACEHOLDER(C-23): "CREDOCS" or "CREDOCKS"
-  { name: 'CREDOCS Digital Service' },
+  { name: 'CREDOCS Digital Service', logo: '/images/clients/credoks.webp' },
 ];

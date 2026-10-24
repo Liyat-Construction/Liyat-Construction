@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                                      |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **S7 — hero applied (`Review`)**: the full-screen photo hero (option A) is the home hero (D-81); S2–S4 also in `Review`                                              |
-| **Last completed**    | 2026-10-22: option A on `/`; option B, the old hero C, `/preview/*`, `data/preview.ts`, `DraftLabel` deleted; footer icons smaller, Amharic out of the footer (D-80) |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                     |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                            |
-| **Next action**       | Owner reviews `/`. Then S5 (remove `/services`, `/projects/[slug]`, `/testimonials`) — needs C-31 or the owner's go-ahead → S6 whole-site pass.                      |
+|                       |                                                                                                                                                           |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **Small improvements (`Review`, D-82)**: heading rules removed; quiet Home section dividers added. S7 and S2–S4 remain in `Review`                        |
+| **Last completed**    | 2026-10-24: removed short heading rules site-wide; Home Paper sections separated by full-width Line-neutral hairlines (D-82), awaiting owner review       |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                          |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                 |
+| **Next action**       | Owner reviews D-82 on `/`; then discuss one small improvement at a time. S5 remains unstarted and needs explicit deletion approval; P15–P17 remain gated. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -540,6 +540,18 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 
 **D-57 — owner update, 2026-10-21:** finish and commit P14 implementation, mark it done, then stop for whole-site owner review **before P15** (supersedes D-56’s review-after-P15 timing). P15 must not start without instruction. Implementation completion is an explicit exception to Engineering §10’s visual/audit gates: browser review, Lighthouse SEO 100 and external structured-data validation remain pending and must not be represented as passed. Legal approval (C-29) and real form receipt (C-25) still block launch.
 
+**D-82 — owner, 2026-10-24:** remove the short decorative rules above headings site-wide. Add quiet, full-width hairlines between Home's Paper content sections. Implementation uses the existing Line neutral at 60% opacity, 1 px, rather than action green; the photo hero and dark closing block already separate themselves. Shared `Eyebrow` / `SectionHeading` remove heading rules; `ui/section-group.tsx` owns divider styling and is shown on `/styleguide`. Supersedes the heading-rule part of Brand §7. Header borders, navigation underlines and the closing-block rule remain. Figures, copy, photos, client logos and Contact heading are separate pending topics, not changed here.
+
+**D-83 — owner, 2026-10-24:** remove the Home "Who we are" figures (2019 / 19 years / 600 m) and "Read our story" button. Keep the shared Story's optional figures/action support and existing About-page facts; wider wording and photo review are separate topics. Use supplied Ministry, Yekatit 12, SD Salt and CREDOKS logo artwork in the shared clients data (Home and Projects); Arada and Chaka remain names because no matching client logos were found locally. C-23 still covers CREDOCS/CREDOKS spelling; no label renamed without confirmation.
+
+**D-84 — owner clarification, 2026-10-24:** Home About keeps its "Read our story" button; only the figures are removed (corrects that part of D-83). Replace the Yekatit photo with the cleaner water-column landscape; shared Story photos use the existing 3:2 `wide` ratio rather than 4:3, retaining the full source frame. Arada/Chaka still have no local client logos; a Chaka project photograph exists but is not a logo, so no substitution. Owner also overrides D-78 for this session: no verification commands/browser checks until the end or explicitly requested. Latest photo/button edits are not verified.
+
+**D-85 — owner, 2026-10-24:** Home About uses `ethiopian-airlines.webp`; Story's photo frame is 4:3 rather than 3:2, making it slightly taller at unchanged width. Story button remains, figures remain removed. Owner supplied Arada Luxury Mall and Chaka project JFIFs and explicitly requested their use in the client row. They are not logos: Arada is a rendering and Chaka is grounds imagery. Shared ClientCard uses `Partner.image` with visible client names and accurate alt text instead of pretending they are logos; narrow exception to D-79's logo/name-only rule. Agent concern: site imagery is not a client identity mark and must not imply it shows Liyat's work. Original assets preserved; two WebPs prepared non-destructively; image script now supports JFIF. No verification commands run, per D-84.
+
+**D-86 — owner, 2026-10-24:** Arada/Chaka images fill their client cards' image area edge to edge, rather than appearing as small contained thumbnails. Shared ClientCard's `Partner.image` presentation uses no outer padding and cover fit, with a compact name strip below. Other logo cards retain their existing presentation. Applies on Home and Projects. Verification deferred per D-84.
+
+**D-87 — owner, 2026-10-24:** reject Arada/Chaka imagery and remove those two entries from the shared client row; show the other nine clients on Home and Projects. Original and prepared files retained. Supersedes D-85/D-86's use of these images. No commands or browser checks run; final verification remains deferred.
+
 ### Open decisions
 
 | ID   | Question                                                                 | Recommendation                                                                                                                                          | Needed by |
@@ -568,6 +580,14 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 | R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                   | Open                                   |
 
 ## 8. Handoff
+
+### Current session — 2026-10-24 (small improvements, D-82–D-87)
+
+- Final approved scope: no short heading rules; quiet full-width dividers between Home's Paper sections; Home About figures removed, "Read our story" retained, Ethiopian Airlines photo at 4:3. Nine clients in shared PARTNERS, including the four supplied Ministry/Yekatit/SD Salt/CREDOKS logos; Arada/Chaka removed by D-87.
+- Owner requested committing the good changes. Rejected image-card experiment, optional Partner.image and unused manifest entries removed before commit; rejected assets remain untracked locally. No files deleted, no dependency changes, no push authorized.
+- Earlier browser evidence: 375/768/1280 screenshots for dividers and About/client changes (`%TEMP%/liyat-d82-<width>.png`, `liyat-d83-<about|clients>-<width>.png`); no horizontal overflow, logos load. This predates the final About photo and nine-client arrangement. Owner requested immediate commit without further checks; final verification was not run. Do not read earlier captures as final-state evidence.
+- Known unrelated blocker: repository-wide formatting reports untracked `brand-assets/Liyat Construction qr/README.md`; leave that asset untouched. Existing static-host R-08 prefetch 404s remain unresolved.
+- Next: continue one owner concern at a time. Contact heading "Get in touch" remains requested but not yet changed; broader wording review deferred. S5 is unstarted and needs explicit page-deletion approval; P15–P17 remain gated. Per D-84, verification normally waits until the end or explicit request.
 
 ### Current state of the code
 

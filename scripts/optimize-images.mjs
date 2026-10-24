@@ -64,7 +64,7 @@ for (const source of listSources(SOURCE).sort()) {
     .toBuffer({ resolveWithObject: true })
     .then((r) => r.info);
   const widths = widthsFor(profile.widths, original);
-  const base = rel.slice(0, -extname(rel).length);
+  const base = rel.slice(0, -extname(rel).length).toLowerCase().replaceAll(' ', '-');
   mkdirSync(join(OUTPUT, dirname(rel)), { recursive: true });
 
   const sizes = [];

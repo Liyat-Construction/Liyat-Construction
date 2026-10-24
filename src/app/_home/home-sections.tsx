@@ -4,8 +4,8 @@ import { FeaturedProjects } from '@/components/sections/featured-projects';
 import { ServiceLifecycle } from '@/components/sections/service-lifecycle';
 import { Story } from '@/components/sections/story';
 import { Testimonials } from '@/components/sections/testimonials';
+import { SectionGroup } from '@/components/ui/section-group';
 import { siteConfig } from '@/config/site';
-import { HOME_FIGURES } from '@/data/company';
 import { CONTACT_PAGE } from '@/data/contact';
 import { EQUIPMENT } from '@/data/equipment';
 import { HOME_PAGE } from '@/data/home';
@@ -22,8 +22,8 @@ import { TESTIMONIALS } from '@/data/testimonials';
 export function HomeSections() {
   const { about, lifecycle, projects, equipment, testimonials } = HOME_PAGE;
   return (
-    <>
-      <Story id="about" {...about} figures={HOME_FIGURES} />
+    <SectionGroup>
+      <Story id="about" {...about} />
       <ServiceLifecycle id="services" {...lifecycle} services={SERVICES} />
       <FeaturedProjects
         id="projects"
@@ -44,6 +44,6 @@ export function HomeSections() {
         configuration={siteConfig.contactForm}
         sender={siteConfig.name}
       />
-    </>
+    </SectionGroup>
   );
 }

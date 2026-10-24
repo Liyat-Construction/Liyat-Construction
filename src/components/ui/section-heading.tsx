@@ -1,6 +1,5 @@
 import { cn, pick } from '@/lib/utils';
 import { Eyebrow, type Align } from './eyebrow';
-import { Rule } from './rule';
 
 const aligns = {
   start: 'items-start text-left',
@@ -39,7 +38,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={cn('flex max-w-3xl flex-col gap-4', pick(aligns, align), className)}>
-      {eyebrow ? <Eyebrow align={align}>{eyebrow}</Eyebrow> : <Rule />}
+      {eyebrow && <Eyebrow align={align}>{eyebrow}</Eyebrow>}
       <Heading id={id} className={cn('text-balance', pick(titleSizes, size))}>
         {title}
       </Heading>

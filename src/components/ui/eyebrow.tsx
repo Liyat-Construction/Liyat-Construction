@@ -1,5 +1,4 @@
 import { cn, pick } from '@/lib/utils';
-import { Rule } from './rule';
 
 const aligns = {
   start: 'items-start',
@@ -18,7 +17,6 @@ interface EyebrowProps {
 export function Eyebrow({ children, align = 'start', className }: EyebrowProps) {
   return (
     <div className={cn('flex flex-col gap-3', pick(aligns, align), className)}>
-      <Rule />
       <p className="text-eyebrow text-brand on-dark:text-white uppercase">{children}</p>
     </div>
   );

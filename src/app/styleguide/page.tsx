@@ -14,6 +14,7 @@ import { Reveal } from '@/components/ui/reveal';
 import { Rule } from '@/components/ui/rule';
 import { Section, type SectionTone } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
+import { SectionGroup } from '@/components/ui/section-group';
 import { Stat } from '@/components/ui/stat';
 import { Tag } from '@/components/ui/tag';
 import { TextLink } from '@/components/ui/text-link';
@@ -141,6 +142,15 @@ export default function StyleguidePage() {
           </div>
         </div>
       </Section>
+
+      <SectionGroup>
+        <Section labelledBy="sg-divider-first" spacing="compact">
+          <SectionHeading id="sg-divider-first" title={sectionCopy.title} />
+        </Section>
+        <Section labelledBy="sg-divider-second" spacing="compact">
+          <SectionHeading id="sg-divider-second" title={sectionCopy.title} />
+        </Section>
+      </SectionGroup>
 
       {/* ── Section tones ──────────────────────────────────── */}
       {tones.map((tone) => (

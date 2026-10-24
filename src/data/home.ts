@@ -46,8 +46,8 @@ export const HOME_PAGE: HomePage = {
       'Our own teams carry out the drilling, the pumping tests and the electromechanical works. A dedicated pumping test crew brings a crane, generators and variable-discharge pumps to site.',
     ],
     image: {
-      url: '/images/hero/yekatit-12.webp',
-      alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
+      url: '/images/hero/ethiopian-airlines.webp',
+      alt: 'Drilling rig and water discharge during a pumping test at Ethiopian Airlines',
     },
     action: { label: 'Read our story', href: '/about' },
   },
