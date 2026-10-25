@@ -14,7 +14,7 @@
 | **Last completed**    | 2026-10-25: `/environment` page (grounded copy, C-17 markers on unconfirmed practices), nav "Environment" + smaller link text below xl, 64 px header threshold, hero CTA → `/#services`, equipment titles, primary equipment button — D-96. No checks run (D-89)                                      |
 | **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                                      |
 | **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                                                                                                                                                             |
-| **Next action**       | Owner reviews Contact heading/cards (D-93, D-95) and legal pages/cards (D-91–D-92); continue one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; S5 needs deletion approval; P15–P17 remain gated.                                                       |
+| **Next action**       | Owner reviews Contact heading/cards (D-93, D-95), legal pages/cards (D-91–D-92) and (diagram change reverted at owner request); continue one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; S5 needs deletion approval; P15–P17 remain gated.           |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -419,20 +419,20 @@ with placeholders until they arrive. **Must** items block launch.
 | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------- | -------- |
 | C-01 | Logo master files (SVG/AI/PDF). If none exist: approval to redraw as vector                                                                                                                                                                                     | P3        | Must                   | Open     |
 | C-02 | Confirm the brand green `#156635` (brochure green), or supply the official color code                                                                                                                                                                           | P2        | Should                 | Open     |
-| C-03 | Office address. Brochure: _Eldasol Building, 2nd floor, Office 202, Bole sub-city, Woreda 04_. Site currently shows "301 Mickey Leland St" — which is correct?                                                                                                  | P5        | Must                   | Open     |
-| C-04 | Phone numbers to publish. Brochure: +251 93 001 4711 and +251 90 680 8182                                                                                                                                                                                       | P5        | Must                   | Open     |
+| C-03 | Office address — candidates: brochure "Eldasol Building, 2nd floor, Office 202, Bole, Woreda 04"; proposal letterhead "Bole Sub City, Woreda 04, House Number 201" (now shown); the invented "301 Mickey Leland St" is removed. Which is current?               | P5        | Must                   | Open     |
+| C-04 | Phone numbers to publish: +251 93 001 4711 and +251 90 680 8182 — on both the brochure and the proposal letterhead (Dec 2025)                                                                                                                                   | P5        | Must                   | Answered |
 | C-05 | Public email: liyatconstruction@gmail.com, confirmed by owner 2026-10-25 (D-90); footer and Contact use shared configuration.                                                                                                                                   | P5        | Must                   | Answered |
 | C-06 | Domain liyatconstruction.com — who owns it, and is it registered?                                                                                                                                                                                               | P17       | Must                   | Open     |
 | C-07 | Office hours (Ethiopian "2–11" = 8:00–17:00?) and working days                                                                                                                                                                                                  | P5        | Should                 | Open     |
-| C-08 | Company story: founding year (2021?), founders, milestones, why the company exists                                                                                                                                                                              | P10       | Must                   | Open     |
+| C-08 | Company story — proposal answers it: founded 2 Jan 2019 as Wondwossen Ayalew contractor, renamed PLC May 2022, hydrogeologist founder (19 yrs), founded because of the drilling-capacity gap                                                                    | P10       | Must                   | Answered |
 | C-09 | ~~Confirm the service list~~: the six names were answered 2026-10-22 (D-65); still confirm the scope and method wording on each service page. Original: Confirm the service list (Brand §9). Do they offer water-quality testing? Excavation shoring (CREDOCS)? | P6        | Must                   | Open     |
-| C-10 | Key figures: wells completed, total metres drilled, deepest well, highest yield, regions worked                                                                                                                                                                 | P7        | Must                   | Open     |
-| C-11 | Per project: year, depth, yield, duration, scope, outcome, and **permission to name the client**                                                                                                                                                                | P9        | Must                   | Open     |
+| C-10 | Key figures — proposal answers wells (13), metres (4,720) and deepest (600 m); still open: highest tested yield, regions worked                                                                                                                                 | P7        | Must                   | Partial  |
+| C-11 | Per project — proposal supplies depth, casing and scope for 12 completed + 2 ongoing; still open: years, durations, yields, outcomes and **written permission to name each client**                                                                             | P9        | Must                   | Partial  |
 | C-12 | Testimonials: real quotes with name, role, organization and permission to publish                                                                                                                                                                               | P12       | Must (or hide section) | Open     |
 | C-13 | Reference / completion letters (scans) with permission to publish                                                                                                                                                                                               | P12       | Should                 | Open     |
 | C-14 | Licences and credentials: trade licence, Water Works Construction Authority grade, certifications                                                                                                                                                               | P10       | Must                   | Open     |
 | C-15 | Leadership and team: names, roles, short bios, professional portraits                                                                                                                                                                                           | P10       | Should                 | Open     |
-| C-16 | Equipment list: rigs (make, model, rated depth), compressors, test pumps, support vehicles, with photos                                                                                                                                                         | P11       | Must                   | Open     |
+| C-16 | Equipment — proposal confirms the dedicated test crew's crane, generators and variable-discharge submersible pumps, and Indian-made rigs/tools; still open: makes, models, rated specs, photos                                                                  | P11       | Must                   | Partial  |
 | C-17 | Safety and environmental practices actually followed (PPE, drilling fluid and cuttings handling)                                                                                                                                                                | P10       | Should                 | Open     |
 | C-18 | Original high-resolution photos: hero candidates (rig + water), the water-column photo, team at work                                                                                                                                                            | P7        | Must                   | Open     |
 | C-19 | Written consent for people prominently shown in photos                                                                                                                                                                                                          | P16       | Must                   | Open     |
@@ -444,7 +444,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-25 | Inbox that should receive website inquiries                                                                                                                                                                                                                     | P13       | Must                   | Open     |
 | C-27 | Wondwossen checks the well cross-section drawing (home and services) matches how Liyat builds wells                                                                                                                                                             | P16       | Should                 | Open     |
 | C-26 | Approval of Brand Guidelines v1.1 by Wondwossen                                                                                                                                                                                                                 | P18       | Must                   | Open     |
-| C-28 | Confirm the client types named on About (the template listed hospitals and manufacturers)                                                                                                                                                                       | P16       | Should                 | Open     |
+| C-28 | Client types confirmed by the proposal: hospital (Yekatit 12) and manufacturer (SD Salt) are on the completed list; ministries, embassies, developers and a World Bank-financed programme too                                                                   | P16       | Should                 | Answered |
 | C-30 | A real drilling log from one Liyat well (layers, depths, casing/screen, water level) for the home hero, if the borehole-log hero is adopted                                                                                                                     | P16       | Should                 | Open     |
 | C-29 | Client and qualified reviewer approve privacy practices, providers, retention, requests and website terms; replace legal drafts before launch                                                                                                                   | P16       | Must                   | Open     |
 | C-32 | Mining and core drilling (on the client's phone list, not in the brochure): actively sold today, with Liyat's own rig and a past project? Also: is turnkey still offered, and is there more of the phone list below "Submersible Pumps"?                        | S6        | Should                 | Open     |
@@ -598,13 +598,75 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 
 ## 8. Handoff
 
+### Client content received 2026-10-25 — Liyat technical proposal (British Embassy bid, December 2025)
+
+Owner pasted Liyat's own technical proposal (geological/geophysical/hydrogeological
+investigation + deep-well drilling for the British Embassy, Addis Ababa). Facts used:
+
+- **Company:** established 2 Jan 2019 as "Wondwossen Ayalew water well drilling contractor";
+  renamed Liyat Construction PLC May 2022. GM is a hydrogeologist with 19 years' experience.
+  Structure: GM, Deputy, Operation Head over drilling/pumping-test/electromechanical subs,
+  maintenance, procurement & finance, HR & logistics. Objects: deep & shallow wells, pumping
+  tests, wellhead construction, rehabilitation, electromechanical works.
+- **Letterhead:** Bole Sub City, Woreda 04, House Number 201; +251 930 014 711 and
+  +251 906 808 182 (match the brochure → phones treated as confirmed); email on the
+  letterhead is **liyatdrilling2021@gmail.com** — conflicts with the confirmed
+  liyatconstruction@gmail.com (C-05), needs owner ruling.
+- **Equipment:** one dedicated pumping-test crew with its own crane, generators and
+  variable-discharge submersible pumps; rigs and tools from Indian manufacturers
+  (makes/models still needed, C-16).
+- **Completed projects** (employer → scope): Etoile GC → Chaka House, 600 m, 14"/10"/6"
+  casing; Kibish Construction → Ethiopian Airlines, two 500 m wells; Yekatit 12 Hospital
+  Medical College → 400 m, 14"/10" casing (6kilo); Tsedey Bank → 200 m, 6" (HQ); Arada
+  Luxury Mall → 320 m, 8"; Belgian Embassy → 200 m, 6"; British Embassy → **turnkey**:
+  survey + 250 m well + construction + submersible pump and tank connection; Ovid Real
+  Estate → turnkey, two 500 m wells, 10"/6"; CIRHT → 200 m, 6" (Butajira, KOTO); ET Mineral
+  Development → 250 m, 10"/6" (Dawro Zone); Hosea Trading House → 200 m, 6" (Addis);
+  SD Salt → 100 m, 6" (Afdera, Afar). = **13 wells, ≈ 4,720 m drilled, 12 clients.**
+- **Ongoing:** Ministry of Water and Energy — HoA Groundwater Resilience Project (World
+  Bank financed, ET-MOWE-PIT-496933-CW-RFB), four 500 m test wells at Woito, South Region;
+  Belayneh Kinde GC → 220 m and 250 m wells, 8" casing, Addis Ababa.
+- **Applied:** project depths/casing/scope in `projects.ts` (EA, British Embassy retitled
+  "turnkey water project", Tsedey now drilling + test, SD Salt 100 m, Yekatit 400 m,
+  Chaka 600 m); real figures in `company.ts` (13 wells, 600 m, 4,700+ m); real founding
+  story + founder in About/TEAM (C-08, C-15 partially); confirmed client types hospitals
+  and manufacturers (C-28); real support-equipment names (C-16 partially); proposal
+  address + confirmed phones in `site.ts` (C-03 still open: letterhead vs brochure).
+- **Not used:** the Birr 3,000,000 founding capital (client earlier replaced it with
+  "dedicated, highly professional and technical team"); photo-less projects (Arada,
+  Belgium, Ovid, CIRHT, ET Mineral, Hosea, Ministry, Belayneh Kinde) not added as cards —
+  they need photos or a text-only card decision; years/dates per project still unknown (C-11).
+- Written permission to name each client still pending (C-11), same as D-42.
+
+### Follow-up — 2026-10-25 (proposal content follow-ups + header eyebrow)
+
+- Owner confirmed `liyatconstruction@gmail.com` going forward (C-05; the letterhead's
+  liyatdrilling2021@gmail.com is not used).
+- Company at a glance: "Renamed" row removed (owner: clients don't care; the fact stays
+  in the About story text). About figures: the fake "0" contractor-grade stat replaced by
+  the real "19 years — GM's drilling experience" (About now: 19 yrs · 13 wells · 600 m ·
+  4,700+ m). C-14 credential placeholder still shows only in the credentials section.
+- `FeatureGrid` link is now a primary `Button` at the top right beside a start-aligned
+  heading (the FeaturedProjects pattern) — About's "See all six services" and any future
+  linked grid. Owner preference recorded; consistent with D-95/D-76.
+- Page-header eyebrows: Green Light on every **plain-Ink** header — legal pages and the
+  404 now share the accent (`eyebrowTone="accent"` added to `not-found`). Photo headers
+  keep white (3.25 : 1 over photos fails the 4.5 bar). Owner chose "green where safe,
+  white where not" — same rule as D-91, now site-wide. DS §3.1 note updated.
+- No commands/browser checks (D-89). Next: owner reviews About glance/figures, the
+  About offer-section button and the green 404/legal eyebrows.
+
+- Owner's problem: the sticky `WellDiagram` in `ServiceLifecycle` was taller than the viewport — scrolling to its bottom scrolled the service cards away. Agent rejected a nested scroll area (scroll-jacking) and tried capping the diagram to the viewport (`--lifecycle-diagram-height`, `lg:h-… lg:w-auto`). **Owner rejected the result ("keep as it was"); both edits reverted.** Diagram is back to full column width, sticky at `top-28`.
+- Owner reviewed the diagram's accuracy in discussion: schematic standard practice, still needs Wondwossen's technical check (C-27); Pumping Tests' highlight (two thin lines) remains the weakest.
+- No commands/browser checks (D-89). The scroll-past problem remains open — any future fix must keep the diagram at its current size.
+
 ### Follow-up — 2026-10-25 (Environment page + misc — D-96)
 
 - New `/environment` page: `src/data/environment.ts` (typed `EnvironmentPage`), `src/app/environment/page.tsx` — PageHeader (water-column photo) → Story with statement → FeatureGrid of 4 practices (2 with C-17 markers) → CtaBand via layout. Nav gains "Environment" between Equipment and Testimonials; footer Pages column and sitemap pick it up automatically (both derive from `navigation.main`).
 - Nav links now `text-small` + `px-2` below `xl` (7 links at 1024 px); re-measure at next check run.
 - Hero secondary CTA → "Explore our services" (`/#services`); equipment titles → "Equipment and technologies" (home section + page header); "See our equipment" is now a primary button; `HeaderSolid` turns the header white after 64 px scroll.
 - Follow-up: hero secondary button reads "Our services" (was "Explore our services"); the nav links moved out of the right-hand group into their own `mx-auto` slot, so free space now sits on both sides of the links — more air between logo and Home and between Testimonials and the button.
-- No commands/browser checks (D-89), no commits/pushes. Next: owner reviews `/environment` copy and the crowded nav at 1024.
+- No commands/browser checks (D-89). **Committed 235d6be** at owner request — one review-phase commit covering D-95, D-96 and the header/nav/projects tweaks; still `Review`, not aesthetic sign-off. Next: owner reviews `/environment` copy and the crowded nav at 1024.
 
 ### Follow-up — 2026-10-25 (Contact sizing/icons — D-95)
 

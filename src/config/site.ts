@@ -52,14 +52,15 @@ export const siteConfig = {
 
   // ── Contact Details ─────────────────────────────────────────────────────────
   contact: {
-    // C-05: public email confirmed by the owner, 2026-10-25
+    // C-05 confirmed: liyatconstruction@gmail.com (owner, 2026-10-25). The older
+    // liyatdrilling2021@gmail.com on the proposal letterhead is not used.
     email: 'liyatconstruction@gmail.com',
-    // PLACEHOLDER(C-04): numbers to publish (brochure also lists +251 90 680 8182)
+    // C-04: the two numbers on the client's proposal letterhead (Dec 2025) and brochure
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
-    // PLACEHOLDER(C-04): second published number from the brochure; client must confirm
     secondaryPhone: '+251 90 680 8182',
-    // PLACEHOLDER(C-03): brochure says Eldasol Building, 2nd floor, Office 202, Bole, Woreda 04
-    address: '301 Mickey Leland St, Addis Ababa, Ethiopia',
+    // PLACEHOLDER(C-03): proposal letterhead reads "Bole Sub City, Woreda 04, House Number
+    // 201"; the brochure said "Eldasol Building, 2nd floor, Office 202" — confirm which is current
+    address: 'Bole Sub City, Woreda 04, House Number 201, Addis Ababa, Ethiopia',
     // PLACEHOLDER(C-07): office hours and working days
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
     // Google Maps → Share → Embed a map → copy only the src="..." URL

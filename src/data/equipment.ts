@@ -22,14 +22,15 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   rigs: {
     eyebrow: 'Drilling equipment',
     title: 'Drilling rigs',
+    // Client proposal: rigs and drilling tools sourced from Indian manufacturers
     intro:
-      'Makes, models and rated specifications are awaiting confirmation (C-16). Rated capacity is a machine specification, not a guaranteed depth at every site.',
+      'Drilling rigs and tools from established Indian manufacturers. Makes, models and rated specifications are awaiting confirmation (C-16).',
   },
   support: {
     eyebrow: 'Support and testing',
     title: 'Equipment specifications',
     intro:
-      'Compressor and test-pump details are awaiting the confirmed equipment inventory (C-16). Ask us for the specifications required by your tender.',
+      'A dedicated pumping-test crew brings its own crane, generators and variable-discharge submersible pumps. Exact makes and ratings are awaiting the confirmed inventory (C-16).',
   },
   figures: {
     eyebrow: 'Project record',
@@ -44,7 +45,10 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   },
 };
 
-// PLACEHOLDER(C-16): makes, models, rated depths and photos per machine (D-36: no invented specs)
+// From the client proposal: a dedicated pumping-test crew with its own crane,
+// generators and variable-discharge submersible pumps; rigs and tools from Indian
+// manufacturers. Makes, models, ratings and photos per machine still await C-16
+// (D-36: no invented specs — spec lists stay empty until confirmed)
 export const EQUIPMENT: Equipment[] = [
   {
     category: 'rig',
@@ -61,18 +65,21 @@ export const EQUIPMENT: Equipment[] = [
   },
   {
     category: 'support',
-    name: 'Compressor model (C-16)',
-    type: 'Air compressor',
-    specs: [
-      { label: 'Air delivery', value: '— (C-16)' },
-      { label: 'Pressure', value: '— bar (C-16)' },
-    ],
+    name: 'Variable-discharge submersible test pumps',
+    type: 'Pumping-test equipment',
+    specs: [{ label: 'Test capacity', value: '— L/s (C-16)' }],
   },
   {
     category: 'support',
-    name: 'Test pump model (C-16)',
-    type: 'Pumping-test equipment',
-    specs: [{ label: 'Test capacity', value: '— L/s (C-16)' }],
+    name: 'Pumping-test crane',
+    type: 'Lifting for the dedicated test crew',
+    specs: [{ label: 'Capacity', value: '— t (C-16)' }],
+  },
+  {
+    category: 'support',
+    name: 'Generators for the test crew',
+    type: 'Site power',
+    specs: [{ label: 'Output', value: '— kVA (C-16)' }],
   },
 ];
 

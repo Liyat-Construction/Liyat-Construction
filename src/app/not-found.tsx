@@ -9,6 +9,7 @@ export default function NotFound() {
     <>
       <PageHeader
         {...system.notFound}
+        eyebrowTone="accent"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: system.notFound.title }]}
       />
       <Section container="prose">

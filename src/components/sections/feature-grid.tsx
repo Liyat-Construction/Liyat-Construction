@@ -1,9 +1,9 @@
 import type { Action, Feature, SectionCopy } from '@/types/content';
 import { FeatureCard } from '@/components/cards/feature-card';
 import type { IconName } from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { TextLink } from '@/components/ui/text-link';
 import { cn, pick } from '@/lib/utils';
 
 const columns = {
@@ -37,18 +37,21 @@ export function FeatureGrid({
   return (
     <Section labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <div className="flex flex-col items-center gap-6">
+        {/* With a link the heading sits beside it (D-76): start-aligned, button top right */}
+        <div
+          className={cn('flex gap-6', link ? 'flex-wrap items-end justify-between' : 'flex-col')}
+        >
           <SectionHeading
             id={`${id}-title`}
-            align="center"
+            align={link ? 'start' : 'center'}
             eyebrow={eyebrow}
             title={title}
             intro={intro}
           />
           {link && (
-            <TextLink href={link.href} arrow className="shrink-0">
+            <Button href={link.href} icon="arrow" className="shrink-0">
               {link.label}
-            </TextLink>
+            </Button>
           )}
         </div>
         <ul className={cn('gap-grid grid', pick(columns, count))}>

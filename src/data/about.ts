@@ -25,8 +25,9 @@ export const ABOUT_PAGE: AboutPage = {
     paragraphs: [
       // The company description, used unchanged (Brand §10)
       'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
-      // PLACEHOLDER(C-08): founding year, founders, milestones, why the company exists
-      'Company story (C-08): when and why Liyat was founded, by whom, and the milestones since. Two or three sentences of this length.',
+      // From the client proposal: established January 2, 2019 as Wondwossen Ayalew water
+      // well drilling contractor; renamed Liyat Construction PLC in May 2022
+      'The company was established on 2 January 2019 by Wondwossen Ayalew, a hydrogeologist who had already spent 19 years leading drilling operations for other contractors. In May 2022 it became Liyat Construction PLC, founded to answer a simple gap: Ethiopia’s growing demand for groundwater against a shortage of drilling capacity.',
     ],
     factsTitle: 'Company at a glance',
   },
@@ -59,8 +60,9 @@ export const ABOUT_PAGE: AboutPage = {
     eyebrow: 'Who we serve',
     title: 'Built for institutional and commercial water demand',
     paragraphs: [
-      // PLACEHOLDER(C-28): confirm whether hospitals and manufacturers are among Liyat's clients
-      'We work for government agencies, embassies, international NGOs, institutions and commercial developers that need groundwater developed in Ethiopia. Other client types (C-28): hospitals, manufacturers.',
+      // Confirmed by the client proposal's project list: a teaching hospital (Yekatit 12)
+      // and a manufacturer (SD Salt) are among the completed clients (C-28 answered)
+      'We work for government ministries, embassies, hospitals, manufacturers, real-estate developers and international programmes that need groundwater developed in Ethiopia.',
       'If your project needs a dependable water source and a contractor who works to institutional standards, we should talk.',
     ],
     action: { label: 'Contact us', href: '/#contact' },

@@ -27,9 +27,10 @@ export const PROJECTS: Project[] = [
     title: 'Ethiopian Airlines pumping test',
     client: 'Ethiopian Airlines',
     location: 'Addis Ababa',
-    summary: 'Pumping test confirming a yield of 40 litres per second.',
+    summary:
+      'Drilling and construction of two 500 m wells, with a pumping test confirming a yield of 40 litres per second.',
     description:
-      'A pumping test to verify the capacity of the well at the Ethiopian Airlines facility. The results gave the performance data needed for pump selection and the design of the distribution system.',
+      'Drilling and construction of two 500 m wells in the Ethiopian Airlines compound, on behalf of Kibish Construction. The pumping test verified the capacity of the wells; the results gave the performance data needed for pump selection and the design of the distribution system.',
     image: photo(
       'ethiopian-airlines-pumping-test',
       'cover',
@@ -44,19 +45,23 @@ export const PROJECTS: Project[] = [
         portrait
       ),
     ],
-    services: ['pumping-tests'],
+    services: ['borehole-drilling', 'pumping-tests'],
+    // Client proposal: drilling and construction of two 500 m wells in the Ethiopian
+    // Airlines compound (main contractor Kibish Construction)
+    depth: { value: '500', unit: 'm', label: 'Well depth' },
     // From the client's project list; confirm against the test report (C-11)
     yield: { value: '40', unit: 'L/s', label: 'Tested yield', water: true },
     featured: true,
   },
   {
     slug: 'british-embassy-pump-installation',
-    title: 'British Embassy pump installation',
+    title: 'British Embassy turnkey water project',
     client: 'British Embassy',
     location: 'Addis Ababa',
-    summary: 'Pump installation and electromechanical works for the embassy’s water supply.',
+    summary:
+      'A complete groundwater source: survey, a 250 m well, and a submersible pump connected to the tank.',
     description:
-      'Selection, installation and commissioning of the pumping equipment for the British Embassy in Addis Ababa, sized to the embassy’s operational water demand.',
+      'A turnkey project in the embassy compound: hydrogeological and geophysical investigation, drilling and construction of a 250 m well, and supply and installation of a submersible pump with all accessories, connected to the water tank.',
     image: photo(
       'british-embassy-pump-installation',
       'cover',
@@ -64,7 +69,14 @@ export const PROJECTS: Project[] = [
       portraitTop
     ),
     gallery: [],
-    services: ['pump-supply-installation'],
+    services: [
+      'hydrogeological-survey',
+      'borehole-drilling',
+      'pump-supply-installation',
+      'turnkey-projects',
+    ],
+    // Client proposal: turnkey project, 250 m well
+    depth: { value: '250', unit: 'm', label: 'Well depth' },
     featured: true,
   },
   {
@@ -72,9 +84,9 @@ export const PROJECTS: Project[] = [
     title: 'Tsedey Bank pumping test',
     client: 'Tsedey Bank',
     location: 'Addis Ababa',
-    summary: 'Pumping test and performance evaluation for the bank’s water supply.',
+    summary: 'Drilling of a 200 m well and a pumping test for the bank’s head office water supply.',
     description:
-      'A pumping test to evaluate the well and confirm a sustainable yield for the bank’s water supply. The work covered water-level monitoring, drawdown and recovery measurements, and a report for design and operational planning.',
+      'Drilling of a 200 m well with 6-inch casing for the Tsedey Bank head office building, followed by a pumping test to confirm a sustainable yield: water-level monitoring, drawdown and recovery measurements, and a report for design and operational planning.',
     image: photo(
       'tsedey-bank-pumping-test',
       'cover',
@@ -82,7 +94,9 @@ export const PROJECTS: Project[] = [
       portraitTop
     ),
     gallery: [],
-    services: ['pumping-tests'],
+    services: ['borehole-drilling', 'pumping-tests'],
+    // Client proposal: drilling of 200 m with 6-inch casing, head office building
+    depth: { value: '200', unit: 'm', label: 'Well depth' },
     featured: true,
   },
   {
@@ -92,7 +106,7 @@ export const PROJECTS: Project[] = [
     location: 'Afdera, Afar Region',
     summary: 'Well drilling for a salt manufacturer’s industrial water demand in the Afar region.',
     description:
-      'Drilling and well development for SD Salt Manufacturing at Afdera, supplying industrial water to a remote site in the Afar lowlands.',
+      'Drilling of a 100 m well with 6-inch casing for SD Salt Processing and Production at Afdera, supplying industrial water to a remote site in the Afar lowlands.',
     image: photo(
       'sd-salt-manufacturing-afdera',
       'cover',
@@ -100,6 +114,8 @@ export const PROJECTS: Project[] = [
     ),
     gallery: [],
     services: ['borehole-drilling'],
+    // Client proposal: drilling of 100 m with 6-inch casing
+    depth: { value: '100', unit: 'm', label: 'Well depth' },
     featured: true,
   },
   {
@@ -109,7 +125,7 @@ export const PROJECTS: Project[] = [
     location: 'Addis Ababa',
     summary: 'A dedicated groundwater source for a teaching hospital.',
     description:
-      'Well development for Yekatit 12 Hospital Medical College, giving the hospital a dedicated groundwater source for its water demand.',
+      'Drilling of a 400 m well with 14-inch and 10-inch casing at the 6kilo hospital campus, giving Yekatit 12 Hospital Medical College a dedicated groundwater source for its water demand.',
     image: photo(
       'yekatit-12-hospital-well-development',
       'cover',
@@ -118,6 +134,8 @@ export const PROJECTS: Project[] = [
     ),
     gallery: [],
     services: ['borehole-drilling'],
+    // Client proposal: 400 m drilling with 14" and 10" casing, 6kilo hospital
+    depth: { value: '400', unit: 'm', label: 'Well depth' },
     featured: true,
   },
   {
@@ -125,9 +143,9 @@ export const PROJECTS: Project[] = [
     title: 'Chaka House water well',
     client: 'Chaka House',
     location: 'Addis Ababa',
-    summary: 'Well construction for the water supply of the Chaka House development.',
+    summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
     description:
-      'Well construction and related water works for the Chaka House development, supplying the property’s operational water demand.',
+      'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
     image: photo(
       'chaka-house-project',
       'cover',
@@ -136,6 +154,8 @@ export const PROJECTS: Project[] = [
     ),
     gallery: [],
     services: ['borehole-drilling'],
+    // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
+    depth: { value: '600', unit: 'm', label: 'Well depth' },
     featured: false,
   },
   {
