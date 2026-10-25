@@ -79,20 +79,20 @@ stands for the work.
 Liyat runs on **one brand color, one dark neutral and white**, with two
 supporting tones and one meaningful accent. No other colors are used.
 
-| Token           | HEX       | Role                                                                                                                           |
-| --------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Liyat Green** | `#156635` | The brand. Buttons, links, active states, the signature rule, key highlights, logo.                                            |
-| Green Dark      | `#0F4F28` | Hover and pressed state of green elements only.                                                                                |
-| Green Tint      | `#E7F0EA` | Callout boxes, table rows, selected states. (The brochure's soft sage, made legal.)                                            |
-| Green Light     | `#A9DDBA` | **Lines on dark only**: the signature rule and the current-page underline on Ink or over a photo. Never text.                  |
-| **Ink**         | `#1D2521` | Body text, headings, footer, dark sections. A charcoal with a green undertone.                                                 |
-| Ink Muted       | `#56615B` | Secondary text, captions, metadata, form borders.                                                                              |
-| **Paper**       | `#F8F7F3` | Main background of every page. A warm off-white, so white cards stand out from it.                                             |
-| **White**       | `#FFFFFF` | Cards, form fields, header; text on dark backgrounds.                                                                          |
-| Stone           | `#EEEBE3` | Fills only (image placeholders, ground in diagrams); not a page section. Warm neutral taken from the earth in our photographs. |
-| Line            | `#DCDAD3` | Hairline dividers and card borders (decorative only — never the only cue).                                                     |
-| **Water Blue**  | `#0B5CA0` | **Water only**: yields, water levels, flow figures, the water in technical drawings.                                           |
-| Alert Red       | `#B42318` | Form errors only. Functional, never decorative.                                                                                |
+| Token           | HEX       | Role                                                                                                                                                                      |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Liyat Green** | `#156635` | The brand. Buttons, links, active states, the signature rule, key highlights, logo.                                                                                       |
+| Green Dark      | `#0F4F28` | Hover and pressed state of green elements only.                                                                                                                           |
+| Green Tint      | `#E7F0EA` | Callout boxes, table rows, selected states. (The brochure's soft sage, made legal.)                                                                                       |
+| Green Light     | `#A9DDBA` | Lines on dark: the signature rule and current-page underline. Also footer column headings and legal-page eyebrows on plain Ink only (D-90, D-91); never text over photos. |
+| **Ink**         | `#1D2521` | Body text, headings, footer, dark sections. A charcoal with a green undertone.                                                                                            |
+| Ink Muted       | `#56615B` | Secondary text, captions, metadata, form borders.                                                                                                                         |
+| **Paper**       | `#F8F7F3` | Main background of every page. A warm off-white, so white cards stand out from it.                                                                                        |
+| **White**       | `#FFFFFF` | Cards, form fields, header; text on dark backgrounds.                                                                                                                     |
+| Stone           | `#EEEBE3` | Fills only (image placeholders, ground in diagrams); not a page section. Warm neutral taken from the earth in our photographs.                                            |
+| Line            | `#DCDAD3` | Hairline dividers and card borders (decorative only — never the only cue).                                                                                                |
+| **Water Blue**  | `#0B5CA0` | **Water only**: yields, water levels, flow figures, the water in technical drawings.                                                                                      |
+| Alert Red       | `#B42318` | Form errors only. Functional, never decorative.                                                                                                                           |
 
 ### Why these colors
 

@@ -307,36 +307,34 @@ export interface TestimonialsPage {
 
 export interface LegalPage {
   header: PageCopy;
-  notice: string;
-  updated: string;
-  sections: { title: string; paragraphs: string[] }[];
+  contentsLabel: string;
+  sectionLabel: string;
+  sections: { id: string; title: string; paragraphs: string[]; items?: string[] }[];
+  questions: SectionCopy & { emailLabel: string };
   contact: Action;
 }
 
 export interface ContactPage {
   header: PageCopy;
   form: SectionCopy & {
-    fields: Record<'name' | 'organization' | 'email' | 'phone' | 'subject' | 'message', string>;
+    fields: Record<'name' | 'email' | 'phone' | 'subject' | 'message', string>;
     subjectPrompt: string;
     messageHint: string;
     submit: string;
     sending: string;
     success: string;
     error: string;
-    unavailable: string;
-    privacy: string;
-    privacyLink: Action;
     noScript: string;
     validation: {
       name: string;
-      organization: string;
       email: string;
       phone: string;
       subject: string;
       message: string;
     };
   };
-  details: SectionCopy & {
+  details: {
+    title: string;
     phone: string;
     email: string;
     address: string;

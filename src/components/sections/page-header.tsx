@@ -2,12 +2,14 @@ import { pageUrl, serializeJsonLd } from '@/lib/metadata';
 import type { ImageAsset } from '@/types/content';
 import { Backdrop } from '@/components/ui/backdrop';
 import { Breadcrumbs, type Crumb } from '@/components/ui/breadcrumbs';
+import type { EyebrowTone } from '@/components/ui/eyebrow';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 interface PageHeaderProps {
   title: string;
   eyebrow?: string;
+  eyebrowTone?: EyebrowTone;
   intro?: string;
   /** Home first, the current page last (without href) */
   breadcrumbs: Crumb[];
@@ -25,7 +27,14 @@ interface PageHeaderProps {
  * `data-header-overlay` and pulled up under the site header, which floats
  * see-through over it until the band has scrolled past (D-63).
  */
-export function PageHeader({ title, eyebrow, intro, breadcrumbs, image }: PageHeaderProps) {
+export function PageHeader({
+  title,
+  eyebrow,
+  eyebrowTone = 'default',
+  intro,
+  breadcrumbs,
+  image,
+}: PageHeaderProps) {
   const photo = image && image.orientation !== 'portrait' ? image : undefined;
   return (
     <div
@@ -63,6 +72,7 @@ export function PageHeader({ title, eyebrow, intro, breadcrumbs, image }: PageHe
             id="page-title"
             align="center"
             eyebrow={eyebrow}
+            eyebrowTone={photo ? 'default' : eyebrowTone}
             title={title}
             intro={intro}
             className="mx-auto pb-4"

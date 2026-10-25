@@ -73,7 +73,14 @@ test('legal drafts and styleguide are noindex and 404 supplies real recovery lin
   for (const path of ['privacy-policy', 'terms-of-service', 'styleguide']) {
     const html = read(`${path}/index.html`);
     assert.match(content(html, 'robots'), /noindex/);
-    if (path !== 'styleguide') assert.match(html, /Draft for review/);
+    if (path !== 'styleguide') {
+      assert.doesNotMatch(html, /Draft for review|Draft updated:/);
+      assert.match(html, /On this page/);
+      assert.match(html, /mailto:liyatconstruction@gmail\.com/);
+      const anchors = [...html.matchAll(/href="#([a-z][a-z-]*)"/g)].map((match) => match[1]);
+      assert.ok(new Set(anchors).size >= 7, `${path}: missing legal navigation`);
+      for (const anchor of anchors) assert.ok(html.includes(`id="${anchor}"`), anchor);
+    }
   }
   const missing = read('404.html');
   assert.match(missing, /Page not found/);

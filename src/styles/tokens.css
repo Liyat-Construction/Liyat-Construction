@@ -22,7 +22,7 @@
   --color-brand-dark: #0f4f28;
   --color-brand-tint: #e7f0ea;
   /* Lines on dark only (rule, current-page underline): 10.3 : 1 on Ink, 3.25 : 1 over a
-     scrimmed photo at its brightest. Never text (D-70) */
+     scrimmed photo at its brightest. Text only for footer headings/legal eyebrows on plain Ink (D-90, D-91) */
   --color-brand-light: #a9ddba;
   --color-ink: #1d2521;
   --color-ink-muted: #56615b;
@@ -152,6 +152,8 @@
   --focus-upper-left: 0% 15%;
   /* The header with its bottom rule: a hero under the see-through header pulls up by this */
   --header-total: calc(var(--header-height) + var(--rule-width));
+  --legal-nav-top: calc(var(--header-total) + var(--spacing-gutter));
+  --legal-nav-height: calc(100svh - var(--legal-nav-top) - var(--spacing-gutter));
 
   /*
    * The drawing grid on plain Ink surfaces (Section pattern="grid", D-71, D-75): faint lines

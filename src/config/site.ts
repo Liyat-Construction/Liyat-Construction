@@ -51,8 +51,8 @@ export const siteConfig = {
 
   // ── Contact Details ─────────────────────────────────────────────────────────
   contact: {
-    // PLACEHOLDER(C-05): does this mailbox exist? Brochure: liyatdrilling2021@gmail.com
-    email: 'hello@liyatconstruction.com',
+    // C-05: public email confirmed by the owner, 2026-10-25
+    email: 'liyatconstruction@gmail.com',
     // PLACEHOLDER(C-04): numbers to publish (brochure also lists +251 90 680 8182)
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
     // PLACEHOLDER(C-04): second published number from the brochure; client must confirm
@@ -151,6 +151,7 @@ export const siteConfig = {
 
   // ── Footer ──────────────────────────────────────────────────────────────────
   footer: {
+    headings: { pages: 'Pages', services: 'Services', contact: 'Contact' },
     // The company description, used unchanged (Brand §10)
     description:
       'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
@@ -159,7 +160,8 @@ export const siteConfig = {
     rights: 'All rights reserved.',
     // PLACEHOLDER(C-31): Wondwossen approves the agency credit and its two icon links (D-64, D-79)
     credit: {
-      label: 'Built by Digital Aksumite',
+      prefix: 'Built by',
+      name: 'Digital Aksumite',
       href: 'https://digitalaksumite.com',
       // Icon links beside the credit; the labels name the agency so they are not read as Liyat's own
       links: [

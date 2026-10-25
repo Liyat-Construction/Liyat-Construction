@@ -30,4 +30,12 @@ export const PARTNERS: Partner[] = [
   { name: 'SD Salt Manufacturing', logo: '/images/clients/sd-salt-manufacturing.webp' },
   // PLACEHOLDER(C-23): "CREDOCS" or "CREDOCKS"
   { name: 'CREDOCS Digital Service', logo: '/images/clients/credoks.webp' },
+  { name: 'Belayneh Kinde Group', logo: '/images/clients/belayneh-kinde-group.webp' },
+  { name: 'CIRHT', logo: '/images/clients/cirht.webp' },
+  { name: 'ET Mineral Development S.C.', logo: '/images/clients/et-minieal.webp' },
+  {
+    name: 'Horn of Africa Groundwater for Resilience',
+    logo: '/images/clients/horn-of-africa-ground-water.webp',
+  },
+  { name: 'Hosea Trading House', logo: '/images/clients/hosea-treading-house.webp' },
 ];

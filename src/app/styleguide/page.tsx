@@ -447,7 +447,7 @@ export default function StyleguidePage() {
           <Specimen title="FormFeedback" note="neutral · success · error; persistent live regions">
             <div className="flex flex-col gap-4">
               <SectionHeading id="sg-contact-feedback" title="Contact feedback" />
-              <FormFeedback>{CONTACT_PAGE.form.unavailable}</FormFeedback>
+              <FormFeedback>{CONTACT_PAGE.form.sending}</FormFeedback>
               <FormFeedback tone="success">{CONTACT_PAGE.form.success}</FormFeedback>
               <FormFeedback tone="error">{CONTACT_PAGE.form.error}</FormFeedback>
             </div>
@@ -611,7 +611,15 @@ export default function StyleguidePage() {
         home={siteConfig.system.home}
         contact={siteConfig.system.contact}
       />
-      <LegalContent copy={PRIVACY_PAGE} />
+      <Section tone="ink" spacing="compact">
+        <SectionHeading
+          eyebrow={PRIVACY_PAGE.header.eyebrow}
+          eyebrowTone="accent"
+          title={PRIVACY_PAGE.header.title}
+          align="center"
+        />
+      </Section>
+      <LegalContent copy={PRIVACY_PAGE} email={siteConfig.contact.email} />
     </div>
   );
 }

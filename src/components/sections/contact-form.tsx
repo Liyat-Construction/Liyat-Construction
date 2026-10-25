@@ -42,7 +42,6 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
     }
     const result = createContactFormSchema(copy.validation, configuration.subjects).safeParse({
       name: data.get('name'),
-      organization: data.get('organization'),
       email: data.get('email'),
       phone: data.get('phone'),
       subject: data.get('subject') ?? '',
@@ -53,7 +52,6 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
         result.error.issues.find((issue) => issue.path[0] === field)?.message;
       setErrors({
         name: message('name'),
-        organization: message('organization'),
         email: message('email'),
         phone: message('phone'),
         subject: message('subject'),
@@ -89,7 +87,6 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
       aria-busy={status === 'sending'}
     >
       <div className="flex flex-col gap-6">
-        {!enabled && <FormFeedback>{copy.unavailable}</FormFeedback>}
         <FormFeedback tone={status === 'success' ? 'success' : 'neutral'}>
           {status === 'sending' ? copy.sending : status === 'success' ? copy.success : undefined}
         </FormFeedback>
@@ -110,21 +107,6 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
             <Field id="contact-name" label={copy.fields.name} error={errors.name}>
               {(control) => <Input {...control} name="name" autoComplete="name" maxLength={80} />}
             </Field>
-            <Field
-              id="contact-organization"
-              label={copy.fields.organization}
-              error={errors.organization}
-              optional
-            >
-              {(control) => (
-                <Input
-                  {...control}
-                  name="organization"
-                  autoComplete="organization"
-                  maxLength={120}
-                />
-              )}
-            </Field>
             <Field id="contact-email" label={copy.fields.email} error={errors.email}>
               {(control) => (
                 <Input
@@ -139,19 +121,19 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
             <Field id="contact-phone" label={copy.fields.phone} error={errors.phone} optional>
               {(control) => <Input {...control} name="phone" type="tel" autoComplete="tel" />}
             </Field>
+            <Field id="contact-subject" label={copy.fields.subject} error={errors.subject}>
+              {(control) => (
+                <Select {...control} name="subject" defaultValue="">
+                  <option value="" disabled>
+                    {copy.subjectPrompt}
+                  </option>
+                  {configuration.subjects.map((subject) => (
+                    <option key={subject}>{subject}</option>
+                  ))}
+                </Select>
+              )}
+            </Field>
           </div>
-          <Field id="contact-subject" label={copy.fields.subject} error={errors.subject}>
-            {(control) => (
-              <Select {...control} name="subject" defaultValue="">
-                <option value="" disabled>
-                  {copy.subjectPrompt}
-                </option>
-                {configuration.subjects.map((subject) => (
-                  <option key={subject}>{subject}</option>
-                ))}
-              </Select>
-            )}
-          </Field>
           <Field
             id="contact-message"
             label={copy.fields.message}

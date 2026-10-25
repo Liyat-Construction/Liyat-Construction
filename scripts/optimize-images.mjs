@@ -10,7 +10,7 @@
  * image loader (src/lib/image-loader.ts) reads that file to pick a width.
  * public/images/ is generated: never edit it by hand.
  */
-import { mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, extname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -31,7 +31,15 @@ const PROFILES = {
   clients: { widths: null, quality: 85 },
 };
 
-const SOURCE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.png']);
+const SOURCE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.jfif', '.png']);
+const SELECTED = process.argv.slice(2);
+const TRIMMED_LOGOS = new Set([
+  'clients/belayneh kinde group.png',
+  'clients/cirht.jfif',
+  'clients/et minieal.png',
+  'clients/horn of africa ground water.png',
+  'clients/hosea treading house.png',
+]);
 
 function listSources(dir) {
   return readdirSync(dir).flatMap((entry) => {
@@ -47,22 +55,31 @@ function widthsFor(ladder, original) {
   return [...ladder.filter((width) => width < largest), largest];
 }
 
-rmSync(OUTPUT, { recursive: true, force: true });
+const sources = listSources(SOURCE).sort();
+for (const selected of SELECTED) {
+  if (!sources.some((source) => relative(SOURCE, source).split(sep).join('/') === selected)) {
+    throw new Error(`Image source not found: ${selected}`);
+  }
+}
+if (SELECTED.length === 0) rmSync(OUTPUT, { recursive: true, force: true });
 
-const manifest = {};
+const manifest = SELECTED.length > 0 ? JSON.parse(readFileSync(MANIFEST, 'utf8')) : {};
 let totalBytes = 0;
 
-for (const source of listSources(SOURCE).sort()) {
+for (const source of sources) {
   const rel = relative(SOURCE, source).split(sep).join('/');
+  if (SELECTED.length > 0 && !SELECTED.includes(rel)) continue;
   const folder = rel.split('/')[0];
   const profile = PROFILES[folder];
   if (!profile) throw new Error(`No image profile for folder "${folder}" (${rel})`);
 
   // Orientation first, so the width is the displayed width.
-  const { width: original } = await sharp(source)
-    .rotate()
-    .toBuffer({ resolveWithObject: true })
-    .then((r) => r.info);
+  const pipeline = sharp(source).rotate();
+  if (TRIMMED_LOGOS.has(rel)) pipeline.trim({ threshold: 10 });
+  const {
+    data,
+    info: { width: original },
+  } = await pipeline.toBuffer({ resolveWithObject: true });
   const widths = widthsFor(profile.widths, original);
   const base = rel.slice(0, -extname(rel).length).toLowerCase().replaceAll(' ', '-');
   mkdirSync(join(OUTPUT, dirname(rel)), { recursive: true });
@@ -70,8 +87,7 @@ for (const source of listSources(SOURCE).sort()) {
   const sizes = [];
   for (const width of widths) {
     const out = join(OUTPUT, `${base}-${width}.webp`);
-    const { size } = await sharp(source)
-      .rotate()
+    const { size } = await sharp(data)
       .resize({ width, withoutEnlargement: true })
       .webp({ quality: profile.quality, effort: 6 })
       .toFile(out);

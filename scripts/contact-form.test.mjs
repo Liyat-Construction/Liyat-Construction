@@ -15,7 +15,6 @@ const configuration = {
 const schema = createContactFormSchema(CONTACT_PAGE.form.validation, configuration.subjects);
 const values = {
   name: 'Test Person',
-  organization: '',
   email: 'test@example.test',
   phone: '',
   subject: 'Project inquiry',
@@ -27,6 +26,11 @@ test('accepts optional fields, international names and trimmed values', () => {
   assert.equal(result.name, 'ቢንያም ተስፋዬ');
   assert.equal(result.email, values.email);
   assert.equal(result.phone, '');
+});
+
+test('does not retain the removed organization field', () => {
+  const result = schema.parse({ ...values, organization: 'Not collected' });
+  assert.equal('organization' in result, false);
 });
 
 test('accepts published phone formats and rejects non-numbers', () => {
@@ -48,7 +52,6 @@ test('accepts published phone formats and rejects non-numbers', () => {
 test('rejects invalid fields and subjects outside the configured list', () => {
   for (const change of [
     { name: ' ' },
-    { organization: 'x'.repeat(121) },
     { email: 'not-an-email' },
     { subject: '' },
     { subject: 'Injected subject' },
@@ -71,7 +74,7 @@ test('sends Web3Forms payload only through a mocked transport', async (context) 
     const body = JSON.parse(options.body);
     assert.equal(body.access_key, configuration.formKey);
     assert.equal(body.email, values.email);
-    assert.equal(body.organization, '');
+    assert.equal('organization' in body, false);
     assert.equal(body.botcheck, false);
     assert.equal(body.subject, 'Project inquiry — Test sender website');
     assert.ok(options.signal instanceof AbortSignal);

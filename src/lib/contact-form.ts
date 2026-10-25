@@ -28,7 +28,6 @@ export function createContactFormSchema(
 ) {
   return z.object({
     name: z.string().check(z.trim(), z.minLength(2, messages.name), z.maxLength(80, messages.name)),
-    organization: z.string().check(z.trim(), z.maxLength(120, messages.organization)),
     email: z.string().check(z.trim(), z.email(messages.email), z.maxLength(120, messages.email)),
     phone: z.string().check(
       z.trim(),

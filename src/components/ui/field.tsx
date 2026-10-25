@@ -64,18 +64,18 @@ export function Field({
 }
 
 const control =
-  'bg-white text-ink text-body border-ink-muted placeholder:text-ink-muted w-full rounded-control border px-3 aria-invalid:border-alert';
+  'bg-white text-ink text-body border-ink-muted/70 placeholder:text-ink-muted focus-visible:border-brand ease-standard w-full rounded-card border px-4 transition-colors duration-(--duration-fast) aria-invalid:border-alert focus-visible:aria-invalid:border-alert';
 
 type InputProps = ControlProps & React.ComponentPropsWithoutRef<'input'>;
 
 export function Input({ className, ...props }: InputProps) {
-  return <input {...props} className={cn(control, 'min-h-11', className)} />;
+  return <input {...props} className={cn(control, 'min-h-12', className)} />;
 }
 
 type TextareaProps = ControlProps & React.ComponentPropsWithoutRef<'textarea'>;
 
 export function Textarea({ className, rows = 5, ...props }: TextareaProps) {
-  return <textarea rows={rows} {...props} className={cn(control, 'py-2.5', className)} />;
+  return <textarea rows={rows} {...props} className={cn(control, 'resize-y py-3', className)} />;
 }
 
 type SelectProps = ControlProps & React.ComponentPropsWithoutRef<'select'>;
@@ -83,7 +83,7 @@ type SelectProps = ControlProps & React.ComponentPropsWithoutRef<'select'>;
 export function Select({ className, children, ...props }: SelectProps) {
   return (
     <div className={cn('relative', className)}>
-      <select {...props} className={cn(control, 'min-h-11 appearance-none pe-10')}>
+      <select {...props} className={cn(control, 'min-h-12 appearance-none pe-10')}>
         {children}
       </select>
       <ChevronDown

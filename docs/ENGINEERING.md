@@ -176,6 +176,9 @@ Widths are set per source folder in `scripts/optimize-images.mjs`; the ratio is 
   images; at 800 px they weigh 54–208 KB against the 70 KB card budget. Lower quality
   only adds blur. Re-run `npm run images` when the originals (C-18) arrive.
 - EXIF orientation is applied and metadata stripped during processing.
+- To prepare selected sources without clearing existing outputs, pass paths relative to
+  `assets/images/`, e.g. `npm run images -- "clients/cirht.jfif"`. JFIF is supported.
+  The five logos added in D-88 have blank margins trimmed by the script; originals remain untouched.
 
 ## 6. Accessibility (target: WCAG 2.2 AA)
 
@@ -211,8 +214,11 @@ Widths are set per source folder in `scripts/optimize-images.mjs`; the ratio is 
 - No secrets in the repo; `.env.local` is never committed.
 - No tracking without a consent decision (O-03). `siteConfig.analytics.enabled` is false;
   an environment ID alone cannot activate analytics.
-- Legal pages are typed plain-text drafts in `src/data/legal.ts`, visibly marked and
-  noindex until C-29. Do not invent retention periods, payment terms or legal guarantees.
+- Legal pages use typed plain-text content in `src/data/legal.ts`, with C-29 markers
+  and noindex until client/qualified review. D-91 removes the visible draft banner/date,
+  not the approval gate. Do not invent retention periods, payment terms or legal guarantees.
+  Shared `LegalDocument` renders the same stable section IDs in contents links and headings;
+  legal email links receive `siteConfig.contact.email` from the app layer.
 
 ## 9. Commands
 

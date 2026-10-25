@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/container';
 import { Icon } from '@/components/ui/icon';
+import { FooterSurface } from '@/components/ui/footer-surface';
 import { Logo } from '@/components/ui/logo';
 import { SmartLink } from '@/components/ui/smart-link';
 import { siteConfig } from '@/config/site';
@@ -18,8 +19,6 @@ const iconLinkStyle = 'group inline-flex size-11 items-center justify-center tex
 const iconBoxStyle =
   'inline-flex size-8 items-center justify-center rounded-control border border-white/30 group-hover:bg-white/10 ease-standard transition-colors duration-(--duration-fast)';
 
-const headingStyle = 'text-eyebrow text-white/80 uppercase';
-
 interface FooterLink {
   href: string;
   label: string;
@@ -28,7 +27,7 @@ interface FooterLink {
 function LinkColumn({ id, title, links }: { id: string; title: string; links: FooterLink[] }) {
   return (
     <nav aria-labelledby={id} className="flex flex-col gap-4">
-      <h2 id={id} className={headingStyle}>
+      <h2 id={id} data-footer-heading>
         {title}
       </h2>
       <ul className="flex flex-col gap-3">
@@ -57,10 +56,10 @@ interface FooterProps {
 export function Footer({ services }: FooterProps) {
   const { credit } = siteConfig.footer;
   return (
-    <footer data-on-dark className="bg-ink border-t border-white/15 text-white">
+    <FooterSurface>
       <Container>
         <div className="py-section-sm gap-grid grid gap-y-12 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-4">
+          <div className="flex min-w-0 flex-col gap-5 sm:col-span-2 lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 self-start">
               <Logo variant="white" alt="" />
               <span className="flex flex-col">
@@ -72,14 +71,22 @@ export function Footer({ services }: FooterProps) {
           </div>
 
           <div className="lg:col-span-2">
-            <LinkColumn id="footer-pages" title="Pages" links={[...main, cta]} />
+            <LinkColumn
+              id="footer-pages"
+              title={siteConfig.footer.headings.pages}
+              links={[...main, cta]}
+            />
           </div>
-          <div className="lg:col-span-3">
-            <LinkColumn id="footer-services" title="Services" links={services} />
+          <div className="min-w-0 lg:col-span-3">
+            <LinkColumn
+              id="footer-services"
+              title={siteConfig.footer.headings.services}
+              links={services}
+            />
           </div>
 
-          <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-3">
-            <h2 className={headingStyle}>Contact</h2>
+          <div className="flex min-w-0 flex-col gap-4 sm:col-span-2 lg:col-span-3">
+            <h2 data-footer-heading>{siteConfig.footer.headings.contact}</h2>
             <ul className="flex flex-col gap-3">
               {[phone, secondaryPhone].filter(Boolean).map((number) => (
                 <li key={number} className="flex items-start gap-3">
@@ -131,9 +138,14 @@ export function Footer({ services }: FooterProps) {
           {credit.href && (
             <div className="flex items-center gap-1 lg:order-1">
               {/* The 44 px icon targets carry their own 6 px margin, so the gaps stay small */}
-              <SmartLink href={credit.href} className={linkStyle}>
-                {credit.label}
-              </SmartLink>
+              <span data-footer-credit>
+                {credit.prefix}{' '}
+                <span data-footer-agency>
+                  <SmartLink href={credit.href} className={linkStyle}>
+                    {credit.name}
+                  </SmartLink>
+                </span>
+              </span>
               <ul className="flex">
                 {credit.links.map((link) => (
                   <li key={link.href}>
@@ -149,6 +161,6 @@ export function Footer({ services }: FooterProps) {
           )}
         </div>
       </Container>
-    </footer>
+    </FooterSurface>
   );
 }

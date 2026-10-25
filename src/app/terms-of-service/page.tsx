@@ -1,6 +1,7 @@
 import { LegalContent } from '@/components/sections/legal-content';
 import { PageHeader } from '@/components/sections/page-header';
 import { TERMS_PAGE } from '@/data/legal';
+import { siteConfig } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = {
@@ -13,9 +14,10 @@ export default function TermsOfServicePage() {
     <>
       <PageHeader
         {...TERMS_PAGE.header}
+        eyebrowTone="accent"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: TERMS_PAGE.header.title }]}
       />
-      <LegalContent copy={TERMS_PAGE} />
+      <LegalContent copy={TERMS_PAGE} email={siteConfig.contact.email} />
     </>
   );
 }
