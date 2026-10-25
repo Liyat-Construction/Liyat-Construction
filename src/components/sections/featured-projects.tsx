@@ -1,9 +1,9 @@
 import type { Action, Partner, Project, SectionCopy } from '@/types/content';
 import { ProjectCard } from '@/components/cards/project-card';
 import { ClientList } from '@/components/sections/client-list';
+import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { TextLink } from '@/components/ui/text-link';
 
 interface FeaturedProjectsProps extends SectionCopy {
   /** Up to three; with their service names (getServiceTitles) */
@@ -34,18 +34,18 @@ export function FeaturedProjects({
   return (
     <Section id={id} labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             id={`${id}-title`}
-            align="center"
+            align="start"
             eyebrow={eyebrow}
             title={title}
             intro={intro}
           />
           {link && (
-            <TextLink href={link.href} arrow className="shrink-0">
+            <Button href={link.href} icon="arrow" className="shrink-0">
               {link.label}
-            </TextLink>
+            </Button>
           )}
         </div>
         <ul className="gap-grid grid md:grid-cols-2 lg:grid-cols-3">

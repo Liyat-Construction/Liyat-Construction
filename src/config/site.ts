@@ -23,6 +23,7 @@ export const siteConfig = {
       { href: '/#services', label: 'Services', match: '/services' },
       { href: '/projects', label: 'Projects' },
       { href: '/equipment-capabilities', label: 'Equipment' },
+      { href: '/environment', label: 'Environment' },
       { href: '/#testimonials', label: 'Testimonials' },
     ],
     cta: { href: '/#contact', label: 'Contact us' },
@@ -88,7 +89,19 @@ export const siteConfig = {
     provider: 'web3forms' as ContactFormProvider,
     // PLACEHOLDER(C-25): public provider key for the client's confirmed receiving inbox
     formKey: '',
-    subjects: ['Project inquiry', 'Request a quotation', 'Partnership', 'Other'],
+    // General first, then the six services (keep in sync with Brand §9), then Other last
+    subjects: [
+      'General question',
+      'Hydrogeological & Geophysical Survey',
+      'Borehole Drilling',
+      'Pumping Tests',
+      'Borehole Rehabilitation',
+      'Pump Supply & Installation',
+      'Turnkey Water Projects',
+      'Privacy policy',
+      'Terms of service',
+      'Other',
+    ],
   },
 
   analytics: { enabled: false },

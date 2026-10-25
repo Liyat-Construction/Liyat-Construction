@@ -10,8 +10,8 @@
 
 /*
  * `over-photo:` styles the site header while it floats see-through over a hero
- * marked `data-header-overlay`. HeaderSolid sets `data-solid` on the header once
- * the hero has scrolled past, which turns it back to white. Without JavaScript
+ * marked `data-header-overlay`. HeaderSolid sets `data-solid` on the header
+ * after a small scroll (64 px), which turns it back to white. Without JavaScript
  * the header stays white (scripting: enabled). The mobile menu is excluded.
  */
 @custom-variant over-photo {

@@ -1,10 +1,10 @@
 import type { Partner } from '@/types/content';
 import { ClientCard } from '@/components/cards/client-card';
-import { Subheading } from '@/components/ui/subheading';
+import { Eyebrow } from '@/components/ui/eyebrow';
 
 interface ClientListProps {
   clients: Partner[];
-  /** Sub-heading above the row (h3, centred); leave out when the section heading already says it */
+  /** Centred green eyebrow above the row; leave out when the section heading already says it */
   title?: string;
 }
 
@@ -17,11 +17,7 @@ export function ClientList({ clients, title }: ClientListProps) {
   if (clients.length === 0) return;
   return (
     <div className="flex flex-col gap-6">
-      {title && (
-        <Subheading size="h4" align="center">
-          {title}
-        </Subheading>
-      )}
+      {title && <Eyebrow align="center">{title}</Eyebrow>}
       {/* Gutters as padding on the items (negative margin on the list), so basis-1/4 stays exact */}
       <ul className="-mx-2 -mb-4 flex flex-wrap justify-center">
         {clients.map((client) => (

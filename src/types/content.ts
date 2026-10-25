@@ -297,6 +297,13 @@ export interface EquipmentPage {
   safety: SectionCopy;
 }
 
+/** /environment, in section order (Design System §4). */
+export interface EnvironmentPage {
+  header: PageCopy;
+  story: StoryCopy & { statement: string };
+  practices: SectionCopy & { items: Feature[] };
+}
+
 /** /testimonials, in section order (Design System §4). */
 export interface TestimonialsPage {
   header: PageCopy;
@@ -318,6 +325,7 @@ export interface ContactPage {
   header: PageCopy;
   form: SectionCopy & {
     fields: Record<'name' | 'email' | 'phone' | 'subject' | 'message', string>;
+    placeholders: Record<'name' | 'email' | 'phone' | 'message', string>;
     subjectPrompt: string;
     messageHint: string;
     submit: string;
@@ -334,7 +342,6 @@ export interface ContactPage {
     };
   };
   details: {
-    title: string;
     phone: string;
     email: string;
     address: string;

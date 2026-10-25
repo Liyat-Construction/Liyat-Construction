@@ -45,7 +45,7 @@ export function EquipmentTeaser({
             </Subheading>
             <FactsTable rows={equipment.specs.slice(0, 3)} />
           </div>
-          <Button href={link.href} variant="secondary" icon="arrow" className="self-start">
+          <Button href={link.href} icon="arrow" className="self-start">
             {link.label}
           </Button>
         </div>

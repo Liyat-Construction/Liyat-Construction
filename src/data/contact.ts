@@ -1,6 +1,6 @@
 /**
- * Contact section copy (the last section on Home, `/#contact` — D-74). `header` is unused
- * since the contact page was removed; kept for the section's future heading.
+ * Contact section copy (the last section on Home, `/#contact` — D-74). `header` supplies
+ * the section's centred eyebrow and title (D-93).
  * Contact details (phone, email, address, map, socials) live in src/config/site.ts.
  */
 
@@ -16,14 +16,22 @@ export const CONTACT_PAGE: ContactPage = {
       'Contact Liyat Construction about hydrogeological surveys, borehole drilling, pumping tests, borehole rehabilitation, pump supply and installation, and turnkey water projects in Ethiopia.',
   },
   form: {
-    title: 'Send an inquiry',
-    intro: 'Share the details you have. You do not need a finished brief to start a conversation.',
+    title: 'Send us a message',
+    // PLACEHOLDER(C-33): the 24-hour response time is Mekan's line, adopted at the
+    // owner's request — Liyat must confirm it can keep this promise, or soften it
+    intro: "We'll respond within 24 hours with a clear path forward.",
     fields: {
       name: 'Full name',
       email: 'Email address',
       phone: 'Phone number',
       subject: 'What do you need?',
       message: 'Project details',
+    },
+    placeholders: {
+      name: 'e.g. Dawit Alemu',
+      email: 'you@company.com',
+      phone: '+251 91 234 5678',
+      message: 'Tell us about your project, its location and any planned dates.',
     },
     subjectPrompt: 'Choose a subject',
     messageHint:
@@ -36,13 +44,12 @@ export const CONTACT_PAGE: ContactPage = {
     validation: {
       name: 'Enter your name using 2–80 characters.',
       email: 'Enter a valid email address using no more than 120 characters.',
-      phone: 'Enter a phone number with 7–15 digits, or leave this field empty.',
+      phone: 'Enter a phone number with 7–15 digits.',
       subject: 'Choose a subject from the list.',
       message: 'Describe your project using 10–2,000 characters.',
     },
   },
   details: {
-    title: 'Call or email',
     phone: 'Phone',
     email: 'Email',
     address: 'Visit our office',

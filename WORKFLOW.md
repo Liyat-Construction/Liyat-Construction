@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                                                                                                     |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **Small refinements (`Review`, D-93)**: Contact heading now matches Testimonials: green uppercase eyebrow above larger Ink title. Legal refresh D-91–D-92 awaits review; S7 and S2–S4 remain in `Review`                            |
-| **Last completed**    | 2026-10-25: Contact uses green uppercase "Get in touch" eyebrow and larger Ink "Let’s start a conversation" h2 (D-93). Shared heading styles reused; no checks run                                                                  |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                    |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                                                                                           |
-| **Next action**       | Owner reviews Contact heading (D-93) and legal pages/cards (D-91–D-92); continue one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; S5 needs deletion approval; P15–P17 remain gated. |
+|                       |                                                                                                                                                                                                                                                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **Small refinements (`Review`, D-95–D-96)**: Contact section rework done; new `/environment` page + seventh nav link; header turns white after 64 px scroll; hero CTA → services; "Equipment and technologies" titles. Legal refresh D-91–D-92 and D-93 await review; S7 and S2–S4 remain in `Review` |
+| **Last completed**    | 2026-10-25: `/environment` page (grounded copy, C-17 markers on unconfirmed practices), nav "Environment" + smaller link text below xl, 64 px header threshold, hero CTA → `/#services`, equipment titles, primary equipment button — D-96. No checks run (D-89)                                      |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                                      |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                                                                                                                                                             |
+| **Next action**       | Owner reviews Contact heading/cards (D-93, D-95) and legal pages/cards (D-91–D-92); continue one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; S5 needs deletion approval; P15–P17 remain gated.                                                       |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -449,6 +449,7 @@ with placeholders until they arrive. **Must** items block launch.
 | C-29 | Client and qualified reviewer approve privacy practices, providers, retention, requests and website terms; replace legal drafts before launch                                                                                                                   | P16       | Must                   | Open     |
 | C-32 | Mining and core drilling (on the client's phone list, not in the brochure): actively sold today, with Liyat's own rig and a past project? Also: is turnkey still offered, and is there more of the phone list below "Submersible Pumps"?                        | S6        | Should                 | Open     |
 | C-31 | Wondwossen approves the new structure (Testimonials, project pages and the services overview leave the blueprint — D-60) and the "Built by Digital Aksumite" footer credit (D-64)                                                                               | S5        | Must                   | Open     |
+| C-33 | Confirm the "respond within 24 hours" promise on the contact form (owner asked for Mekan's line; it is a commitment Liyat must be able to keep — D-95)                                                                                                          | P16       | Must                   | Open     |
 
 ## 6. Decisions log
 
@@ -564,6 +565,10 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 
 **D-93 — owner, 2026-10-25:** Contact uses the same centred eyebrow/title pattern as Testimonials: green uppercase "Get in touch" eyebrow above the larger Ink h2 "Let’s start a conversation". Uses existing SectionHeading/Eyebrow styles and typed contact copy, also reflected on the styleguide. Supersedes D-90's use of "Get in touch" as the h2. No commands/browser checks run, per D-89.
 
+**D-95 — owner, 2026-10-25:** Contact form heading "Send us a message" with the Mekan-inspired line "We'll respond within 24 hours with a clear path forward." — marked `PLACEHOLDER(C-33)` because it is a response-time commitment Liyat has not confirmed (agent's objection, recorded; soften it if the client cannot keep it). Example placeholder text on the name, email, phone and message fields, from data (`form.placeholders`). Phone and email split into separate FeatureCards; each phone number gets its own phone-icon line (Mekan-style). `details.title` and the ContactList usage removed; `ContactList` now has no consumer and is a deletion candidate. No commands/browser checks run, per D-89.
+
+**D-96 — owner, 2026-10-25:** New `/environment` page and seventh nav link "Environment" (after Equipment). Copy is grounded in Liyat's own model — survey before drilling, testing before handover; site practices marked C-17. Nav links shrink to the small type size and tighter padding below `xl` so seven links fit at 1024 px; re-measure at the next check run. Also: hero secondary CTA is now "Explore our services" → `/#services` (was projects); the Equipment section and page title read "Equipment and technologies"; the "See our equipment" button is primary green; the see-through header turns white after 64 px of scroll (refines D-63). No commands/browser checks run, per D-89.
+
 ### Open decisions
 
 | ID   | Question                                                                 | Recommendation                                                                                                                                          | Needed by |
@@ -592,6 +597,27 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 | R-08 | Static export: client navigation requests `…/__next.<route>.__PAGE__.txt`, which `out/` stores as `__next.<route>/__PAGE__.txt`; a plain static server returns 404 (seen with `python -m http.server`). Pages load; navigation may fall back to full reloads | Test on the chosen host in P17 (O-02); check the Next 16 docs for the static-host setup                   | Open                                   |
 
 ## 8. Handoff
+
+### Follow-up — 2026-10-25 (Environment page + misc — D-96)
+
+- New `/environment` page: `src/data/environment.ts` (typed `EnvironmentPage`), `src/app/environment/page.tsx` — PageHeader (water-column photo) → Story with statement → FeatureGrid of 4 practices (2 with C-17 markers) → CtaBand via layout. Nav gains "Environment" between Equipment and Testimonials; footer Pages column and sitemap pick it up automatically (both derive from `navigation.main`).
+- Nav links now `text-small` + `px-2` below `xl` (7 links at 1024 px); re-measure at next check run.
+- Hero secondary CTA → "Explore our services" (`/#services`); equipment titles → "Equipment and technologies" (home section + page header); "See our equipment" is now a primary button; `HeaderSolid` turns the header white after 64 px scroll.
+- Follow-up: hero secondary button reads "Our services" (was "Explore our services"); the nav links moved out of the right-hand group into their own `mx-auto` slot, so free space now sits on both sides of the links — more air between logo and Home and between Testimonials and the button.
+- No commands/browser checks (D-89), no commits/pushes. Next: owner reviews `/environment` copy and the crowded nav at 1024.
+
+### Follow-up — 2026-10-25 (Contact sizing/icons — D-95)
+
+- Form card heading reduced: `Subheading` h3 at h4 size + a muted body line (was `SectionHeading` h3 + lead). Phone/Email FeatureCards no longer take a card-top icon (redundant with their titles); per-line phone/mail icons remain. Design System §3.4 updated. No commands run (D-89).
+- Follow-up: name placeholder → "e.g. Dawit Alemu" (male Amharic name); address and office-hours cards also lost their card-top icons — map-pin/clock now sit inline before the text, same as phone/email.
+- Follow-up 2 (owner): subjects now 'General question', the six service names, 'Privacy policy', 'Terms of service', 'Other' (`site.ts`); every field required — phone is no longer optional (schema requires 7–15 digits; validation copy updated); owner then removed the "not connected" note and the disabled submit entirely: the form is fully live now and an unconfigured submit lands on the standard error message (supersedes D-54's disabled preview). Contact tests may need updating for the required phone — not run (D-89). Phone/email/address values now use plain links with underline only on hover (owner; the icon already marks them as contacts). Projects section: "Explore all projects" became a primary green Button at the top right beside a left-aligned heading (FeaturedProjects, so service pages follow too); the clients-row label is now a centred green eyebrow (ClientList) instead of an h3. Header: see-through only at the very top — `HeaderSolid` now sets `data-solid` after 64 px of scroll instead of waiting for the whole overlay band to pass, so white links no longer sit over the bright hero mid-scroll (owner; refines D-63). The Ink-header idea was declined: green-on-ink is the forbidden pair, the logo would need a permanent plate, and it duplicates the dark footer.
+
+### Follow-up — 2026-10-25 (Contact form copy, placeholders, cards — D-95)
+
+- `src/data/contact.ts`: form heading "Send us a message" + "We'll respond within 24 hours…" (marked `PLACEHOLDER(C-33)` — unconfirmed promise); new `form.placeholders` (Ethiopian example name, `you@company.com`, `+251 91 234 5678`, message prompt). `details.title` removed from data and `ContactPage` type.
+- `contact-form.tsx` passes the placeholders to Input/Textarea; Select keeps its disabled prompt.
+- `contact-panel.tsx`: the combined "Call or email" card split into Phone (per-number phone icon + tel link, Mekan-style) and Email FeatureCards; ContactList is now unused (deletion candidate, not deleted without owner OK). Design System §3.4 updated.
+- Source edits reviewed; no commands/browser checks (D-89), no commits/pushes. Next: owner reviews the contact section in the browser; C-33 needs client confirmation.
 
 ### Follow-up — 2026-10-25 (Contact heading consistency, D-93)
 

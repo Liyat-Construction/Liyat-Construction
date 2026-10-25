@@ -33,7 +33,7 @@ export function createContactFormSchema(
       z.trim(),
       z.refine((value) => {
         const digits = value.replace(/\D/g, '').length;
-        return !value || (phonePattern.test(value) && digits >= 7 && digits <= 15);
+        return phonePattern.test(value) && digits >= 7 && digits <= 15;
       }, messages.phone)
     ),
     subject: z.string().check(z.refine((value) => subjects.includes(value), messages.subject)),

@@ -5,10 +5,14 @@ import { usePathname } from 'next/navigation';
 
 /**
  * On a page whose hero is marked `data-header-overlay`, the header floats
- * see-through over it (`over-photo:` in globals.css). This island sets
- * `data-solid` on the header once the hero has scrolled up behind it, so the
- * header turns white again. Renders nothing; does nothing on other pages.
+ * see-through over it (`over-photo:` in globals.css) only at the very top.
+ * This island sets `data-solid` on the header after a small scroll, so white
+ * links never collide with the bright photo while the hero is still in view.
+ * Renders nothing; does nothing on other pages.
  */
+// Scroll distance (px) after which the see-through header turns solid
+const SOLID_AFTER = 64;
+
 export function HeaderSolid() {
   const pathname = usePathname();
 
@@ -17,12 +21,8 @@ export function HeaderSolid() {
     const hero = document.querySelector<HTMLElement>('[data-header-overlay]');
     if (!header || !hero) return;
 
-    // One layout read per event: cheap enough without throttling
     const update = () => {
-      header.toggleAttribute(
-        'data-solid',
-        hero.getBoundingClientRect().bottom <= header.offsetHeight
-      );
+      header.toggleAttribute('data-solid', window.scrollY >= SOLID_AFTER);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });

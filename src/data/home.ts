@@ -11,7 +11,7 @@ export const HOME_PAGE: HomePage = {
     title: 'Know better. Drill better.',
     lead: 'Survey, drilling, testing and pump installation, with every stage documented.',
     primary: { label: 'Contact us', href: '/#contact' },
-    secondary: { label: 'Explore projects', href: '/projects' },
+    secondary: { label: 'Our services', href: '/#services' },
     // The whole first screen behind the headline (D-81)
     image: {
       url: '/images/hero/afar-rig-fleet.webp',
@@ -68,7 +68,7 @@ export const HOME_PAGE: HomePage = {
   },
   equipment: {
     eyebrow: 'Equipment',
-    title: 'The equipment we bring to site',
+    title: 'Equipment and technologies',
     intro: 'Rigs, compressors and test pumps, named with the capacity they are rated for.',
     link: { label: 'See our equipment', href: '/equipment-capabilities' },
   },

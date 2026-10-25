@@ -9,7 +9,7 @@ import type { Capability, Equipment, EquipmentPage } from '@/types/content';
 export const EQUIPMENT_PAGE: EquipmentPage = {
   header: {
     eyebrow: 'Our equipment',
-    title: 'Rigs and crews for deep and shallow wells',
+    title: 'Equipment and technologies',
     intro:
       'The drilling, support and pumping-test equipment we bring to site, with the specifications for planning.',
     image: {

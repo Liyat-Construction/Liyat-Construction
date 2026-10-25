@@ -15,7 +15,7 @@ const { main, cta } = siteConfig.navigation;
  * links, and "Contact us". The green rule along its bottom edge separates it
  * from the page; no shadow (D-39). Below `lg` the links move into MobileMenu.
  * Over a hero marked `data-header-overlay` it floats see-through with white
- * text (`over-photo:`), and HeaderSolid turns it white once the hero is passed.
+ * text (`over-photo:`), and HeaderSolid turns it white after a small scroll.
  */
 export function Header() {
   return (
@@ -36,10 +36,11 @@ export function Header() {
             </span>
           </span>
         </Link>
+        {/* mx-auto centres the links between the logo and the button, so air sits on both sides */}
+        <nav aria-label="Main" className="mx-auto max-lg:hidden">
+          <NavLinks links={main} layout="bar" />
+        </nav>
         <div className="flex items-center gap-4">
-          <nav aria-label="Main" className="max-lg:hidden">
-            <NavLinks links={main} layout="bar" />
-          </nav>
           <Button href={cta.href} className="shrink-0 max-sm:hidden">
             {cta.label}
           </Button>

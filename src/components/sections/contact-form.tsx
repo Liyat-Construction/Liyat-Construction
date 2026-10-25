@@ -5,7 +5,6 @@ import { Field, Input, Select, Textarea } from '@/components/ui/field';
 import { FormFeedback } from '@/components/ui/form-feedback';
 import {
   createContactFormSchema,
-  isContactFormEnabled,
   submitContactForm,
   type ContactFormConfiguration,
   type ContactFormValues,
@@ -24,7 +23,6 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
   const submitting = useRef(false);
   const formRef = useRef<HTMLFormElement>(undefined);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormValues, string>>>({});
-  const enabled = isContactFormEnabled(configuration);
 
   useEffect(() => {
     formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
@@ -32,7 +30,7 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!enabled || submitting.current) return;
+    if (submitting.current) return;
     const form = event.currentTarget;
     const data = new FormData(form);
     setStatus('idle');
@@ -91,10 +89,7 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
           {status === 'sending' ? copy.sending : status === 'success' ? copy.success : undefined}
         </FormFeedback>
         <FormFeedback tone="error">{status === 'error' ? copy.error : undefined}</FormFeedback>
-        <fieldset
-          disabled={!enabled || status === 'sending'}
-          className="flex min-w-0 flex-col gap-6"
-        >
+        <fieldset disabled={status === 'sending'} className="flex min-w-0 flex-col gap-6">
           <input
             type="text"
             name="website"
@@ -105,7 +100,15 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
           />
           <div className="grid gap-6 sm:grid-cols-2">
             <Field id="contact-name" label={copy.fields.name} error={errors.name}>
-              {(control) => <Input {...control} name="name" autoComplete="name" maxLength={80} />}
+              {(control) => (
+                <Input
+                  {...control}
+                  name="name"
+                  autoComplete="name"
+                  maxLength={80}
+                  placeholder={copy.placeholders.name}
+                />
+              )}
             </Field>
             <Field id="contact-email" label={copy.fields.email} error={errors.email}>
               {(control) => (
@@ -115,11 +118,20 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
                   type="email"
                   autoComplete="email"
                   maxLength={120}
+                  placeholder={copy.placeholders.email}
                 />
               )}
             </Field>
-            <Field id="contact-phone" label={copy.fields.phone} error={errors.phone} optional>
-              {(control) => <Input {...control} name="phone" type="tel" autoComplete="tel" />}
+            <Field id="contact-phone" label={copy.fields.phone} error={errors.phone}>
+              {(control) => (
+                <Input
+                  {...control}
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder={copy.placeholders.phone}
+                />
+              )}
             </Field>
             <Field id="contact-subject" label={copy.fields.subject} error={errors.subject}>
               {(control) => (
@@ -140,7 +152,15 @@ export function ContactForm({ copy, configuration, sender, children }: ContactFo
             hint={copy.messageHint}
             error={errors.message}
           >
-            {(control) => <Textarea {...control} name="message" maxLength={2000} rows={6} />}
+            {(control) => (
+              <Textarea
+                {...control}
+                name="message"
+                maxLength={2000}
+                rows={6}
+                placeholder={copy.placeholders.message}
+              />
+            )}
           </Field>
           <div>{children}</div>
         </fieldset>
