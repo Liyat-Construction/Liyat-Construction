@@ -11,14 +11,15 @@ interface ProjectCardProps {
   className?: string;
 }
 
-/** Linked project summary: photo, client, title, location · year, one key figure, services. */
+/** Project summary: photo, client, title, location · year, one key figure, services.
+ *  Not linked — project pages return when C-11 brings real detail (D-60). */
 export function ProjectCard({ project, serviceNames, className }: ProjectCardProps) {
   // The tested yield is the outcome clients ask about first; depth when there is no yield
   const figure = project.yield ?? project.depth;
   const meta = [project.location, project.year].filter(Boolean).join(' · ');
 
   return (
-    <Card as="article" href={`/projects/${project.slug}`} padding="none" className={className}>
+    <Card as="article" padding="none" className={className}>
       <Photo image={project.image} ratio="card" width="third" />
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div className="flex flex-col gap-2">

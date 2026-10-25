@@ -1,6 +1,7 @@
 /**
  * Projects
- * Shown on the homepage (featured: true), /projects and /projects/[slug].
+ * Shown on the homepage (featured: true) and /projects (list only — D-60; project
+ * pages return when C-11 brings real detail). Galleries render under the cards.
  * Images: sources in assets/images/projects/<slug>/, then `npm run images`.
  *
  * Source: the client-provided project list. Every project still needs its facts
@@ -226,23 +227,8 @@ export const PROJECTS_PAGE: ProjectsPage = {
     eyebrow: 'Our clients',
     title: 'Clients we have worked for',
   },
-  detail: {
-    overview: 'About the project',
-    approach: 'Approach',
-    result: 'Result',
-    facts: 'Project facts',
-    factLabels: {
-      client: 'Client',
-      location: 'Location',
-      year: 'Year',
-      services: 'Services',
-      duration: 'Duration',
-    },
-    gallery: { title: 'Photos from the site' },
-    related: 'Related projects',
-    allProjects: { label: 'Explore all projects', href: '/projects' },
-    contact: { label: 'Discuss a similar project', href: '/#contact' },
-  },
+  // Eyebrow above each project's gallery on /projects; the gallery's title is the project title (O-12)
+  gallery: { eyebrow: 'Photos from the site' },
 };
 
 /** Newest first; projects without a year (C-11) keep their order, after the dated ones. */
@@ -255,14 +241,6 @@ export function getProjectsByService(slug: ServiceSlug): Project[] {
   return PROJECTS.filter((project) => project.services.includes(slug)).sort(
     (a, b) => Number(b.featured) - Number(a.featured)
   );
-}
-
-/** Other projects that share a service with this one, featured first. */
-export function getRelatedProjects(project: Project): Project[] {
-  return PROJECTS.filter(
-    (other) =>
-      other.slug !== project.slug && other.services.some((slug) => project.services.includes(slug))
-  ).sort((a, b) => Number(b.featured) - Number(a.featured));
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {

@@ -16,16 +16,18 @@ const schema = createContactFormSchema(CONTACT_PAGE.form.validation, configurati
 const values = {
   name: 'Test Person',
   email: 'test@example.test',
-  phone: '',
+  phone: '+251 93 001 4711',
   subject: 'Project inquiry',
   message: 'Test inquiry, not a real submission.',
 };
 
-test('accepts optional fields, international names and trimmed values', () => {
+test('accepts international names and trimmed values', () => {
   const result = schema.parse({ ...values, name: '  ቢንያም ተስፋዬ  ', email: ' test@example.test ' });
   assert.equal(result.name, 'ቢንያም ተስፋዬ');
   assert.equal(result.email, values.email);
-  assert.equal(result.phone, '');
+  assert.equal(result.phone, values.phone);
+  // Every field is required, phone included (D-95)
+  assert.equal(schema.safeParse({ ...values, phone: '' }).success, false);
 });
 
 test('does not retain the removed organization field', () => {

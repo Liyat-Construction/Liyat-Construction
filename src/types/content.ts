@@ -196,11 +196,8 @@ export interface PageCopy {
   description: string;
 }
 
-/** /services, in section order (Design System §4). */
+/** Shared labels for the six /services/[slug] pages (the /services overview is removed — D-60). */
 export interface ServicesPage {
-  header: PageCopy;
-  lifecycle: SectionCopy;
-  deliverables: SectionCopy & { items: Feature[] };
   /** Headings of the sections on every /services/[slug] page */
   detail: {
     /** Eyebrow on a service page, followed by its number */
@@ -215,29 +212,13 @@ export interface ServicesPage {
   };
 }
 
-/** /projects and the headings of every /projects/[slug] page (Design System §4). */
+/** /projects (list only — D-60). */
 export interface ProjectsPage {
   header: PageCopy;
   /** The clients row under the projects */
   clients: SectionCopy;
-  detail: {
-    overview: string;
-    approach: string;
-    result: string;
-    facts: string;
-    /** FactsTable labels; depth and yield bring their own (Stat.label) */
-    factLabels: {
-      client: string;
-      location: string;
-      year: string;
-      services: string;
-      duration: string;
-    };
-    gallery: SectionCopy;
-    related: string;
-    allProjects: Action;
-    contact: Action;
-  };
+  /** Eyebrow above each project's gallery under the cards (O-12) */
+  gallery: { eyebrow: string };
 }
 
 /** A section of running text, with an optional statement or button (Story section). */
@@ -302,14 +283,6 @@ export interface EnvironmentPage {
   header: PageCopy;
   story: StoryCopy & { statement: string };
   practices: SectionCopy & { items: Feature[] };
-}
-
-/** /testimonials, in section order (Design System §4). */
-export interface TestimonialsPage {
-  header: PageCopy;
-  testimonials: SectionCopy;
-  references: SectionCopy;
-  clients: SectionCopy & { clientsTitle: string };
 }
 
 export interface LegalPage {

@@ -17,13 +17,13 @@ export function SystemMessage({
     'text-body inline-flex min-h-11 items-center justify-center rounded-control px-5 font-semibold';
   return (
     <section aria-labelledby="system-title" className="bg-stone text-ink py-section">
-      <div className="px-gutter mx-auto flex max-w-(--container-prose) flex-col gap-6">
+      <div className="px-gutter mx-auto flex max-w-(--container-prose) flex-col items-center gap-6 text-center">
         <p className="text-eyebrow text-brand uppercase">{copy.eyebrow}</p>
         <Heading id="system-title" className="font-heading text-h1">
           {copy.title}
         </Heading>
         <p className="text-lead text-ink-muted max-w-prose">{copy.intro}</p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {retry && (
             <button
               type="button"

@@ -31,7 +31,8 @@ const RULES = [
   },
   {
     name: 'template token',
-    pattern: /\b[a-z]+-(brand-(primary|accent)|text-(primary|secondary|muted|inverse)|surface)\b/,
+    pattern:
+      /\b(bg|text|border|fill|stroke|ring|from|via|to|divide|placeholder|decoration|outline|accent|caret|shadow)-(brand-(primary|accent)|text-(primary|secondary|muted|inverse)|surface)\b/,
   },
 ];
 

@@ -3,6 +3,7 @@ import type { ImageAsset } from '@/types/content';
 import { Backdrop } from '@/components/ui/backdrop';
 import { Breadcrumbs, type Crumb } from '@/components/ui/breadcrumbs';
 import type { EyebrowTone } from '@/components/ui/eyebrow';
+import type { ReactNode } from 'react';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
@@ -19,6 +20,8 @@ interface PageHeaderProps {
    * so they leave the band plain Ink.
    */
   image?: ImageAsset;
+  /** Optional centred actions under the heading (e.g. the 404 recovery buttons) */
+  actions?: ReactNode;
 }
 
 /**
@@ -34,6 +37,7 @@ export function PageHeader({
   intro,
   breadcrumbs,
   image,
+  actions,
 }: PageHeaderProps) {
   const photo = image && image.orientation !== 'portrait' ? image : undefined;
   return (
@@ -67,16 +71,19 @@ export function PageHeader({
         {photo && <Backdrop image={photo} variant="header" />}
         <div className="relative flex flex-col gap-10 pt-(--header-total) lg:gap-12">
           <Breadcrumbs items={breadcrumbs} />
-          <SectionHeading
-            as="h1"
-            id="page-title"
-            align="center"
-            eyebrow={eyebrow}
-            eyebrowTone={photo ? 'default' : eyebrowTone}
-            title={title}
-            intro={intro}
-            className="mx-auto pb-4"
-          />
+          <div className="flex flex-col items-center gap-8">
+            <SectionHeading
+              as="h1"
+              id="page-title"
+              align="center"
+              eyebrow={eyebrow}
+              eyebrowTone={photo ? 'default' : eyebrowTone}
+              title={title}
+              intro={intro}
+              className="mx-auto pb-4"
+            />
+            {actions}
+          </div>
         </div>
       </Section>
     </div>

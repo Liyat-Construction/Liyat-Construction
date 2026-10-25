@@ -7,7 +7,7 @@
  * CREDENTIALS      → licences and certifications on /about
  * TEAM             → leadership and team on /about
  * SAFETY_PRACTICES → safety and responsibility on /about
- * REFERENCES       → reference and completion letters on /testimonials
+ * REFERENCES       → reference and completion letters (ReferenceGrid; to About when C-13 arrives)
  * Every figure and credential must be backed by a document (Brand §8).
  */
 

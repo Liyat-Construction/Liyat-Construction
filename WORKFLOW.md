@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                                                                                                                                                                       |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **Small refinements (`Review`, D-95–D-96)**: Contact section rework done; new `/environment` page + seventh nav link; header turns white after 64 px scroll; hero CTA → services; "Equipment and technologies" titles. Legal refresh D-91–D-92 and D-93 await review; S7 and S2–S4 remain in `Review` |
-| **Last completed**    | 2026-10-25: `/environment` page (grounded copy, C-17 markers on unconfirmed practices), nav "Environment" + smaller link text below xl, 64 px header threshold, hero CTA → `/#services`, equipment titles, primary equipment button — D-96. No checks run (D-89)                                      |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                                      |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip · O-12 project galleries                                                                                                                                                             |
-| **Next action**       | Owner reviews Contact heading/cards (D-93, D-95), legal pages/cards (D-91–D-92) and (diagram change reverted at owner request); continue one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; S5 needs deletion approval; P15–P17 remain gated.           |
+|                       |                                                                                                                                                                                                                                                                                               |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **S5 — Remove pages + Projects page (`Review`)**: `/services` overview, `/projects/[slug]` and `/testimonials` deleted; cards unlinked; galleries on `/projects` under each project (O-12 closed); 19 routes. Verified. S2–S4, S7 and the D-91–D-96 refinements remain in `Review`            |
+| **Last completed**    | 2026-10-25: S5 implemented — deletions + galleries; validate, check:design, build:static, seo tests 4/4, contact tests 8/8 (updated for required phone), link scan clean, screenshots at 375/768/1280 (`%TEMP%/s5-projects-*.png`)                                                            |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                              |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip                                                                                                                                                                              |
+| **Next action**       | Owner reviews S5 in the browser (`/projects` galleries, unlinked cards, nav) plus the earlier refinements (D-91–D-96); continue one concern at a time. Then S6 (whole-site consistency pass). Ask before any terminal command (D-89). C-29 still blocks legal approval; P15–P17 remain gated. |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -96,7 +96,7 @@
 | S2  | Navigation + footer                   | S1                    | Owner                           | Review      |
 | S3  | Ink page header + see-through header  | S2                    | Owner                           | Review      |
 | S4  | Home page restructure                 | S3                    | Owner                           | Review      |
-| S5  | Remove pages + Projects page          | S4, C-31              | Owner                           | Not started |
+| S5  | Remove pages + Projects page          | S4, C-31              | Owner                           | Review      |
 | S6  | Consistency pass, every page          | S5                    | Owner                           | Not started |
 | S7  | Apply the hero choice                 | Owner (D-81)          | Owner + client                  | Review      |
 | P15 | Quality and performance audit         | S6, owner go-ahead    | Technical + owner               | Not started |
@@ -374,10 +374,24 @@ plus `validate`, `check:design`, `build:static`, and the owner's look in the bro
     name removed from the footer (still in About's facts).
   - Original plan: order of D-61, About section, ids matching the nav, clients row in Testimonials,
     Contact at the end, ProofStrip's figures into About, re-measure Home JS.
-- **S5 — Remove pages + Projects page.** Needs C-31 (or the owner's go-ahead). Delete
-  `/services` overview, `/projects/[slug]`, `/testimonials`; project cards stop linking;
-  galleries per O-12; sitemap, metadata, breadcrumbs, internal links and `/styleguide`
-  updated; no link may point at a removed page (`build:static` + a link scan).
+- **S5 — Remove pages + Projects page · `Review` (2026-10-25).** Owner's go-ahead given
+  (C-31 still pending with Wondwossen). Deleted: `src/app/services/page.tsx`,
+  `src/app/projects/[slug]/`, `src/app/testimonials/`, `sections/project-detail.tsx`,
+  `ui/contact-list.tsx` (unused since D-95). `ProjectCard` is no longer a link;
+  `Project.description`/`approach`/`result`/`duration` fields kept — pages return when
+  C-11 arrives (D-60). **O-12 closed:** each project with gallery photos renders a
+  `PhotoGallery` on `/projects` under the grid, titled by the project (Ethiopian
+  Airlines ×1, CREDOCS ×3). Sitemap shrank automatically (nav + service slugs only);
+  `PROJECTS_PAGE.detail`, `SERVICES_PAGE.header/lifecycle/deliverables` and
+  `TESTIMONIALS_PAGE` removed with their types. `check:design` template-token rule
+  tightened to real utility prefixes — it was false-matching the `footer-surface`
+  filename since D-90. Verified: `validate`, `check:design`, `build:static` (19 routes),
+  seo tests 4/4, contact tests 8/8 (fixtures updated for the required phone, D-95),
+  link scan over `out/` — zero links to removed routes; 404s confirmed for
+  `/testimonials/` and `/projects/<slug>/`. Screenshots at 375/768/1280
+  (`%TEMP%/s5-projects-*.png`); the 1280 blank card photos are the known lazy-load
+  headless artifact. `/services/` itself 404s on real hosts (no index.html); Python's
+  dev server lists the directory only. Awaiting the owner's browser review.
 - **S6 — Consistency pass.** Every page at 375/768/1280: same header band, spacing,
   CtaBand, footer; console clean; owner signs off "structure and look are right".
 - **S7 — Hero choice · `Review` (2026-10-22).** The owner chose option A before the meeting (D-81).
@@ -580,7 +594,7 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 | O-10 | Root `src/app/loading.tsx` (template spinner)                            | **Closed by D-52:** deleted in P10                                                                                                                      | —         |
 | O-06 | Floating WhatsApp/Telegram button                                        | Only if the client actively answers that channel (C-20)                                                                                                 | P5        |
 | O-11 | Moving (auto-scrolling) client/partner strip on Home                     | **Static "Trusted by" row.** Brand §2.4 bans auto-playing motion; WCAG 2.2.2 requires a pause control; 7 clients, most without a logo, would loop names | S4        |
-| O-12 | Where the two project galleries go once project pages are removed (D-60) | Show a project's gallery photos on `/projects` under its card, or drop them until C-11/C-18                                                             | S5        |
+| O-12 | Where the two project galleries go once project pages are removed (D-60) | **Closed in S5:** each project's `PhotoGallery` renders on `/projects` under the card grid, titled by the project                                       | —         |
 
 ## 7. Risks
 
@@ -719,6 +733,33 @@ investigation + deep-well drilling for the British Embassy, Addis Ababa). Facts 
 - Earlier browser evidence: 375/768/1280 screenshots for dividers and About/client changes (`%TEMP%/liyat-d82-<width>.png`, `liyat-d83-<about|clients>-<width>.png`); no horizontal overflow, logos load. This predates the final About photo and nine-client arrangement. Owner requested immediate commit without further checks; final verification was not run. Do not read earlier captures as final-state evidence.
 - Known unrelated blocker: repository-wide formatting reports untracked `brand-assets/Liyat Construction qr/README.md`; leave that asset untouched. Existing static-host R-08 prefetch 404s remain unresolved.
 - Next: continue one owner concern at a time. Contact heading "Get in touch" remains requested but not yet changed; broader wording review deferred. S5 is unstarted and needs explicit page-deletion approval; P15–P17 remain gated. Per D-84, verification normally waits until the end or explicit request.
+
+### Current session — 2026-10-25 (S5 — remove pages, O-12)
+
+- Deleted routes/components: `/services` overview, `/projects/[slug]`, `/testimonials`,
+  `sections/project-detail.tsx`, `ui/contact-list.tsx`. Project cards are unlinked;
+  galleries moved onto `/projects` under the grid (O-12 closed). Data and types trimmed
+  (`SERVICES_PAGE` = `detail` only, `PROJECTS_PAGE` = header/clients/gallery,
+  `TESTIMONIALS_PAGE` and `TestimonialsPage` gone). Sitemap now 10 URLs (nav + 6
+  service pages); 19 routes build.
+- Fixed a pre-existing `check:design` false positive: the `surface-*` template-token
+  rule matched the `footer-surface` import path (present since D-90, hidden because
+  checks were deferred). The rule now only matches inside real utility prefixes.
+- Contact-form test fixtures updated for the required phone field (D-95) — 8/8 pass.
+- Verified: `validate`, `check:design`, `build:static` (19 routes, no removed route),
+  `node --test` seo 4/4 + contact 8/8, link scan of every built page — no `href` to
+  `/services`, `/testimonials`, `/contact` or any `/projects/<slug>`. Headless Edge
+  screenshots of `/projects` at 375/768/1280 (`%TEMP%/s5-projects-*.png`): card grid,
+  galleries and footer render correctly; blank card photos at 1280 are lazy-loading
+  below the fold, not a defect.
+- Follow-up (owner, same session): the 404's recovery buttons sat alone on a Paper
+  strip under the header — moved into the Ink band, centred under the title, via a new
+  `PageHeader` `actions` slot; the stray Section is gone. `SystemMessage` (500) is
+  centred to match. Rebuilt (19 routes); screenshots `%TEMP%/s5-404-{375,768,1280}.png`.
+- Not committed (owner decides commits in this phase). C-31 (Wondwossen's structure +
+  credit approval) remains the launch gate even though the pages are gone now.
+- Next: owner's browser review of S5, then S6 — the whole-site consistency pass
+  (375/768/1024/1280, console clean) per D-78.
 
 ### Current state of the code
 

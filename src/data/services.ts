@@ -1,7 +1,8 @@
 /**
  * Services
  * The six official services (Brand §9), in lifecycle order. Shown on the
- * homepage, /services and /services/[slug]; the order sets the 01–06 numbers.
+ * homepage and /services/[slug] (the /services overview is removed — D-60);
+ * the order sets the 01–06 numbers.
  */
 
 import type { Service, ServicesPage, ServiceSlug } from '@/types/content';
@@ -181,46 +182,8 @@ export const SERVICES: Service[] = [
   },
 ];
 
-// PLACEHOLDER(C-09): confirm the deliverables with Liyat
+// Shared labels for the six service pages (the /services overview is removed — D-60)
 export const SERVICES_PAGE: ServicesPage = {
-  header: {
-    eyebrow: 'Services',
-    title: 'From survey to handover',
-    intro:
-      'Six services that take a water source from the first survey to a working supply. Choose one stage, or let us run the whole project.',
-    description:
-      'Hydrogeological survey, borehole drilling, pumping tests, borehole rehabilitation, pump supply and installation, and turnkey water projects by Liyat Construction in Ethiopia.',
-  },
-  lifecycle: {
-    eyebrow: 'The lifecycle',
-    title: 'Every well surveyed, drilled and proven.',
-    intro:
-      'The six services in the order a water source is built. The drawing shows the part of the well each one delivers.',
-  },
-  deliverables: {
-    eyebrow: 'Documentation',
-    title: 'What you receive at every stage',
-    intro:
-      'Each stage ends with a document you can keep, check and share with your engineers and funders.',
-    items: [
-      {
-        title: 'Survey report',
-        text: 'The recommended drilling site, the expected depth and the likely yield.',
-      },
-      {
-        title: 'Drilling log',
-        text: 'The formations drilled and an as-built drawing of the finished well.',
-      },
-      {
-        title: 'Pumping test report',
-        text: 'Measured drawdown and recovery, with the recommended pumping rate.',
-      },
-      {
-        title: 'Handover file',
-        text: 'Every report from survey to commissioning, in one file.',
-      },
-    ],
-  },
   detail: {
     eyebrow: 'Our services',
     overview: 'About this service',
