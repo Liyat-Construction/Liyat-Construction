@@ -23,6 +23,7 @@ interface StoryProps extends SectionCopy {
   /** Key figures under the text; hidden when empty */
   figures?: StatData[];
   action?: Action;
+  spacing?: 'default' | 'compact';
 }
 
 /** Running text beside an optional photo, facts card or statement, with optional figures and a button. */
@@ -37,10 +38,11 @@ export function Story({
   image,
   figures = [],
   action,
+  spacing = 'default',
 }: StoryProps) {
   const showFacts = facts !== undefined && facts.rows.length > 0;
   return (
-    <Section id={id} labelledBy={`${id}-title`}>
+    <Section id={id} labelledBy={`${id}-title`} spacing={spacing}>
       <div
         className={cn(
           'gap-grid grid max-lg:gap-y-12 lg:grid-cols-12',

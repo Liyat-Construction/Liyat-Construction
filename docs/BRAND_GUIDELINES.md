@@ -204,7 +204,7 @@ A Liyat layout looks like a good engineering drawing: aligned, measured and
 uncluttered. Space is part of the design; every element has a job.
 
 - **Grid.** Everything aligns to a 12-column grid. Margins are generous.
-- **The rule.** Liyat Green marks the header's bottom edge and the start of the dark closing block. No short lines above headings (D-82). Between the homepage's Paper content sections, a full-width 1 px Line-neutral hairline at 60% opacity quietly separates sections; no extra divider against the hero or closing block.
+- **The rule.** Liyat Green marks the header's bottom edge and the start of the dark closing block. No short lines above headings (D-82). Between every page's Paper content sections (D-102), a full-width 1 px Line-neutral hairline at 60% opacity quietly separates sections; no extra divider against the hero or closing block.
 - **Icons.** Simple line icons (1.5 px stroke) in one color, used only where they
   help someone find or understand something.
 - **Charts and diagrams.** Water Blue for water, Liyat Green for structure and

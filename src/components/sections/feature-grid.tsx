@@ -16,6 +16,7 @@ interface FeatureGridProps extends SectionCopy {
   items: Feature[];
   /** The same icon on every card, e.g. `document` for deliverables */
   icon?: IconName;
+  itemIcons?: IconName[];
   columns?: keyof typeof columns;
   /** A link beside the heading, e.g. to the page that covers the topic in full */
   link?: Action;
@@ -29,6 +30,7 @@ export function FeatureGrid({
   intro,
   items,
   icon,
+  itemIcons,
   columns: count = 3,
   link,
   id,
@@ -55,8 +57,13 @@ export function FeatureGrid({
           )}
         </div>
         <ul className={cn('gap-grid grid', pick(columns, count))}>
-          {items.map((item) => (
-            <FeatureCard key={item.title} as="li" feature={item} icon={icon} />
+          {items.map((item, index) => (
+            <FeatureCard
+              key={item.title}
+              as="li"
+              feature={item}
+              icon={itemIcons?.at(index) ?? icon}
+            />
           ))}
         </ul>
       </div>

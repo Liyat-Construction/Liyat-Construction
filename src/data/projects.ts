@@ -24,8 +24,30 @@ const portraitTop = { orientation: 'portrait', focus: 'top' } as const;
 // PLACEHOLDER(C-11): confirm each project's facts and the permission to name its client
 export const PROJECTS: Project[] = [
   {
+    slug: 'ovid-real-estate-turnkey-wells',
+    title: 'Two deep wells for a residential development',
+    client: 'Ovid Real Estate',
+    location: 'Ethiopia',
+    summary: 'Turnkey groundwater works with two 500 m wells for the real estate development.',
+    scope: 'Turnkey works · Two wells',
+    description:
+      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Real Estate.',
+    // PLACEHOLDER(C-11): proposal confirms the project; replace illustrative site photo with a verified Ovid photograph
+    image: {
+      url: '/images/site/water-column.webp',
+      alt: 'Water discharge beside a Liyat rig; illustrative site photograph, not verified as the Ovid project',
+      orientation: 'portrait',
+    },
+    imageCaption: 'Illustrative Liyat site photograph',
+    gallery: [],
+    services: ['borehole-drilling', 'turnkey-projects'],
+    depth: { value: '500', unit: 'm', label: 'Depth of each well' },
+    featured: false,
+  },
+  {
     slug: 'ethiopian-airlines-pumping-test',
-    title: 'Ethiopian Airlines pumping test',
+    title: 'Two wells for the airline compound',
+    scope: 'Drilling · Well construction · Pumping test',
     client: 'Ethiopian Airlines',
     location: 'Addis Ababa',
     summary:
@@ -56,7 +78,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'british-embassy-pump-installation',
-    title: 'British Embassy turnkey water project',
+    title: 'A turnkey groundwater source',
+    scope: 'Survey · Drilling · Pump and tank connection',
     client: 'British Embassy',
     location: 'Addis Ababa',
     summary:
@@ -82,7 +105,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'tsedey-bank-pumping-test',
-    title: 'Tsedey Bank pumping test',
+    title: 'A well for the head office',
+    scope: 'Drilling · Pumping test',
     client: 'Tsedey Bank',
     location: 'Addis Ababa',
     summary: 'Drilling of a 200 m well and a pumping test for the bank’s head office water supply.',
@@ -102,7 +126,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'sd-salt-manufacturing-afdera',
-    title: 'Industrial water well at Afdera',
+    title: 'An industrial water source',
+    scope: 'Drilling · Well construction',
     client: 'SD Salt Manufacturing',
     location: 'Afdera, Afar Region',
     summary: 'Well drilling for a salt manufacturer’s industrial water demand in the Afar region.',
@@ -121,7 +146,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'yekatit-12-hospital-well-development',
-    title: 'Yekatit 12 Hospital well development',
+    title: 'A groundwater source for the hospital',
+    scope: 'Drilling · Well construction · Development',
     client: 'Yekatit 12 Hospital Medical College',
     location: 'Addis Ababa',
     summary: 'A dedicated groundwater source for a teaching hospital.',
@@ -141,7 +167,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'chaka-house-project',
-    title: 'Chaka House water well',
+    title: 'Our deepest completed well',
+    scope: 'Drilling · Well construction',
     client: 'Chaka House',
     location: 'Addis Ababa',
     summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
@@ -161,7 +188,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'entoto-artesian-well',
-    title: 'Entoto artesian flowing well',
+    title: 'An artesian well at Entoto',
+    scope: 'Drilling · Artesian flow',
     // PLACEHOLDER(C-11): client name not in the project list
     client: 'Client name (C-11)',
     location: 'Entoto, Addis Ababa',
@@ -181,7 +209,8 @@ export const PROJECTS: Project[] = [
   {
     slug: 'credocs-shoring',
     // PLACEHOLDER(C-23): "CREDOCS" or "CREDOCKS"
-    title: 'CREDOCS deep excavation shoring',
+    title: 'Shoring for a deep excavation',
+    scope: 'Rig lowering · Excavation shoring',
     client: 'CREDOCS Digital Service',
     location: 'Addis Ababa',
     summary: 'Shoring for a 14 m deep excavation, with the rig lowered to work at its base.',
@@ -194,14 +223,18 @@ export const PROJECTS: Project[] = [
       portrait
     ),
     gallery: [
-      photo('credocs-shoring', 'site-overview', 'Overview of the shored excavation'),
+      photo(
+        'credocs-shoring',
+        'site-overview',
+        'Overview of the shored excavation at the CREDOCS site'
+      ),
       photo(
         'credocs-shoring',
         'rig-in-excavation',
-        'Liyat rig working at the base of the excavation',
+        'Liyat rig working at the base of the CREDOCS excavation',
         portrait
       ),
-      photo('credocs-shoring', 'shoring-works', 'Shoring works and site cranes'),
+      photo('credocs-shoring', 'shoring-works', 'Shoring works and cranes at the CREDOCS site'),
     ],
     // PLACEHOLDER(C-09): shoring is not one of the six services until Liyat confirms it
     services: [],
@@ -228,8 +261,17 @@ export const PROJECTS_PAGE: ProjectsPage = {
     title: 'Clients we have worked for',
   },
   // Eyebrow above each project's gallery on /projects; the gallery's title is the project title (O-12)
-  gallery: { eyebrow: 'Photos from the site' },
+  gallery: { eyebrow: 'On site', title: 'Photos from our work' },
 };
+
+export const PROJECT_GALLERY: ImageAsset[] = [
+  ...PROJECTS.flatMap((project) => project.gallery),
+  ...PROJECTS.filter((project) =>
+    ['ethiopian-airlines-pumping-test', 'yekatit-12-hospital-well-development'].includes(
+      project.slug
+    )
+  ).map((project) => project.image),
+];
 
 /** Newest first; projects without a year (C-11) keep their order, after the dated ones. */
 export const PROJECTS_NEWEST_FIRST = [...PROJECTS].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));

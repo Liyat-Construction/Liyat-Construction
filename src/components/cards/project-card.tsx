@@ -2,7 +2,6 @@ import type { Project } from '@/types/content';
 import { Card } from '@/components/ui/card';
 import { Photo } from '@/components/ui/photo';
 import { Stat } from '@/components/ui/stat';
-import { Tag } from '@/components/ui/tag';
 
 interface ProjectCardProps {
   project: Project;
@@ -20,13 +19,21 @@ export function ProjectCard({ project, serviceNames, className }: ProjectCardPro
 
   return (
     <Card as="article" padding="none" className={className}>
-      <Photo image={project.image} ratio="card" width="third" />
+      <figure>
+        <Photo image={project.image} ratio="card" width="third" />
+        {project.imageCaption && (
+          <figcaption className="text-small text-ink-muted px-6 pt-3">
+            {project.imageCaption}
+          </figcaption>
+        )}
+      </figure>
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div className="flex flex-col gap-2">
           <p className="text-small text-ink-muted font-medium">{project.client}</p>
           <h3 className="text-h3">{project.title}</h3>
           <p className="text-small text-ink-muted">{meta}</p>
         </div>
+        <p className="text-body text-ink-muted">{project.summary}</p>
         {figure && (
           <dl>
             <Stat
@@ -37,14 +44,10 @@ export function ProjectCard({ project, serviceNames, className }: ProjectCardPro
             />
           </dl>
         )}
-        {serviceNames.length > 0 && (
-          <ul className="mt-auto flex flex-wrap gap-2">
-            {serviceNames.map((name) => (
-              <li key={name}>
-                <Tag tone="brand">{name}</Tag>
-              </li>
-            ))}
-          </ul>
+        {(project.scope || serviceNames.length > 0) && (
+          <p className="text-small text-ink-muted border-line border-t pt-4">
+            {project.scope ?? serviceNames.join(' · ')}
+          </p>
         )}
       </div>
     </Card>

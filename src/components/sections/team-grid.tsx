@@ -20,10 +20,13 @@ export function TeamGrid({ eyebrow, title, intro, members }: TeamGridProps) {
           title={title}
           intro={intro}
         />
-        <ul className="gap-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <ul className="-mx-3 -mb-6 flex flex-wrap justify-center">
           {members.map((member, index) => (
-            <li key={`${member.name}-${index}`}>
-              <TeamCard member={member} />
+            <li
+              key={`${member.name}-${index}`}
+              className="flex min-w-0 basis-full px-3 pb-6 sm:basis-1/2 lg:basis-1/4"
+            >
+              <TeamCard member={member} className="w-full" />
             </li>
           ))}
         </ul>

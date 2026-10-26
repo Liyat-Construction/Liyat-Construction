@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
+import { SectionGroup } from '@/components/ui/section-group';
 import { Story } from '@/components/sections/story';
 import { ENVIRONMENT_PAGE } from '@/data/environment';
 
@@ -19,8 +20,10 @@ export default function EnvironmentPage() {
         intro={header.intro}
         image={header.image}
       />
-      <Story id="responsibility" {...story} />
-      <FeatureGrid id="practices" icon="check" columns={2} {...practices} />
+      <SectionGroup>
+        <Story id="responsibility" {...story} />
+        <FeatureGrid id="practices" icon="check" columns={2} {...practices} />
+      </SectionGroup>
     </>
   );
 }

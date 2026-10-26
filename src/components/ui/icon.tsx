@@ -11,6 +11,8 @@ import {
   Download,
   Drill,
   ExternalLink,
+  Eye,
+  Target,
   FileText,
   Gauge,
   House,
@@ -41,6 +43,8 @@ const icons = {
   download: Download,
   'external-link': ExternalLink,
   document: FileText,
+  eye: Eye,
+  target: Target,
   home: House,
   // Brand mark (lucide's brand icons are deprecated but kept); only for the agency credit (D-79)
   instagram: Instagram,

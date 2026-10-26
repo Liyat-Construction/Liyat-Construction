@@ -31,8 +31,12 @@ import { TeamCard } from '@/components/cards/team-card';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
 import { Story } from '@/components/sections/story';
 import { TeamGrid } from '@/components/sections/team-grid';
+import { FeatureGrid } from '@/components/sections/feature-grid';
+import { ProofStrip } from '@/components/sections/proof-strip';
+import { ABOUT_PAGE } from '@/data/about';
+import { PARTNERS } from '@/data/partners';
 import { Statement } from '@/components/ui/statement';
-import { COMPANY_FACTS, HOME_FIGURES, KEY_FIGURES, TEAM } from '@/data/company';
+import { COMPANY_FACTS, HOME_FIGURES, PROJECT_FIGURES, TEAM } from '@/data/company';
 import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
 import { EquipmentGrid } from '@/components/sections/equipment-grid';
 import { ReferenceGrid } from '@/components/sections/reference-grid';
@@ -40,7 +44,7 @@ import { ContactPanel } from '@/components/sections/contact-panel';
 import { FormFeedback } from '@/components/ui/form-feedback';
 import { MapFacade } from '@/components/ui/map-facade';
 import { CONTACT_PAGE } from '@/data/contact';
-import { getProjectBySlug, PROJECTS } from '@/data/projects';
+import { getProjectBySlug, PROJECT_GALLERY, PROJECTS, PROJECTS_PAGE } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
 import { photos, projectFacts, prose, reference, sectionCopy, services } from './_parts/samples';
@@ -74,7 +78,7 @@ const tones: SectionTone[] = ['paper', 'stone', 'tint', 'ink', 'brand'];
 const statTones = ['ink', 'brand', 'water'] as const;
 
 // Figures (D-36: placeholders until C-10) and three projects: with a yield, without one, and without services
-const stats = KEY_FIGURES.slice(0, 3);
+const stats = PROJECT_FIGURES;
 const sampleProjects = [
   PROJECTS[0],
   getProjectBySlug('british-embassy-pump-installation'),
@@ -427,6 +431,14 @@ export default function StyleguidePage() {
         presentation="specifications"
       />
 
+      <SectionGroup>
+        <Story id="sg-equipment-story" {...EQUIPMENT_PAGE.rigs} />
+        <FeatureGrid id="sg-test-equipment" {...EQUIPMENT_PAGE.support} columns={3} />
+        <FeatureGrid id="sg-equipment-methods" {...EQUIPMENT_PAGE.methods} columns={4} />
+        <ProofStrip id="sg-project-record" {...EQUIPMENT_PAGE.figures} figures={PROJECT_FIGURES} />
+        <Story id="sg-site-readiness" {...EQUIPMENT_PAGE.readiness} spacing="compact" />
+      </SectionGroup>
+
       <ReferenceGrid
         id="sg-references"
         eyebrow="Sections"
@@ -475,6 +487,13 @@ export default function StyleguidePage() {
         images={getProjectBySlug('credocs-shoring')?.gallery ?? []}
       />
 
+      <PhotoGallery
+        id="sg-gallery-grid"
+        {...PROJECTS_PAGE.gallery}
+        images={PROJECT_GALLERY}
+        layout="grid"
+      />
+
       <Story
         id="sg-story"
         eyebrow="Sections"
@@ -495,12 +514,23 @@ export default function StyleguidePage() {
         action={HOME_PAGE.about.action}
       />
 
-      <TeamGrid
-        eyebrow="Sections"
-        title="TeamGrid"
-        intro="TeamCards, two columns on phones; hidden when TEAM is empty (C-15)."
-        members={TEAM}
-      />
+      <SectionGroup>
+        <FeatureGrid
+          id="sg-mission-vision"
+          columns={2}
+          itemIcons={['target', 'eye']}
+          {...ABOUT_PAGE.missionVision}
+        />
+        <FeatureGrid id="sg-values" columns={3} {...ABOUT_PAGE.values} />
+        <ProofStrip id="sg-figures" {...ABOUT_PAGE.figures} figures={stats} />
+        <ProofStrip id="sg-clients" {...ABOUT_PAGE.clients} figures={[]} clients={PARTNERS} />
+        <TeamGrid
+          eyebrow="Sections"
+          title="TeamGrid"
+          intro="TeamCards stack on phones, with two per row from sm and four from lg. Incomplete rows are centred."
+          members={TEAM}
+        />
+      </SectionGroup>
 
       <Section labelledBy="sg-diagram">
         <div className="gap-grid grid items-start lg:grid-cols-2">

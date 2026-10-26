@@ -41,7 +41,9 @@ export const HOME_FIGURES: Stat[] = [
   { value: '600', unit: 'm', label: 'Deepest well drilled' },
 ];
 
-export const KEY_FIGURES: Stat[] = [WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED, HIGHEST_YIELD];
+export const PROJECT_FIGURES: Stat[] = [WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED];
+
+export const KEY_FIGURES: Stat[] = [...PROJECT_FIGURES, HIGHEST_YIELD];
 
 export const ABOUT_FIGURES: Stat[] = [GM_EXPERIENCE, WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED];
 
@@ -76,19 +78,25 @@ export const TEAM: TeamMember[] = [
     name: 'Wondwossen Ayalew',
     role: 'Founder and General Manager, hydrogeologist',
   },
-  // PLACEHOLDER(C-15): names, roles and portraits of the leadership and team
-  { name: 'Name Surname', role: 'Role (C-15)' },
-  { name: 'Name Surname', role: 'Role (C-15)' },
+  // PLACEHOLDER(C-15): Zelalem's full name/role and the third leader's name/role/portrait (C-34); Operation Head is a draft role
+  { name: 'Zelalem', role: 'Leadership role to confirm' },
+  { name: 'Name to confirm', role: 'Operation Head' },
 ];
 
-// PLACEHOLDER(C-17): only the practices Liyat actually follows; the section hides while empty
+// PLACEHOLDER(C-17): Liyat confirms these drafted safety and site practices (D-100, C-34)
 export const SAFETY_PRACTICES: Feature[] = [
-  { title: 'Protective equipment (C-17)', text: 'What the crew wears and checks on site.' },
   {
-    title: 'Drilling fluid and cuttings (C-17)',
-    text: 'How drilling fluid and cuttings are contained and disposed of.',
+    title: 'Protect the crew',
+    text: 'Our crews wear protective equipment and check the work area before drilling begins.',
   },
-  { title: 'Site handover (C-17)', text: 'How the site is left once the well is complete.' },
+  {
+    title: 'Contain fluid and cuttings',
+    text: 'Drilling fluid and cuttings stay contained, keeping them away from surrounding land and water.',
+  },
+  {
+    title: 'Leave the site clean',
+    text: 'We remove equipment, waste and temporary works before handing the site back to the client.',
+  },
 ];
 
 // PLACEHOLDER(C-13): add scans of approved reference letters; the section hides while empty

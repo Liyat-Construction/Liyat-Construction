@@ -5,20 +5,16 @@ import { PageHeader } from '@/components/sections/page-header';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { Story } from '@/components/sections/story';
 import { TeamGrid } from '@/components/sections/team-grid';
+import { SectionGroup } from '@/components/ui/section-group';
 import { ABOUT_PAGE } from '@/data/about';
-import { ABOUT_FIGURES, COMPANY_FACTS, CREDENTIALS, SAFETY_PRACTICES, TEAM } from '@/data/company';
+import { ABOUT_FIGURES, COMPANY_FACTS, SAFETY_PRACTICES, TEAM } from '@/data/company';
+import { PARTNERS } from '@/data/partners';
 
-const { header, story, figures, offer, audience, purpose, principles, team, credentials, safety } =
-  ABOUT_PAGE;
+const { header, story, figures, missionVision, values, clients, team, safety } = ABOUT_PAGE;
 
 export const metadata: Metadata = pageMetadata('/about', header.title, header.description);
 
-const credentialItems = CREDENTIALS.map((credential) => ({
-  title: credential.name,
-  text: [credential.issuer, credential.detail].filter(Boolean).join(' · '),
-}));
-
-// Design System §4 (About), with the template's offer, audience and purpose sections kept (D-50)
+// Design System §4 (About), with the owner's revised section order (D-101)
 // and the facts shown both beside the story and as figures (D-51).
 export default function AboutPage() {
   return (
@@ -30,27 +26,26 @@ export default function AboutPage() {
         intro={header.intro}
         image={header.image}
       />
-      <Story
-        id="story"
-        eyebrow={story.eyebrow}
-        title={story.title}
-        paragraphs={story.paragraphs}
-        facts={{ title: story.factsTitle, rows: COMPANY_FACTS }}
-      />
-      <ProofStrip {...figures} figures={ABOUT_FIGURES} />
-      <FeatureGrid id="offer" {...offer} />
-      <Story id="audience" {...audience} />
-      <Story id="purpose" {...purpose} />
-      <FeatureGrid id="principles" {...principles} />
-      <TeamGrid {...team} members={TEAM} />
-      <FeatureGrid
-        id="credentials"
-        icon="document"
-        columns={2}
-        {...credentials}
-        items={credentialItems}
-      />
-      <FeatureGrid id="safety" {...safety} items={SAFETY_PRACTICES} />
+      <SectionGroup>
+        <Story
+          id="story"
+          eyebrow={story.eyebrow}
+          title={story.title}
+          paragraphs={story.paragraphs}
+          facts={{ title: story.factsTitle, rows: COMPANY_FACTS }}
+        />
+        <ProofStrip id="about-figures" {...figures} figures={ABOUT_FIGURES} />
+        <FeatureGrid
+          id="mission-vision"
+          columns={2}
+          itemIcons={['target', 'eye']}
+          {...missionVision}
+        />
+        <FeatureGrid id="values" columns={3} {...values} />
+        <ProofStrip id="about-clients" {...clients} figures={[]} clients={PARTNERS} />
+        <TeamGrid {...team} members={TEAM} />
+        <FeatureGrid id="safety" icon="check" {...safety} items={SAFETY_PRACTICES} />
+      </SectionGroup>
     </>
   );
 }

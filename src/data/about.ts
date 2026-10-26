@@ -1,7 +1,7 @@
 /**
  * /about copy, in section order (Design System §4). Figures, facts, team,
- * credentials and safety practice come from company.ts.
- * The offer, audience and purpose sections are kept from the template (D-50).
+ * and safety practice come from company.ts; clients come from partners.ts.
+ * The structure follows the owner's About plan (D-101).
  */
 
 import type { AboutPage } from '@/types/content';
@@ -15,19 +15,19 @@ export const ABOUT_PAGE: AboutPage = {
     description:
       'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor for public bodies, embassies, NGOs, institutions and commercial clients.',
     image: {
-      url: '/images/hero/afar-rig-fleet.webp',
-      alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
+      url: '/images/hero/ethiopian-airlines.webp',
+      alt: 'Drilling rig and water discharge during a pumping test at Ethiopian Airlines',
     },
   },
   story: {
     eyebrow: 'Our story',
-    title: 'Liyat Construction PLC',
+    title: 'Drilling experience became a company of its own',
     paragraphs: [
-      // The company description, used unchanged (Brand §10)
-      'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
+      // From Liyat's proposal: founder, experience and the gap in drilling capacity (C-08 answered)
+      'Wondwossen Ayalew, a hydrogeologist with 19 years of experience leading drilling operations, established the business on 2 January 2019. Ethiopia’s demand for groundwater was growing faster than its drilling capacity. He started the company to help meet that demand.',
       // From the client proposal: established January 2, 2019 as Wondwossen Ayalew water
       // well drilling contractor; renamed Liyat Construction PLC in May 2022
-      'The company was established on 2 January 2019 by Wondwossen Ayalew, a hydrogeologist who had already spent 19 years leading drilling operations for other contractors. In May 2022 it became Liyat Construction PLC, founded to answer a simple gap: Ethiopia’s growing demand for groundwater against a shortage of drilling capacity.',
+      'In May 2022, the business became Liyat Construction PLC. Today, our in-house drilling, pumping-test and electromechanical teams take projects from investigation through well construction to pump installation. Each team handles its stage of the work, with a documented record for the client at handover.',
     ],
     factsTitle: 'Company at a glance',
   },
@@ -35,78 +35,69 @@ export const ABOUT_PAGE: AboutPage = {
     eyebrow: 'Track record',
     title: 'Liyat in figures',
   },
-  offer: {
-    eyebrow: 'What we offer',
-    title: 'The whole life of a water well',
+  // PLACEHOLDER(C-34): Liyat approves or rewrites the drafted mission and vision
+  missionVision: {
+    eyebrow: 'Our direction',
+    title: 'What we work for',
+    intro: 'Reliable water for the institutions and businesses that depend on it.',
+    items: [
+      {
+        title: 'Our mission',
+        text: 'Develop dependable groundwater sources through careful surveys, well construction and pumping tests, giving clients a documented basis for using and managing their water supply.',
+      },
+      {
+        title: 'Our vision',
+        text: 'An Ethiopia where institutions and businesses can plan around a reliable water source, with wells built on sound knowledge of the ground and proven performance.',
+      },
+    ],
+  },
+  // PLACEHOLDER(C-34): Liyat confirms these values and the practices they describe
+  values: {
+    eyebrow: 'Our values',
+    title: 'The decisions behind every well',
     intro:
-      'From the first study of the ground to a working pump. Take one stage, or let us run the complete project.',
+      'From choosing a drilling site to handing over the test results, these are the standards we work to.',
     items: [
       {
-        title: 'Investigate',
-        text: 'Hydrogeological and geophysical surveys that find a viable water source and decide where to drill.',
+        title: 'Evidence',
+        text: 'We use hydrogeological and geophysical findings to decide where to drill.',
       },
       {
-        title: 'Drill',
-        text: 'Well drilling, casing and well development, with a rig suited to the ground and the depth.',
+        title: 'Proof',
+        text: 'We pumping-test each well and give the client the results before handover.',
       },
       {
-        title: 'Equip',
-        text: 'Pumping tests, borehole rehabilitation, and pump supply and installation with the electromechanical works.',
+        title: 'Transparency',
+        text: 'Survey reports, drilling logs and test reports let the client check how the well was built.',
+      },
+      {
+        title: 'Safety',
+        text: 'We plan drilling work around the safety of the crew and the people near the site.',
+      },
+      {
+        title: 'Reliability',
+        text: 'We set realistic schedules for drilling, testing and installation, and explain changes to the client.',
+      },
+      {
+        title: 'Responsibility',
+        text: 'We contain drilling fluid and cuttings and clear the site when the well is handed over.',
       },
     ],
-    link: { label: 'See all six services', href: '/#services' },
   },
-  audience: {
-    eyebrow: 'Who we serve',
-    title: 'Built for institutional and commercial water demand',
-    paragraphs: [
-      // Confirmed by the client proposal's project list: a teaching hospital (Yekatit 12)
-      // and a manufacturer (SD Salt) are among the completed clients (C-28 answered)
-      'We work for government ministries, embassies, hospitals, manufacturers, real-estate developers and international programmes that need groundwater developed in Ethiopia.',
-      'If your project needs a dependable water source and a contractor who works to institutional standards, we should talk.',
-    ],
-    action: { label: 'Contact us', href: '/#contact' },
-  },
-  purpose: {
-    eyebrow: 'Our purpose',
-    title: 'Reliable water for organizations that depend on it',
-    paragraphs: [
-      'A well is only as good as the understanding of the ground beneath it. We start with the survey, build with discipline, and hand over a source that keeps working.',
-      'Our clients present our reports to their own engineers, funders and boards. So every stage ends with a document they can check.',
-    ],
-    statement: 'Every successful well begins with understanding the ground beneath it.',
-  },
-  // PLACEHOLDER(C-09): Liyat confirms each principle describes what it actually does
-  principles: {
-    eyebrow: 'How we work',
-    title: 'Principles we can show on every project',
-    items: [
-      {
-        title: 'Survey before we drill',
-        text: 'We study the ground before choosing a site, so the drilling decision rests on evidence.',
-      },
-      {
-        title: 'Test before we hand over',
-        text: 'Every well is pumping-tested, and the client receives the results.',
-      },
-      {
-        title: 'Document every stage',
-        text: 'Survey report, drilling log, test report and handover file: a record your engineers can check.',
-      },
-    ],
+  clients: {
+    eyebrow: 'Our clients',
+    title: 'Clients we work for',
+    intro:
+      'Our project record includes embassies, public institutions, development programmes and businesses across Ethiopia.',
   },
   team: {
     eyebrow: 'Our people',
     title: 'Leadership and team',
   },
-  credentials: {
-    eyebrow: 'Credentials',
-    title: 'Licences and registration',
-    intro: 'Copies are available on request.',
-  },
   safety: {
     eyebrow: 'Responsibility',
     title: 'Safety and site practice',
-    intro: 'How we protect the crew, the water and the land on every site.',
+    intro: 'Care for the crew, the borehole and the ground around it is part of the job.',
+    link: { label: 'See our environmental practice', href: '/environment' },
   },
 };

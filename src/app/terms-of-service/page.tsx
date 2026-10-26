@@ -1,5 +1,6 @@
 import { LegalContent } from '@/components/sections/legal-content';
 import { PageHeader } from '@/components/sections/page-header';
+import { SectionGroup } from '@/components/ui/section-group';
 import { TERMS_PAGE } from '@/data/legal';
 import { siteConfig } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
@@ -17,7 +18,9 @@ export default function TermsOfServicePage() {
         eyebrowTone="accent"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: TERMS_PAGE.header.title }]}
       />
-      <LegalContent copy={TERMS_PAGE} email={siteConfig.contact.email} />
+      <SectionGroup>
+        <LegalContent copy={TERMS_PAGE} email={siteConfig.contact.email} />
+      </SectionGroup>
     </>
   );
 }

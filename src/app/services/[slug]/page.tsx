@@ -3,6 +3,7 @@ import { pageMetadata } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
 import { FeaturedProjects } from '@/components/sections/featured-projects';
 import { PageHeader } from '@/components/sections/page-header';
+import { SectionGroup } from '@/components/ui/section-group';
 import { ServiceDetail } from '@/components/sections/service-detail';
 import { getProjectsByService } from '@/data/projects';
 import { getServiceBySlug, getServiceTitles, SERVICES, SERVICES_PAGE } from '@/data/services';
@@ -47,13 +48,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
         intro={service.intro}
         image={service.image}
       />
-      <ServiceDetail service={service} labels={SERVICES_PAGE.detail} />
-      <FeaturedProjects
-        id="related-projects"
-        title={SERVICES_PAGE.detail.related}
-        projects={related}
-        link={SERVICES_PAGE.detail.allProjects}
-      />
+      <SectionGroup>
+        <ServiceDetail service={service} labels={SERVICES_PAGE.detail} />
+        <FeaturedProjects
+          id="related-projects"
+          title={SERVICES_PAGE.detail.related}
+          projects={related}
+          link={SERVICES_PAGE.detail.allProjects}
+        />
+      </SectionGroup>
     </>
   );
 }

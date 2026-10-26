@@ -6,6 +6,7 @@ import { Stat } from '@/components/ui/stat';
 
 interface ProofStripProps extends SectionCopy {
   figures: StatData[];
+  id?: string;
   /** Sub-heading of the client row; leave out when the section heading names the clients */
   clientsTitle?: string;
   clients?: Partner[];
@@ -17,22 +18,29 @@ export function ProofStrip({
   title,
   intro,
   figures,
+  id = 'proof',
   clientsTitle,
   clients = [],
 }: ProofStripProps) {
   if (figures.length === 0 && clients.length === 0) return;
   return (
-    <Section labelledBy="proof-title">
+    <Section id={id} labelledBy={`${id}-title`}>
       <div className="flex flex-col gap-12">
         <SectionHeading
-          id="proof-title"
+          id={`${id}-title`}
           align="center"
           eyebrow={eyebrow}
           title={title}
           intro={intro}
         />
         {figures.length > 0 && (
-          <dl className="gap-grid grid grid-cols-2 lg:grid-cols-4">
+          <dl
+            className={
+              figures.length === 3
+                ? 'gap-grid grid sm:grid-cols-3'
+                : 'gap-grid grid grid-cols-2 lg:grid-cols-4'
+            }
+          >
             {figures.map((figure) => (
               <Stat
                 key={figure.label}

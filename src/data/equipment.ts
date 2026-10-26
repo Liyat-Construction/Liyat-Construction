@@ -11,37 +11,87 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     eyebrow: 'Our equipment',
     title: 'Equipment and technologies',
     intro:
-      'The drilling, support and pumping-test equipment we bring to site, with the specifications for planning.',
+      'Drilling rigs, a dedicated pumping-test crew and the equipment that supports each stage on site.',
     image: {
       url: '/images/equipment/rig-transport.webp',
       alt: 'Liyat drilling rig on its carrier, on the way to site',
     },
     description:
-      'Explore Liyat Construction’s drilling and support equipment, pumping-test specifications and site practices for groundwater projects in Ethiopia.',
+      'Liyat Construction’s drilling rigs, pumping-test equipment and groundwater investigation, well construction and installation methods in Ethiopia.',
   },
   rigs: {
     eyebrow: 'Drilling equipment',
-    title: 'Drilling rigs',
+    title: 'The equipment behind the drilling',
     // Client proposal: rigs and drilling tools sourced from Indian manufacturers
-    intro:
-      'Drilling rigs and tools from established Indian manufacturers. Makes, models and rated specifications are awaiting confirmation (C-16).',
+    paragraphs: [
+      'Our rigs and drilling tools are sourced from Indian manufacturers. In-house drilling teams carry out the well construction, supported by separate pumping-test and electromechanical teams.',
+      'The project record below shows the depths we have completed. These are records of work delivered, not the rated capacity of an individual rig.',
+    ],
+    image: {
+      url: '/images/equipment/rig-transport.webp',
+      alt: 'Liyat drilling rig mounted on its transport carrier',
+    },
   },
+  // PLACEHOLDER(C-16): proposal-backed equipment categories; confirm operational descriptions
   support: {
-    eyebrow: 'Support and testing',
-    title: 'Equipment specifications',
+    eyebrow: 'Pumping-test equipment',
+    title: 'A dedicated crew for proving the well',
     intro:
-      'A dedicated pumping-test crew brings its own crane, generators and variable-discharge submersible pumps. Exact makes and ratings are awaiting the confirmed inventory (C-16).',
+      'A dedicated pumping-test crew brings its own submersible pumps, crane and generators to site.',
+    items: [
+      {
+        title: 'Variable-discharge test pumps',
+        text: 'Submersible pumps let the crew control the pumping rate while observing how the well responds.',
+      },
+      {
+        title: 'Pumping-test crane',
+        text: 'The crew’s crane supports the handling and positioning of pumping-test equipment at the well.',
+      },
+      {
+        title: 'Generators',
+        text: 'Generators provide power for the pumps and equipment used during testing on site.',
+      },
+    ],
+  },
+  // PLACEHOLDER(C-09): confirm method wording; equipment and operating details also need C-16
+  methods: {
+    eyebrow: 'Technologies and methods',
+    title: 'How we investigate, build and test',
+    intro:
+      'Each stage uses the findings from the work before it, from choosing a site to installing the pump.',
+    items: [
+      {
+        title: 'Ground investigation',
+        text: 'Hydrogeological and geophysical findings inform where the well is sited before drilling begins.',
+      },
+      {
+        title: 'Well construction',
+        text: 'Casing, screens and well development follow the agreed design and the ground encountered during drilling.',
+      },
+      {
+        title: 'Pumping tests',
+        text: 'Pumping-rate and water-level observations show how the well performs under test.',
+      },
+      {
+        title: 'Pump installation',
+        text: 'Tested well performance and the project’s water needs inform pump selection and installation.',
+      },
+    ],
   },
   figures: {
     eyebrow: 'Project record',
-    title: 'Capability in the field',
+    title: 'Proven in the field',
     intro:
-      'These figures describe completed work, not equipment ratings. Values are placeholders until supporting project records are supplied (C-10).',
+      'From Liyat’s completed-project records: wells delivered and metres drilled, not machine ratings.',
   },
-  safety: {
-    eyebrow: 'Site responsibility',
-    title: 'Safety and site practice',
-    intro: 'The practices below are placeholders awaiting confirmation from Liyat (C-17).',
+  // PLACEHOLDER(C-17): confirm coordination and site-care wording with Liyat
+  readiness: {
+    eyebrow: 'Site readiness and care',
+    title: 'Ready for the work on site',
+    paragraphs: [
+      'Drilling, pumping-test and installation teams coordinate the stages of work, with care for the crew, the borehole and the surrounding ground. Our environmental practice explains how we approach water, drilling fluid, cuttings and handover.',
+    ],
+    action: { label: 'See our environmental practice', href: '/environment' },
   },
 };
 
@@ -52,34 +102,31 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
 export const EQUIPMENT: Equipment[] = [
   {
     category: 'rig',
-    name: 'Rig model (C-16)',
+    name: 'Drilling rigs and tools',
     type: 'Drilling rig',
     image: {
       url: '/images/equipment/rig-transport.webp',
       alt: 'Liyat drilling rig on its carrier, on the way to site',
     },
-    specs: [
-      { label: 'Rated depth', value: '— m (C-16)' },
-      { label: 'Drilling method', value: 'Method (C-16)' },
-    ],
+    specs: [],
   },
   {
     category: 'support',
     name: 'Variable-discharge submersible test pumps',
     type: 'Pumping-test equipment',
-    specs: [{ label: 'Test capacity', value: '— L/s (C-16)' }],
+    specs: [],
   },
   {
     category: 'support',
     name: 'Pumping-test crane',
     type: 'Lifting for the dedicated test crew',
-    specs: [{ label: 'Capacity', value: '— t (C-16)' }],
+    specs: [],
   },
   {
     category: 'support',
     name: 'Generators for the test crew',
     type: 'Site power',
-    specs: [{ label: 'Output', value: '— kVA (C-16)' }],
+    specs: [],
   },
 ];
 

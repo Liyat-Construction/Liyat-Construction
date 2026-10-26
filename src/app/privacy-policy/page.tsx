@@ -1,5 +1,6 @@
 import { LegalContent } from '@/components/sections/legal-content';
 import { PageHeader } from '@/components/sections/page-header';
+import { SectionGroup } from '@/components/ui/section-group';
 import { PRIVACY_PAGE } from '@/data/legal';
 import { siteConfig } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
@@ -17,7 +18,9 @@ export default function PrivacyPolicyPage() {
         eyebrowTone="accent"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: PRIVACY_PAGE.header.title }]}
       />
-      <LegalContent copy={PRIVACY_PAGE} email={siteConfig.contact.email} />
+      <SectionGroup>
+        <LegalContent copy={PRIVACY_PAGE} email={siteConfig.contact.email} />
+      </SectionGroup>
     </>
   );
 }

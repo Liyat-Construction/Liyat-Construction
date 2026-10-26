@@ -70,12 +70,14 @@ export interface Project {
   /** Year completed */
   year?: number;
   summary: string;
+  scope?: string;
   /** The scope of work */
   description: string;
   approach?: string;
   result?: string;
   /** Cover photo: cards, page header, Open Graph */
   image: ImageAsset;
+  imageCaption?: string;
   gallery: ImageAsset[];
   /** Services delivered, in lifecycle order; empty when the work is outside the six (C-09) */
   services: ServiceSlug[];
@@ -218,7 +220,7 @@ export interface ProjectsPage {
   /** The clients row under the projects */
   clients: SectionCopy;
   /** Eyebrow above each project's gallery under the cards (O-12) */
-  gallery: { eyebrow: string };
+  gallery: SectionCopy;
 }
 
 /** A section of running text, with an optional statement or button (Story section). */
@@ -231,13 +233,11 @@ export interface AboutPage {
   header: PageCopy & { image: ImageAsset };
   story: StoryCopy & { factsTitle: string };
   figures: SectionCopy;
-  offer: SectionCopy & { items: Feature[]; link: Action };
-  audience: StoryCopy & { action: Action };
-  purpose: StoryCopy & { statement: string };
-  principles: SectionCopy & { items: Feature[] };
+  missionVision: SectionCopy & { items: Feature[] };
+  values: SectionCopy & { items: Feature[] };
+  clients: SectionCopy;
   team: SectionCopy;
-  credentials: SectionCopy;
-  safety: SectionCopy;
+  safety: SectionCopy & { link: Action };
 }
 
 /** The band that ends every page except Contact (Design System §3.4). */
@@ -272,10 +272,11 @@ export interface HomePage {
 
 export interface EquipmentPage {
   header: PageCopy;
-  rigs: SectionCopy;
-  support: SectionCopy;
+  rigs: StoryCopy & { image: ImageAsset };
+  support: SectionCopy & { items: Feature[] };
+  methods: SectionCopy & { items: Feature[] };
   figures: SectionCopy;
-  safety: SectionCopy;
+  readiness: StoryCopy & { action: Action };
 }
 
 /** /environment, in section order (Design System §4). */

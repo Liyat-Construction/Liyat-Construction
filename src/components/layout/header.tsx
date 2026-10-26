@@ -24,8 +24,9 @@ export function Header() {
       className="border-brand ease-standard over-photo:border-transparent over-photo:bg-transparent sticky top-0 z-40 border-b-(length:--rule-width) bg-white transition-colors duration-(--duration-base)"
     >
       <HeaderSolid />
-      <Container className="flex h-(--header-height) items-center justify-between gap-6">
-        <Link href="/" className="flex shrink-0 items-center gap-3">
+      {/* Below sm the gap tightens and the name may wrap to two lines, so 320 px never scrolls sideways */}
+      <Container className="flex h-(--header-height) items-center justify-between gap-3 sm:gap-6">
+        <Link href="/" className="flex min-w-0 items-center gap-3">
           <Logo variant="adaptive" alt="" eager />
           <span className="flex flex-col">
             <span className="font-heading text-h4 text-ink over-photo:text-white font-bold">
