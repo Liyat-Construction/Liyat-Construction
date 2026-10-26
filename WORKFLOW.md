@@ -8,13 +8,13 @@
 
 ## ▶ You are here
 
-|                       |                                                                                                                                                                                                                                                                                               |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**      | **S5 — Remove pages + Projects page (`Review`)**: `/services` overview, `/projects/[slug]` and `/testimonials` deleted; cards unlinked; galleries on `/projects` under each project (O-12 closed); 19 routes. Verified. S2–S4, S7 and the D-91–D-96 refinements remain in `Review`            |
-| **Last completed**    | 2026-10-25: S5 implemented — deletions + galleries; validate, check:design, build:static, seo tests 4/4, contact tests 8/8 (updated for required phone), link scan clean, screenshots at 375/768/1280 (`%TEMP%/s5-projects-*.png`)                                                            |
-| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                              |
-| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip                                                                                                                                                                              |
-| **Next action**       | Owner reviews S5 in the browser (`/projects` galleries, unlinked cards, nav) plus the earlier refinements (D-91–D-96); continue one concern at a time. Then S6 (whole-site consistency pass). Ask before any terminal command (D-89). C-29 still blocks legal approval; P15–P17 remain gated. |
+|                       |                                                                                                                                                                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**      | **S6 — Consistency pass (`Review`)**: every route checked at 375/768/1024/1280; two shared fixes (D-97: hamburger below `xl`; FactsTable stacks in narrow containers). Verified. S2–S5, S7 and the D-91–D-96 refinements remain in `Review`                                           |
+| **Last completed**    | 2026-10-26: S6 implemented — validate, check:design, build:static (19 routes), seo tests 4/4, contact tests 8/8, console clean on all routes, no horizontal overflow at any width. Fixed: nav overflow at 1024 (button clipped) and FactsTable label/value collision in narrow asides |
+| **Blocked on client** | Receiving inbox + provider key (C-25), map pin (C-24), confirmed contact details (C-03–C-07); logo vector files (C-01) — P3 only                                                                                                                                                      |
+| **Open decisions**    | O-02 hosting · O-03 analytics · O-05 styleguide at launch · O-06 floating chat button · O-11 moving client strip                                                                                                                                                                      |
+| **Next action**       | Owner reviews S6 in the browser (hamburger now at 1024–1279, stacked facts rows in the About card) plus the pending S2–S5, S7 and D-91–D-96 items; one concern at a time. Ask before any terminal command (D-89). C-29 still blocks legal approval; P15–P17 remain gated.             |
 
 **Status values:** `Not started` · `In progress` · `Review` (waiting for owner's aesthetic review) · `Blocked` · `Complete`
 
@@ -97,7 +97,7 @@
 | S3  | Ink page header + see-through header  | S2                    | Owner                           | Review      |
 | S4  | Home page restructure                 | S3                    | Owner                           | Review      |
 | S5  | Remove pages + Projects page          | S4, C-31              | Owner                           | Review      |
-| S6  | Consistency pass, every page          | S5                    | Owner                           | Not started |
+| S6  | Consistency pass, every page          | S5                    | Owner                           | Review      |
 | S7  | Apply the hero choice                 | Owner (D-81)          | Owner + client                  | Review      |
 | P15 | Quality and performance audit         | S6, owner go-ahead    | Technical + owner               | Not started |
 | P16 | Real content swap                     | P15, client checklist | Owner + client                  | Not started |
@@ -392,7 +392,17 @@ plus `validate`, `check:design`, `build:static`, and the owner's look in the bro
   (`%TEMP%/s5-projects-*.png`); the 1280 blank card photos are the known lazy-load
   headless artifact. `/services/` itself 404s on real hosts (no index.html); Python's
   dev server lists the directory only. Awaiting the owner's browser review.
-- **S6 — Consistency pass.** Every page at 375/768/1280: same header band, spacing,
+- **S6 — Consistency pass · `Review` (2026-10-26).** All 14 routes checked at
+  375/768/1024/1280 (headless captures + true-viewport CDP emulation; headless
+  `--window-size` clamps to ~500 px, so mobile widths were verified over CDP).
+  `validate`, `check:design`, `build:static` (19 routes), seo tests 4/4,
+  contact tests 8/8; console clean on every route; no horizontal overflow at any
+  width. Two bugs found and fixed in the shared layer (D-97): the nav overflowed
+  at 1024 and clipped the Contact button (hamburger now shows below `xl`), and
+  FactsTable labels could overflow into the value column in narrow asides (rows
+  now stack below a 384 px container query). Chaka card's blank photo is the
+  known lazy-load artifact — the file exists and is referenced. Owner review pending.
+  Original brief: every page at 375/768/1280: same header band, spacing,
   CtaBand, footer; console clean; owner signs off "structure and look are right".
 - **S7 — Hero choice · `Review` (2026-10-22).** The owner chose option A before the meeting (D-81).
   `sections/hero-backdrop.tsx` became `sections/hero.tsx` (`Hero`); deleted (owner OK): option B
@@ -583,6 +593,8 @@ Owner instruction, 2026-10-21 — **D-56:** commit P13 now, implement and commit
 
 **D-96 — owner, 2026-10-25:** New `/environment` page and seventh nav link "Environment" (after Equipment). Copy is grounded in Liyat's own model — survey before drilling, testing before handover; site practices marked C-17. Nav links shrink to the small type size and tighter padding below `xl` so seven links fit at 1024 px; re-measure at the next check run. Also: hero secondary CTA is now "Explore our services" → `/#services` (was projects); the Equipment section and page title read "Equipment and technologies"; the "See our equipment" button is primary green; the see-through header turns white after 64 px of scroll (refines D-63). No commands/browser checks run, per D-89.
 
+**D-97 — S6 fix, 2026-10-26:** hamburger menu below `xl`: the desktop link bar and full-size links appear from `xl` (1280 px); between `lg` and `xl` the header shows logo + descriptor + Contact button + hamburger. Supersedes D-66's "shrink links to fit at 1024" and D-96's small-type workaround — with seven links the bar still overflowed by ~40 px at 1024 and clipped the Contact button. The descriptor's `lg`–`xl` screen-reader-only band is gone (there is room again). Also in S6: `FactsTable` rows stack label over value below a 384 px container query, so long labels cannot crowd the value in narrow asides (About's "Company at a glance" is ~300 px).
+
 ### Open decisions
 
 | ID   | Question                                                                 | Recommendation                                                                                                                                          | Needed by |
@@ -733,6 +745,30 @@ investigation + deep-well drilling for the British Embassy, Addis Ababa). Facts 
 - Earlier browser evidence: 375/768/1280 screenshots for dividers and About/client changes (`%TEMP%/liyat-d82-<width>.png`, `liyat-d83-<about|clients>-<width>.png`); no horizontal overflow, logos load. This predates the final About photo and nine-client arrangement. Owner requested immediate commit without further checks; final verification was not run. Do not read earlier captures as final-state evidence.
 - Known unrelated blocker: repository-wide formatting reports untracked `brand-assets/Liyat Construction qr/README.md`; leave that asset untouched. Existing static-host R-08 prefetch 404s remain unresolved.
 - Next: continue one owner concern at a time. Contact heading "Get in touch" remains requested but not yet changed; broader wording review deferred. S5 is unstarted and needs explicit page-deletion approval; P15–P17 remain gated. Per D-84, verification normally waits until the end or explicit request.
+
+### Current session — 2026-10-26 (S6 — whole-site consistency pass, D-97)
+
+- Every route (14) checked at 375/768/1024/1280. Note for the next session:
+  headless `--window-size` on Edge and Chrome clamps to ~500 px, so real mobile
+  widths were verified with CDP (`Emulation.setDeviceMetricsOverride` via a
+  throwaway script in `%TEMP%/shoot.mjs`, `%TEMP%/shotclip.mjs` — not committed).
+- Found and fixed in the shared layer (D-97): nav overflow at 1024 clipping the
+  Contact button → hamburger below `xl`, descriptor back at `lg`–`xl`; FactsTable
+  labels overflowing into the value column in narrow asides → rows stack below
+  a 384 px container query.
+- Verified after the fixes: `validate`, `check:design`, `build:static` (19
+  routes), seo tests 4/4, contact tests 8/8; console clean on all routes
+  (the one home exception was a bad test URL `//`, not the site); no horizontal
+  overflow at any width (scrollWidth ≤ viewport everywhere).
+- False alarms ruled out: the Chaka card's blank photo is the known lazy-load
+  headless artifact (the file exists); `/services/turnkey-water-projects` never
+  existed — the real slug is `turnkey-projects`.
+- Docs updated: DS §3.1 (FactsTable), §3.3 (Header/MobileMenu), §4 (nav note,
+  stale Testimonials row → D-79); D-97 row added.
+- Not committed (owner decides in this phase). Next: owner's browser review —
+  hamburger at 1024–1279 and the stacked facts card on `/about` are the visible
+  changes; then the remaining Review items (S2–S5, S7, D-91–D-96) or the next
+  concern. P15–P17 remain gated; C-29 blocks legal approval.
 
 ### Current session — 2026-10-25 (S5 — remove pages, O-12)
 
@@ -1078,7 +1114,10 @@ P1 part 1, 2026-10-20:
 
 ### Next action
 
-1. **Owner review** of S2, S3, the header/closing-section work (D-66, D-69–D-76) and S4 (D-77). Then S5 (remove `/services`, `/projects/[slug]`, `/testimonials`; galleries O-12; needs C-31 or the owner's go-ahead) → S6 (whole-site pass). The About page still needs the client's "What makes us unique?" and "What can Liyat Construction do for you?" content.
-2. The client meeting picks hero A or B (`/preview/option-a`, `/preview/option-b`, run with `npm run dev`) → S7. Home changes below the hero go in `src/app/_home/home-sections.tsx`, so both preview options stay identical below the hero.
+**Owner reviews S6 in the browser** — the visible changes are the hamburger at
+1024–1279 and the stacked facts rows in the About card — plus the earlier
+Review items (S2–S5, S7, D-91–D-96), one concern at a time. When the owner
+says the structure and look are right, S6 closes and P15 can be requested
+(still gated on the owner's say-so, not automatic).
 
 Then: **owner reviews the whole site before P15 (D-57).** P14 implementation is marked Complete by instruction; Lighthouse, external schema validation and browser checks remain pending audit work. Do not start P15 until instructed after review. C-25 still blocks production form receipt, C-29 blocks final legal copy, and P3 waits for C-01.

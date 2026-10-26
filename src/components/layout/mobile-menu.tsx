@@ -16,7 +16,7 @@ const iconButton =
   'text-ink hover:bg-brand-tint over-photo:text-white over-photo:hover:bg-white/10 rounded-control inline-flex size-11 items-center justify-center';
 
 /**
- * Full-height menu below `lg`, on a native modal <dialog>: the page behind is
+ * Full-height menu below `xl`, on a native modal <dialog>: the page behind is
  * inert (focus stays inside), Esc closes it and focus returns to the button.
  * Body scroll is locked in globals.css. Closes on navigation.
  */
@@ -34,14 +34,14 @@ export function MobileMenu({ links, openIcon, closeIcon, action }: MobileMenuPro
         type="button"
         aria-haspopup="dialog"
         onClick={() => dialog.current?.showModal()}
-        className={`${iconButton} lg:hidden`}
+        className={`${iconButton} xl:hidden`}
       >
         {openIcon}
       </button>
       <dialog
         ref={dialog}
         aria-label="Menu"
-        className="text-ink m-0 h-dvh max-h-none w-full max-w-none bg-white p-0 backdrop:bg-transparent lg:hidden"
+        className="text-ink m-0 h-dvh max-h-none w-full max-w-none bg-white p-0 backdrop:bg-transparent xl:hidden"
       >
         <div className="px-gutter flex min-h-full flex-col pb-8">
           <div className="flex h-(--header-height) shrink-0 items-center justify-end">

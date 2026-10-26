@@ -13,7 +13,7 @@ const { main, cta } = siteConfig.navigation;
 /**
  * White sticky header: full-color logo with name and descriptor, the main
  * links, and "Contact us". The green rule along its bottom edge separates it
- * from the page; no shadow (D-39). Below `lg` the links move into MobileMenu.
+ * from the page; no shadow (D-39). Below `xl` the links move into MobileMenu.
  * Over a hero marked `data-header-overlay` it floats see-through with white
  * text (`over-photo:`), and HeaderSolid turns it white after a small scroll.
  */
@@ -31,13 +31,13 @@ export function Header() {
             <span className="font-heading text-h4 text-ink over-photo:text-white font-bold">
               {siteConfig.name}
             </span>
-            <span className="text-small text-ink-muted over-photo:text-white/80 max-sm:sr-only lg:max-xl:sr-only">
+            <span className="text-small text-ink-muted over-photo:text-white/80 max-sm:sr-only">
               {siteConfig.descriptor}
             </span>
           </span>
         </Link>
         {/* mx-auto centres the links between the logo and the button, so air sits on both sides */}
-        <nav aria-label="Main" className="mx-auto max-lg:hidden">
+        <nav aria-label="Main" className="mx-auto max-xl:hidden">
           <NavLinks links={main} layout="bar" />
         </nav>
         <div className="flex items-center gap-4">
