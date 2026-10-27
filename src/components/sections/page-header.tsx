@@ -15,9 +15,10 @@ interface PageHeaderProps {
   /** Home first, the current page last (without href) */
   breadcrumbs: Crumb[];
   /**
-   * Optional background photo under a flat Ink scrim (D-62). Only landscape
-   * photos are used: portrait phone shots blur and crop to a strip at full width,
-   * so they leave the band plain Ink.
+   * Optional background photo under a flat Ink scrim (D-62). Landscape photos
+   * are preferred; a portrait photo also renders, cropped to the band by its
+   * `focus` point (D-113 — the service headers need real photos even when the
+   * only genuine shot is portrait).
    */
   image?: ImageAsset;
   /** Optional centred actions under the heading (e.g. the 404 recovery buttons) */
@@ -39,7 +40,7 @@ export function PageHeader({
   image,
   actions,
 }: PageHeaderProps) {
-  const photo = image && image.orientation !== 'portrait' ? image : undefined;
+  const photo = image;
   return (
     <div
       data-header-overlay
@@ -48,7 +49,7 @@ export function PageHeader({
     >
       <Section
         tone="ink"
-        spacing="compact"
+        spacing="medium"
         pattern={photo ? 'none' : 'grid'}
         labelledBy="page-title"
         className="relative"

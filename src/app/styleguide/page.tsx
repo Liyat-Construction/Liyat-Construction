@@ -553,11 +553,18 @@ export default function StyleguidePage() {
             title="WellDiagram"
             intro="Water Blue for water, Liyat Green for the well structure, Ink for pump equipment and labels. On the home page, pointing at a service highlights its part (D-45). Readable at 320 px."
           />
-          <Specimen title="320 px wide">
-            <div className="max-w-80">
-              <WellDiagram />
-            </div>
-          </Specimen>
+          <div className="flex flex-col gap-8">
+            <Specimen title="320 px wide">
+              <div className="max-w-80">
+                <WellDiagram />
+              </div>
+            </Specimen>
+            <Specimen title="Service page — Pumping Tests part lit">
+              <div data-well="pumping-tests" className="max-w-80">
+                <WellDiagram />
+              </div>
+            </Specimen>
+          </div>
         </div>
       </Section>
 

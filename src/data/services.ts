@@ -17,6 +17,8 @@ export const SERVICES: Service[] = [
       'Find the right water source before you drill, with a survey that names the site, depth and likely yield.',
     overview:
       'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
+    wellNote:
+      'The survey reads every layer in this drawing — from topsoil down to the aquifer — and names the depth and yield to drill for.',
     forWho: 'Project owners, developers and institutions planning a new water source',
     includes: [
       'Desk review of hydrogeological and hydrological data',
@@ -32,7 +34,7 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Survey report with the recommended drilling site, depth and expected yield'],
     cta: 'Request a site survey',
-    // No photo shows a survey; the Afar site shows the ground it reads
+    // No photo shows a survey; the Afar site shows the ground it reads (D-113)
     image: {
       url: '/images/hero/afar-rig-fleet.webp',
       alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
@@ -45,6 +47,8 @@ export const SERVICES: Service[] = [
     intro: 'Deep and shallow boreholes, drilled, cased, screened and developed to specification.',
     overview:
       'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximize yield and minimize sediment. Every stage is logged and supervised.',
+    wellNote:
+      'Drilling builds the well itself: the borehole, the casing, the screen and gravel pack in the aquifer, and the wellhead at the surface.',
     forWho:
       'Institutional, commercial and industrial clients who need production or monitoring wells',
     includes: [
@@ -73,6 +77,8 @@ export const SERVICES: Service[] = [
     intro: 'Know what your well can deliver before you size the pump and pipes.',
     overview:
       'A pumping test confirms that a well meets its design demand. We run step-drawdown and constant-rate tests, record water levels through drawdown and recovery, and interpret the results to find the sustainable yield and the aquifer parameters your engineers design from.',
+    wellNote:
+      'The pumping test measures the two water levels in this drawing — the well at rest and the well under load — and turns them into a recommended pumping rate.',
     forWho: 'Clients who need verified well performance and aquifer parameters',
     includes: [
       'Step-drawdown and constant-rate tests',
@@ -101,6 +107,8 @@ export const SERVICES: Service[] = [
     intro: 'Bring an existing borehole back to service, often for less than drilling a new one.',
     overview:
       'Boreholes lose yield as screens clog and sediment builds up. We assess the well, test what it delivers today, then clean and redevelop it by airlifting, brushing and screen cleaning, and test it again so you can see the result.',
+    wellNote:
+      'Rehabilitation restores the parts a well loses with age: the screen and gravel pack are cleaned and redeveloped until the yield returns.',
     forWho: 'Owners of boreholes that underperform, pump sand or have stopped',
     includes: [
       'Condition assessment',
@@ -130,6 +138,8 @@ export const SERVICES: Service[] = [
       'Submersible and hand pumps, supplied and installed to turn a tested well into a working supply.',
     overview:
       'Deep boreholes get a submersible pump, sized from the pumping test results and the demand, with its motor, rising main, control panel and power connection. Shallow community wells get a hand pump. Every installation is commissioned and checked against its design before handover.',
+    wellNote:
+      'The pump set is what makes the well a supply: the control panel at the surface, the rising main and the submersible pump below the pumping level.',
     forWho:
       'Clients ready to turn a completed or rehabilitated well into a working water supply, from a motorized borehole to a community hand pump',
     includes: [
@@ -147,10 +157,12 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Commissioning record', 'Operation and maintenance notes'],
     cta: 'Plan a pump installation',
-    // No landscape photo of a pump yet (C-18); the water it delivers
+    // Genuine installation works at the British Embassy (D-113); portrait, cropped on `focus` (C-18)
     image: {
-      url: '/images/hero/water-column.webp',
-      alt: 'Water rising beside a Liyat drilling rig during well development',
+      url: '/images/projects/british-embassy-pump-installation/cover.webp',
+      alt: 'Pump installation works at the British Embassy, Addis Ababa',
+      orientation: 'portrait',
+      focus: 'top',
     },
   },
   {
@@ -160,6 +172,8 @@ export const SERVICES: Service[] = [
     intro: 'One contractor for the whole water source, from survey to handover.',
     overview:
       'For clients who want a single point of accountability, we run the whole project: survey, drilling, pumping test, wellhead and pump installation, with one schedule, one team and one handover file.',
+    wellNote:
+      'A turnkey project covers the whole drawing — survey, drilling, test, pump and handover — with one contractor accountable for every part.',
     forWho: 'Organizations that want one contractor accountable for the complete water source',
     includes: [
       'Planning and coordination of every stage',
@@ -187,6 +201,7 @@ export const SERVICES_PAGE: ServicesPage = {
   detail: {
     eyebrow: 'Our services',
     overview: 'About this service',
+    wellPart: 'Where it fits in the well',
     forWho: 'Who it is for',
     includes: 'What is included',
     method: 'How we work',

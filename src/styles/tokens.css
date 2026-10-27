@@ -77,6 +77,7 @@
 
   /* 2.3 Spacing and layout (Tailwind's 4 px spacing scale stays on) */
   --spacing-section: clamp(4rem, 8vw, 7.5rem);
+  --spacing-section-md: clamp(3.5rem, 6vw, 5.5rem);
   --spacing-section-sm: clamp(3rem, 5vw, 4.5rem);
   --spacing-gutter: clamp(1rem, 4vw, 2rem);
   --spacing-grid: clamp(1.5rem, 2.5vw, 2rem);

@@ -125,6 +125,24 @@
     opacity: 1;
   }
 
+  /*
+   * ServiceDetail (S8): the service page's well diagram dims every part but the
+   * current service's — the static counterpart of the lifecycle highlight above.
+   * Turnkey covers the whole well, so nothing dims.
+   */
+  [data-well] [data-part] {
+    opacity: var(--diagram-dim);
+  }
+
+  [data-well='hydrogeological-survey'] [data-part~='hydrogeological-survey'],
+  [data-well='borehole-drilling'] [data-part~='borehole-drilling'],
+  [data-well='pumping-tests'] [data-part~='pumping-tests'],
+  [data-well='borehole-rehabilitation'] [data-part~='borehole-rehabilitation'],
+  [data-well='pump-supply-installation'] [data-part~='pump-supply-installation'],
+  [data-well='turnkey-projects'] [data-part] {
+    opacity: 1;
+  }
+
   /* Anchored sections clear the sticky header */
   [id] {
     scroll-margin-top: calc(var(--header-height) + var(--spacing-gutter));

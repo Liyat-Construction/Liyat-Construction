@@ -32,7 +32,7 @@ export function Header() {
             <span className="font-heading text-h4 text-ink over-photo:text-white font-bold">
               {siteConfig.name}
             </span>
-            <span className="text-small text-ink-muted over-photo:text-white/80 max-sm:sr-only">
+            <span className="text-small text-ink-muted over-photo:text-white/80 whitespace-nowrap max-sm:sr-only">
               {siteConfig.descriptor}
             </span>
           </span>

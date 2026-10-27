@@ -17,7 +17,7 @@ const base =
 const layouts = {
   bar: {
     list: 'flex items-center gap-1',
-    link: `${base} min-h-11 whitespace-nowrap px-2.5 text-body`,
+    link: `${base} min-h-11 whitespace-nowrap px-2.5 text-small`,
   },
   stack: {
     list: 'flex flex-col',

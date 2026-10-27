@@ -50,6 +50,8 @@ export interface Service {
   /** Lead paragraph of the service page */
   intro: string;
   overview: string;
+  /** One sentence naming the parts of the well this service builds (lit on the diagram) */
+  wellNote: string;
   forWho: string;
   includes: string[];
   /** Method steps, in order */
@@ -206,6 +208,8 @@ export interface ServicesPage {
     /** Eyebrow on a service page, followed by its number */
     eyebrow: string;
     overview: string;
+    /** Heading above the highlighted well diagram */
+    wellPart: string;
     forWho: string;
     includes: string;
     method: string;

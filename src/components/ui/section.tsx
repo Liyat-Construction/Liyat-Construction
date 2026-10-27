@@ -11,6 +11,8 @@ const tones = {
 
 const spacings = {
   default: 'py-section',
+  /** Between compact and default — the inner-page header band (D-115) */
+  medium: 'py-section-md',
   compact: 'py-section-sm',
   /** Full-bleed layouts (the hero) that set their own padding */
   none: '',
