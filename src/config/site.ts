@@ -71,7 +71,6 @@ export const siteConfig = {
   // ── Social Links ────────────────────────────────────────────────────────────
   // Leave any value empty to hide it.
   social: {
-    telegram: '', // Username only, without @ (powers the floating "Chat on Telegram" button)
     whatsapp: '', // Number in international format without + or spaces, e.g. '251911000000'
     facebook: '',
     instagram: '',
@@ -198,7 +197,6 @@ export const siteConfig = {
     companyFullName: 'Liyat Construction PLC',
     jurisdiction: 'Ethiopia',
     courtLocation: 'Addis Ababa, Ethiopia',
-    lastUpdated: 'October 2026',
   },
 };
 

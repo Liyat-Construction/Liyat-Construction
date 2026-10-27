@@ -10,15 +10,11 @@ type IconComponent = ({ className }: { className?: string }) => React.JSX.Elemen
 
 const { social } = siteConfig;
 
-export const telegramUrl = social.telegram
-  ? `https://t.me/${social.telegram.replace(/^@/, '')}`
-  : '';
 export const whatsappUrl = social.whatsapp
   ? `https://wa.me/${social.whatsapp.replace(/\D/g, '')}`
   : '';
 
 export const socialLinks: Array<{ href: string; label: string; icon: IconComponent }> = [
-  { href: telegramUrl, label: 'Telegram', icon: TelegramIcon },
   { href: whatsappUrl, label: 'WhatsApp', icon: WhatsAppIcon },
   { href: social.facebook, label: 'Facebook', icon: FacebookIcon },
   { href: social.instagram, label: 'Instagram', icon: InstagramIcon },
@@ -54,14 +50,6 @@ export function SocialLinks({
         </a>
       ))}
     </div>
-  );
-}
-
-export function TelegramIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 11.7c-.88-.25-.89-.86.2-1.3L18.73 6.6c.73-.26 1.43.18 1.15 1.3l-2.72 12.81c-.19.9-.74 1.12-1.5.7l-4.12-3.04-1.98 1.93c-.23.23-.42.42-.83.42z" />
-    </svg>
   );
 }
 
