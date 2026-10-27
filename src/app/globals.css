@@ -2,7 +2,7 @@
 @import '../styles/tokens.css';
 
 /*
- * `on-dark:` applies inside a dark surface (Section ink/brand tones), so
+ * `on-dark:` applies inside a dark surface (the Section ink tone), so
  * components adapt by themselves: `text-brand on-dark:text-white`. A light
  * surface inside a dark one (a Card) sets data-on-light and switches back.
  */
@@ -26,8 +26,8 @@
 }
 
 /*
- * `on-photo:` styles text inside a PageHeader that has a background photo
- * (`data-on-photo`): full white instead of white/80, for 4.5 : 1 over the scrim.
+ * `on-photo:` styles text over a background photo (`data-on-photo`: the Hero and a
+ * PageHeader with a photo): full white instead of white/80, for 4.5 : 1 over the scrim.
  */
 @custom-variant on-photo (&:where([data-on-photo] *));
 

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { Inter, Manrope } from 'next/font/google';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
@@ -12,7 +11,7 @@ import { CTA_BAND } from '@/data/cta';
 import { SERVICES } from '@/data/services';
 import './globals.css';
 
-// Fonts and weights: Brand §5. Exposed to tokens.css as --font-heading / --font-body.
+// Fonts and weights: PROJECT.md §8. Exposed to tokens.css as --font-heading / --font-body.
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
@@ -101,22 +100,6 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body>
-        {siteConfig.analytics.enabled && env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${env.NEXT_PUBLIC_GA_ID}');
-              `}
-            </Script>
-          </>
-        )}
         <OrganizationSchema siteUrl={siteUrl} />
         <SkipLink />
         <div className="flex min-h-screen flex-col">

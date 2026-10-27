@@ -1,5 +1,5 @@
 /**
- * /about copy, in section order (Design System §4). Figures, facts, team,
+ * /about copy, in section order (PROJECT.md §7). Figures, facts, team,
  * and safety practice come from company.ts; clients come from partners.ts.
  * The structure follows the owner's About plan (D-101).
  */
@@ -60,11 +60,11 @@ export const ABOUT_PAGE: AboutPage = {
     items: [
       {
         title: 'Evidence',
-        text: 'We use hydrogeological and geophysical findings to decide where to drill.',
+        text: 'When a survey is part of the work, its hydrogeological and geophysical findings decide where we drill.',
       },
       {
         title: 'Proof',
-        text: 'We pumping-test each well and give the client the results before handover.',
+        text: 'When we pumping-test a well, the client receives the results before handover.',
       },
       {
         title: 'Transparency',

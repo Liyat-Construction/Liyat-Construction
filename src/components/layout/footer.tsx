@@ -13,7 +13,7 @@ const { phone, secondaryPhone, email, address, officeHours } = siteConfig.contac
 const linkStyle =
   'text-white underline-offset-4 decoration-1 hover:underline ease-standard transition-colors duration-(--duration-fast)';
 
-// Icon links: a 44 px target (Engineering §6) around a small 32 px outlined box, so they look
+// Icon links: a 44 px target (PROJECT.md §10) around a small 32 px outlined box, so they look
 // light beside the credit while staying easy to tap (D-80)
 const iconLinkStyle = 'group inline-flex size-11 items-center justify-center text-white';
 const iconBoxStyle =

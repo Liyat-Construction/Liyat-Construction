@@ -6,23 +6,13 @@ import { SectionHeading } from '@/components/ui/section-heading';
 interface PhotoGalleryProps extends SectionCopy {
   images: ImageAsset[];
   id: string;
-  layout?: 'columns' | 'grid';
-  ratio?: 'card' | 'portrait';
 }
 
 /**
- * Site photographs in columns, each at its own shape (portrait 4:5, landscape 3:2), so phone
- * shots are not cut to a strip. Fixed ratios, so nothing shifts. Renders nothing when empty.
+ * Site photographs in columns, every frame 4:5 so the tiles match (D-109); landscape
+ * originals crop to fill. Fixed ratios, so nothing shifts. Renders nothing when empty.
  */
-export function PhotoGallery({
-  eyebrow,
-  title,
-  intro,
-  images,
-  id,
-  layout = 'columns',
-  ratio,
-}: PhotoGalleryProps) {
+export function PhotoGallery({ eyebrow, title, intro, images, id }: PhotoGalleryProps) {
   if (images.length === 0) return;
   return (
     <Section labelledBy={`${id}-title`}>
@@ -34,31 +24,10 @@ export function PhotoGallery({
           title={title}
           intro={intro}
         />
-        <ul
-          className={
-            layout === 'grid'
-              ? 'gap-grid grid sm:grid-cols-2 lg:grid-cols-3'
-              : 'gap-grid columns-1 sm:columns-2 lg:columns-3'
-          }
-        >
+        <ul className="gap-grid columns-1 sm:columns-2 lg:columns-3">
           {images.map((image) => (
-            <li
-              key={image.url}
-              className={layout === 'columns' ? 'mb-grid break-inside-avoid' : undefined}
-            >
-              <Photo
-                image={image}
-                ratio={
-                  ratio ??
-                  (layout === 'grid'
-                    ? 'card'
-                    : image.orientation === 'portrait'
-                      ? 'portrait'
-                      : 'wide')
-                }
-                width="third"
-                rounded
-              />
+            <li key={image.url} className="mb-grid break-inside-avoid">
+              <Photo image={image} ratio="portrait" width="third" rounded />
             </li>
           ))}
         </ul>

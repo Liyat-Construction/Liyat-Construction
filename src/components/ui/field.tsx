@@ -14,8 +14,6 @@ interface FieldProps {
   label: string;
   hint?: string;
   error?: string;
-  /** Fields are required unless marked optional; the label says "(optional)" */
-  optional?: boolean;
   children: (control: ControlProps) => React.ReactNode;
   className?: string;
 }
@@ -24,15 +22,7 @@ interface FieldProps {
  * Label + control + hint + error, wired with aria-describedby. Usage:
  * <Field id="email" label="Email">{(p) => <Input {...p} type="email" />}</Field>
  */
-export function Field({
-  id,
-  label,
-  hint,
-  error,
-  optional = false,
-  children,
-  className,
-}: FieldProps) {
+export function Field({ id, label, hint, error, children, className }: FieldProps) {
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   const describedBy = [hintId, errorId].filter(Boolean).join(' ') || undefined;
@@ -40,7 +30,6 @@ export function Field({
     <div className={cn('flex flex-col gap-1.5', className)}>
       <label htmlFor={id} className="text-small text-ink font-semibold">
         {label}
-        {optional && <span className="text-ink-muted font-normal"> (optional)</span>}
       </label>
       {hint && (
         <p id={hintId} className="text-small text-ink-muted">
@@ -51,7 +40,8 @@ export function Field({
         id,
         'aria-describedby': describedBy,
         'aria-invalid': error ? true : undefined,
-        required: !optional,
+        // Every field on the site is required (D-95)
+        required: true,
       })}
       {error && (
         <p id={errorId} className="text-small text-alert flex items-center gap-1.5 font-medium">

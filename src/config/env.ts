@@ -9,9 +9,6 @@ const envSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
-  // Analytics (optional)
-  NEXT_PUBLIC_GA_ID: z.string().optional(),
-
   // SEO / Verification (optional)
   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: z.string().optional(),
 });
@@ -24,8 +21,6 @@ if (!parsedEnv.success) {
 }
 
 export const env = parsedEnv.data;
-
-export const isProduction = env.NODE_ENV === 'production';
 
 // Site URL with trailing slash handling
 export const siteUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');

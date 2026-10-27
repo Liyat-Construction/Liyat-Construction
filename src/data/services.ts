@@ -1,6 +1,6 @@
 /**
  * Services
- * The six official services (Brand §9), in lifecycle order. Shown on the
+ * The six official services (PROJECT.md §8), in lifecycle order. Shown on the
  * homepage and /services/[slug] (the /services overview is removed — D-60);
  * the order sets the 01–06 numbers.
  */
@@ -18,7 +18,7 @@ export const SERVICES: Service[] = [
     overview:
       'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
     wellNote:
-      'The survey reads every layer in this drawing — from topsoil down to the aquifer — and names the depth and yield to drill for.',
+      'The survey reads every layer in this drawing — from topsoil down to the aquifer — and estimates the depth to drill to and the likely yield.',
     forWho: 'Project owners, developers and institutions planning a new water source',
     includes: [
       'Desk review of hydrogeological and hydrological data',
@@ -135,9 +135,10 @@ export const SERVICES: Service[] = [
     title: 'Pump Supply & Installation',
     summary: 'Submersible and hand pumps, supplied, installed and commissioned.',
     intro:
-      'Submersible and hand pumps, supplied and installed to turn a tested well into a working supply.',
+      'Submersible and hand pumps, supplied and installed to turn a well into a working supply.',
+    // No test is promised before every installation (D-117, P15 proofread)
     overview:
-      'Deep boreholes get a submersible pump, sized from the pumping test results and the demand, with its motor, rising main, control panel and power connection. Shallow community wells get a hand pump. Every installation is commissioned and checked against its design before handover.',
+      'Deep boreholes get a submersible pump, sized from the demand and the well’s yield (from the pumping test, when one is part of the work), with its motor, rising main, control panel and power connection. Shallow community wells get a hand pump. Every installation is commissioned and checked against its design before handover.',
     wellNote:
       'The pump set is what makes the well a supply: the control panel at the surface, the rising main and the submersible pump below the pumping level.',
     forWho:
@@ -161,7 +162,6 @@ export const SERVICES: Service[] = [
     image: {
       url: '/images/projects/british-embassy-pump-installation/cover.webp',
       alt: 'Pump installation works at the British Embassy, Addis Ababa',
-      orientation: 'portrait',
       focus: 'top',
     },
   },

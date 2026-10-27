@@ -1,25 +1,15 @@
-import { cn, pick } from '@/lib/utils';
-
-const lengths = {
-  short: 'w-12',
-  full: 'w-full',
-} as const satisfies Record<string, string>;
+import { cn } from '@/lib/utils';
 
 interface RuleProps {
-  length?: keyof typeof lengths;
   className?: string;
 }
 
-/** The signature line: Liyat Green; Green Light on dark surfaces (D-70). Decorative. */
-export function Rule({ length = 'short', className }: RuleProps) {
+/** The signature line: a short Liyat Green stroke; Green Light on dark surfaces (D-70). Decorative. */
+export function Rule({ className }: RuleProps) {
   return (
     <span
       aria-hidden="true"
-      className={cn(
-        'bg-brand on-dark:bg-brand-light block h-(--rule-width)',
-        pick(lengths, length),
-        className
-      )}
+      className={cn('bg-brand on-dark:bg-brand-light block h-(--rule-width) w-12', className)}
     />
   );
 }

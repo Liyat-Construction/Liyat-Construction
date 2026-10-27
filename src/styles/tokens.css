@@ -1,5 +1,5 @@
 /*
- * Liyat design tokens — the ONLY file with raw design values (Design System §2).
+ * Liyat design tokens — the ONLY file with raw design values (PROJECT.md §5).
  * Each @theme variable becomes Tailwind utilities: --color-brand → bg-brand,
  * --text-h2 → text-h2, --radius-card → rounded-card, --shadow-raise → shadow-raise.
  * Tailwind's default colors, fonts, type sizes, radii and shadows are switched
@@ -17,7 +17,7 @@
   --drop-shadow-*: initial;
   --text-shadow-*: initial;
 
-  /* 2.1 Color — contrast pairs in Brand §4 */
+  /* 2.1 Color — contrast pairs in PROJECT.md §5 */
   --color-brand: #156635;
   --color-brand-dark: #0f4f28;
   --color-brand-tint: #e7f0ea;
@@ -82,13 +82,10 @@
   --spacing-gutter: clamp(1rem, 4vw, 2rem);
   --spacing-grid: clamp(1.5rem, 2.5vw, 2rem);
   --container-content: 75rem;
-  --container-wide: 87.5rem;
   --container-prose: 45rem;
   --header-height: 4.5rem;
 
-  /* Photo ratios (Engineering §5). Tailwind keeps aspect-square and aspect-video. */
-  --aspect-hero: 3 / 2;
-  --aspect-hero-mobile: 4 / 5;
+  /* Photo ratios (PROJECT.md §9) */
   --aspect-wide: 3 / 2;
   --aspect-card: 4 / 3;
   --aspect-portrait: 4 / 5;
@@ -113,22 +110,6 @@
   @keyframes drift {
     from {
       transform: scale(1.08);
-    }
-  }
-
-  /* Borehole log (parked for Services): the well drills down once, then water fills it */
-  --animate-drill: drill-down 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  --animate-fill: fill-up 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 1200ms both;
-
-  @keyframes drill-down {
-    from {
-      transform: scaleY(0);
-    }
-  }
-
-  @keyframes fill-up {
-    from {
-      transform: scaleY(0);
     }
   }
 }

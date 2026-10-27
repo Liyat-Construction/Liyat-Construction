@@ -3,10 +3,7 @@ import { Container, type ContainerSize } from './container';
 
 const tones = {
   paper: 'bg-paper text-ink',
-  stone: 'bg-stone text-ink',
-  tint: 'bg-brand-tint text-ink',
   ink: 'bg-ink text-white',
-  brand: 'bg-brand text-white',
 } as const satisfies Record<string, string>;
 
 const spacings = {
@@ -48,7 +45,7 @@ export function Section({
   labelledBy,
   className,
 }: SectionProps) {
-  const dark = tone === 'ink' || tone === 'brand';
+  const dark = tone === 'ink';
   return (
     <section
       id={id}

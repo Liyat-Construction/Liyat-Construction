@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Enforces the one-source design rule (Design System §1):
+ * Enforces the one-source design rule (PROJECT.md §3):
  * raw design values live only in src/styles/tokens.css.
  *   npm run check:design
  * Flags hex colors, rgb()/hsl(), arbitrary Tailwind values (text-[17px]) and
@@ -44,7 +44,7 @@ const ALLOWED = new Set(['src/styles/tokens.css']);
 // warnings so the check can pass while they still exist. Never add a file here:
 // remove each entry when the file is rebuilt or deleted. (Sole exception, D-26:
 // P2 added the template files that only the new removed-default rules caught.)
-const LEGACY = new Set(['src/components/premium-button.tsx']);
+const LEGACY = new Set([]);
 
 const errors = [];
 const legacyCounts = new Map();

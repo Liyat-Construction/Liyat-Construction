@@ -7,7 +7,7 @@
  * no map → no map, etc.).
  */
 
-export type ContactFormProvider = 'none' | 'formspree' | 'web3forms';
+export type ContactFormProvider = 'none' | 'web3forms';
 
 export const siteConfig = {
   // ── Navigation ──────────────────────────────────────────────────────────────
@@ -16,7 +16,7 @@ export const siteConfig = {
     // Header, mobile menu and footer, in the home page's section order (D-59). Links go
     // to pages; Services and Testimonials have no page and jump to their home section.
     // `match` marks the link current on other paths (service pages mark "Services").
-    // Contact is the button (Brand §8).
+    // Contact is the button (PROJECT.md §8).
     main: [
       { href: '/', label: 'Home' },
       { href: '/about', label: 'About' },
@@ -35,16 +35,15 @@ export const siteConfig = {
 
   // ── Brand Identity ──────────────────────────────────────────────────────────
   name: 'Liyat Construction',
-  tagline: 'Groundwater Development & Water-Well Engineering',
   description:
     'Liyat Construction PLC is an Ethiopian company specializing in groundwater development, water-well drilling, pumping tests, and turnkey water works for institutional, governmental, and commercial clients.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   logoAlt: 'Liyat Construction',
-  /** Shown with the logo wherever someone meets us first (Brand §1) */
+  /** Shown with the logo wherever someone meets us first (PROJECT.md §8) */
   descriptor: 'Water Well Drilling & Engineering',
   legalName: 'Liyat Construction PLC',
-  // PLACEHOLDER(C-21): exact Amharic legal name, as printed on the brochure. Shown only in About's
-  // "Company at a glance"; the footer uses the English legal name only (D-80)
+  // Spelling confirmed (owner, 2026-10-27). Shown only in About's "Company at a glance";
+  // the footer uses the English legal name only (D-80)
   legalNameAmharic: 'ልያት ኮንስትራክሽን ኃ.የተ.የግል ማህበር',
   // Open Graph locale (e.g. 'en_US', 'am_ET') and <html lang> value
   locale: 'en_US',
@@ -61,11 +60,9 @@ export const siteConfig = {
     // PLACEHOLDER(C-03): proposal letterhead reads "Bole Sub City, Woreda 04, House Number
     // 201"; the brochure said "Eldasol Building, 2nd floor, Office 202" — confirm which is current
     address: 'Bole Sub City, Woreda 04, House Number 201, Addis Ababa, Ethiopia',
-    // PLACEHOLDER(C-07): office hours and working days
+    // Owner, 2026-10-27: standard hours kept unconfirmed (C-07 dropped); the client
+    // corrects them if they disagree
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
-    // Google Maps → Share → Embed a map → copy only the src="..." URL
-    // PLACEHOLDER(C-24): confirmed office pin required before showing the map
-    mapEmbedUrl: '',
   },
 
   // ── Social Links ────────────────────────────────────────────────────────────
@@ -82,14 +79,13 @@ export const siteConfig = {
   },
 
   // ── Contact Form ────────────────────────────────────────────────────────────
-  // 'none'      → form hidden, only contact details/socials/map are shown
-  // 'formspree' → formKey is the form ID from https://formspree.io (e.g. 'xyzabcde')
-  // 'web3forms' → formKey is the access key from https://web3forms.com
+  // 'none'      → the form cannot send; only the contact details work
+  // 'web3forms' → formKey is the access key from https://web3forms.com (D-53)
   contactForm: {
     provider: 'web3forms' as ContactFormProvider,
     // PLACEHOLDER(C-25): public provider key for the client's confirmed receiving inbox
     formKey: '',
-    // General first, then the six services (keep in sync with Brand §9), then Other last
+    // General first, then the six services (keep in sync with PROJECT.md §8), then Other last
     subjects: [
       'General question',
       'Hydrogeological & Geophysical Survey',
@@ -104,7 +100,6 @@ export const siteConfig = {
     ],
   },
 
-  analytics: { enabled: false },
   system: {
     notFound: {
       eyebrow: '404',
@@ -148,7 +143,8 @@ export const siteConfig = {
     // Any schema.org business type, e.g. 'LocalBusiness', 'GeneralContractor', 'ChildCare'
     type: 'GeneralContractor',
     alternateName: ['Liyat Construction PLC'] as string[],
-    slogan: 'Groundwater Development & Water-Well Engineering',
+    // The client's tagline (PROJECT.md §8), confirmed by the owner 2026-10-27
+    slogan: 'Know better. Drill better.',
     areaServed: ['Ethiopia', 'Addis Ababa', 'Afar Region'] as string[],
     priceRange: '',
     knowsAbout: [
@@ -165,7 +161,7 @@ export const siteConfig = {
   // ── Footer ──────────────────────────────────────────────────────────────────
   footer: {
     headings: { pages: 'Pages', services: 'Services', contact: 'Contact' },
-    // The company description, used unchanged (Brand §10)
+    // The company description, used unchanged (PROJECT.md §8)
     description:
       'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
     copyrightEntity: 'Liyat Construction PLC',

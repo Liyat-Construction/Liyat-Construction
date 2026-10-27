@@ -2,7 +2,6 @@ import { cn, pick } from '@/lib/utils';
 
 const sizes = {
   content: 'max-w-content',
-  wide: 'max-w-wide',
   prose: 'max-w-(--container-prose)',
 } as const satisfies Record<string, string>;
 

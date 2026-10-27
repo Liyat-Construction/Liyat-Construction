@@ -1,6 +1,6 @@
 /**
  * Contact Form
- * Validation schema + submission to a third-party form service (Formspree or Web3Forms).
+ * Validation schema + submission to the Web3Forms service (D-53).
  * Runs entirely in the browser, so it works on Vercel and on static hosting alike.
  * Provider and key are configured in src/config/site.ts → contactForm.
  */
@@ -52,34 +52,26 @@ export async function submitContactForm(
 ): Promise<void> {
   if (!isContactFormEnabled(configuration)) throw new Error('Contact form is not configured');
 
-  const { provider, formKey } = configuration;
   const subject = `${values.subject} — ${sender} website`;
+  const body = {
+    access_key: configuration.formKey,
+    from_name: sender,
+    ...values,
+    subject,
+    botcheck: false,
+  };
 
-  const request =
-    provider === 'web3forms'
-      ? {
-          url: 'https://api.web3forms.com/submit',
-          body: { access_key: formKey, from_name: sender, ...values, subject, botcheck: false },
-        }
-      : {
-          url: `https://formspree.io/f/${encodeURIComponent(formKey)}`,
-          body: { ...values, _subject: subject, _replyto: values.email },
-        };
-
-  const response = await fetch(request.url, {
+  const response = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(request.body),
+    body: JSON.stringify(body),
     signal: AbortSignal.timeout(15000),
   });
 
   const result: unknown = await response.json();
+  // Web3Forms must explicitly confirm the submission
   const accepted =
-    result &&
-    typeof result === 'object' &&
-    (provider === 'web3forms'
-      ? 'success' in result && result.success === true
-      : !('success' in result) || result.success !== false);
+    result && typeof result === 'object' && 'success' in result && result.success === true;
 
   if (!response.ok || !accepted) {
     throw new Error('Form submission failed');

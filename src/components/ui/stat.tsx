@@ -3,7 +3,6 @@ import { cn, pick } from '@/lib/utils';
 // On dark surfaces every tone turns white: Green and Water Blue fail on Ink.
 const tones = {
   ink: 'text-ink',
-  brand: 'text-brand',
   water: 'text-water',
 } as const satisfies Record<string, string>;
 
@@ -11,7 +10,7 @@ interface StatProps {
   value: string;
   unit?: string;
   label: string;
-  /** `water` for yields, water levels and flow only (Brand §4) */
+  /** `water` for yields, water levels and flow only (PROJECT.md §5) */
   tone?: keyof typeof tones;
   align?: 'start' | 'center';
   className?: string;

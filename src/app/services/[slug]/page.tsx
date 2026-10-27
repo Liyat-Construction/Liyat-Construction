@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   return pageMetadata(`/services/${service.slug}`, service.title, service.summary, service.image);
 }
 
-// Design System §4 (Service detail)
+// PROJECT.md §7 (Service detail)
 export default async function ServicePage({ params }: ServicePageProps) {
   const service = getServiceBySlug((await params).slug);
   if (!service) notFound();

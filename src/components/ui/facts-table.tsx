@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 export interface FactsRow {
   label: string;
   value: React.ReactNode;
-  /** Water data (yields, water levels) in Water Blue (Brand §4) */
+  /** Water data (yields, water levels) in Water Blue (PROJECT.md §5) */
   water?: boolean;
 }
 

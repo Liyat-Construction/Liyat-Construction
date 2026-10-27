@@ -1,10 +1,10 @@
 /**
  * Equipment & Capabilities
- * EQUIPMENT    → equipment cards (rigs, compressors, test pumps, vehicles)
- * CAPABILITIES → the disciplines on /equipment-capabilities
+ * EQUIPMENT_PAGE → /equipment-capabilities
+ * EQUIPMENT      → the rig in the home page's equipment section
  */
 
-import type { Capability, Equipment, EquipmentPage } from '@/types/content';
+import type { Equipment, EquipmentPage } from '@/types/content';
 
 export const EQUIPMENT_PAGE: EquipmentPage = {
   header: {
@@ -62,7 +62,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     items: [
       {
         title: 'Ground investigation',
-        text: 'Hydrogeological and geophysical findings inform where the well is sited before drilling begins.',
+        text: 'When a survey is part of the project, its hydrogeological and geophysical findings decide where the well is sited.',
       },
       {
         title: 'Well construction',
@@ -74,7 +74,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       },
       {
         title: 'Pump installation',
-        text: 'Tested well performance and the project’s water needs inform pump selection and installation.',
+        text: 'The well’s performance (from a pumping test, when one is part of the work) and the project’s water needs inform pump selection and installation.',
       },
     ],
   },
@@ -95,13 +95,10 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   },
 };
 
-// From the client proposal: a dedicated pumping-test crew with its own crane,
-// generators and variable-discharge submersible pumps; rigs and tools from Indian
-// manufacturers. Makes, models, ratings and photos per machine still await C-16
-// (D-36: no invented specs — spec lists stay empty until confirmed)
+// From the client proposal: rigs and tools from Indian manufacturers. Makes, models and
+// ratings still await C-16 (D-36: no invented specs — the list stays empty until confirmed)
 export const EQUIPMENT: Equipment[] = [
   {
-    category: 'rig',
     name: 'Drilling rigs and tools',
     type: 'Drilling rig',
     image: {
@@ -109,63 +106,5 @@ export const EQUIPMENT: Equipment[] = [
       alt: 'Liyat drilling rig on its carrier, on the way to site',
     },
     specs: [],
-  },
-  {
-    category: 'support',
-    name: 'Variable-discharge submersible test pumps',
-    type: 'Pumping-test equipment',
-    specs: [],
-  },
-  {
-    category: 'support',
-    name: 'Pumping-test crane',
-    type: 'Lifting for the dedicated test crew',
-    specs: [],
-  },
-  {
-    category: 'support',
-    name: 'Generators for the test crew',
-    type: 'Site power',
-    specs: [],
-  },
-];
-
-// PLACEHOLDER(C-16): confirm the methods and equipment named in each discipline
-export const CAPABILITIES: Capability[] = [
-  {
-    title: 'Drilling',
-    body: 'Deep and shallow wells, with the drilling method matched to the formation. Our crews install casing, screen and gravel pack across a range of geological settings.',
-    items: [
-      'Rotary and air drilling',
-      'Casing, screen and gravel-pack installation',
-      'Well development and surging',
-    ],
-  },
-  {
-    title: 'Pumping tests',
-    body: 'In-house test equipment to verify yield, determine aquifer parameters and support pump selection.',
-    items: [
-      'Step-drawdown and constant-rate tests',
-      'Water-level logging',
-      'Recovery analysis and aquifer parameters',
-    ],
-  },
-  {
-    title: 'Pumps and electromechanical works',
-    body: 'Submersible and surface pumps, controls and power, commissioned and checked against design before handover.',
-    items: [
-      'Submersible and surface pump installation',
-      'Control panels and electrical works',
-      'Commissioning and performance check',
-    ],
-  },
-  {
-    title: 'Survey and geophysics',
-    body: 'Desk studies, field reconnaissance and resistivity soundings to find the drilling site before a rig is mobilized.',
-    items: [
-      'Hydrogeological desk review',
-      'Vertical electrical sounding (VES)',
-      'Drilling recommendation report',
-    ],
   },
 ];

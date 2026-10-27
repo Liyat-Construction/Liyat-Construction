@@ -1,7 +1,7 @@
 /**
  * Contact section copy (the last section on Home, `/#contact` — D-74). `header` supplies
  * the section's centred eyebrow and title (D-93).
- * Contact details (phone, email, address, map, socials) live in src/config/site.ts.
+ * Contact details (phone, email, address, hours) live in src/config/site.ts.
  */
 
 import type { ContactPage } from '@/types/content';
@@ -17,9 +17,9 @@ export const CONTACT_PAGE: ContactPage = {
   },
   form: {
     title: 'Send us a message',
-    // PLACEHOLDER(C-33): the 24-hour response time is Mekan's line, adopted at the
-    // owner's request — Liyat must confirm it can keep this promise, or soften it
-    intro: "We'll respond within 24 hours with a clear path forward.",
+    // Owner, 2026-10-27: softened to 48 hours (was Mekan's 24); client corrects it
+    // if they disagree — no C-33 ask
+    intro: "We'll respond within 48 hours with a clear path forward.",
     fields: {
       name: 'Full name',
       email: 'Email address',
@@ -54,11 +54,5 @@ export const CONTACT_PAGE: ContactPage = {
     email: 'Email',
     address: 'Visit our office',
     hours: 'Office hours',
-  },
-  map: {
-    title: 'Liyat Construction office on Google Maps',
-    notice: 'Loading the map connects to Google Maps and shares your IP address with Google.',
-    load: 'Load office map',
-    hide: 'Hide office map',
   },
 };

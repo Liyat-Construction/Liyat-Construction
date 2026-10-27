@@ -1,5 +1,5 @@
 /**
- * Home page copy, in section order (Design System §4). The figures, projects,
+ * Home page copy, in section order (PROJECT.md §7). The figures, projects,
  * services, equipment and quotes come from their own data files.
  */
 
@@ -7,7 +7,7 @@ import type { HomePage } from '@/types/content';
 
 export const HOME_PAGE: HomePage = {
   hero: {
-    // PLACEHOLDER(C-22): confirm "Know better. Drill better." is still the official tagline
+    // The client's tagline, confirmed (owner, 2026-10-27)
     title: 'Know better. Drill better.',
     lead: 'Survey, drilling, testing and pump installation, with every stage documented.',
     primary: { label: 'Contact us', href: '/#contact' },
@@ -20,22 +20,6 @@ export const HOME_PAGE: HomePage = {
       focus: 'upper-left',
     },
     caption: 'On site in the Afar region',
-    // PLACEHOLDER(C-30): illustrative log; replace with a real Liyat drilling log
-    log: {
-      title: 'Borehole log',
-      caption: 'Illustrative log. Depths in metres.',
-      layers: [
-        { name: 'Topsoil', from: 0, to: 4, material: 'soil' },
-        { name: 'Clay', from: 4, to: 16, material: 'clay' },
-        { name: 'Weathered rock', from: 16, to: 48, material: 'weathered' },
-        { name: 'Hard rock', from: 48, to: 84, material: 'rock' },
-        { name: 'Aquifer', from: 84, to: 120, material: 'aquifer' },
-      ],
-      casingTo: 84,
-      screenTo: 116,
-      waterLevel: 36,
-      waterLevelLabel: 'Water level',
-    },
   },
   // "Who we are" (client content, 2026-10-22; facts from Liyat's brochure). The figures come from company.ts
   about: {
@@ -53,10 +37,10 @@ export const HOME_PAGE: HomePage = {
   },
   lifecycle: {
     eyebrow: 'Services',
-    // The brand promise (Brand §1)
-    title: 'Every well surveyed, drilled and proven.',
+    // Clients take one service or all of them; surveys only when the client asks (owner, 2026-10-28)
+    title: 'One stage or the whole project.',
     intro:
-      'Six services, in the order a water source is built. The drawing shows the part of the well each one delivers.',
+      'Six services, in the order a water source is built. Take the one you need, or let us carry the project from start to finish. The drawing shows the part of the well each one delivers.',
   },
   projects: {
     eyebrow: 'Projects',
@@ -69,7 +53,8 @@ export const HOME_PAGE: HomePage = {
   equipment: {
     eyebrow: 'Equipment',
     title: 'Equipment and technologies',
-    intro: 'Rigs, compressors and test pumps, named with the capacity they are rated for.',
+    intro:
+      'Our drilling rigs, the pumping-test crew’s equipment and the methods behind each stage.',
     link: { label: 'See our equipment', href: '/equipment-capabilities' },
   },
   testimonials: {

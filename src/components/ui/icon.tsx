@@ -1,16 +1,12 @@
 import { createElement } from 'react';
 import {
   ArrowRight,
-  Calendar,
   Check,
-  ChevronDown,
   ChevronRight,
   CircleAlert,
   Clock,
   Cog,
-  Download,
   Drill,
-  ExternalLink,
   Eye,
   Target,
   FileText,
@@ -22,9 +18,7 @@ import {
   MapPin,
   Menu,
   Phone,
-  Ruler,
   ScanSearch,
-  Timer,
   Wrench,
   X,
   type LucideIcon,
@@ -34,14 +28,10 @@ import { cn, pick } from '@/lib/utils';
 // Only icons registered here can be used.
 const icons = {
   'arrow-right': ArrowRight,
-  calendar: Calendar,
   check: Check,
-  'chevron-down': ChevronDown,
   'chevron-right': ChevronRight,
   alert: CircleAlert,
   clock: Clock,
-  download: Download,
-  'external-link': ExternalLink,
   document: FileText,
   eye: Eye,
   target: Target,
@@ -52,10 +42,8 @@ const icons = {
   'map-pin': MapPin,
   menu: Menu,
   phone: Phone,
-  ruler: Ruler,
-  timer: Timer,
   close: X,
-  // Services (Brand §9), lifecycle order
+  // Services (PROJECT.md §8), lifecycle order
   survey: ScanSearch,
   drilling: Drill,
   'pumping-test': Gauge,

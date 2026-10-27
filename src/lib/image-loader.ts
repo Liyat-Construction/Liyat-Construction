@@ -1,5 +1,5 @@
 /**
- * next/image loader for the prepared images (Engineering §5, D-35).
+ * next/image loader for the prepared images (PROJECT.md §9, D-35).
  * Static export has no image optimizer, so `npm run images` writes each photo at
  * fixed widths as `<name>-<width>.webp` and lists them in image-widths.json.
  * The loader serves the smallest prepared width that covers the requested one.

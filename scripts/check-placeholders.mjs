@@ -13,7 +13,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PATTERNS = [
   /PLACEHOLDER\(/,
   /brand name/i,
-  /your (company|brand|tagline|logo|email|phone|text|content|site)/i,
+  // Template filler only; real copy such as "your site" or "your phone number" is fine
+  /your (company|brand) name|your (tagline|logo|text|content) here/i,
   /lorem ipsum/i,
   /\/placeholders\//i,
   /example\.com/i,

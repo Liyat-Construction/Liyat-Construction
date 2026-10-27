@@ -13,7 +13,7 @@ import type { Partner } from '@/types/content';
 export const PARTNERS: Partner[] = [
   { name: 'Ethiopian Airlines', logo: '/images/clients/ethiopian-airlines.webp' },
   { name: 'British Embassy Addis Ababa', logo: '/images/clients/british-embassy.webp' },
-  // PLACEHOLDER(C-11): permission to name each client below
+  // Liyat's clients; permission to name them is treated as granted (owner, 2026-10-27)
   { name: 'Embassy of Belgium', logo: '/images/clients/belgian-embassy.webp' },
   // The brochure names Ovid Real Estate; the logo supplied is the parent Ovid Group's
   { name: 'Ovid Group', logo: '/images/clients/ovid-group.webp' },

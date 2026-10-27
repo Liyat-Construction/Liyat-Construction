@@ -10,22 +10,17 @@ import { Field, Input, Select, Textarea } from '@/components/ui/field';
 import { Icon, ICON_NAMES } from '@/components/ui/icon';
 import { Photo } from '@/components/ui/photo';
 import { Prose } from '@/components/ui/prose';
-import { Reveal } from '@/components/ui/reveal';
 import { Rule } from '@/components/ui/rule';
 import { Section, type SectionTone } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { SectionGroup } from '@/components/ui/section-group';
 import { Stat } from '@/components/ui/stat';
-import { Tag } from '@/components/ui/tag';
-import { TextLink } from '@/components/ui/text-link';
 import { siteConfig } from '@/config/site';
 import { WellDiagram } from '@/components/diagrams/well-diagram';
 import { HOME_PAGE } from '@/data/home';
 import { PageHeader } from '@/components/sections/page-header';
 import { PhotoGallery } from '@/components/sections/photo-gallery';
-import { EquipmentCard } from '@/components/cards/equipment-card';
 import { ProjectCard } from '@/components/cards/project-card';
-import { ReferenceCard } from '@/components/cards/reference-card';
 import { ServiceCard } from '@/components/cards/service-card';
 import { TeamCard } from '@/components/cards/team-card';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
@@ -35,19 +30,15 @@ import { FeatureGrid } from '@/components/sections/feature-grid';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { ABOUT_PAGE } from '@/data/about';
 import { PARTNERS } from '@/data/partners';
-import { Statement } from '@/components/ui/statement';
-import { COMPANY_FACTS, HOME_FIGURES, PROJECT_FIGURES, TEAM } from '@/data/company';
-import { EQUIPMENT, EQUIPMENT_PAGE } from '@/data/equipment';
-import { EquipmentGrid } from '@/components/sections/equipment-grid';
-import { ReferenceGrid } from '@/components/sections/reference-grid';
+import { COMPANY_FACTS, PROJECT_FIGURES, TEAM } from '@/data/company';
+import { EQUIPMENT_PAGE } from '@/data/equipment';
 import { ContactPanel } from '@/components/sections/contact-panel';
 import { FormFeedback } from '@/components/ui/form-feedback';
-import { MapFacade } from '@/components/ui/map-facade';
 import { CONTACT_PAGE } from '@/data/contact';
-import { getProjectBySlug, PROJECT_GALLERY, PROJECTS, PROJECTS_PAGE } from '@/data/projects';
+import { getProjectBySlug, PROJECT_GALLERY, PROJECTS } from '@/data/projects';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
-import { photos, projectFacts, prose, reference, sectionCopy, services } from './_parts/samples';
+import { photos, projectFacts, sectionCopy } from './_parts/samples';
 import { Caption, Specimen, Swatch } from './_parts/specimen';
 import { readTokens } from './_parts/tokens';
 
@@ -74,10 +65,10 @@ const colorRoles: Record<string, string> = {
   white: 'Cards, fields, header; text on dark',
 };
 
-const tones: SectionTone[] = ['paper', 'stone', 'tint', 'ink', 'brand'];
-const statTones = ['ink', 'brand', 'water'] as const;
+const tones: SectionTone[] = ['paper', 'ink'];
+const statTones = ['ink', 'ink', 'water'] as const;
 
-// Figures (D-36: placeholders until C-10) and three projects: with a yield, without one, and without services
+// Liyat's project figures, and three projects: with a yield, without one, and without services
 const stats = PROJECT_FIGURES;
 const sampleProjects = [
   PROJECTS[0],
@@ -95,11 +86,11 @@ export default function StyleguidePage() {
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Style guide' }]}
         eyebrow="Design review"
         title="Liyat design system"
-        intro="Every token and component, in every variant, on every section tone. Values are read from tokens.css, so this page cannot drift from it. This header is the Ink PageHeader every inner page uses (with a landscape photo behind it on About and Borehole Drilling); the green band at the end is the CtaBand."
+        intro="Every token and component the site uses, in every variant. Values are read from tokens.css, so this page cannot drift from it. This header is the Ink PageHeader every inner page uses; the dark closing section at the end comes from the layout."
       />
 
       {/* ── Tokens ─────────────────────────────────────────── */}
-      <Section labelledBy="sg-tokens" container="wide">
+      <Section labelledBy="sg-tokens">
         <div className="flex flex-col gap-16">
           <SectionHeading id="sg-tokens" eyebrow="Tokens" title="Color, type, shape" />
 
@@ -128,15 +119,12 @@ export default function StyleguidePage() {
           </Specimen>
 
           <div className="gap-grid grid md:grid-cols-3">
-            <Specimen title="Rule" note="short · full">
-              <div className="flex flex-col gap-4">
-                <Rule />
-                <Rule length="full" />
-              </div>
+            <Specimen title="Rule" note="testimonial cards">
+              <Rule />
             </Specimen>
             <Specimen title="Radius" note="control 6 · card 8">
               <div className="flex gap-4">
-                <Tag>control</Tag>
+                <Button href="/#contact">control</Button>
                 <Card padding="md">card</Card>
               </div>
             </Specimen>
@@ -167,13 +155,7 @@ export default function StyleguidePage() {
                 title={sectionCopy.title}
                 intro={sectionCopy.intro}
               />
-              <p className="max-w-prose">
-                {sectionCopy.body}{' '}
-                <TextLink href="/services/hydrogeological-survey">
-                  Read about our survey method
-                </TextLink>
-                .
-              </p>
+              <p className="max-w-prose">{sectionCopy.body}</p>
               <div className="flex flex-wrap items-center gap-4">
                 <Button href="/#contact">Contact us</Button>
                 <Button href="/projects" variant="secondary">
@@ -181,10 +163,10 @@ export default function StyleguidePage() {
                 </Button>
                 <Button
                   href={`tel:${siteConfig.contact.phone.replaceAll(' ', '')}`}
-                  variant="text"
+                  variant="secondary"
                   icon="phone"
                 >
-                  {siteConfig.contact.phone}
+                  Call us now
                 </Button>
               </div>
               <dl className="gap-grid grid grid-cols-3">
@@ -202,17 +184,13 @@ export default function StyleguidePage() {
             <div className="self-start lg:col-span-5">
               <Card as="article" padding="lg">
                 <div className="flex flex-col gap-4">
-                  <div className="flex flex-wrap gap-2">
-                    <Tag tone="brand">Pumping Tests</Tag>
-                    <Tag>Addis Ababa</Tag>
-                  </div>
                   <h3 className="text-h3">A card stays light on any tone</h3>
                   <p className="text-ink-muted">
                     Buttons and links inside it switch back to their light colors.
                   </p>
-                  <TextLink href="/projects" arrow>
+                  <Button href="/projects" icon="arrow" className="self-start">
                     Explore projects
-                  </TextLink>
+                  </Button>
                 </div>
               </Card>
             </div>
@@ -225,44 +203,29 @@ export default function StyleguidePage() {
         <div className="flex flex-col gap-16">
           <SectionHeading id="sg-components" eyebrow="Components" title="Primitives" />
 
-          <Specimen title="Button" note="primary · secondary · text, md and lg, icons, disabled">
+          <Specimen title="Button" note="primary · secondary, md and lg, icons, disabled">
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap items-center gap-4">
                 <Button href="/#contact">Contact us</Button>
                 <Button href="/projects" variant="secondary">
                   Explore projects
                 </Button>
-                <Button href="/projects" variant="text" icon="arrow">
-                  Explore all projects
-                </Button>
               </div>
               <div className="flex flex-wrap items-center gap-4">
                 <Button href="/#contact" size="lg" icon="arrow">
                   Request a site survey
                 </Button>
-                <Button href="mailto:hello@example.com" size="lg" variant="secondary" icon="mail">
+                <Button
+                  href={`mailto:${siteConfig.contact.email}`}
+                  size="lg"
+                  variant="secondary"
+                  icon="mail"
+                >
                   Email us
                 </Button>
                 <Button type="submit" disabled>
                   Sending…
                 </Button>
-              </div>
-            </div>
-          </Specimen>
-
-          <Specimen title="TextLink and Tag">
-            <div className="flex flex-wrap items-center gap-6">
-              <TextLink href="/about">Inline link</TextLink>
-              <TextLink href="/projects" arrow>
-                Explore all projects
-              </TextLink>
-              <TextLink href="https://www.google.com/maps">External (new tab, announced)</TextLink>
-              <div className="flex flex-wrap gap-2">
-                {services.map((service, index) => (
-                  <Tag key={service} tone={index === 0 ? 'brand' : 'neutral'}>
-                    {service}
-                  </Tag>
-                ))}
               </div>
             </div>
           </Specimen>
@@ -279,7 +242,7 @@ export default function StyleguidePage() {
           </Specimen>
 
           <div className="gap-grid grid lg:grid-cols-2">
-            <Specimen title="Stat" note="ink · brand · water (water data only)">
+            <Specimen title="Stat" note="ink · water (water data only)">
               <dl className="gap-grid grid grid-cols-3">
                 {stats.map((stat, index) => (
                   <Stat
@@ -296,12 +259,6 @@ export default function StyleguidePage() {
               <FactsTable rows={projectFacts} />
             </Specimen>
           </div>
-
-          <Specimen title="Statement" note="the company speaking, not a quotation">
-            <Statement>
-              Every successful well begins with understanding the ground beneath it.
-            </Statement>
-          </Specimen>
         </div>
       </Section>
 
@@ -323,11 +280,8 @@ export default function StyleguidePage() {
             <Specimen title="card 4:3, focus top">
               <Photo image={photos.pumpingTestTop} width="third" rounded />
             </Specimen>
-            <Specimen title="portrait 4:5 · square">
-              <div className="grid grid-cols-2 gap-4">
-                <Photo image={photos.airlift} ratio="portrait" width="third" rounded />
-                <Photo image={photos.rigTransport} ratio="square" width="third" rounded />
-              </div>
+            <Specimen title="portrait 4:5">
+              <Photo image={photos.airlift} ratio="portrait" width="third" rounded />
             </Specimen>
           </div>
           <div className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
@@ -339,12 +293,6 @@ export default function StyleguidePage() {
                   <p className="text-small text-ink-muted">Addis Ababa</p>
                 </div>
               </Card>
-            </Specimen>
-            <Specimen
-              title="feature: 3:2, 4:5 from lg"
-              note="portrait photos beside text (orientation: portrait)"
-            >
-              <Photo image={photos.pumpingTestTop} ratio="feature" width="third" rounded />
             </Specimen>
           </div>
         </div>
@@ -391,45 +339,17 @@ export default function StyleguidePage() {
               ))}
             </ul>
           </Specimen>
-          <Specimen title="EquipmentCard" note="with and without a photo (C-16)">
-            <ul className="gap-grid grid sm:grid-cols-2 lg:grid-cols-3">
-              {EQUIPMENT.map((equipment) => (
-                <li key={equipment.name}>
-                  <EquipmentCard equipment={equipment} />
+          <Specimen title="TeamCard" note="no portraits yet (C-15)">
+            <ul className="gap-grid grid sm:grid-cols-3">
+              {TEAM.map((member, index) => (
+                <li key={index}>
+                  <TeamCard member={member} />
                 </li>
               ))}
             </ul>
           </Specimen>
-          <div className="gap-grid grid lg:grid-cols-4">
-            <Specimen title="TeamCard" note="no portraits yet (C-15)" className="lg:col-span-3">
-              <ul className="gap-grid grid sm:grid-cols-3">
-                {TEAM.map((member, index) => (
-                  <li key={index}>
-                    <TeamCard member={member} />
-                  </li>
-                ))}
-              </ul>
-            </Specimen>
-            <Specimen title="ReferenceCard" note="no scan yet (C-13)">
-              <div className="max-w-xs">
-                <ReferenceCard reference={reference} />
-              </div>
-            </Specimen>
-          </div>
         </div>
       </Section>
-
-      <EquipmentGrid
-        id="sg-rigs"
-        {...EQUIPMENT_PAGE.rigs}
-        equipment={EQUIPMENT.filter((item) => item.category === 'rig')}
-      />
-      <EquipmentGrid
-        id="sg-support"
-        {...EQUIPMENT_PAGE.support}
-        equipment={EQUIPMENT.filter((item) => item.category === 'support')}
-        presentation="specifications"
-      />
 
       <SectionGroup>
         <Story id="sg-equipment-story" {...EQUIPMENT_PAGE.rigs} />
@@ -444,14 +364,6 @@ export default function StyleguidePage() {
         <Story id="sg-site-readiness" {...EQUIPMENT_PAGE.readiness} spacing="compact" />
       </SectionGroup>
 
-      <ReferenceGrid
-        id="sg-references"
-        eyebrow="Sections"
-        title="ReferenceGrid"
-        intro="ReferenceCards, four columns from lg; hidden while REFERENCES is empty (C-13). Sample data below."
-        references={[reference, { ...reference, organization: 'Organization B (C-13)' }]}
-      />
-
       <ContactPanel
         copy={CONTACT_PAGE}
         contact={siteConfig.contact}
@@ -460,7 +372,7 @@ export default function StyleguidePage() {
       />
 
       <Section labelledBy="sg-contact-feedback">
-        <div className="gap-grid grid lg:grid-cols-2">
+        <div className="max-w-xl">
           <Specimen title="FormFeedback" note="neutral · success · error; persistent live regions">
             <div className="flex flex-col gap-4">
               <SectionHeading id="sg-contact-feedback" title="Contact feedback" />
@@ -469,18 +381,6 @@ export default function StyleguidePage() {
               <FormFeedback tone="error">{CONTACT_PAGE.form.error}</FormFeedback>
             </div>
           </Specimen>
-          <Specimen title="MapFacade" note="Local blank preview; no office location is implied">
-            <MapFacade
-              url="about:blank"
-              copy={{
-                ...CONTACT_PAGE.map,
-                title: 'Styleguide map preview (blank)',
-                notice:
-                  'This specimen loads a local blank frame, not Google Maps. The office map waits for C-24.',
-              }}
-              icon={<Icon name="map-pin" size="lg" />}
-            />
-          </Specimen>
         </div>
       </Section>
 
@@ -488,23 +388,8 @@ export default function StyleguidePage() {
         id="sg-gallery"
         eyebrow="Sections"
         title="PhotoGallery"
-        intro="Project and site photos in columns, each at its own shape: portrait 4:5, landscape 3:2. Sample: the CREDOCS gallery."
-        images={getProjectBySlug('credocs-shoring')?.gallery ?? []}
-      />
-
-      <PhotoGallery
-        id="sg-gallery-grid"
-        {...PROJECTS_PAGE.gallery}
+        intro="Site photos in columns, every frame 4:5 (D-109). Sample: the Projects gallery."
         images={PROJECT_GALLERY}
-        layout="grid"
-      />
-
-      <PhotoGallery
-        id="sg-gallery-portrait"
-        {...PROJECTS_PAGE.gallery}
-        images={PROJECT_GALLERY}
-        layout="columns"
-        ratio="portrait"
       />
 
       <Story
@@ -513,7 +398,6 @@ export default function StyleguidePage() {
         title="Story"
         paragraphs={[sectionCopy.body]}
         facts={{ title: 'Company at a glance', rows: COMPANY_FACTS }}
-        statement="Every successful well begins with understanding the ground beneath it."
         action={{ label: 'Contact us', href: '/#contact' }}
       />
 
@@ -523,7 +407,6 @@ export default function StyleguidePage() {
         title="Story with a photo"
         paragraphs={[sectionCopy.body]}
         image={HOME_PAGE.about.image}
-        figures={HOME_FIGURES}
         action={HOME_PAGE.about.action}
       />
 
@@ -576,14 +459,11 @@ export default function StyleguidePage() {
               <Field id="sg-name" label="Full name">
                 {(control) => <Input {...control} autoComplete="name" />}
               </Field>
-              <Field id="sg-org" label="Organization" optional>
-                {(control) => <Input {...control} autoComplete="organization" />}
-              </Field>
               <Field
                 id="sg-email"
                 label="Email"
                 hint="We reply within one working day."
-                error="Enter an email address like name@example.com"
+                error="Enter an email address like you@company.com"
               >
                 {(control) => <Input {...control} type="email" defaultValue="name@" />}
               </Field>
@@ -612,49 +492,18 @@ export default function StyleguidePage() {
           <div className="flex flex-col gap-8">
             <SectionHeading eyebrow="Long-form" title="Prose" />
             <Prose>
-              <h2>{prose.heading}</h2>
-              {prose.paragraphs.map((paragraph) => (
+              <h2>{ABOUT_PAGE.story.title}</h2>
+              {ABOUT_PAGE.story.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <ul>
-                {prose.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
               <p>
-                Questions about a test report? <a href="/#contact">Contact our engineers</a>.
+                Planning a well? <a href="/#contact">Contact us</a>.
               </p>
             </Prose>
           </div>
         </div>
       </Section>
 
-      <Section labelledBy="sg-motion">
-        <div className="flex flex-col gap-12">
-          <SectionHeading
-            id="sg-motion"
-            eyebrow="Motion"
-            title="Reveal"
-            intro="Fade and 12 px rise, once, staggered. Content above the fold never waits; off under reduced motion."
-          />
-          <div className="gap-grid grid sm:grid-cols-3">
-            {stats.map((stat, index) => (
-              <Reveal key={stat.label} delay={index === 0 ? 0 : index === 1 ? 1 : 2}>
-                <Card padding="lg">
-                  <dl>
-                    <Stat
-                      value={stat.value}
-                      unit={stat.unit}
-                      label={stat.label}
-                      tone={stat.water ? 'water' : 'brand'}
-                    />
-                  </dl>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </Section>
       <SystemMessage
         as="h2"
         copy={siteConfig.system.error}

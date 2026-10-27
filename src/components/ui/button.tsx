@@ -2,14 +2,13 @@ import { cn, pick } from '@/lib/utils';
 import { Icon } from './icon';
 import { SmartLink } from './smart-link';
 
-// Each variant adapts to dark surfaces (ink, brand) by itself, and the header's
+// Each variant adapts to dark surfaces (Ink) by itself, and the header's
 // primary button to the see-through header over a photo (`over-photo:`).
 const variants = {
   primary:
     'bg-brand text-white hover:bg-brand-dark on-dark:bg-white on-dark:text-brand on-dark:hover:bg-brand-tint over-photo:bg-white over-photo:text-brand over-photo:hover:bg-brand-tint',
   secondary:
     'border border-brand text-brand hover:bg-brand-tint on-dark:border-white on-dark:text-white on-dark:hover:bg-white/10',
-  text: 'text-brand underline-offset-4 hover:underline on-dark:text-white',
 } as const satisfies Record<string, string>;
 
 const sizes = {
@@ -53,7 +52,7 @@ export function Button({
     'group/button font-body inline-flex items-center justify-center gap-2 rounded-control font-semibold',
     'duration-(--duration-fast) ease-standard transition-colors',
     'disabled:cursor-not-allowed disabled:opacity-60',
-    variant === 'text' ? 'min-h-11 text-body' : pick(sizes, size),
+    pick(sizes, size),
     pick(variants, variant),
     className
   );

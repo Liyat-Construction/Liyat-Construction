@@ -2,7 +2,6 @@ import { FeatureCard } from '@/components/cards/feature-card';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Icon } from '@/components/ui/icon';
-import { MapFacade } from '@/components/ui/map-facade';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Subheading } from '@/components/ui/subheading';
@@ -78,13 +77,6 @@ export function ContactPanel({ copy, contact, configuration, sender, id }: Conta
                   <Icon name="map-pin" className="text-brand" />
                   <span>{contact.address}</span>
                 </div>
-                {contact.mapEmbedUrl && (
-                  <MapFacade
-                    url={contact.mapEmbedUrl}
-                    copy={copy.map}
-                    icon={<Icon name="map-pin" size="lg" />}
-                  />
-                )}
               </FeatureCard>
             )}
             {contact.officeHours && (

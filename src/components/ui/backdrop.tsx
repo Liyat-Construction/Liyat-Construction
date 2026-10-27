@@ -12,6 +12,8 @@ import { Photo } from './photo';
  * header: the inner-page PageHeader (D-62). One flat 65 % scrim for any photo:
  * white text on it reaches 4.95 : 1 even over pure white (62 % is the minimum),
  * so no per-photo measurement is needed. Text on it is full white (`on-photo:`).
+ * caption: sits low over the brightest sand, where the hero scrim leaves it at 2.5 : 1,
+ * so it carries its own 65 % Ink plate (the header scrim's guarantee) (P15).
  */
 const scrims = {
   hero: 'bg-ink/60 lg:bg-ink/40',
@@ -27,7 +29,7 @@ interface BackdropProps {
 
 /**
  * Full-bleed photograph behind white text: natural color under a flat Ink
- * scrim (Brand §7, no wash). Fills its positioned parent; LCP image.
+ * scrim (PROJECT.md §5, no wash). Fills its positioned parent; LCP image.
  */
 export function Backdrop({ image, variant = 'hero', caption }: BackdropProps) {
   const hero = variant === 'hero';
@@ -37,7 +39,7 @@ export function Backdrop({ image, variant = 'hero', caption }: BackdropProps) {
       <div aria-hidden="true" className={cn('absolute inset-0', pick(scrims, variant))} />
       {hero && <Fade />}
       {caption && (
-        <p className="text-small right-gutter absolute bottom-4 text-white/80 max-sm:hidden">
+        <p className="text-small right-gutter rounded-control bg-ink/65 absolute bottom-4 px-2 py-1 text-white max-sm:hidden">
           {caption}
         </p>
       )}

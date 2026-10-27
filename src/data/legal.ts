@@ -49,11 +49,10 @@ export const PRIVACY_PAGE: LegalPage = {
       ],
     },
     {
-      id: 'maps-analytics',
-      title: 'Maps and analytics',
+      id: 'analytics',
+      title: 'Analytics and tracking',
       paragraphs: [
-        'If an office map is offered, it loads only after you choose to display it. Loading Google Maps connects your browser to Google and shares technical information, including your IP address. Hiding the map removes it from the page but does not reverse information already sent.',
-        'Analytics are disabled in the current website configuration. If analytics or other tracking services are introduced, this policy should be updated to explain them before they are activated.',
+        'This website uses no analytics, advertising or tracking services. If that changes, this policy will be updated to explain them before they are switched on.',
       ],
     },
     {
@@ -165,7 +164,7 @@ export const TERMS_PAGE: LegalPage = {
       title: 'Availability and external services',
       paragraphs: [
         'The website and third-party services may be interrupted or unavailable. If the inquiry form is unavailable or a submission fails, use the published phone or email details to contact Liyat.',
-        'External websites, form delivery and optional maps operate under their providers’ own terms and privacy notices. Follow external links only after considering the information you are sharing with those services.',
+        'External websites and form delivery operate under their providers’ own terms and privacy notices. Follow external links only after considering the information you are sharing with those services.',
       ],
     },
     {

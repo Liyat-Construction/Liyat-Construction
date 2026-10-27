@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Builds the web images from the sources in assets/images/ (Engineering §5, D-35).
+ * Builds the web images from the sources in assets/images/ (PROJECT.md §9, D-35).
  *
  *   npm run images
  *
@@ -29,6 +29,8 @@ const PROFILES = {
   team: { widths: [400, 800], quality: 75 },
   references: { widths: [400, 800], quality: 75 },
   clients: { widths: null, quality: 85 },
+  // The header logo: 84 px wide in the layout, prepared at 3× (P15; it was a 65 KB PNG)
+  brand: { widths: [252], quality: 90 },
 };
 
 const SOURCE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.jfif', '.png']);

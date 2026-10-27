@@ -7,12 +7,19 @@ interface ProjectCardProps {
   project: Project;
   /** Official names of `project.services` (getServiceTitles), shown as tags */
   serviceNames: string[];
+  /** h2 when no section heading sits above the cards (the Projects page) */
+  headingAs?: 'h2' | 'h3';
   className?: string;
 }
 
 /** Project summary: photo, client, title, location · year, one key figure, services.
  *  Not linked — project pages return when C-11 brings real detail (D-60). */
-export function ProjectCard({ project, serviceNames, className }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  serviceNames,
+  headingAs: Heading = 'h3',
+  className,
+}: ProjectCardProps) {
   // The tested yield is the outcome clients ask about first; depth when there is no yield
   const figure = project.yield ?? project.depth ?? project.shoringDepth;
   const meta = [project.location, project.year].filter(Boolean).join(' · ');
@@ -30,7 +37,7 @@ export function ProjectCard({ project, serviceNames, className }: ProjectCardPro
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div className="flex flex-col gap-2">
           <p className="text-small text-ink-muted font-medium">{project.client}</p>
-          <h3 className="text-h3">{project.title}</h3>
+          <Heading className="text-h3">{project.title}</Heading>
           <p className="text-small text-ink-muted">{meta}</p>
         </div>
         <p className="text-body text-ink-muted">{project.summary}</p>

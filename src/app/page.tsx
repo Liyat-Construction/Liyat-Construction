@@ -10,7 +10,7 @@ export const metadata = pageMetadata(
   siteConfig.seo.metaDescription
 );
 
-// Design System §4 (Home): the full-screen photo hero (D-81), then the home sections.
+// PROJECT.md §7 (Home): the full-screen photo hero (D-81), then the home sections.
 export default function Home() {
   return (
     <>

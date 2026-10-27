@@ -1,24 +1,22 @@
 /**
  * Content Type Definitions
  * Shapes for the content files in src/data/*. Cards take these objects directly
- * (Design System §3.2), so a change here shows up as a type error.
+ * (PROJECT.md §6), so a change here shows up as a type error.
  * Facts the client has not confirmed are optional: a missing fact renders nothing.
  */
 
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
-export type ImageFocus = 'center' | 'top' | 'bottom' | 'left' | 'right' | 'upper-left';
+export type ImageFocus = 'center' | 'top' | 'right' | 'upper-left';
 
 export interface ImageAsset {
-  /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (Engineering §5) */
+  /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (PROJECT.md §9) */
   url: string;
   alt: string;
   /** Defaults to 'center' */
   focus?: ImageFocus;
-  /** Shape of the source photo; defaults to 'landscape'. Headers and galleries keep portrait photos tall */
-  orientation?: 'landscape' | 'portrait';
 }
 
-/** A headline figure: a depth, a yield, a count. `water` marks water data (Brand §4). */
+/** A headline figure: a depth, a yield, a count. `water` marks water data (PROJECT.md §5). */
 export interface Stat {
   value: string;
   unit?: string;
@@ -32,7 +30,7 @@ export interface Spec {
   value: string;
 }
 
-/** The six services (Brand §9), in lifecycle order. Also the ids of the well-diagram parts. */
+/** The six services (PROJECT.md §8), in lifecycle order. Also the ids of the well-diagram parts. */
 export type ServiceSlug =
   | 'hydrogeological-survey'
   | 'borehole-drilling'
@@ -43,7 +41,7 @@ export type ServiceSlug =
 
 export interface Service {
   slug: ServiceSlug;
-  /** The official name (Brand §9), used identically everywhere */
+  /** The official name (PROJECT.md §8), used identically everywhere */
   title: string;
   /** One line, on the service card */
   summary: string;
@@ -58,7 +56,7 @@ export interface Service {
   method: string[];
   /** What the client receives */
   deliverables: string[];
-  /** Verb-first button text, e.g. 'Request a site survey' (Brand §8) */
+  /** Verb-first button text, e.g. 'Request a site survey' (PROJECT.md §8) */
   cta: string;
   /** Photo in the page header; only a photo that really shows this service */
   image?: ImageAsset;
@@ -75,8 +73,6 @@ export interface Project {
   scope?: string;
   /** The scope of work */
   description: string;
-  approach?: string;
-  result?: string;
   /** Cover photo: cards, page header, Open Graph */
   image: ImageAsset;
   imageCaption?: string;
@@ -88,8 +84,6 @@ export interface Project {
   shoringDepth?: Stat;
   /** Tested yield (water: true). The project card shows it before depth */
   yield?: Stat;
-  /** e.g. '6 weeks' */
-  duration?: string;
   featured: boolean;
 }
 
@@ -101,7 +95,6 @@ export interface Testimonial {
 }
 
 export interface Equipment {
-  category: 'rig' | 'support';
   name: string;
   /** e.g. 'Drilling rig', 'Air compressor' */
   type: string;
@@ -110,70 +103,22 @@ export interface Equipment {
   specs: Spec[];
 }
 
-/** A discipline on the Equipment & Capabilities page. */
-export interface Capability {
-  title: string;
-  body: string;
-  items: string[];
-}
-
 export interface TeamMember {
   name: string;
   role: string;
   portrait?: ImageAsset;
 }
 
-export interface Reference {
-  organization: string;
-  /** ISO date, e.g. '2025-03-14' */
-  date: string;
-  /** Scan of the first page; without it the card shows a document icon */
-  thumbnail?: ImageAsset;
-  /** Path under /public to the full scan (PDF or image) */
-  file: string;
-}
-
-export interface Credential {
-  name: string;
-  issuer: string;
-  /** e.g. grade or licence number */
-  detail?: string;
-}
-
 export interface Partner {
   name: string;
   /** Prepared image path, e.g. '/images/clients/acme.webp'. Without a logo, the name is shown as text. */
   logo?: string;
-  url?: string;
 }
 
-/** A link shown as a button or text link. Labels are verbs in sentence case (Brand §8). */
+/** A link shown as a button or text link. Labels are verbs in sentence case (PROJECT.md §8). */
 export interface Action {
   label: string;
   href: string;
-}
-
-/** Ground material of a log layer; picks its fill and hatching in BoreholeLog. */
-export type LogMaterial = 'soil' | 'clay' | 'weathered' | 'rock' | 'aquifer';
-
-/** One layer of a borehole log, depths in metres from the surface. */
-export interface LogLayer {
-  name: string;
-  from: number;
-  to: number;
-  material: LogMaterial;
-}
-
-/** A drilling log: the ground as drilled, and how the well was built in it. Depths in metres. */
-export interface BoreholeLogData {
-  title: string;
-  caption: string;
-  layers: LogLayer[];
-  /** Solid casing from the surface to this depth; the screen continues below it */
-  casingTo: number;
-  screenTo: number;
-  waterLevel: number;
-  waterLevelLabel: string;
 }
 
 /** The start of a section: SectionHeading props. */
@@ -228,12 +173,12 @@ export interface ProjectsPage {
   gallery: SectionCopy;
 }
 
-/** A section of running text, with an optional statement or button (Story section). */
+/** A section of running text, with an optional button (Story section). */
 export interface StoryCopy extends SectionCopy {
   paragraphs: string[];
 }
 
-/** /about, in section order (Design System §4). Company facts come from company.ts. */
+/** /about, in section order (PROJECT.md §7). Company facts come from company.ts. */
 export interface AboutPage {
   header: PageCopy & { image: ImageAsset };
   story: StoryCopy & { factsTitle: string };
@@ -245,7 +190,7 @@ export interface AboutPage {
   safety: SectionCopy & { link: Action };
 }
 
-/** The band that ends every page except Contact (Design System §3.4). */
+/** The band that ends every page except Contact (PROJECT.md §6). */
 export interface CtaBandContent {
   title: string;
   text: string;
@@ -254,7 +199,7 @@ export interface CtaBandContent {
   call: string;
 }
 
-/** Home page copy, in section order (Design System §4). The eyebrow of the hero is the descriptor. */
+/** Home page copy, in section order (PROJECT.md §7). The eyebrow of the hero is the descriptor. */
 export interface HomePage {
   hero: {
     title: string;
@@ -264,8 +209,6 @@ export interface HomePage {
     /** The full-screen photo behind the headline (D-81), and its corner caption */
     image: ImageAsset;
     caption: string;
-    /** Parked: the borehole log, rejected for the hero, kept for Services */
-    log: BoreholeLogData;
   };
   /** "Who we are": text, a landscape photo and the key figures (D-61) */
   about: StoryCopy & { image: ImageAsset; action: Action };
@@ -284,7 +227,7 @@ export interface EquipmentPage {
   readiness: StoryCopy & { action: Action };
 }
 
-/** /environment, in section order (Design System §4). */
+/** /environment, in section order (PROJECT.md §7). */
 export interface EnvironmentPage {
   header: PageCopy;
   story: StoryCopy & { image: ImageAsset };
@@ -326,11 +269,5 @@ export interface ContactPage {
     email: string;
     address: string;
     hours: string;
-  };
-  map: {
-    title: string;
-    notice: string;
-    load: string;
-    hide: string;
   };
 }

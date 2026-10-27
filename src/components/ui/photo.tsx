@@ -2,15 +2,11 @@ import Image from 'next/image';
 import type { ImageAsset, ImageFocus } from '@/types/content';
 import { cn, pick } from '@/lib/utils';
 
-// Engineering §5. The hero crops to 4:5 on phones so the subject stays large.
+// PROJECT.md §9
 const ratios = {
-  hero: 'aspect-hero-mobile md:aspect-hero',
   wide: 'aspect-wide',
-  /** A portrait photo beside text: 3:2 while stacked, 4:5 from lg (page headers) */
-  feature: 'aspect-wide lg:aspect-portrait',
   card: 'aspect-card',
   portrait: 'aspect-portrait',
-  square: 'aspect-square',
   /** Fills a parent that sets its size (full-bleed backdrop) */
   fill: 'size-full',
 } as const satisfies Record<string, string>;
@@ -18,8 +14,6 @@ const ratios = {
 // How wide the photo is in the layout. Never write `sizes` by hand.
 const widths = {
   full: '100vw',
-  /** 7 of 12 columns from lg, edge to edge (the home hero) */
-  major: '(min-width: 1024px) 60vw, 100vw',
   half: '(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw',
   third: '(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
 } as const satisfies Record<string, string>;
@@ -27,8 +21,6 @@ const widths = {
 const focuses = {
   center: 'object-center',
   top: 'object-top',
-  bottom: 'object-bottom',
-  left: 'object-left',
   right: 'object-right',
   'upper-left': 'object-(--focus-upper-left)',
 } as const satisfies Record<ImageFocus, string>;
@@ -73,7 +65,9 @@ export function Photo({
         alt={image.alt}
         fill
         sizes={pick(widths, width)}
-        priority={priority}
+        // Next 16 only preloads; the LCP photo also needs a high fetch priority (P15)
+        preload={priority}
+        fetchPriority={priority ? 'high' : undefined}
         className={cn(
           'ease-standard object-cover transition-transform duration-(--duration-base) group-hover/card:scale-105',
           pick(focuses, image.focus ?? 'center'),

@@ -1,30 +1,53 @@
 # Liyat Construction — website
 
-Website for Liyat Construction PLC, water well drilling and engineering in
-Ethiopia. Built by Digital Aksumite with Next.js, React, TypeScript and Tailwind CSS.
-Fully static; all content lives in this repository.
+The website of **Liyat Construction PLC**, a water-well drilling and groundwater
+engineering company in Ethiopia: surveys, borehole drilling, pumping tests, borehole
+rehabilitation, pump installation and turnkey water projects.
+
+Built by [Digital Aksumite](https://digitalaksumite.com) with Next.js 16, React 19,
+TypeScript and Tailwind CSS 4. Fully static, no CMS: every page's content is a typed
+TypeScript file in this repository.
 
 ## Quick start
 
+Requires Node.js 22 or newer.
+
 ```bash
 npm install
-npm run dev        # http://localhost:3000
+npm run dev          # http://localhost:3000
 ```
 
-## Documentation
+## Before you change anything
 
-| Read                                                       | For                                                    |
-| ---------------------------------------------------------- | ------------------------------------------------------ |
-| [`WORKFLOW.md`](WORKFLOW.md)                               | Current status, next step, decisions, client checklist |
-| [`docs/ENGINEERING.md`](docs/ENGINEERING.md)               | Architecture, code rules, commands, how-to recipes     |
-| [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md)           | Design tokens, component library, page blueprints      |
-| [`docs/BRAND_GUIDELINES.md`](docs/BRAND_GUIDELINES.md)     | Liyat brand: color, type, photography, voice           |
-| [`AGENTS.md`](AGENTS.md)                                   | Rules for AI coding tools                              |
-| [`docs/NEW_SESSION_PROMPT.md`](docs/NEW_SESSION_PROMPT.md) | Prompt to start a new AI chat on this project          |
+| Read                                 | For                                                    |
+| ------------------------------------ | ------------------------------------------------------ |
+| [`docs/PROJECT.md`](docs/PROJECT.md) | How the site is built: structure, rules, design, pages |
+| [`WORKFLOW.md`](WORKFLOW.md)         | Where the project stands, next step, open client items |
+| [`AGENTS.md`](AGENTS.md)             | Working rules for AI coding assistants                 |
 
-## Deployment
+## Common tasks
 
-- **Next.js host (e.g. Vercel):** `npm run build`
-- **Static host (cPanel etc.):** `npm run build:static` → upload `out/`
+| To change…                   | Edit                                                                                            |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| Any text on a page           | `src/data/<page>.ts`                                                                            |
+| Phone, email, address, menu  | `src/config/site.ts`                                                                            |
+| Colours, type sizes, spacing | `src/styles/tokens.css`                                                                         |
+| How a button or card looks   | `src/components/ui/` or `src/components/cards/`                                                 |
+| Add a project                | photos → `assets/images/projects/<slug>/`, run `npm run images`, entry → `src/data/projects.ts` |
+| Turn on the contact form     | `src/config/site.ts` → `contactForm.formKey` (Web3Forms)                                        |
 
-Set `NEXT_PUBLIC_SITE_URL` to the production domain before building.
+## Checks
+
+```bash
+npm run validate        # types, lint, formatting
+npm run check:design    # design values only in tokens.css
+npm run build:static    # builds the site into out/
+```
+
+All three must pass before a change is done. `npm run check:placeholders` lists what
+the client still has to confirm; it must report zero before launch.
+
+## Deploy
+
+- **Vercel:** import the repository; set `NEXT_PUBLIC_SITE_URL` to the live domain.
+- **Any static host:** `npm run build:static`, then upload the `out/` folder.

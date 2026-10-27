@@ -2,7 +2,7 @@ import { useId } from 'react';
 import type { ServiceSlug } from '@/types/content';
 
 /*
- * Cross-section of a drilled water well (Design System §3.5), drawn to read at
+ * Cross-section of a drilled water well (PROJECT.md §6), drawn to read at
  * 320 px wide. Colors are tokens only: water in Water Blue, the well structure
  * Liyat builds in Liyat Green, pump equipment and labels in Ink, ground in the
  * neutrals. Each group carries `data-part` = the services that work on it (a

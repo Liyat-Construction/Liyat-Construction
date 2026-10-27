@@ -1,11 +1,11 @@
 /**
  * Projects
- * Shown on the homepage (featured: true) and /projects (list only — D-60; project
- * pages return when C-11 brings real detail). Galleries render under the cards.
+ * Shown on the homepage (featured: true) and /projects (list only — D-60). The photo
+ * gallery renders under the cards.
  * Images: sources in assets/images/projects/<slug>/, then `npm run images`.
  *
- * Source: the client-provided project list. Every project still needs its facts
- * (year, depth, yield, duration, result) and permission to name the client (C-11).
+ * Source: Liyat's completed-project list (proposal, December 2025). Naming the clients
+ * is treated as granted and extra facts are not requested (owner, 2026-10-27).
  */
 
 import type { ImageAsset, Project, ProjectsPage, ServiceSlug } from '@/types/content';
@@ -14,14 +14,12 @@ const photo = (
   slug: string,
   file: string,
   alt: string,
-  options?: Pick<ImageAsset, 'focus' | 'orientation'>
+  options?: Pick<ImageAsset, 'focus'>
 ): ImageAsset => ({ url: `/images/projects/${slug}/${file}.webp`, alt, ...options });
 
-// Most site photos are phone shots in portrait
-const portrait = { orientation: 'portrait' } as const;
-const portraitTop = { orientation: 'portrait', focus: 'top' } as const;
+// Keeps the top of a tall phone shot in view when a card crops it
+const top = { focus: 'top' } as const;
 
-// PLACEHOLDER(C-11): confirm each project's facts and the permission to name its client
 export const PROJECTS: Project[] = [
   {
     slug: 'ethiopian-airlines-pumping-test',
@@ -36,15 +34,13 @@ export const PROJECTS: Project[] = [
     image: photo(
       'ethiopian-airlines-pumping-test',
       'cover',
-      'Water discharging during the pumping test for Ethiopian Airlines',
-      portrait
+      'Water discharging during the pumping test for Ethiopian Airlines'
     ),
     gallery: [
       photo(
         'ethiopian-airlines-pumping-test',
         'rig',
-        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead',
-        portrait
+        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
       ),
     ],
     services: ['borehole-drilling', 'pumping-tests'],
@@ -69,7 +65,7 @@ export const PROJECTS: Project[] = [
       'british-embassy-pump-installation',
       'cover',
       'Pump installation works at the British Embassy, Addis Ababa',
-      portraitTop
+      top
     ),
     gallery: [],
     services: [
@@ -95,7 +91,7 @@ export const PROJECTS: Project[] = [
       'tsedey-bank-pumping-test',
       'cover',
       'Pumping test discharge at the Tsedey Bank site',
-      portraitTop
+      top
     ),
     gallery: [],
     services: ['borehole-drilling', 'pumping-tests'],
@@ -112,12 +108,7 @@ export const PROJECTS: Project[] = [
     summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
     description:
       'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
-    image: photo(
-      'chaka-house-project',
-      'cover',
-      'Liyat drilling rig on site at Chaka House',
-      portrait
-    ),
+    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House'),
     gallery: [],
     services: ['borehole-drilling'],
     // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
@@ -133,11 +124,11 @@ export const PROJECTS: Project[] = [
     scope: 'Turnkey works · Two wells',
     description:
       'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Real Estate.',
-    // PLACEHOLDER(C-11): proposal confirms the project; replace illustrative site photo with a verified Ovid photograph
+    // The project is in Liyat's list; no Ovid photo exists, so the card shows a Liyat site
+    // photo labelled "Illustrative" (D-107)
     image: {
       url: '/images/site/water-column.webp',
       alt: 'Water discharge beside a Liyat rig; illustrative site photograph, not verified as the Ovid project',
-      orientation: 'portrait',
     },
     imageCaption: 'Illustrative Liyat site photograph',
     gallery: [],
@@ -177,8 +168,7 @@ export const PROJECTS: Project[] = [
     image: photo(
       'yekatit-12-hospital-well-development',
       'cover',
-      'Well development at Yekatit 12 Hospital Medical College',
-      portrait
+      'Well development at Yekatit 12 Hospital Medical College'
     ),
     gallery: [],
     services: ['borehole-drilling'],
@@ -190,7 +180,7 @@ export const PROJECTS: Project[] = [
     slug: 'entoto-artesian-well',
     title: 'An artesian well at Entoto',
     scope: 'Drilling · Artesian flow',
-    // PLACEHOLDER(C-11): well depth remains unconfirmed; omit the figure until supplied
+    // Depth unknown, so the card shows no figure (D-108)
     client: 'Kidane Mihiret Church',
     location: 'Entoto, Addis Ababa',
     summary: 'An artesian well near Entoto Kidanemihret Church that flows without a pump.',
@@ -199,8 +189,7 @@ export const PROJECTS: Project[] = [
     image: photo(
       'entoto-artesian-well',
       'cover',
-      'Water flowing from the artesian well near Entoto Kidanemihret Church',
-      portrait
+      'Water flowing from the artesian well near Entoto Kidanemihret Church'
     ),
     gallery: [],
     services: ['borehole-drilling'],
@@ -219,8 +208,7 @@ export const PROJECTS: Project[] = [
     image: photo(
       'credocs-shoring',
       'cover',
-      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS',
-      portrait
+      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS'
     ),
     gallery: [
       photo(
@@ -231,8 +219,7 @@ export const PROJECTS: Project[] = [
       photo(
         'credocs-shoring',
         'rig-in-excavation',
-        'Liyat rig working at the base of the CREDOCS excavation',
-        portrait
+        'Liyat rig working at the base of the CREDOCS excavation'
       ),
       photo('credocs-shoring', 'shoring-works', 'Shoring works and cranes at the CREDOCS site'),
     ],
@@ -243,7 +230,6 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-// PLACEHOLDER(C-11): the intro describes the current list; check it when the facts arrive
 export const PROJECTS_PAGE: ProjectsPage = {
   header: {
     eyebrow: 'Our work',

@@ -21,11 +21,12 @@ interface HeroProps {
  * header's height). From md (tablets and up) the headline is centred high over
  * the calm part of the frame (the mountains) with the fleet below it; on phones
  * it is centred vertically, so it stays in view on every screen height (D-98).
- * The crop is anchored upper-left so the rig stays in view.
+ * The crop is anchored upper-left so the rig stays in view. Text is full white
+ * (`data-on-photo`): the lead at white/80 fell to 4.35 : 1 over the sand from lg (P15).
  */
 export function Hero({ title, lead, image, caption, primary, secondary }: HeroProps) {
   return (
-    <div data-header-overlay className="-mt-(--header-total)">
+    <div data-header-overlay data-on-photo className="-mt-(--header-total)">
       <Section
         tone="ink"
         spacing="none"

@@ -14,7 +14,7 @@ interface ServiceDetailProps {
 }
 
 /**
- * The body of a service page (Design System §4): overview and who it is for
+ * The body of a service page (PROJECT.md §7): overview and who it is for
  * beside the deliverables card, then the well diagram with this service's part
  * lit (`[data-well]` in globals.css — the static counterpart of the lifecycle
  * hover), then what is included beside the method.

@@ -29,7 +29,6 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
     image: {
       url: '/images/site/well-airlift-development.webp',
       alt: 'A Liyat rig carrying out well development on a site surrounded by grass and trees',
-      orientation: 'portrait',
     },
   },
   groundwater: {

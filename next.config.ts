@@ -9,13 +9,12 @@ const isStaticExport = process.env.STATIC_EXPORT === 'true';
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' blob: data: https:",
   "font-src 'self'",
   "connect-src 'self' https:",
-  // Google Maps embed in the contact section
-  'frame-src https://www.google.com https://maps.google.com',
+  "frame-src 'none'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -33,7 +32,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
 
   images: {
-    // Images are prepared ahead of time by `npm run images` (Engineering §5, D-35);
+    // Images are prepared ahead of time by `npm run images` (PROJECT.md §9, D-35);
     // the loader picks a prepared width, on every host and in dev.
     loader: 'custom',
     loaderFile: './src/lib/image-loader.ts',
