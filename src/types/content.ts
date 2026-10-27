@@ -83,6 +83,7 @@ export interface Project {
   services: ServiceSlug[];
   /** Well depth, e.g. { value: '180', unit: 'm', label: 'Well depth' } */
   depth?: Stat;
+  shoringDepth?: Stat;
   /** Tested yield (water: true). The project card shows it before depth */
   yield?: Stat;
   /** e.g. '6 weeks' */
@@ -282,7 +283,8 @@ export interface EquipmentPage {
 /** /environment, in section order (Design System §4). */
 export interface EnvironmentPage {
   header: PageCopy;
-  story: StoryCopy & { statement: string };
+  story: StoryCopy & { image: ImageAsset };
+  groundwater: SectionCopy & { items: Feature[] };
   practices: SectionCopy & { items: Feature[] };
 }
 

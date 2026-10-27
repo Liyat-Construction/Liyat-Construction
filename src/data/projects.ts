@@ -24,27 +24,6 @@ const portraitTop = { orientation: 'portrait', focus: 'top' } as const;
 // PLACEHOLDER(C-11): confirm each project's facts and the permission to name its client
 export const PROJECTS: Project[] = [
   {
-    slug: 'ovid-real-estate-turnkey-wells',
-    title: 'Two deep wells for a residential development',
-    client: 'Ovid Real Estate',
-    location: 'Ethiopia',
-    summary: 'Turnkey groundwater works with two 500 m wells for the real estate development.',
-    scope: 'Turnkey works · Two wells',
-    description:
-      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Real Estate.',
-    // PLACEHOLDER(C-11): proposal confirms the project; replace illustrative site photo with a verified Ovid photograph
-    image: {
-      url: '/images/site/water-column.webp',
-      alt: 'Water discharge beside a Liyat rig; illustrative site photograph, not verified as the Ovid project',
-      orientation: 'portrait',
-    },
-    imageCaption: 'Illustrative Liyat site photograph',
-    gallery: [],
-    services: ['borehole-drilling', 'turnkey-projects'],
-    depth: { value: '500', unit: 'm', label: 'Depth of each well' },
-    featured: false,
-  },
-  {
     slug: 'ethiopian-airlines-pumping-test',
     title: 'Two wells for the airline compound',
     scope: 'Drilling · Well construction · Pumping test',
@@ -125,6 +104,48 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: 'chaka-house-project',
+    title: 'Our deepest completed well',
+    scope: 'Drilling · Well construction',
+    client: 'Chaka House',
+    location: 'Addis Ababa',
+    summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
+    description:
+      'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
+    image: photo(
+      'chaka-house-project',
+      'cover',
+      'Liyat drilling rig on site at Chaka House',
+      portrait
+    ),
+    gallery: [],
+    services: ['borehole-drilling'],
+    // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
+    depth: { value: '600', unit: 'm', label: 'Well depth' },
+    featured: false,
+  },
+  {
+    slug: 'ovid-real-estate-turnkey-wells',
+    title: 'Two deep wells for a residential development',
+    client: 'Ovid Real Estate',
+    location: 'Ethiopia',
+    summary: 'Turnkey groundwater works with two 500 m wells for the real estate development.',
+    scope: 'Turnkey works · Two wells',
+    description:
+      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Real Estate.',
+    // PLACEHOLDER(C-11): proposal confirms the project; replace illustrative site photo with a verified Ovid photograph
+    image: {
+      url: '/images/site/water-column.webp',
+      alt: 'Water discharge beside a Liyat rig; illustrative site photograph, not verified as the Ovid project',
+      orientation: 'portrait',
+    },
+    imageCaption: 'Illustrative Liyat site photograph',
+    gallery: [],
+    services: ['borehole-drilling', 'turnkey-projects'],
+    depth: { value: '500', unit: 'm', label: 'Depth of each well' },
+    featured: false,
+  },
+  {
     slug: 'sd-salt-manufacturing-afdera',
     title: 'An industrial water source',
     scope: 'Drilling · Well construction',
@@ -166,32 +187,11 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
-    slug: 'chaka-house-project',
-    title: 'Our deepest completed well',
-    scope: 'Drilling · Well construction',
-    client: 'Chaka House',
-    location: 'Addis Ababa',
-    summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
-    description:
-      'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
-    image: photo(
-      'chaka-house-project',
-      'cover',
-      'Liyat drilling rig on site at Chaka House',
-      portrait
-    ),
-    gallery: [],
-    services: ['borehole-drilling'],
-    // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
-    depth: { value: '600', unit: 'm', label: 'Well depth' },
-    featured: false,
-  },
-  {
     slug: 'entoto-artesian-well',
     title: 'An artesian well at Entoto',
     scope: 'Drilling · Artesian flow',
-    // PLACEHOLDER(C-11): client name not in the project list
-    client: 'Client name (C-11)',
+    // PLACEHOLDER(C-11): well depth remains unconfirmed; omit the figure until supplied
+    client: 'Kidane Mihiret Church',
     location: 'Entoto, Addis Ababa',
     summary: 'An artesian well near Entoto Kidanemihret Church that flows without a pump.',
     description:
@@ -238,6 +238,7 @@ export const PROJECTS: Project[] = [
     ],
     // PLACEHOLDER(C-09): shoring is not one of the six services until Liyat confirms it
     services: [],
+    shoringDepth: { value: '14', unit: 'm', label: 'Shoring depth' },
     featured: false,
   },
 ];

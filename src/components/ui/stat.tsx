@@ -13,6 +13,7 @@ interface StatProps {
   label: string;
   /** `water` for yields, water levels and flow only (Brand §4) */
   tone?: keyof typeof tones;
+  align?: 'start' | 'center';
   className?: string;
 }
 
@@ -21,9 +22,15 @@ interface StatProps {
  * top of its cell (`justify-end` in a reversed column), so a row of figures lines
  * up even when one label wraps to two lines.
  */
-export function Stat({ value, unit, label, tone = 'ink', className }: StatProps) {
+export function Stat({ value, unit, label, tone = 'ink', align = 'start', className }: StatProps) {
   return (
-    <div className={cn('flex flex-col-reverse justify-end gap-2', className)}>
+    <div
+      className={cn(
+        'flex flex-col-reverse justify-end gap-2',
+        align === 'center' && 'items-center text-center',
+        className
+      )}
+    >
       <dt className="text-small text-ink-muted on-dark:text-white/80">{label}</dt>
       <dd
         className={cn(

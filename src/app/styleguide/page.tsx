@@ -435,7 +435,12 @@ export default function StyleguidePage() {
         <Story id="sg-equipment-story" {...EQUIPMENT_PAGE.rigs} />
         <FeatureGrid id="sg-test-equipment" {...EQUIPMENT_PAGE.support} columns={3} />
         <FeatureGrid id="sg-equipment-methods" {...EQUIPMENT_PAGE.methods} columns={4} />
-        <ProofStrip id="sg-project-record" {...EQUIPMENT_PAGE.figures} figures={PROJECT_FIGURES} />
+        <ProofStrip
+          id="sg-project-record"
+          {...EQUIPMENT_PAGE.figures}
+          figures={PROJECT_FIGURES}
+          figuresAlign="center"
+        />
         <Story id="sg-site-readiness" {...EQUIPMENT_PAGE.readiness} spacing="compact" />
       </SectionGroup>
 
@@ -492,6 +497,14 @@ export default function StyleguidePage() {
         {...PROJECTS_PAGE.gallery}
         images={PROJECT_GALLERY}
         layout="grid"
+      />
+
+      <PhotoGallery
+        id="sg-gallery-portrait"
+        {...PROJECTS_PAGE.gallery}
+        images={PROJECT_GALLERY}
+        layout="columns"
+        ratio="portrait"
       />
 
       <Story

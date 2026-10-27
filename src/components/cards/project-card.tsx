@@ -14,7 +14,7 @@ interface ProjectCardProps {
  *  Not linked — project pages return when C-11 brings real detail (D-60). */
 export function ProjectCard({ project, serviceNames, className }: ProjectCardProps) {
   // The tested yield is the outcome clients ask about first; depth when there is no yield
-  const figure = project.yield ?? project.depth;
+  const figure = project.yield ?? project.depth ?? project.shoringDepth;
   const meta = [project.location, project.year].filter(Boolean).join(' · ');
 
   return (

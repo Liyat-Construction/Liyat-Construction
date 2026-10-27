@@ -6,6 +6,7 @@ import { Stat } from '@/components/ui/stat';
 
 interface ProofStripProps extends SectionCopy {
   figures: StatData[];
+  figuresAlign?: 'start' | 'center';
   id?: string;
   /** Sub-heading of the client row; leave out when the section heading names the clients */
   clientsTitle?: string;
@@ -18,6 +19,7 @@ export function ProofStrip({
   title,
   intro,
   figures,
+  figuresAlign = 'start',
   id = 'proof',
   clientsTitle,
   clients = [],
@@ -48,6 +50,7 @@ export function ProofStrip({
                 unit={figure.unit}
                 label={figure.label}
                 tone={figure.water ? 'water' : 'ink'}
+                align={figuresAlign}
               />
             ))}
           </dl>

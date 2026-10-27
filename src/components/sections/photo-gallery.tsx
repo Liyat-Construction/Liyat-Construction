@@ -7,6 +7,7 @@ interface PhotoGalleryProps extends SectionCopy {
   images: ImageAsset[];
   id: string;
   layout?: 'columns' | 'grid';
+  ratio?: 'card' | 'portrait';
 }
 
 /**
@@ -20,6 +21,7 @@ export function PhotoGallery({
   images,
   id,
   layout = 'columns',
+  ratio,
 }: PhotoGalleryProps) {
   if (images.length === 0) return;
   return (
@@ -47,11 +49,12 @@ export function PhotoGallery({
               <Photo
                 image={image}
                 ratio={
-                  layout === 'grid'
+                  ratio ??
+                  (layout === 'grid'
                     ? 'card'
                     : image.orientation === 'portrait'
                       ? 'portrait'
-                      : 'wide'
+                      : 'wide')
                 }
                 width="third"
                 rounded

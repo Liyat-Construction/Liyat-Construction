@@ -6,7 +6,7 @@ import { SectionGroup } from '@/components/ui/section-group';
 import { Story } from '@/components/sections/story';
 import { ENVIRONMENT_PAGE } from '@/data/environment';
 
-const { header, story, practices } = ENVIRONMENT_PAGE;
+const { header, story, groundwater, practices } = ENVIRONMENT_PAGE;
 
 export const metadata: Metadata = pageMetadata('/environment', header.title, header.description);
 
@@ -22,7 +22,13 @@ export default function EnvironmentPage() {
       />
       <SectionGroup>
         <Story id="responsibility" {...story} />
-        <FeatureGrid id="practices" icon="check" columns={2} {...practices} />
+        <FeatureGrid
+          id="groundwater"
+          itemIcons={['survey', 'pumping-test']}
+          columns={2}
+          {...groundwater}
+        />
+        <FeatureGrid id="practices" icon="check" columns={3} {...practices} />
       </SectionGroup>
     </>
   );

@@ -33,7 +33,12 @@ export default function EquipmentCapabilitiesPage() {
         <FeatureGrid id="support-equipment" {...support} columns={3} />
         <FeatureGrid id="methods" {...methods} columns={4} />
         {/* Capabilities Grid */}
-        <ProofStrip id="equipment-figures" {...figures} figures={PROJECT_FIGURES} />
+        <ProofStrip
+          id="equipment-figures"
+          {...figures}
+          figures={PROJECT_FIGURES}
+          figuresAlign="center"
+        />
         <Story id="site-readiness" {...readiness} spacing="compact" />
       </SectionGroup>
     </>
