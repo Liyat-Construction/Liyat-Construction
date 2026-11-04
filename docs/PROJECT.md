@@ -130,11 +130,10 @@ WebP made from `assets/images/brand/logo.png` by `npm run images`. On dark it si
   Stat · FactsTable · CheckList · Steps · Prose · Icon (registered names only) · Logo · Rule ·
   Breadcrumbs · Field/Input/Textarea/Select · FormFeedback · LegalDocument · FooterSurface ·
   SystemMessage.
-- **cards:** ProjectCard · ServiceCard · TestimonialCard · TeamCard · FeatureCard · ClientCard.
+- **cards:** ProjectCard · ServiceCard · TestimonialCard · FeatureCard · ClientCard.
 - **sections:** Hero · PageHeader · Story · ServiceLifecycle · ServiceDetail ·
   FeaturedProjects · ProjectGrid · PhotoGallery · ProofStrip · ClientList · FeatureGrid ·
-  TeamGrid · EquipmentTeaser · Testimonials · ContactPanel · ContactForm · CtaBand ·
-  LegalContent.
+  EquipmentTeaser · Testimonials · ContactPanel · ContactForm · CtaBand · LegalContent.
 
 Sections hide themselves when their data is empty. `/styleguide` shows each with real data.
 
@@ -143,8 +142,8 @@ Sections hide themselves when their data is empty. `/styleguide` shows each with
 - **Home:** Hero → Who we are (`#about`) → Services + well diagram (`#services`; hovering a
   service lights its part of the well, CSS `:has()`) → Projects + clients row (`#projects`)
   → Equipment (`#equipment`) → Testimonials (`#testimonials`) → Contact (`#contact`).
-- **About:** story + company facts → figures → mission and vision → values → clients → team
-  → safety (links to Environment).
+- **About:** story + company facts → figures → mission and vision → values → clients → safety
+  (links to Environment). No team section (D-122); "Expert team" is one of the values.
 - **Projects:** project cards → photo gallery (4:5 tiles) → clients.
 - **Equipment:** rigs → pumping-test equipment → methods → project figures → site readiness.
 - **Environment:** responsibility story → groundwater cards → site-practice cards.
@@ -164,10 +163,14 @@ then "Contact us". The link bar shows from 1280 px; below that, the hamburger me
   client needs them — never promise them on every project.
 - **Tagline:** "Know better. Drill better." **Descriptor:** "Water Well Drilling & Engineering".
 - **Service names** (identical everywhere, lifecycle order): Hydrogeological & Geophysical
-  Survey · Borehole Drilling · Pumping Tests · Borehole Rehabilitation · Pump Supply &
-  Installation · Turnkey Water Projects.
-- **Figures in use** (Liyat's December 2025 proposal): 13 wells completed, 600 m deepest,
-  4,700+ m drilled; General Manager's 19 years of drilling experience; founded 2019.
+  Survey · Deep and Shallow Water-Well Drilling · Pumping Tests · Borehole Rehabilitation ·
+  Pump Supply & Installation · Turnkey Water Projects. Slugs keep their older names
+  (`borehole-drilling`) so the URLs don't change.
+- **Figures in use** (Liyat's copy review and written answers, 2026-11; they cover 2019–2026):
+  7+ years, 50+ wells completed, 600 m deepest, 15,000 m+ drilled; founded 2019. The 50+ and
+  15,000 m+ show but stay marked until he confirms them (D-126). The General Manager's 20+ years
+  appears only in his story on About (D-123). Rigs can drill up to 800 m: a machine limit, kept
+  separate from the 600 m deepest well.
 - **Contact form:** Web3Forms. Set `siteConfig.contactForm.formKey` to the access key;
   until then a submission shows the standard error. All fields required; honeypot spam field.
 

@@ -9,7 +9,8 @@ export const HOME_PAGE: HomePage = {
   hero: {
     // The client's tagline, confirmed (owner, 2026-10-27)
     title: 'Know better. Drill better.',
-    lead: 'Survey, drilling, testing and pump installation, with every stage documented.',
+    // The client's line under the headline (copy review, 2026-11)
+    lead: 'Groundwater engineering from survey to tank.',
     primary: { label: 'Contact us', href: '/#contact' },
     secondary: { label: 'Our services', href: '/#services' },
     // The whole first screen behind the headline (D-81)
@@ -21,12 +22,13 @@ export const HOME_PAGE: HomePage = {
     },
     caption: 'On site in the Afar region',
   },
-  // "Who we are" (client content, 2026-10-22; facts from Liyat's brochure). The figures come from company.ts
+  // "Who we are": the first paragraph is the client's own (copy review, 2026-11); the second
+  // is from Liyat's proposal
   about: {
     eyebrow: 'Who we are',
     title: 'One team from the first survey to a working pump',
     paragraphs: [
-      'Founded in 2019, Liyat Construction is led by its General Manager, a hydrogeologist with 19 years of hands-on drilling experience.',
+      'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor. We combine hydrogeological insight, modern drilling capability and disciplined execution to deliver reliable water systems for institutions, commercial developments and local communities.',
       'Our own teams carry out the drilling, the pumping tests and the electromechanical works. A dedicated pumping test crew brings a crane, generators and variable-discharge pumps to site.',
     ],
     image: {

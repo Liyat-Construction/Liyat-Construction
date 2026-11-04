@@ -115,7 +115,7 @@ export const TERMS_PAGE: LegalPage = {
       ],
       items: [
         'Hydrogeological & Geophysical Survey',
-        'Borehole Drilling',
+        'Deep and Shallow Water-Well Drilling',
         'Pumping Tests',
         'Borehole Rehabilitation',
         'Pump Supply & Installation',

@@ -28,8 +28,7 @@ export const PARTNERS: Partner[] = [
     logo: '/images/clients/yekatit-12-hospital-logo.webp',
   },
   { name: 'SD Salt Manufacturing', logo: '/images/clients/sd-salt-manufacturing.webp' },
-  // PLACEHOLDER(C-23): "CREDOCS" or "CREDOCKS"
-  { name: 'CREDOCS Digital Service', logo: '/images/clients/credoks.webp' },
+  { name: 'CREDOKS Digital Service', logo: '/images/clients/credoks.webp' },
   { name: 'Belayneh Kinde Group', logo: '/images/clients/belayneh-kinde-group.webp' },
   { name: 'CIRHT', logo: '/images/clients/cirht.webp' },
   { name: 'ET Mineral Development S.C.', logo: '/images/clients/et-minieal.webp' },

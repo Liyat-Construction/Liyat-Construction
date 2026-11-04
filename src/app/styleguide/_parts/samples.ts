@@ -18,6 +18,11 @@ export const photos = {
     alt: 'Pumping test discharge at the Tsedey Bank site',
     focus: 'top',
   },
+  chakaUpper: {
+    url: '/images/projects/chaka-house-project/cover.webp',
+    alt: 'Liyat drilling rig on site at Chaka House',
+    focus: 'upper',
+  },
   airlift: {
     url: '/images/site/well-airlift-development.webp',
     alt: 'Airlift development of a new well',
@@ -32,7 +37,7 @@ export const photos = {
 export const projectFacts = [
   { label: 'Client', value: 'Ethiopian Airlines' },
   { label: 'Location', value: 'Addis Ababa' },
-  { label: 'Services', value: 'Borehole Drilling · Pumping Tests' },
+  { label: 'Services', value: 'Deep and Shallow Water-Well Drilling · Pumping Tests' },
   { label: 'Well depth', value: '500 m' },
   { label: 'Tested yield', value: '40 L/s', water: true },
 ];

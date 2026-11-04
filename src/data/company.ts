@@ -3,58 +3,42 @@
  * PROJECT_FIGURES  → ProofStrip on /equipment-capabilities
  * ABOUT_FIGURES    → ProofStrip on /about
  * COMPANY_FACTS    → "Company at a glance" on /about
- * TEAM             → leadership and team on /about
  * SAFETY_PRACTICES → safety and site practice on /about
  * Every figure must be backed by a document (PROJECT.md §8).
  */
 
-import type { Feature, Spec, Stat, TeamMember } from '@/types/content';
+import type { Feature, Spec, Stat } from '@/types/content';
 import { siteConfig } from '@/config/site';
 
-// From Liyat's completed-projects list (client proposal, December 2025): 13 wells
-// across 12 clients; Chaka House 600 m is the deepest; depths sum to 4,720 m.
-// PLACEHOLDER(C-10): Liyat confirms these figures (request list, ask 3)
-const WELLS_COMPLETED: Stat = { value: '13', label: 'Wells completed' };
+// Liyat's written answers, 2026-11 (CLIENT_ANSWERS.md): 7+ years for the company, Chaka House
+// 600 m the deepest. Figures cover 2019–2026, with no work from before 2019.
+const COMPANY_EXPERIENCE: Stat = { value: '7', unit: '+ years', label: 'Company experience' };
 const DEEPEST_WELL: Stat = { value: '600', unit: 'm', label: 'Deepest well drilled' };
-const METRES_DRILLED: Stat = { value: '4,700', unit: '+ m', label: 'Metres drilled for clients' };
-// From the client proposal: the founder and GM's drilling experience
-const GM_EXPERIENCE: Stat = {
-  value: '19',
-  unit: 'years',
-  label: "Our General Manager's drilling experience",
-};
+// PLACEHOLDER(C-10): from his copy review; he gave the years but hasn't said yes to the numbers (D-126)
+const WELLS_COMPLETED: Stat = { value: '50', unit: '+', label: 'Wells completed' };
+const METRES_DRILLED: Stat = { value: '15,000', unit: '+ m', label: 'Metres drilled for clients' };
 
 export const PROJECT_FIGURES: Stat[] = [WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED];
 
-export const ABOUT_FIGURES: Stat[] = [GM_EXPERIENCE, WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED];
+export const ABOUT_FIGURES: Stat[] = [
+  COMPANY_EXPERIENCE,
+  WELLS_COMPLETED,
+  DEEPEST_WELL,
+  METRES_DRILLED,
+];
 
 export const COMPANY_FACTS: Spec[] = [
   { label: 'Legal name', value: siteConfig.legalName },
   { label: 'In Amharic', value: siteConfig.legalNameAmharic },
-  // Both candidate addresses (C-03) are in Addis Ababa
   { label: 'Headquarters', value: 'Addis Ababa, Ethiopia' },
-  // Client proposal: established January 2, 2019 as Wondwossen Ayalew (private contractor);
-  // renamed Liyat Construction PLC in May 2022
+  // Established January 2, 2019 as Wondwossen Water Well Drilling Contractor; renamed
+  // Liyat Construction PLC in May 2022 (client proposal and copy review)
   { label: 'Founded', value: '2019' },
-  {
-    label: 'Founder and General Manager',
-    value: 'Wondwossen Ayalew, hydrogeologist — 19 years of drilling experience',
-  },
+  // His years are only in his story on /about (D-123)
+  { label: 'Founder and General Manager', value: 'Wondwossen Ayalew, hydrogeologist' },
 ];
 
-// From the client proposal: the founder and GM. The rest of the team is placeholder
-// until C-15 supplies names, roles and portraits.
-export const TEAM: TeamMember[] = [
-  {
-    name: 'Wondwossen Ayalew',
-    role: 'Founder and General Manager, hydrogeologist',
-  },
-  // PLACEHOLDER(C-15): Zelalem's full name/role and the third leader's name/role/portrait (C-34); Operation Head is a draft role
-  { name: 'Zelalem', role: 'Leadership role to confirm' },
-  { name: 'Name to confirm', role: 'Operation Head' },
-];
-
-// PLACEHOLDER(C-17): Liyat confirms these drafted safety and site practices (D-100, C-34)
+// Liyat confirmed all three in his written answers
 export const SAFETY_PRACTICES: Feature[] = [
   {
     title: 'Protect the crew',

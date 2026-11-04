@@ -49,7 +49,8 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = cn(
-    'group/button font-body inline-flex items-center justify-center gap-2 rounded-control font-semibold',
+    // max-w-full: a long label wraps on the narrowest phones instead of overflowing
+    'group/button font-body inline-flex max-w-full items-center justify-center gap-2 rounded-control text-center font-semibold',
     'duration-(--duration-fast) ease-standard transition-colors',
     'disabled:cursor-not-allowed disabled:opacity-60',
     pick(sizes, size),

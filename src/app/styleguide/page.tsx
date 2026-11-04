@@ -22,15 +22,13 @@ import { PageHeader } from '@/components/sections/page-header';
 import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { ProjectCard } from '@/components/cards/project-card';
 import { ServiceCard } from '@/components/cards/service-card';
-import { TeamCard } from '@/components/cards/team-card';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
 import { Story } from '@/components/sections/story';
-import { TeamGrid } from '@/components/sections/team-grid';
 import { FeatureGrid } from '@/components/sections/feature-grid';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { ABOUT_PAGE } from '@/data/about';
 import { PARTNERS } from '@/data/partners';
-import { COMPANY_FACTS, PROJECT_FIGURES, TEAM } from '@/data/company';
+import { COMPANY_FACTS, PROJECT_FIGURES } from '@/data/company';
 import { EQUIPMENT_PAGE } from '@/data/equipment';
 import { ContactPanel } from '@/components/sections/contact-panel';
 import { FormFeedback } from '@/components/ui/form-feedback';
@@ -169,7 +167,7 @@ export default function StyleguidePage() {
                   Call us now
                 </Button>
               </div>
-              <dl className="gap-grid grid grid-cols-3">
+              <dl className="gap-grid grid grid-cols-2 sm:grid-cols-3">
                 {stats.map((stat) => (
                   <Stat
                     key={stat.label}
@@ -243,7 +241,7 @@ export default function StyleguidePage() {
 
           <div className="gap-grid grid lg:grid-cols-2">
             <Specimen title="Stat" note="ink · water (water data only)">
-              <dl className="gap-grid grid grid-cols-3">
+              <dl className="gap-grid grid grid-cols-2 sm:grid-cols-3">
                 {stats.map((stat, index) => (
                   <Stat
                     key={stat.label}
@@ -279,6 +277,9 @@ export default function StyleguidePage() {
             </Specimen>
             <Specimen title="card 4:3, focus top">
               <Photo image={photos.pumpingTestTop} width="third" rounded />
+            </Specimen>
+            <Specimen title="card 4:3, focus upper">
+              <Photo image={photos.chakaUpper} width="third" rounded />
             </Specimen>
             <Specimen title="portrait 4:5">
               <Photo image={photos.airlift} ratio="portrait" width="third" rounded />
@@ -335,15 +336,6 @@ export default function StyleguidePage() {
               {TESTIMONIALS.map((testimonial, index) => (
                 <li key={index}>
                   <TestimonialCard testimonial={testimonial} />
-                </li>
-              ))}
-            </ul>
-          </Specimen>
-          <Specimen title="TeamCard" note="no portraits yet (C-15)">
-            <ul className="gap-grid grid sm:grid-cols-3">
-              {TEAM.map((member, index) => (
-                <li key={index}>
-                  <TeamCard member={member} />
                 </li>
               ))}
             </ul>
@@ -420,12 +412,6 @@ export default function StyleguidePage() {
         <FeatureGrid id="sg-values" columns={3} {...ABOUT_PAGE.values} />
         <ProofStrip id="sg-figures" {...ABOUT_PAGE.figures} figures={stats} />
         <ProofStrip id="sg-clients" {...ABOUT_PAGE.clients} figures={[]} clients={PARTNERS} />
-        <TeamGrid
-          eyebrow="Sections"
-          title="TeamGrid"
-          intro="TeamCards stack on phones, with two per row from sm and four from lg. Incomplete rows are centred."
-          members={TEAM}
-        />
       </SectionGroup>
 
       <Section labelledBy="sg-diagram">

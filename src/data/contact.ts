@@ -13,7 +13,7 @@ export const CONTACT_PAGE: ContactPage = {
     intro:
       'Planning a new well, testing an existing source or installing a pump? Tell us where your project is and what you need.',
     description:
-      'Contact Liyat Construction about hydrogeological surveys, borehole drilling, pumping tests, borehole rehabilitation, pump supply and installation, and turnkey water projects in Ethiopia.',
+      'Contact Liyat Construction about hydrogeological surveys, deep and shallow water-well drilling, pumping tests, borehole rehabilitation, pump supply and installation, and turnkey water projects in Ethiopia.',
   },
   form: {
     title: 'Send us a message',

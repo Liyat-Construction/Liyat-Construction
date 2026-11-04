@@ -132,6 +132,8 @@
 :root {
   /* Photo focus 'upper-left' (object-(--focus-upper-left)): left edge, slightly below the top */
   --focus-upper-left: 0% 15%;
+  /* Photo focus 'upper' (object-(--focus-upper)): centred, between 'top' and 'center' */
+  --focus-upper: 50% 20%;
   /* The header with its bottom rule: a hero under the see-through header pulls up by this */
   --header-total: calc(var(--header-height) + var(--rule-width));
   --legal-nav-top: calc(var(--header-total) + var(--spacing-gutter));

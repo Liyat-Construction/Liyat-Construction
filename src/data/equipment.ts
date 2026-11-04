@@ -22,10 +22,10 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   rigs: {
     eyebrow: 'Drilling equipment',
     title: 'The equipment behind the drilling',
-    // Client proposal: rigs and drilling tools sourced from Indian manufacturers
+    // Liyat's written answers: "Indian and Turkey", rigs "up to 800m", Chaka House the deepest
     paragraphs: [
-      'Our rigs and drilling tools are sourced from Indian manufacturers. In-house drilling teams carry out the well construction, supported by separate pumping-test and electromechanical teams.',
-      'The project record below shows the depths we have completed. These are records of work delivered, not the rated capacity of an individual rig.',
+      'Our rigs and drilling tools are sourced from Indian and Turkish manufacturers. In-house drilling teams carry out the well construction, supported by separate pumping-test and electromechanical teams.',
+      'Our rigs can drill up to 800 m. The deepest well we have completed so far is 600 m.',
     ],
     image: {
       url: '/images/equipment/rig-transport.webp',
@@ -53,7 +53,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       },
     ],
   },
-  // PLACEHOLDER(C-09): confirm method wording; equipment and operating details also need C-16
+  // Liyat checks the method wording on the preview (D-125)
   methods: {
     eyebrow: 'Technologies and methods',
     title: 'How we investigate, build and test',
@@ -81,10 +81,8 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   figures: {
     eyebrow: 'Project record',
     title: 'Proven in the field',
-    intro:
-      'From Liyat’s completed-project records: wells delivered and metres drilled, not machine ratings.',
+    intro: 'Wells completed and metres drilled from 2019 to 2026.',
   },
-  // PLACEHOLDER(C-17): confirm coordination and site-care wording with Liyat
   readiness: {
     eyebrow: 'Site readiness and care',
     title: 'Ready for the work on site',
@@ -95,8 +93,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   },
 };
 
-// From the client proposal: rigs and tools from Indian manufacturers. Makes, models and
-// ratings still await C-16 (D-36: no invented specs — the list stays empty until confirmed)
+// Only what Liyat has stated. Makes, models and other specs await C-16 (D-36: no invented specs)
 export const EQUIPMENT: Equipment[] = [
   {
     name: 'Drilling rigs and tools',
@@ -105,6 +102,9 @@ export const EQUIPMENT: Equipment[] = [
       url: '/images/equipment/rig-transport.webp',
       alt: 'Liyat drilling rig on its carrier, on the way to site',
     },
-    specs: [],
+    specs: [
+      { label: 'Drilling depth', value: 'Up to 800 m' },
+      { label: 'Manufacturers', value: 'Indian and Turkish' },
+    ],
   },
 ];

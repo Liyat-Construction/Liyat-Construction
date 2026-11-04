@@ -6,7 +6,7 @@
  */
 
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
-export type ImageFocus = 'center' | 'top' | 'right' | 'upper-left';
+export type ImageFocus = 'center' | 'top' | 'upper' | 'right' | 'upper-left';
 
 export interface ImageAsset {
   /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (PROJECT.md §9) */
@@ -103,12 +103,6 @@ export interface Equipment {
   specs: Spec[];
 }
 
-export interface TeamMember {
-  name: string;
-  role: string;
-  portrait?: ImageAsset;
-}
-
 export interface Partner {
   name: string;
   /** Prepared image path, e.g. '/images/clients/acme.webp'. Without a logo, the name is shown as text. */
@@ -186,7 +180,6 @@ export interface AboutPage {
   missionVision: SectionCopy & { items: Feature[] };
   values: SectionCopy & { items: Feature[] };
   clients: SectionCopy;
-  team: SectionCopy;
   safety: SectionCopy & { link: Action };
 }
 

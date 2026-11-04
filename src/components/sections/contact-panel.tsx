@@ -30,7 +30,7 @@ export function ContactPanel({ copy, contact, configuration, sender, id }: Conta
           eyebrow={copy.header.eyebrow}
           title={copy.header.title}
         />
-        <div className="gap-grid grid items-start lg:grid-cols-12">
+        <div className="gap-grid grid grid-cols-1 items-start lg:grid-cols-12">
           <Card padding="lg" className="lg:col-span-7">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -65,7 +65,11 @@ export function ContactPanel({ copy, contact, configuration, sender, id }: Conta
               <FeatureCard feature={{ title: copy.details.email }}>
                 <div className="flex items-center gap-3">
                   <Icon name="mail" className="text-brand" />
-                  <a href={`mailto:${contact.email}`} className="hover:underline">
+                  {/* The address has no spaces, so it may break anywhere on the narrowest phones */}
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="min-w-0 [overflow-wrap:anywhere] hover:underline"
+                  >
                     {contact.email}
                   </a>
                 </div>

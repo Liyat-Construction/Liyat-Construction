@@ -1,7 +1,7 @@
 /**
  * Environment page copy (/environment). The environmental claims are grounded in
  * Liyat's service model, with surveys and testing tied to the agreed project scope.
- * Site practices are marked PLACEHOLDER(C-17) until the client confirms them.
+ * Liyat confirmed the three site practices in his written answers.
  */
 
 import type { EnvironmentPage } from '@/types/content';
@@ -56,12 +56,10 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
         title: 'Protect the crew',
         text: 'Safe work starts with attention to the people and conditions on site. Our approach includes protective equipment suited to the task, checks of the work area and coordination around rigs and moving equipment.',
       },
-      // PLACEHOLDER(C-17): confirm fluid and cuttings handling practice
       {
         title: 'Contain fluid and cuttings',
         text: 'We manage drilling fluid and cuttings within the work area, with attention to nearby land and water. Containment and handling are planned around the site conditions, keeping the area around the borehole orderly.',
       },
-      // PLACEHOLDER(C-17): confirm site restoration practice
       {
         title: 'Leave the site clean',
         text: 'Cleanup is part of finishing the work. We clear equipment, waste and temporary works from our work area before handing the site back, leaving it ready for the client’s next stage.',

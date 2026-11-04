@@ -7,16 +7,16 @@
 
 import type { Service, ServicesPage, ServiceSlug } from '@/types/content';
 
-// PLACEHOLDER(C-09): confirm the service list, the scope lists and the method/deliverable wording with Liyat
+// The six names are in docs/CLIENT_ANSWERS.md; Liyat checks the page wording on the preview (D-125)
 export const SERVICES: Service[] = [
   {
     slug: 'hydrogeological-survey',
     title: 'Hydrogeological & Geophysical Survey',
-    summary: 'We read the ground before a rig moves, so the well is drilled where the water is.',
+    summary: 'We read the ground before a rig moves, so the well is sited on the evidence.',
     intro:
       'Find the right water source before you drill, with a survey that names the site, depth and likely yield.',
     overview:
-      'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
+      'We review existing hydrogeological data, inspect the site and run electrical resistivity soundings to help locate productive aquifers and estimate their potential. The recommendation that follows names the drilling site, the expected depth and the likely yield, which reduces dry-hole risk and supports permits and donor reporting.',
     wellNote:
       'The survey reads every layer in this drawing — from topsoil down to the aquifer — and estimates the depth to drill to and the likely yield.',
     forWho: 'Project owners, developers and institutions planning a new water source',
@@ -42,9 +42,9 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'borehole-drilling',
-    title: 'Borehole Drilling',
-    summary: 'Deep and shallow boreholes, cased, screened and developed to specification.',
-    intro: 'Deep and shallow boreholes, drilled, cased, screened and developed to specification.',
+    title: 'Deep and Shallow Water-Well Drilling',
+    summary: 'Wells drilled, cased, screened and developed to specification.',
+    intro: 'Wells drilled, cased, screened and developed to specification.',
     overview:
       'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximize yield and minimize sediment. Every stage is logged and supervised.',
     wellNote:
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     forWho:
       'Institutional, commercial and industrial clients who need production or monitoring wells',
     includes: [
-      'Rotary and air drilling',
+      'Mud rotary and DTH rotary drilling',
       'Casing and screen selection and installation',
       'Gravel pack and well development',
       'Borehole log and construction records',
@@ -130,6 +130,7 @@ export const SERVICES: Service[] = [
       alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
     },
   },
+  // PLACEHOLDER(C-09): does Liyat install hand pumps? His profile mentions only submersible pumps
   {
     slug: 'pump-supply-installation',
     title: 'Pump Supply & Installation',

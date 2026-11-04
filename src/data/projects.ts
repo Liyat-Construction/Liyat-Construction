@@ -24,13 +24,14 @@ export const PROJECTS: Project[] = [
   {
     slug: 'ethiopian-airlines-pumping-test',
     title: 'Two wells for the airline compound',
-    scope: 'Drilling · Well construction · Pumping test',
+    scope: 'Drilling · Pumping test · Pump installation',
     client: 'Ethiopian Airlines',
     location: 'Addis Ababa',
     summary:
       'Drilling and construction of two 500 m wells, with a pumping test confirming a yield of 40 litres per second.',
+    // The client's copy review (2026-11) adds the pump installations and well development
     description:
-      'Drilling and construction of two 500 m wells in the Ethiopian Airlines compound, on behalf of Kibish Construction. The pumping test verified the capacity of the wells; the results gave the performance data needed for pump selection and the design of the distribution system.',
+      'Drilling, pumping tests, pump installation and well development for two 500 m wells in the Ethiopian Airlines compound, on behalf of Kibish Construction. The pumping test verified the capacity of the wells and gave the performance data for pump selection and the design of the distribution system.',
     image: photo(
       'ethiopian-airlines-pumping-test',
       'cover',
@@ -43,7 +44,7 @@ export const PROJECTS: Project[] = [
         'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
       ),
     ],
-    services: ['borehole-drilling', 'pumping-tests'],
+    services: ['borehole-drilling', 'pumping-tests', 'pump-supply-installation'],
     // Client proposal: drilling and construction of two 500 m wells in the Ethiopian
     // Airlines compound (main contractor Kibish Construction)
     depth: { value: '500', unit: 'm', label: 'Well depth' },
@@ -97,7 +98,7 @@ export const PROJECTS: Project[] = [
     services: ['borehole-drilling', 'pumping-tests'],
     // Client proposal: drilling of 200 m with 6-inch casing, head office building
     depth: { value: '200', unit: 'm', label: 'Well depth' },
-    featured: true,
+    featured: false,
   },
   {
     slug: 'chaka-house-project',
@@ -108,29 +109,35 @@ export const PROJECTS: Project[] = [
     summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
     description:
       'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
-    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House'),
+    // 'upper' keeps both the top of the mast and the truck wheels in the card
+    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House', {
+      focus: 'upper',
+    }),
     gallery: [],
     services: ['borehole-drilling'],
     // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
     depth: { value: '600', unit: 'm', label: 'Well depth' },
-    featured: false,
+    // Liyat's written answers: Chaka House replaces Tsedey Bank as Home's third project
+    featured: true,
   },
   {
     slug: 'ovid-real-estate-turnkey-wells',
     title: 'Two deep wells for a residential development',
-    client: 'Ovid Real Estate',
+    // The name Liyat gave with the photo; his profile says Ovid Real Estate (D-121)
+    client: 'Ovid Group',
     location: 'Ethiopia',
     summary: 'Turnkey groundwater works with two 500 m wells for the real estate development.',
     scope: 'Turnkey works · Two wells',
     description:
-      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Real Estate.',
-    // The project is in Liyat's list; no Ovid photo exists, so the card shows a Liyat site
-    // photo labelled "Illustrative" (D-107)
-    image: {
-      url: '/images/site/water-column.webp',
-      alt: 'Water discharge beside a Liyat rig; illustrative site photograph, not verified as the Ovid project',
-    },
-    imageCaption: 'Illustrative Liyat site photograph',
+      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Group.',
+    // Liyat's photo, named "Casing installation for OVID GROUP at arat killo Kings Tower Project".
+    // PLACEHOLDER(C-35): he confirms this is the two-500 m-wells project; depth and location wait
+    image: photo(
+      'ovid-real-estate-turnkey-wells',
+      'cover',
+      'Liyat drilling rig with a worker installing casing at Kings Tower, Arat Kilo'
+    ),
+    imageCaption: 'Casing installation at Kings Tower, Arat Kilo',
     gallery: [],
     services: ['borehole-drilling', 'turnkey-projects'],
     depth: { value: '500', unit: 'm', label: 'Depth of each well' },
@@ -180,50 +187,51 @@ export const PROJECTS: Project[] = [
     slug: 'entoto-artesian-well',
     title: 'An artesian well at Entoto',
     scope: 'Drilling · Artesian flow',
-    // Depth unknown, so the card shows no figure (D-108)
-    client: 'Kidane Mihiret Church',
+    client: 'Kidanemihiret Church',
     location: 'Entoto, Addis Ababa',
-    summary: 'An artesian well near Entoto Kidanemihret Church that flows without a pump.',
+    summary: 'An artesian well near Entoto Kidanemihiret Church that flows without a pump.',
     description:
-      'A well drilled into a confined aquifer in the Entoto area, near Kidanemihret Church. Natural artesian pressure brings the water to the surface without a pump.',
+      'A 200 m well drilled into a confined aquifer in the Entoto area, near Kidanemihiret Church. Natural artesian pressure brings the water to the surface without a pump.',
     image: photo(
       'entoto-artesian-well',
       'cover',
-      'Water flowing from the artesian well near Entoto Kidanemihret Church'
+      'Water flowing from the artesian well near Entoto Kidanemihiret Church'
     ),
     gallery: [],
     services: ['borehole-drilling'],
+    // Liyat's written answers: "200M for Kidanemihiret Church"
+    depth: { value: '200', unit: 'm', label: 'Well depth' },
     featured: false,
   },
   {
+    // Slug and image folder keep the old spelling; visitors don't see them
     slug: 'credocs-shoring',
-    // PLACEHOLDER(C-23): "CREDOCS" or "CREDOCKS"
     title: 'Shoring for a deep excavation',
     scope: 'Rig lowering · Excavation shoring',
-    client: 'CREDOCS Digital Service',
+    client: 'CREDOKS Digital Service',
     location: 'Addis Ababa',
     summary: 'Shoring for a 14 m deep excavation, with the rig lowered to work at its base.',
     description:
-      'Rig lowering and shoring works to a depth of 14 metres for a CREDOCS Digital Service building. The work required controlled excavation support and close coordination with the client’s construction team.',
+      'Rig lowering and shoring works to a depth of 14 metres for a CREDOKS Digital Service building. The work required controlled excavation support and close coordination with the client’s construction team.',
     image: photo(
       'credocs-shoring',
       'cover',
-      'Drilling rig lowered into the 14 m deep shored excavation for CREDOCS'
+      'Drilling rig lowered into the 14 m deep shored excavation for CREDOKS'
     ),
     gallery: [
       photo(
         'credocs-shoring',
         'site-overview',
-        'Overview of the shored excavation at the CREDOCS site'
+        'Overview of the shored excavation at the CREDOKS site'
       ),
       photo(
         'credocs-shoring',
         'rig-in-excavation',
-        'Liyat rig working at the base of the CREDOCS excavation'
+        'Liyat rig working at the base of the CREDOKS excavation'
       ),
-      photo('credocs-shoring', 'shoring-works', 'Shoring works and cranes at the CREDOCS site'),
+      photo('credocs-shoring', 'shoring-works', 'Shoring works and cranes at the CREDOKS site'),
     ],
-    // PLACEHOLDER(C-09): shoring is not one of the six services until Liyat confirms it
+    // A past project only: Liyat doesn't offer shoring as a service (his written answers)
     services: [],
     shoringDepth: { value: '14', unit: 'm', label: 'Shoring depth' },
     featured: false,

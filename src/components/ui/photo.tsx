@@ -21,6 +21,7 @@ const widths = {
 const focuses = {
   center: 'object-center',
   top: 'object-top',
+  upper: 'object-(--focus-upper)',
   right: 'object-right',
   'upper-left': 'object-(--focus-upper-left)',
 } as const satisfies Record<ImageFocus, string>;

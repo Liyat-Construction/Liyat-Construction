@@ -1,6 +1,6 @@
 /**
- * /about copy, in section order (PROJECT.md §7). Figures, facts, team,
- * and safety practice come from company.ts; clients come from partners.ts.
+ * /about copy, in section order (PROJECT.md §7). Figures, facts and
+ * safety practice come from company.ts; clients come from partners.ts.
  * The structure follows the owner's About plan (D-101).
  */
 
@@ -10,8 +10,8 @@ export const ABOUT_PAGE: AboutPage = {
   header: {
     eyebrow: 'Who we are',
     title: 'Groundwater engineering, from survey to handover',
-    // From Liyat's brochure (founded 2019; founder and General Manager a hydrogeologist with 19 years of drilling experience)
-    intro: 'Founded in 2019 and led by a hydrogeologist with 19 years of drilling experience.',
+    // The client's hero statement (copy review, 2026-11)
+    intro: 'Expert hydrogeology paired with advanced drilling technology across Ethiopia.',
     description:
       'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor for public bodies, embassies, NGOs, institutions and commercial clients.',
     image: {
@@ -23,11 +23,8 @@ export const ABOUT_PAGE: AboutPage = {
     eyebrow: 'Our story',
     title: 'Drilling experience became a company of its own',
     paragraphs: [
-      // From Liyat's proposal: founder, experience and the gap in drilling capacity (C-08 answered)
-      'Wondwossen Ayalew, a hydrogeologist with 19 years of experience leading drilling operations, established the business on 2 January 2019. Ethiopia’s demand for groundwater was growing faster than its drilling capacity. He started the company to help meet that demand.',
-      // From the client proposal: established January 2, 2019 as Wondwossen Ayalew water
-      // well drilling contractor; renamed Liyat Construction PLC in May 2022
-      'In May 2022, the business became Liyat Construction PLC. Today, our in-house drilling, pumping-test and electromechanical teams take projects from investigation through well construction to pump installation. Each team handles its stage of the work, with a documented record for the client at handover.',
+      // The client's story, exactly as written in their copy review (owner, 2026-11-03)
+      'Founded in 2019 as Wondwossen Water Well Drilling Contractor and renamed Liyat Construction PLC in May 2022, we help meet Ethiopia’s growing demand for domestic water supply and agricultural development through groundwater. Our founder and General Manager, Wondwossen Ayalew, is a hydrogeologist with more than 20 years of drilling experience in the sector. Driven by a shortage of qualified groundwater development companies, Liyat Construction PLC was established to contribute high-grade engineering solutions to the country’s growth.',
     ],
     factsTitle: 'Company at a glance',
   },
@@ -35,52 +32,41 @@ export const ABOUT_PAGE: AboutPage = {
     eyebrow: 'Track record',
     title: 'Liyat in figures',
   },
-  // PLACEHOLDER(C-34): Liyat approves or rewrites the drafted mission and vision
+  // The client's vision and mission, in their order (copy review, 2026-11)
   missionVision: {
     eyebrow: 'Our direction',
     title: 'What we work for',
     intro: 'Reliable water for the institutions and businesses that depend on it.',
     items: [
       {
-        title: 'Our mission',
-        text: 'Develop dependable groundwater sources through careful surveys, well construction and pumping tests, giving clients a documented basis for using and managing their water supply.',
+        title: 'Our vision',
+        text: 'To become one of the top-ranking water-well drilling and construction companies in Ethiopia, recognized nationally for reliability, technical excellence and sustainable water solutions.',
       },
       {
-        title: 'Our vision',
-        text: 'An Ethiopia where institutions and businesses can plan around a reliable water source, with wells built on sound knowledge of the ground and proven performance.',
+        title: 'Our mission',
+        text: 'To exceed our clients’ expectations with outstanding quality, personalized service and efficient project execution, delivered in a professional and understanding way.',
       },
     ],
   },
-  // PLACEHOLDER(C-34): Liyat confirms these values and the practices they describe
+  // The client's core values and commitments (copy review, 2026-11); "most competitive market
+  // rates" softened to "competitive", a claim no visitor can check (owner, 2026-11-03)
   values: {
     eyebrow: 'Our values',
-    title: 'The decisions behind every well',
-    intro:
-      'From choosing a drilling site to handing over the test results, these are the standards we work to.',
+    title: 'Our values and commitments',
+    intro: 'What every client can expect from us, on every project.',
     items: [
       {
-        title: 'Evidence',
-        text: 'When a survey is part of the work, its hydrogeological and geophysical findings decide where we drill.',
+        title: 'Fair, affordable pricing',
+        text: 'Competitive market rates, with no compromise on the quality or the long-term sustainability of the work.',
       },
       {
-        title: 'Proof',
-        text: 'When we pumping-test a well, the client receives the results before handover.',
+        title: 'Uncompromising quality',
+        text: 'An expert approach and high engineering standards on every project site.',
       },
       {
-        title: 'Transparency',
-        text: 'Survey reports, drilling logs and test reports let the client check how the well was built.',
-      },
-      {
-        title: 'Safety',
-        text: 'We plan drilling work around the safety of the crew and the people near the site.',
-      },
-      {
-        title: 'Reliability',
-        text: 'We set realistic schedules for drilling, testing and installation, and explain changes to the client.',
-      },
-      {
-        title: 'Responsibility',
-        text: 'We contain drilling fluid and cuttings and clear the site when the well is handed over.',
+        // Liyat's "Expert team" line, in place of a team section (D-122)
+        title: 'Expert team',
+        text: 'Our staff are professional, friendly, courteous and dedicated to excellence.',
       },
     ],
   },
@@ -89,10 +75,6 @@ export const ABOUT_PAGE: AboutPage = {
     title: 'Clients we work for',
     intro:
       'Our project record includes embassies, public institutions, development programmes and businesses across Ethiopia.',
-  },
-  team: {
-    eyebrow: 'Our people',
-    title: 'Leadership and team',
   },
   safety: {
     eyebrow: 'Responsibility',

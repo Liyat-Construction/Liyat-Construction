@@ -57,11 +57,9 @@ export const siteConfig = {
     // C-04: the two numbers on the client's proposal letterhead (Dec 2025) and brochure
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
     secondaryPhone: '+251 90 680 8182',
-    // PLACEHOLDER(C-03): proposal letterhead reads "Bole Sub City, Woreda 04, House Number
-    // 201"; the brochure said "Eldasol Building, 2nd floor, Office 202" — confirm which is current
+    // C-03 answered: confirmed by the client in the copy review (2026-11)
     address: 'Bole Sub City, Woreda 04, House Number 201, Addis Ababa, Ethiopia',
-    // Owner, 2026-10-27: standard hours kept unconfirmed (C-07 dropped); the client
-    // corrects them if they disagree
+    // Confirmed by the client in the copy review (2026-11)
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
   },
 
@@ -89,7 +87,7 @@ export const siteConfig = {
     subjects: [
       'General question',
       'Hydrogeological & Geophysical Survey',
-      'Borehole Drilling',
+      'Deep and Shallow Water-Well Drilling',
       'Pumping Tests',
       'Borehole Rehabilitation',
       'Pump Supply & Installation',
@@ -121,7 +119,7 @@ export const siteConfig = {
     titleDefault: 'Liyat Construction | Groundwater Development & Water-Well Engineering',
     titleTemplate: '%s | Liyat Construction',
     metaDescription:
-      'Liyat Construction PLC delivers groundwater investigation, water-well drilling, pumping tests, pump installation, and turnkey water systems in Ethiopia for institutional and commercial clients.',
+      'Liyat Construction PLC delivers groundwater investigation, water-well drilling, pumping tests, pump installation, and turnkey water projects in Ethiopia for institutional and commercial clients.',
     keywords: [
       'water well drilling Ethiopia',
       'groundwater development',
@@ -167,7 +165,7 @@ export const siteConfig = {
     copyrightEntity: 'Liyat Construction PLC',
     /** After "© {year} {legal name}." in the bottom bar */
     rights: 'All rights reserved.',
-    // PLACEHOLDER(C-31): Wondwossen approves the agency credit and its two icon links (D-64, D-79)
+    // Wondwossen approved the agency credit and its two icon links (his written answers)
     credit: {
       prefix: 'Built by',
       name: 'Digital Aksumite',
