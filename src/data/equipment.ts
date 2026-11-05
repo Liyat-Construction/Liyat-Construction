@@ -1,10 +1,11 @@
 /**
  * Equipment & Capabilities
- * EQUIPMENT_PAGE → /equipment-capabilities
- * EQUIPMENT      → the rig in the home page's equipment section
+ * EQUIPMENT_PAGE    → /equipment-capabilities
+ * EQUIPMENT_GALLERY → the photos on /equipment-capabilities
+ * EQUIPMENT         → the rig in the home page's equipment section
  */
 
-import type { Equipment, EquipmentPage } from '@/types/content';
+import type { Equipment, EquipmentPage, ImageAsset } from '@/types/content';
 
 export const EQUIPMENT_PAGE: EquipmentPage = {
   header: {
@@ -13,8 +14,8 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     intro:
       'Drilling rigs, a dedicated pumping-test crew and the equipment that supports each stage on site.',
     image: {
-      url: '/images/equipment/rig-transport.webp',
-      alt: 'Liyat drilling rig on its carrier, on the way to site',
+      url: '/images/hero/belayneh-kinde-rig.webp',
+      alt: 'Liyat drilling rig, air compressors and truck on site at Bole Lemi',
     },
     description:
       'Liyat Construction’s drilling rigs, pumping-test equipment and groundwater investigation, well construction and installation methods in Ethiopia.',
@@ -32,7 +33,42 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       alt: 'Liyat drilling rig mounted on its transport carrier',
     },
   },
-  // PLACEHOLDER(C-16): proposal-backed equipment categories; confirm operational descriptions
+  // The main items of Liyat's equipment list (LIYAT_ORIGINALS.md §6); no counts, no consumables.
+  // The list's "1200 m" and "300 m" rigs are shown as written; the 800 m above is his answer
+  // to our question. The owner asks him about the difference (2026-11-05)
+  fleet: {
+    eyebrow: 'Our fleet',
+    title: 'What we bring to site',
+    intro: 'The main machines and tools from our equipment list.',
+    items: [
+      {
+        title: 'Drilling rigs',
+        text: 'Truck-mounted drilling rigs, rated 1,200 m and 300 m.',
+      },
+      {
+        title: 'Air compressor',
+        text: 'An Atlas Copco XRVS high-pressure air compressor, 32 bar.',
+      },
+      {
+        title: 'Crane and trucks',
+        text: 'A crane, trucks and pickups move the rigs, pipe and crews to site.',
+      },
+      {
+        title: 'Drill pipe and bits',
+        text: 'Drill pipe in 4½ and 5 inch, and drilling bits from 6½ to 26 inches.',
+      },
+      {
+        title: 'Hammers and fishing tools',
+        text: 'Drilling hammers for DTH drilling, and fishing tools to recover anything lost in the hole.',
+      },
+      {
+        title: 'Test pumps and flow measurement',
+        text: 'Submersible test pumps from 35 to 200 HP, and a V-notch to measure the flow.',
+      },
+    ],
+  },
+  gallery: { eyebrow: 'On site', title: 'Our equipment' },
+  // Liyat's equipment list confirms the test pumps and crane; his profile, the generators
   support: {
     eyebrow: 'Pumping-test equipment',
     title: 'A dedicated crew for proving the well',
@@ -93,7 +129,35 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   },
 };
 
-// Only what Liyat has stated. Makes, models and other specs await C-16 (D-36: no invented specs)
+// Liyat's photos (2026-11-05), shown under the fleet on /equipment-capabilities
+export const EQUIPMENT_GALLERY: ImageAsset[] = [
+  {
+    url: '/images/equipment/fleet.webp',
+    alt: 'Liyat trucks, crane truck and air compressor lined up at the yard',
+  },
+  {
+    url: '/images/equipment/tower-rig.webp',
+    alt: 'Liyat truck-mounted drilling rig with its mast raised',
+  },
+  {
+    url: '/images/equipment/compressor-truck.webp',
+    alt: 'Atlas Copco XRVS air compressor on a Liyat crane truck',
+  },
+  {
+    url: '/images/equipment/generator.webp',
+    alt: 'Liyat generator at the yard',
+  },
+  {
+    url: '/images/equipment/worker-container.webp',
+    alt: 'Liyat worker container on its trailer, ready to move to site',
+  },
+  {
+    url: '/images/equipment/casings.webp',
+    alt: '10-inch blind and screen casing pipes stacked at the yard',
+  },
+];
+
+// Only what Liyat has stated (D-36: no invented specs)
 export const EQUIPMENT: Equipment[] = [
   {
     name: 'Drilling rigs and tools',

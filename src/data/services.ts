@@ -10,7 +10,7 @@ import type { Service, ServicesPage, ServiceSlug } from '@/types/content';
 // The six names are in docs/CLIENT_ANSWERS.md; Liyat checks the page wording on the preview (D-125)
 export const SERVICES: Service[] = [
   {
-    slug: 'hydrogeological-survey',
+    slug: 'hydrogeological-geophysical-survey',
     title: 'Hydrogeological & Geophysical Survey',
     summary: 'We read the ground before a rig moves, so the well is sited on the evidence.',
     intro:
@@ -41,7 +41,7 @@ export const SERVICES: Service[] = [
     },
   },
   {
-    slug: 'borehole-drilling',
+    slug: 'deep-shallow-water-well-drilling',
     title: 'Deep and Shallow Water-Well Drilling',
     summary: 'Wells drilled, cased, screened and developed to specification.',
     intro: 'Wells drilled, cased, screened and developed to specification.',
@@ -65,9 +65,10 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Drilling log', 'As-built well construction drawing'],
     cta: 'Request a drilling quote',
+    // Its own photo now, so it no longer shares the Afar photo with the survey page
     image: {
-      url: '/images/hero/afar-rig-fleet.webp',
-      alt: 'Liyat drilling rig and support fleet at Afdera, Afar Region',
+      url: '/images/hero/belayneh-kinde-rig.webp',
+      alt: 'Liyat drilling rig and air compressors during well development at Bole Lemi',
     },
   },
   {
@@ -130,7 +131,7 @@ export const SERVICES: Service[] = [
       alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
     },
   },
-  // PLACEHOLDER(C-09): does Liyat install hand pumps? His profile mentions only submersible pumps
+  // Hand pumps confirmed in Liyat's follow-up answers (2026-11-05)
   {
     slug: 'pump-supply-installation',
     title: 'Pump Supply & Installation',
@@ -159,15 +160,14 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Commissioning record', 'Operation and maintenance notes'],
     cta: 'Plan a pump installation',
-    // Genuine installation works at the British Embassy (D-113); portrait, cropped on `focus` (C-18)
+    // Liyat's photo of a real installation, wide enough for the header (was the British Embassy crop)
     image: {
-      url: '/images/projects/british-embassy-pump-installation/cover.webp',
-      alt: 'Pump installation works at the British Embassy, Addis Ababa',
-      focus: 'top',
+      url: '/images/projects/ovid-real-estate-turnkey-wells/cover.webp',
+      alt: 'A crane lowering a submersible pump into the well at Kings Tower, Arat Kilo',
     },
   },
   {
-    slug: 'turnkey-projects',
+    slug: 'turnkey-water-projects',
     title: 'Turnkey Water Projects',
     summary: 'One contractor accountable for the whole water source, from survey to handover.',
     intro: 'One contractor for the whole water source, from survey to handover.',

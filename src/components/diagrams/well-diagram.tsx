@@ -16,7 +16,7 @@ import type { ServiceSlug } from '@/types/content';
  * seal closes the top of the annulus under the wellhead.
  */
 
-type Part = Exclude<ServiceSlug, 'turnkey-projects'>;
+type Part = Exclude<ServiceSlug, 'turnkey-water-projects'>;
 
 const SURFACE = 100;
 const STATIC_LEVEL = 200;
@@ -85,7 +85,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       </defs>
 
       {/* Survey: the ground and the aquifer it locates */}
-      <Group parts={['hydrogeological-survey']}>
+      <Group parts={['hydrogeological-geophysical-survey']}>
         <rect x={0} y={SURFACE} width={360} height={40} className="fill-stone" />
         <rect x={0} y={140} width={360} height={110} className="fill-line" />
         <rect x={0} y={250} width={360} height={130} className="fill-stone" />
@@ -108,7 +108,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       <line x1={0} y1={SURFACE} x2={360} y2={SURFACE} className="stroke-ink" strokeWidth={1.5} />
 
       {/* Drilling: borehole and casing */}
-      <Group parts={['borehole-drilling']}>
+      <Group parts={['deep-shallow-water-well-drilling']}>
         <rect x={150} y={SURFACE} width={60} height={BOTTOM + 6 - SURFACE} className="fill-paper" />
         {[164, 196].map((x) => (
           <line
@@ -128,7 +128,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       </Group>
 
       {/* Drilling builds the screen and gravel pack; rehabilitation cleans them */}
-      <Group parts={['borehole-drilling', 'borehole-rehabilitation']}>
+      <Group parts={['deep-shallow-water-well-drilling', 'borehole-rehabilitation']}>
         <rect
           x={150}
           y={SCREEN_TOP - 20}
@@ -170,7 +170,7 @@ export function WellDiagram({ className }: WellDiagramProps) {
       />
 
       {/* Wellhead, built when the borehole is completed: grout seal, concrete apron, well cap */}
-      <Group parts={['borehole-drilling']}>
+      <Group parts={['deep-shallow-water-well-drilling']}>
         <rect x={150} y={SURFACE} width={14} height={50} className="fill-ink-muted/50" />
         <rect x={196} y={SURFACE} width={14} height={50} className="fill-ink-muted/50" />
         <rect

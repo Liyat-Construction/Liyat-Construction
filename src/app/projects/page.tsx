@@ -32,7 +32,12 @@ export default function ProjectsPage() {
       <SectionGroup>
         <ProjectGrid projects={projects} />
         {/* Site photos stay with their project now that project pages are gone (O-12) */}
-        <PhotoGallery id="project-gallery" {...gallery} images={PROJECT_GALLERY} />
+        <PhotoGallery
+          id="project-gallery"
+          {...gallery}
+          images={PROJECT_GALLERY}
+          layout="carousel"
+        />
         {/* The clients behind the projects; the section heading names them, so no sub-heading */}
         <ProofStrip {...clients} figures={[]} clients={PARTNERS} />
       </SectionGroup>

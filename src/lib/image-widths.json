@@ -33,5 +33,17 @@
   "/images/clients/horn-of-africa-ground-water.webp": [269],
   "/images/clients/hosea-treading-house.webp": [413],
   "/images/brand/logo.webp": [252],
-  "/images/projects/ovid-real-estate-turnkey-wells/cover.webp": [400, 800, 1600]
+  "/images/projects/ovid-real-estate-turnkey-wells/cover.webp": [400, 800, 1600],
+  "/images/equipment/casings.webp": [400, 800, 1280],
+  "/images/equipment/compressor-truck.webp": [400, 800, 1008],
+  "/images/equipment/fleet.webp": [400, 800, 1024],
+  "/images/equipment/generator.webp": [400, 800, 1008],
+  "/images/equipment/tower-rig.webp": [400, 567],
+  "/images/hero/belayneh-kinde-rig.webp": [640, 1024, 1600, 1920],
+  "/images/projects/arada-luxury-mall/casing.webp": [400, 800, 1260],
+  "/images/projects/arada-luxury-mall/cover.webp": [400, 800, 1600],
+  "/images/projects/belayneh-kinde-bole-lemi/cover.webp": [400, 800, 1600],
+  "/images/projects/ovid-real-estate-turnkey-wells/casing.webp": [400, 800, 1600],
+  "/images/projects/ovid-real-estate-turnkey-wells/pump-crane.webp": [400, 800, 1600],
+  "/images/equipment/worker-container.webp": [400, 800, 1008]
 }

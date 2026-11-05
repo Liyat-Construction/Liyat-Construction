@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
         'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
       ),
     ],
-    services: ['borehole-drilling', 'pumping-tests', 'pump-supply-installation'],
+    services: ['deep-shallow-water-well-drilling', 'pumping-tests', 'pump-supply-installation'],
     // Client proposal: drilling and construction of two 500 m wells in the Ethiopian
     // Airlines compound (main contractor Kibish Construction)
     depth: { value: '500', unit: 'm', label: 'Well depth' },
@@ -70,13 +70,33 @@ export const PROJECTS: Project[] = [
     ),
     gallery: [],
     services: [
-      'hydrogeological-survey',
-      'borehole-drilling',
+      'hydrogeological-geophysical-survey',
+      'deep-shallow-water-well-drilling',
       'pump-supply-installation',
-      'turnkey-projects',
+      'turnkey-water-projects',
     ],
     // Client proposal: turnkey project, 250 m well
     depth: { value: '250', unit: 'm', label: 'Well depth' },
+    featured: true,
+  },
+  {
+    slug: 'chaka-house-project',
+    title: 'Our deepest completed well',
+    scope: 'Drilling · Well construction',
+    client: 'Chaka House',
+    location: 'Addis Ababa',
+    summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
+    description:
+      'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
+    // 'upper' keeps both the top of the mast and the truck wheels in the card
+    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House', {
+      focus: 'upper',
+    }),
+    gallery: [],
+    services: ['deep-shallow-water-well-drilling'],
+    // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
+    depth: { value: '600', unit: 'm', label: 'Well depth' },
+    // Liyat's written answers: Chaka House replaces Tsedey Bank as Home's third project
     featured: true,
   },
   {
@@ -95,51 +115,46 @@ export const PROJECTS: Project[] = [
       top
     ),
     gallery: [],
-    services: ['borehole-drilling', 'pumping-tests'],
+    services: ['deep-shallow-water-well-drilling', 'pumping-tests'],
     // Client proposal: drilling of 200 m with 6-inch casing, head office building
     depth: { value: '200', unit: 'm', label: 'Well depth' },
     featured: false,
-  },
-  {
-    slug: 'chaka-house-project',
-    title: 'Our deepest completed well',
-    scope: 'Drilling · Well construction',
-    client: 'Chaka House',
-    location: 'Addis Ababa',
-    summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
-    description:
-      'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, on behalf of Etoile General Contractor. At 600 m it is the deepest well on our completed-projects list.',
-    // 'upper' keeps both the top of the mast and the truck wheels in the card
-    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House', {
-      focus: 'upper',
-    }),
-    gallery: [],
-    services: ['borehole-drilling'],
-    // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
-    depth: { value: '600', unit: 'm', label: 'Well depth' },
-    // Liyat's written answers: Chaka House replaces Tsedey Bank as Home's third project
-    featured: true,
   },
   {
     slug: 'ovid-real-estate-turnkey-wells',
     title: 'Two deep wells for a residential development',
     // The name Liyat gave with the photo; his profile says Ovid Real Estate (D-121)
     client: 'Ovid Group',
-    location: 'Ethiopia',
+    // Liyat's follow-up answers (2026-11-05): Kings Tower at Arat Kilo is this project
+    location: 'Arat Kilo, Addis Ababa',
     summary: 'Turnkey groundwater works with two 500 m wells for the real estate development.',
-    scope: 'Turnkey works · Two wells',
+    scope: 'Turnkey works · Two wells · Pump installation',
     description:
-      'Liyat’s completed-project list records a turnkey project with two 500 m wells and 10-inch and 6-inch casing for Ovid Group.',
-    // Liyat's photo, named "Casing installation for OVID GROUP at arat killo Kings Tower Project".
-    // PLACEHOLDER(C-35): he confirms this is the two-500 m-wells project; depth and location wait
+      'A turnkey project for Ovid Group’s Kings Tower development at Arat Kilo: two 500 m wells with 10-inch and 6-inch casing, and the installation of the pump.',
+    // Liyat's photos, named "Ovid Realestate Kings Tower Project pump installation"
     image: photo(
       'ovid-real-estate-turnkey-wells',
       'cover',
-      'Liyat drilling rig with a worker installing casing at Kings Tower, Arat Kilo'
+      'A crane lowering a submersible pump into the well at Kings Tower, Arat Kilo'
     ),
-    imageCaption: 'Casing installation at Kings Tower, Arat Kilo',
-    gallery: [],
-    services: ['borehole-drilling', 'turnkey-projects'],
+    imageCaption: 'Pump installation at Kings Tower, Arat Kilo',
+    gallery: [
+      photo(
+        'ovid-real-estate-turnkey-wells',
+        'pump-crane',
+        'Crane lifting the pump over the well at Kings Tower, Arat Kilo'
+      ),
+      photo(
+        'ovid-real-estate-turnkey-wells',
+        'casing',
+        'Liyat drilling rig with a worker installing casing at Kings Tower, Arat Kilo'
+      ),
+    ],
+    services: [
+      'deep-shallow-water-well-drilling',
+      'pump-supply-installation',
+      'turnkey-water-projects',
+    ],
     depth: { value: '500', unit: 'm', label: 'Depth of each well' },
     featured: false,
   },
@@ -158,7 +173,7 @@ export const PROJECTS: Project[] = [
       'Liyat drilling rig and support fleet at Afdera, Afar Region'
     ),
     gallery: [],
-    services: ['borehole-drilling'],
+    services: ['deep-shallow-water-well-drilling'],
     // Client proposal: drilling of 100 m with 6-inch casing
     depth: { value: '100', unit: 'm', label: 'Well depth' },
     featured: true,
@@ -178,10 +193,82 @@ export const PROJECTS: Project[] = [
       'Well development at Yekatit 12 Hospital Medical College'
     ),
     gallery: [],
-    services: ['borehole-drilling'],
+    services: ['deep-shallow-water-well-drilling'],
     // Client proposal: 400 m drilling with 14" and 10" casing, 6kilo hospital
     depth: { value: '400', unit: 'm', label: 'Well depth' },
     featured: true,
+  },
+  {
+    slug: 'arada-luxury-mall',
+    title: 'A well for a shopping mall',
+    scope: 'Drilling · Casing · Well development',
+    client: 'Arada Luxury Mall',
+    // PLACEHOLDER(C-36): the owner asks where the mall is; general until then
+    location: 'Ethiopia',
+    summary: 'A 320 m well for Arada Luxury Mall, from drilling and casing to well development.',
+    description:
+      'Drilling of a 320 m well for Arada Luxury Mall, with casing installation and well development.',
+    // Liyat's photos, named "Well Development for Arada Luxury Mall" and "Arada Luxury Mall
+    // Casing Installation" (the casing photo is cropped to leave out a bystander)
+    image: photo(
+      'arada-luxury-mall',
+      'cover',
+      'Water rising from the new well during development at Arada Luxury Mall',
+      top
+    ),
+    gallery: [
+      photo(
+        'arada-luxury-mall',
+        'casing',
+        'Casing pipes ready for installation beside the drilling rig at Arada Luxury Mall'
+      ),
+    ],
+    services: ['deep-shallow-water-well-drilling'],
+    // Liyat's company profile: "Arada Luxury Mall, 320 m well"
+    depth: { value: '320', unit: 'm', label: 'Well depth' },
+    featured: false,
+  },
+  {
+    slug: 'belayneh-kinde-bole-lemi',
+    title: 'Well development for a factory',
+    scope: 'Well development',
+    client: 'Belayneh Kinde Group',
+    location: 'Bole Lemi, Addis Ababa',
+    summary: 'Well development for the Belayneh Kinde Group PP bags factory at Bole Lemi.',
+    // PLACEHOLDER(C-36): the owner asks for the depth and the full work; only the photo names it
+    description:
+      'Well development at the Belayneh Kinde Group PP bags factory at Bole Lemi, with our drilling rig and air compressors on site.',
+    // Liyat's photo, named "Belayneh Kinde Group Well Development at Bole Lemi PP bags Factory"
+    image: photo(
+      'belayneh-kinde-bole-lemi',
+      'cover',
+      'Water and foam rising from the well during development at Bole Lemi'
+    ),
+    gallery: [],
+    // Well development is part of the drilling service (Liyat's written answers, 4.5)
+    services: ['deep-shallow-water-well-drilling'],
+    featured: false,
+  },
+  {
+    slug: 'belgian-embassy-well',
+    title: 'A well for an embassy',
+    scope: 'Well drilling',
+    client: 'Belgian Embassy',
+    location: 'Addis Ababa',
+    summary: 'A 200 m well for the Belgian Embassy in Addis Ababa.',
+    description: 'Drilling of a 200 m well for the Belgian Embassy in Addis Ababa.',
+    // PLACEHOLDER(C-36): no photo from this project yet (owner, 2026-11-05: show a general
+    // Liyat photo marked illustrative until Liyat sends one)
+    image: {
+      url: '/images/hero/belayneh-kinde-rig.webp',
+      alt: 'Liyat drilling rig and air compressors on a well site',
+    },
+    imageCaption: 'Illustrative photo',
+    gallery: [],
+    services: ['deep-shallow-water-well-drilling'],
+    // Liyat's company profile: "Belgian Embassy, 200 m well"
+    depth: { value: '200', unit: 'm', label: 'Well depth' },
+    featured: false,
   },
   {
     slug: 'entoto-artesian-well',
@@ -198,7 +285,7 @@ export const PROJECTS: Project[] = [
       'Water flowing from the artesian well near Entoto Kidanemihiret Church'
     ),
     gallery: [],
-    services: ['borehole-drilling'],
+    services: ['deep-shallow-water-well-drilling'],
     // Liyat's written answers: "200M for Kidanemihiret Church"
     depth: { value: '200', unit: 'm', label: 'Well depth' },
     featured: false,

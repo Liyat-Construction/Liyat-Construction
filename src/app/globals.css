@@ -111,17 +111,20 @@
     opacity: var(--diagram-dim);
   }
 
-  [data-lifecycle]:has([data-service='hydrogeological-survey']:is(:hover, :focus-within))
-    [data-part~='hydrogeological-survey'],
-  [data-lifecycle]:has([data-service='borehole-drilling']:is(:hover, :focus-within))
-    [data-part~='borehole-drilling'],
+  [data-lifecycle]:has(
+      [data-service='hydrogeological-geophysical-survey']:is(:hover, :focus-within)
+    )
+    [data-part~='hydrogeological-geophysical-survey'],
+  [data-lifecycle]:has([data-service='deep-shallow-water-well-drilling']:is(:hover, :focus-within))
+    [data-part~='deep-shallow-water-well-drilling'],
   [data-lifecycle]:has([data-service='pumping-tests']:is(:hover, :focus-within))
     [data-part~='pumping-tests'],
   [data-lifecycle]:has([data-service='borehole-rehabilitation']:is(:hover, :focus-within))
     [data-part~='borehole-rehabilitation'],
   [data-lifecycle]:has([data-service='pump-supply-installation']:is(:hover, :focus-within))
     [data-part~='pump-supply-installation'],
-  [data-lifecycle]:has([data-service='turnkey-projects']:is(:hover, :focus-within)) [data-part] {
+  [data-lifecycle]:has([data-service='turnkey-water-projects']:is(:hover, :focus-within))
+    [data-part] {
     opacity: 1;
   }
 
@@ -134,12 +137,13 @@
     opacity: var(--diagram-dim);
   }
 
-  [data-well='hydrogeological-survey'] [data-part~='hydrogeological-survey'],
-  [data-well='borehole-drilling'] [data-part~='borehole-drilling'],
+  [data-well='hydrogeological-geophysical-survey']
+    [data-part~='hydrogeological-geophysical-survey'],
+  [data-well='deep-shallow-water-well-drilling'] [data-part~='deep-shallow-water-well-drilling'],
   [data-well='pumping-tests'] [data-part~='pumping-tests'],
   [data-well='borehole-rehabilitation'] [data-part~='borehole-rehabilitation'],
   [data-well='pump-supply-installation'] [data-part~='pump-supply-installation'],
-  [data-well='turnkey-projects'] [data-part] {
+  [data-well='turnkey-water-projects'] [data-part] {
     opacity: 1;
   }
 

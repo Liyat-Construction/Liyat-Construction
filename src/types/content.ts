@@ -32,12 +32,12 @@ export interface Spec {
 
 /** The six services (PROJECT.md §8), in lifecycle order. Also the ids of the well-diagram parts. */
 export type ServiceSlug =
-  | 'hydrogeological-survey'
-  | 'borehole-drilling'
+  | 'hydrogeological-geophysical-survey'
+  | 'deep-shallow-water-well-drilling'
   | 'pumping-tests'
   | 'borehole-rehabilitation'
   | 'pump-supply-installation'
-  | 'turnkey-projects';
+  | 'turnkey-water-projects';
 
 export interface Service {
   slug: ServiceSlug;
@@ -214,6 +214,9 @@ export interface HomePage {
 export interface EquipmentPage {
   header: PageCopy;
   rigs: StoryCopy & { image: ImageAsset };
+  /** The main items of Liyat's equipment list */
+  fleet: SectionCopy & { items: Feature[] };
+  gallery: SectionCopy;
   support: SectionCopy & { items: Feature[] };
   methods: SectionCopy & { items: Feature[] };
   figures: SectionCopy;

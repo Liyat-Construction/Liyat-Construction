@@ -5,12 +5,12 @@ before you stop. How the site is built is in [`docs/PROJECT.md`](docs/PROJECT.md
 
 ## ▶ You are here
 
-|                    |                                                                                                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**   | **P16 part 2, step 11**: committed; next merge and push on the owner's word, the owner sends the questions, deploy the preview                       |
-| **Last completed** | 2026-11-04: P16 part 2 committed on branch `p16-client-answers`, not pushed. Step 8 not done, on the owner's word (D-129)                            |
-| **Waiting on**     | Liyat: 5 must-ask questions, equipment list; the owner also checks the name "Pumping Tests" with him (D-124). Our own launch task: the Web3Forms key |
-| **Not committed**  | On purpose: Liyat's profile, written answers, requirements PDF and copy review in `docs/` (D-130). Keep copies; they are only on this laptop         |
+|                    |                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**   | **P16 part 2, step 11**: commit, merge and push on the owner's word; deploy the preview                                                                 |
+| **Last completed** | 2026-11-05: step 13, Liyat's follow-up answers, equipment list and photos applied. Not committed                                                        |
+| **Waiting on**     | The owner asks Liyat: testimonials, 800 m vs 1,200 m (C-37), Belayneh Kinde depth and work, Arada location, Belgian Embassy photo (C-36). Web3Forms key |
+| **Not committed**  | Step 13's changes. Liyat's original files are copied into `docs/LIYAT_ORIGINALS.md` and deleted (D-133)                                                 |
 
 ## Plan to launch
 
@@ -58,42 +58,47 @@ Liyat's answers and the reason for each change are in
 each step: `npm run validate` (see the CRLF note under Known issues), `npm run check:design`,
 and a look in the browser. Tick the step here.
 
-| Step | What to change                                                                                                                                                                                                                   | Where                                             | Status  |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------- |
-| 1    | Service names, keeping the slugs so the URLs don't change. "Mud rotary and DTH rotary drilling" replaces "Rotary and air drilling". Find every hard-coded old name                                                               | `services.ts`, `contact.ts`, `PROJECT.md` §8      | Done    |
-| 2    | Figures: 7+ years, 50+ wells, 600 m deepest, 15,000 m+ drilled. Remove the GM's 20+ figure and the years in company facts; keep the sentence in his story                                                                        | `company.ts`, `about.ts`, `PROJECT.md` §8         | Done    |
-| 3    | Remove the team section and use his "Expert team" line. Delete `team-grid.tsx` and `team-card.tsx` once unused, and take them off `/styleguide`                                                                                  | `company.ts`, `about/page.tsx`, `styleguide`      | Done    |
-| 4    | Home projects: Chaka House replaces Tsedey Bank. Entoto well: 200 m                                                                                                                                                              | `projects.ts`                                     | Done    |
-| 5    | Ovid: name Ovid Group; move the photo to `assets/images/projects/ovid-real-estate-turnkey-wells/cover.jpg`, run `npm run images`, remove "Illustrative", caption "Casing installation at Kings Tower, Arat Kilo", check the crop | `projects.ts`, images                             | Done    |
-| 6    | CREDOKS spelling in all names and alt text. Keep it as a past project, not a service. The `credocs-shoring` slug and image folder stay, because visitors don't see them                                                          | `projects.ts`, `partners.ts`                      | Done    |
-| 7    | Equipment: "Indian and Turkish manufacturers"; rigs can drill up to 800 m, kept separate from the 600 m deepest well. Fix the lines that say the page shows no capacity                                                          | `equipment.ts`, `home.ts`                         | Done    |
-| 8    | Not done, on the owner's word (D-129): the section and sample quotes stay while the owner asks Liyat for real ones. No social links                                                                                              | `testimonials.ts`, `site.ts`, `home-sections.tsx` | Skipped |
-| 9    | Remove the placeholder marks that are now answered (C-09 names, C-17, C-31). The C-10 and C-12 marks stay until he answers (D-126, D-129). Run `check:placeholders`; what's left must match the table below                      | `src/`                                            | Done    |
-| 10   | Full check: `validate`, `check:design`, `build:static`, the tests, and the browser at 375, 768 and 1280 px. This also covers the D-119 browser check that is still open                                                          | The whole site                                    | Done    |
-| 11   | Commit on the owner's word. The owner sends the must-ask questions; deploy the preview (P17a) so Liyat can read the site                                                                                                         | Owner, Vercel                                     | ▶ Next  |
+| Step | What to change                                                                                                                                                                                                                                                             | Where                                                              | Status      |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
+| 1    | Service names, keeping the slugs so the URLs don't change. "Mud rotary and DTH rotary drilling" replaces "Rotary and air drilling". Find every hard-coded old name                                                                                                         | `services.ts`, `contact.ts`, `PROJECT.md` §8                       | Done        |
+| 2    | Figures: 7+ years, 50+ wells, 600 m deepest, 15,000 m+ drilled. Remove the GM's 20+ figure and the years in company facts; keep the sentence in his story                                                                                                                  | `company.ts`, `about.ts`, `PROJECT.md` §8                          | Done        |
+| 3    | Remove the team section and use his "Expert team" line. Delete `team-grid.tsx` and `team-card.tsx` once unused, and take them off `/styleguide`                                                                                                                            | `company.ts`, `about/page.tsx`, `styleguide`                       | Done        |
+| 4    | Home projects: Chaka House replaces Tsedey Bank. Entoto well: 200 m                                                                                                                                                                                                        | `projects.ts`                                                      | Done        |
+| 5    | Ovid: name Ovid Group; move the photo to `assets/images/projects/ovid-real-estate-turnkey-wells/cover.jpg`, run `npm run images`, remove "Illustrative", caption "Casing installation at Kings Tower, Arat Kilo", check the crop                                           | `projects.ts`, images                                              | Done        |
+| 6    | CREDOKS spelling in all names and alt text. Keep it as a past project, not a service. The `credocs-shoring` slug and image folder stay, because visitors don't see them                                                                                                    | `projects.ts`, `partners.ts`                                       | Done        |
+| 7    | Equipment: "Indian and Turkish manufacturers"; rigs can drill up to 800 m, kept separate from the 600 m deepest well. Fix the lines that say the page shows no capacity                                                                                                    | `equipment.ts`, `home.ts`                                          | Done        |
+| 8    | Not done, on the owner's word (D-129): the section and sample quotes stay while the owner asks Liyat for real ones. No social links                                                                                                                                        | `testimonials.ts`, `site.ts`, `home-sections.tsx`                  | Skipped     |
+| 9    | Remove the placeholder marks that are now answered (C-09 names, C-17, C-31). The C-10 and C-12 marks stay until he answers (D-126, D-129). Run `check:placeholders`; what's left must match the table below                                                                | `src/`                                                             | Done        |
+| 10   | Full check: `validate`, `check:design`, `build:static`, the tests, and the browser at 375, 768 and 1280 px. This also covers the D-119 browser check that is still open                                                                                                    | The whole site                                                     | Done        |
+| 11   | Commit on the owner's word. The owner sends the must-ask questions; deploy the preview (P17a) so Liyat can read the site                                                                                                                                                   | Owner, Vercel                                                      | ▶ Next      |
+| 12   | Projects page, "Photos from Our Work": on phones, a sideways swipe row with the next photo peeking in; the grid stays on desktop; check tablets. No new dependency (D-131)                                                                                                 | `photo-gallery.tsx`, `/styleguide`                                 | Not started |
+| 13   | Liyat's follow-up answers, equipment list and photos (2026-11-05): 12,000 m+; Ovid at Arat Kilo with pump installation; hand pumps stay; new Arada and Belayneh Kinde cards (9 → 11); Equipment page fleet list and photos; new drilling, pump and Equipment header photos | `company.ts`, `projects.ts`, `services.ts`, `equipment.ts`, images | Done        |
 
-**Don't change until he answers:** the hand pump lines (`services.ts`), the well drawing, and
-the Ovid card's depth and location.
+**Step 13 in detail.** Photos moved from `public/images/NEW PHOTOS` into `assets/images/`
+(saved at up to 2,400 px; list in `docs/LIYAT_ORIGINALS.md`), built with `npm run images
+<paths>` only — a full `npm run images` empties `public/images/`. The Arada casing photo is
+cropped to leave out a bystander. The Equipment page gains "What we bring to site" (FeatureGrid,
+six items, no counts) and an "Our equipment" PhotoGallery (six photos). The drilling page and
+the Equipment header now use the Bole Lemi rig photo; Pump Supply & Installation uses the Ovid
+pump photo. The Home hero stays one photo (D-131): only two new photos are wide and sharp.
 
 ## Open client items
 
 The must-ask questions are at the top of `docs/MEETING_QUESTIONS.md` and the Notion copy. Codes
 appear in `PLACEHOLDER(C-xx)` comments in the code.
 
-| Code | Still open                                                                                | Type     |
-| ---- | ----------------------------------------------------------------------------------------- | -------- |
-| C-10 | 50+ wells and 15,000 m+ correct for 2019–2026?                                            | Must ask |
-| C-35 | Is Kings Tower at Arat Kilo the Ovid project with two 500 m wells?                        | Must ask |
-| C-09 | Does Liyat install hand pumps?                                                            | Must ask |
-| C-27 | Is the well drawing correct, or will he send a correction?                                | Must ask |
-| C-36 | Photos of Arada Luxury Mall, Belgian Embassy and the Ministry of Water and Energy project | Must ask |
-| C-16 | Equipment list: rigs, air compressors, survey tools                                       | He sends |
-| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)          | He sends |
-| C-29 | Legal pages: no reply means no changes                                                    | Preview  |
-| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                            | Our task |
+| Code | Still open                                                                         | Type       |
+| ---- | ---------------------------------------------------------------------------------- | ---------- |
+| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)   | Owner asks |
+| C-36 | Belayneh Kinde depth and work; where Arada Luxury Mall is; a Belgian Embassy photo | Owner asks |
+| C-37 | Rigs "up to 800m" (his answer) vs "1200 m" and "300 m" (his equipment list), D-132 | Owner asks |
+| C-29 | Legal pages: no reply means no changes                                             | Preview    |
+| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                     | Our task   |
 
-Answered and closed: C-15 (no team names), C-17 (Environment), C-20 (no social links yet), C-23
-(CREDOKS), C-31 (structure and credit), C-32 (six services).
+Answered and closed: C-09 (hand pumps: yes), C-10 (50+ wells, 12,000 m+), C-15 (no team names),
+C-16 (equipment list received), C-17 (Environment), C-20 (no social links yet), C-23 (CREDOKS),
+C-27 (well drawing treated as correct; the owner talks to Liyat in private), C-31 (structure and
+credit), C-32 (six services), C-35 (Kings Tower is the Ovid project).
 
 ## Decisions that still apply
 
@@ -167,6 +172,35 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
   Liyat on the preview, and replace or remove them before launch. The C-12 mark blocks launch.
 - **D-130 — owner, 2026-11-04:** the commit holds the site and our text documents
   (`CLIENT_ANSWERS.md`, `MEETING_QUESTIONS.md`). Liyat's four files in `docs/` stay out of git.
+- **D-131 — owner, 2026-11-04:** after a reviewer's feedback from a phone, the Projects gallery gets a
+  swipe row on phones and keeps the grid on desktop (step 12). The Home hero stays one photo for
+  now: the photos we have aren't sharp enough to fill the screen one after another. Look at a slider
+  again if Liyat sends 3–4 good, wide, high-quality photos.
+- **D-132 — owner, 2026-11-05:** the site says what Liyat says, in both places: "Our rigs can drill
+  up to 800 m" (his answer to 3.4 and 3.5) and, in the fleet list, rigs "rated 1,200 m and 300 m"
+  (his equipment list). The owner asks him about the difference with the testimonials (C-37).
+  Agent's note: the two lines sit close together on the Equipment page and can read as a
+  contradiction until he explains; make them agree once he does.
+- **D-133 — owner, 2026-11-05:** Liyat's raw files don't belong in GitHub. All six were copied word
+  for word into `docs/LIYAT_ORIGINALS.md`, then deleted, with the full-size `NEW PHOTOS` folder.
+  Replaces D-130. The owner keeps the originals.
+- **D-134 — owner, 2026-11-05:** work with what we have. Don't ask Liyat about model numbers,
+  counts or small mismatches between a list and a photo; a rig in his photos is his. Use general
+  wording where a detail isn't known, never an invented one. So: no survey tools named, the
+  compressor is "Atlas Copco XRVS", no counts except the rig ratings, and the well drawing stays.
+- **D-135 — owner, 2026-11-05:** each service link matches its name, e.g.
+  `/services/deep-shallow-water-well-drilling` (was `borehole-drilling`); also
+  `hydrogeological-geophysical-survey` and `turnkey-water-projects`. Safe before launch: no old
+  links are out yet.
+- **D-136 — owner, 2026-11-05:** 12 projects, so the grid's rows come out full. The 12th is the
+  Belgian Embassy, a 200 m well from Liyat's company profile, with a general Liyat photo captioned
+  "Illustrative photo" (owner's choice over "Photo from another Liyat site") until he sends a real
+  one (C-36). Agent's note: a borrowed photo is weaker than a real one; the caption keeps it
+  honest. Project order: Chaka House 3rd, Tsedey Bank 4th.
+- **D-137 — owner, 2026-11-05:** the Projects page's "Photos from our work" is a carousel, so the
+  page stays short: one row to swipe or step through with arrows, 1 photo (the next peeking in)
+  on phones, 2 on tablets, 3 on desktop. `PhotoGallery layout="carousel"` with the new
+  `ui/carousel.tsx`; no new package. The Equipment page keeps its grid of 6.
 - **Open:** keep `/styleguide` hidden at launch, or delete it (O-05; currently kept).
 
 ## How we work
@@ -180,8 +214,8 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
 
 - Card photos exceed the 70 KB budget (recompressed social-media images; no originals) —
   accepted (D-118).
-- The well diagram (C-27), project photos (C-36) and social links (C-20) have no `PLACEHOLDER` marker, so
-  `check:placeholders` can reach zero while they are open: tick them off by hand.
+- The rig depth question (C-37) has no `PLACEHOLDER` marker, only a comment in `equipment.ts`, so
+  `check:placeholders` can reach zero while it is open: tick it off by hand.
 - `.devin/skills/senior-website-engineer/SKILL.md` still lists the deleted ENGINEERING,
   DESIGN_SYSTEM and BRAND_GUIDELINES docs.
 - On this Windows checkout `core.autocrlf=true` writes CRLF, so `npm run validate`'s Prettier
@@ -226,7 +260,7 @@ step 5. **Next:** step 1.
 
 **2026-11-04, P16 part 2, step 1.** Renamed the service to "Deep and Shallow Water-Well Drilling"
 in `services.ts`, `contact.ts`, the form subjects (`site.ts`), `legal.ts`, the style guide samples
-and `PROJECT.md` §8; the `borehole-drilling` slug stays. "Mud rotary and DTH rotary drilling"
+and `PROJECT.md` §8; the `borehole-drilling` slug stays (changed later, D-135). "Mud rotary and DTH rotary drilling"
 replaces "Rotary and air drilling". Also made "turnkey water systems" in the meta description
 "turnkey water projects", and applied D-127 and D-128. Type-check, lint, check:design,
 `build:static` (the first run stopped with font fetch errors, the rerun passed) and tests 12/12
@@ -330,3 +364,17 @@ eye: the contact section at 320 and 1280, and the About button at 320. **Next:**
 `p16-client-answers`, without Liyat's four files (D-130). Not merged into `main` and not pushed.
 **Next:** the owner decides on merging and pushing; the owner sends the 5 must-ask questions and
 the testimonial request; deploy the preview (P17a), and tell Liyat the testimonials are samples.
+
+**2026-11-05, step 13.** Applied Liyat's follow-up answers (Doc 3), his equipment list and 12 of
+his 17 photos, as listed under step 13 and D-132–D-134. Copied all six of his files word for word
+into `docs/LIYAT_ORIGINALS.md` and recorded the new answers in `CLIENT_ANSWERS.md`; then deleted
+the six files and `public/images/NEW PHOTOS`. Placeholders 8 → 6 (C-12, C-25, C-29 ×2, C-36 ×2).
+Type-check, lint, check:design, `build:static` and tests 12/12 pass; Prettier passes on the
+changed files. Browser: Projects at 375 (no sideways scroll; new covers load and crop well),
+service pages and Equipment at 768, Equipment at 1280 (fleet list and photos). Not committed.
+**Next:** commit on the owner's word; the owner asks Liyat the C-12, C-36 and C-37 questions.
+
+**2026-11-05, before the commit (owner's word).** Service links now match the names (D-135); the
+12th project card is the Belgian Embassy with an illustrative photo (D-136); Chaka House now
+comes before Tsedey Bank; the Projects photos are a carousel (D-137). Placeholders 6 → 7
+(C-36 ×3). **Next:** commit on the owner's word.

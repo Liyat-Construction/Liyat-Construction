@@ -3,7 +3,20 @@
 Prepared 2026-11-03. Answers are written in Notion: Build → Client projects → Liyat
 Construction website → Meeting questions for Liyat.
 
-# Follow-up questions
+# Still to ask
+
+The owner asks these (2026-11-05), together with the testimonials:
+
+- Real client quotes: name, job title, company (C-12)
+- Rigs: "up to 800m" in his answers, "1200 m" and "300 m" in his equipment list. What is the
+  difference? (C-37)
+- Belayneh Kinde Group: how deep is the well, and what work did Liyat do? (C-36)
+- Arada Luxury Mall: where is it? (C-36)
+- Belgian Embassy: is there a photo? (C-36)
+
+# Follow-up questions (answered 2026-11-05)
+
+Liyat's answers, word for word, are in [`LIYAT_ORIGINALS.md`](LIYAT_ORIGINALS.md) §5.
 
 Prepared 2026-11-04, after Liyat's answers. The full record of those answers is in
 [`CLIENT_ANSWERS.md`](CLIENT_ANSWERS.md).
@@ -58,6 +71,7 @@ No need to answer these now. Please send them when you have them:
 
 - Your equipment list: drilling rigs, air compressors and survey equipment
 - Short quotes from clients, with the person's name, job title and company
+- 3–4 good, wide, high-quality photos of your work, for the top of the Home page
 
 ---
 

@@ -4,12 +4,12 @@ import { Icon, type IconName } from '@/components/ui/icon';
 import { pick } from '@/lib/utils';
 
 const icons = {
-  'hydrogeological-survey': 'survey',
-  'borehole-drilling': 'drilling',
+  'hydrogeological-geophysical-survey': 'survey',
+  'deep-shallow-water-well-drilling': 'drilling',
   'pumping-tests': 'pumping-test',
   'borehole-rehabilitation': 'rehabilitation',
   'pump-supply-installation': 'pump',
-  'turnkey-projects': 'turnkey',
+  'turnkey-water-projects': 'turnkey',
 } as const satisfies Record<ServiceSlug, IconName>;
 
 interface ServiceCardProps {

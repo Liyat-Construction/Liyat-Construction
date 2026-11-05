@@ -384,6 +384,15 @@ export default function StyleguidePage() {
         images={PROJECT_GALLERY}
       />
 
+      <PhotoGallery
+        id="sg-gallery-carousel"
+        eyebrow="Sections"
+        title="PhotoGallery, carousel"
+        intro='layout="carousel": one row to swipe or step through with the arrows (D-137). Used on Projects.'
+        images={PROJECT_GALLERY}
+        layout="carousel"
+      />
+
       <Story
         id="sg-story"
         eyebrow="Sections"

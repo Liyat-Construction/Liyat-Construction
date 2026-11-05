@@ -164,13 +164,16 @@ then "Contact us". The link bar shows from 1280 px; below that, the hamburger me
 - **Tagline:** "Know better. Drill better." **Descriptor:** "Water Well Drilling & Engineering".
 - **Service names** (identical everywhere, lifecycle order): Hydrogeological & Geophysical
   Survey · Deep and Shallow Water-Well Drilling · Pumping Tests · Borehole Rehabilitation ·
-  Pump Supply & Installation · Turnkey Water Projects. Slugs keep their older names
-  (`borehole-drilling`) so the URLs don't change.
+  Pump Supply & Installation · Turnkey Water Projects. Each link matches its name
+  (D-135): `hydrogeological-geophysical-survey`, `deep-shallow-water-well-drilling`,
+  `pumping-tests`, `borehole-rehabilitation`, `pump-supply-installation`, `turnkey-water-projects`.
 - **Figures in use** (Liyat's copy review and written answers, 2026-11; they cover 2019–2026):
-  7+ years, 50+ wells completed, 600 m deepest, 15,000 m+ drilled; founded 2019. The 50+ and
-  15,000 m+ show but stay marked until he confirms them (D-126). The General Manager's 20+ years
-  appears only in his story on About (D-123). Rigs can drill up to 800 m: a machine limit, kept
-  separate from the 600 m deepest well.
+  7+ years, 50+ wells completed, 600 m deepest, 12,000 m+ drilled (confirmed 2026-11-05);
+  founded 2019. The General Manager's 20+ years appears only in his story on About (D-123). Rigs
+  can drill up to 800 m (his answer), kept separate from the 600 m deepest well; the Equipment
+  page's fleet list shows his equipment list's "1200 m" and "300 m" rigs (D-132).
+- **Liyat's own words:** everything he sent is copied word for word in
+  [`LIYAT_ORIGINALS.md`](LIYAT_ORIGINALS.md); the original files are not kept in the project.
 - **Contact form:** Web3Forms. Set `siteConfig.contactForm.formKey` to the access key;
   until then a submission shows the standard error. All fields required; honeypot spam field.
 

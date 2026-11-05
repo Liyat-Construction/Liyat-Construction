@@ -14,9 +14,9 @@ import { siteConfig } from '@/config/site';
 // 600 m the deepest. Figures cover 2019–2026, with no work from before 2019.
 const COMPANY_EXPERIENCE: Stat = { value: '7', unit: '+ years', label: 'Company experience' };
 const DEEPEST_WELL: Stat = { value: '600', unit: 'm', label: 'Deepest well drilled' };
-// PLACEHOLDER(C-10): from his copy review; he gave the years but hasn't said yes to the numbers (D-126)
+// Liyat's follow-up answers (2026-11-05): 50+ wells stands; "ok make it 12,ooom +"
 const WELLS_COMPLETED: Stat = { value: '50', unit: '+', label: 'Wells completed' };
-const METRES_DRILLED: Stat = { value: '15,000', unit: '+ m', label: 'Metres drilled for clients' };
+const METRES_DRILLED: Stat = { value: '12,000', unit: '+ m', label: 'Metres drilled for clients' };
 
 export const PROJECT_FIGURES: Stat[] = [WELLS_COMPLETED, DEEPEST_WELL, METRES_DRILLED];
 

@@ -2,6 +2,7 @@ import { createElement } from 'react';
 import {
   ArrowRight,
   Check,
+  ChevronLeft,
   ChevronRight,
   CircleAlert,
   Clock,
@@ -29,6 +30,7 @@ import { cn, pick } from '@/lib/utils';
 const icons = {
   'arrow-right': ArrowRight,
   check: Check,
+  'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight,
   alert: CircleAlert,
   clock: Clock,
