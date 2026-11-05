@@ -378,3 +378,11 @@ service pages and Equipment at 768, Equipment at 1280 (fleet list and photos). N
 12th project card is the Belgian Embassy with an illustrative photo (D-136); Chaka House now
 comes before Tsedey Bank; the Projects photos are a carousel (D-137). Placeholders 6 → 7
 (C-36 ×3). **Next:** commit on the owner's word.
+
+**2026-11-06 (owner).** Home hero headline and buttons moved a little lower from md up
+(`md:pt-16` → `md:pt-24 lg:pt-28`); phones unchanged (centred). Checked at 768 and 1440.
+Favicon (owner's word): the full logo shrunk lost its divider and drop at 16/32 px, so all icons
+(favicon .ico/16/32/96, apple-touch, android 192/512) are now the full L | C logo (owner: the C alone
+is not the logo), centred on a white rounded tile with about 11–12% white space on each side (owner approved this size) (square white for Apple), cut from `public/logo.png`. White tile so it reads
+on dark browser tabs too and matches the white logo box in the header. `build:static` passes.
+Not committed.

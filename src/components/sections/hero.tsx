@@ -36,7 +36,7 @@ export function Hero({ title, lead, image, caption, primary, secondary }: HeroPr
       >
         <Backdrop image={image} caption={caption} />
         <Container className="relative flex flex-col items-center gap-8 pt-(--header-total) pb-16 lg:pb-24">
-          <div className="flex flex-col items-center gap-8 md:pt-16">
+          <div className="flex flex-col items-center gap-8 md:pt-24 lg:pt-28">
             <SectionHeading
               as="h1"
               size="display"
