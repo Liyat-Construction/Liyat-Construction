@@ -120,3 +120,38 @@ Spelling mistakes in the profile, for the owner to mention if useful: "Turnkiye 
 - **Ovid name:** use **Ovid Group**, as he named it with the photo (2026-11-04).
 - **Questions to Liyat:** only what we can't decide without him. He checks everything else by
   reading the preview, because that's less work for him (2026-11-04).
+
+## Meeting, 10 November 2026
+
+Answers from the Notion page "Meeting questions for Liyat" (copied 2026-11-12; Notion is the
+original). Items marked **ask** are still open.
+
+| #   | Topic                      | His answer                                                                                                                     | What we do                                                                                                           |
+| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| 1   | Address                    | The office is 301 Mickey Leland St, Addis Ababa; the street name and Bole Sub City, Woreda 04, House 201 are the same place    | **ask:** Google Maps puts Mickey Leland St in Woreda 03, he gave Woreda 04. No structured-data address until settled |
+| 2   | Opening hours              | Mon–Sat, 8:00 AM – 5:00 PM is right; Google Maps will be corrected                                                             | The site is right; the Business Profile needs correcting                                                             |
+| 3   | Two Google Maps profiles   | His is the one with the phone number and website; the other is not his, can't be deleted, so ignore it                         | Ignore the other (replaces D-181's "Liyat deletes the other")                                                        |
+| 4–5 | LinkedIn, Facebook         | They create the pages; we send one document: one Gmail, same profile picture, address, phone, bio everywhere                   | Requirements document                                                                                                |
+| 6   | Google reviews             | Ask every client from now on for a review and a testimonial                                                                    | Requirements document                                                                                                |
+| 7   | Client quotes              | He will share them                                                                                                             | Requirements document                                                                                                |
+| 8   | Three project pages        | Ethiopian Airlines finished **2024**; hardest part and duration: not available. Owner: leave duration, invent a "hardest part" | Duration left out. **Agent objects to inventing** the hardest part (see `SEO_PLAN.md` step 5)                        |
+| 9   | Belgian Embassy            | Finished **2025**; no photo, he will send a better illustrative photo                                                          | Year to add; photo in the requirements document                                                                      |
+| 10  | Belayneh Kinde, Arada Mall | Belayneh Kinde: ongoing, 2026, 200 m deep. Arada Luxury Mall: Piassa, Addis Ababa, "320 pump installation"                     | **ask:** is the 320 a well depth or a pump? (the site says a 320 m well)                                             |
+| 11  | Rig depth                  | "We drill up to 800 and we have equipment that drills 1,200 and 300 m"; asks where the site says it                            | The Equipment page and Home's equipment section say it; the answer to C-37 is still open                             |
+| 12  | Partners                   | They will send the Husky logo and may add other partners                                                                       | Requirements document (C-39)                                                                                         |
+| 13  | Zelalem                    | Zelalem Fiker (role not given)                                                                                                 | Our records only, never on the site                                                                                  |
+| 14  | Public email               | info@liyatconstruction.com                                                                                                     | **ask:** does the address exist and forward to his Gmail? The site and form still use the Gmail address (C-25)       |
+| 15  | How we get access (D-183)  | Not on the Notion page, not asked                                                                                              | **ask**                                                                                                              |
+
+**Other requests from the owner at the meeting:** remove one picture from the Equipment page
+(the owner says which); a Google map in the contact section (reverses "map removed", D-116;
+agent: a link to Maps costs nothing, an embed adds a third-party script and a CSP change; wait for
+the address); a team section built like the partners section, no staff photos and names (reopens
+D-122; needs content from Liyat).
+
+**For the requirements document** (the owner sends it with the website): real client quotes with
+name, job title and permission; the Husky logo and website, and any other partners; a better
+illustrative photo for the Belgian Embassy; extra photos for the British Embassy and Chaka House;
+information for the team section; one Gmail, profile picture, address, phones and bio for all
+profiles; LinkedIn, Facebook and WhatsApp Business pages; ask every client for a Google review
+and a testimonial; how we get access (D-183).

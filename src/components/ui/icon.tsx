@@ -18,7 +18,9 @@ import {
   Mail,
   MapPin,
   Menu,
+  Pause,
   Phone,
+  Play,
   ScanSearch,
   Wrench,
   X,
@@ -43,6 +45,9 @@ const icons = {
   mail: Mail,
   'map-pin': MapPin,
   menu: Menu,
+  // The home hero slider's pause control (D-145)
+  pause: Pause,
+  play: Play,
   phone: Phone,
   close: X,
   // Services (PROJECT.md §8), lifecycle order

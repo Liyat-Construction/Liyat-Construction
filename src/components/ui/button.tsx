@@ -35,8 +35,14 @@ interface CommonProps {
 
 type ButtonProps = CommonProps &
   (
-    | { href: string; type?: never; disabled?: never }
-    | { href?: never; type?: 'button' | 'submit'; disabled?: boolean }
+    | { href: string; type?: never; disabled?: never; onClick?: never }
+    | {
+        href?: never;
+        type?: 'button' | 'submit';
+        disabled?: boolean;
+        /** Only from a client component, e.g. ShowMore */
+        onClick?: () => void;
+      }
   );
 
 /** Renders a link (internal, external, tel:, mailto:) or a <button>. Min 44 px tall. */
@@ -77,7 +83,12 @@ export function Button({
     );
   }
   return (
-    <button type={rest.type ?? 'button'} disabled={rest.disabled} className={classes}>
+    <button
+      type={rest.type ?? 'button'}
+      disabled={rest.disabled}
+      onClick={rest.onClick}
+      className={classes}
+    >
       {glyph}
       <span>{children}</span>
     </button>

@@ -23,6 +23,7 @@ export const siteConfig = {
       { href: '/#services', label: 'Services', match: '/services' },
       { href: '/projects', label: 'Projects' },
       { href: '/equipment-capabilities', label: 'Equipment' },
+      // The page itself is "Safety & Environment"; the short label keeps the bar on one line (owner, 2026-11-09)
       { href: '/environment', label: 'Environment' },
       { href: '/#testimonials', label: 'Testimonials' },
     ],
@@ -36,7 +37,7 @@ export const siteConfig = {
   // ── Brand Identity ──────────────────────────────────────────────────────────
   name: 'Liyat Construction',
   description:
-    'Liyat Construction PLC is an Ethiopian company specializing in groundwater development, water-well drilling, pumping tests, and turnkey water works for institutional, governmental, and commercial clients.',
+    'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia, serving institutional, governmental and commercial clients.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   logoAlt: 'Liyat Construction',
   /** Shown with the logo wherever someone meets us first (PROJECT.md §8) */
@@ -92,8 +93,6 @@ export const siteConfig = {
       'Borehole Rehabilitation',
       'Pump Supply & Installation',
       'Turnkey Water Projects',
-      'Privacy policy',
-      'Terms of service',
       'Other',
     ],
   },
@@ -116,10 +115,12 @@ export const siteConfig = {
 
   // ── SEO & Open Graph ────────────────────────────────────────────────────────
   seo: {
-    titleDefault: 'Liyat Construction | Groundwater Development & Water-Well Engineering',
+    titleDefault: 'Liyat Construction | Water-Well Drilling in Ethiopia',
     titleTemplate: '%s | Liyat Construction',
     metaDescription:
-      'Liyat Construction PLC delivers groundwater investigation, water-well drilling, pumping tests, pump installation, and turnkey water projects in Ethiopia for institutional and commercial clients.',
+      'Water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. Survey, drilling, pumping tests, pump installation and turnkey water projects.',
+    // Sitemap lastmod: change it only when page content really changes (Google ignores dates that always move)
+    contentUpdated: '2026-11-12',
     keywords: [
       'water well drilling Ethiopia',
       'groundwater development',
@@ -129,9 +130,9 @@ export const siteConfig = {
       'Liyat Construction',
     ] as string[],
     category: 'business',
-    ogTitle: 'Liyat Construction | Groundwater Development & Water-Well Engineering',
+    ogTitle: 'Liyat Construction | Water-Well Drilling in Ethiopia',
     ogDescription:
-      'Ethiopian groundwater development and water-well engineering contractor serving government, institutional, and commercial clients.',
+      'Water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia, serving government, institutional and commercial clients.',
     ogImage: '/og-image.jpg',
     ogImageAlt: 'Water rising beside a Liyat Construction drilling rig',
   },
@@ -161,7 +162,7 @@ export const siteConfig = {
     headings: { pages: 'Pages', services: 'Services', contact: 'Contact' },
     // The company description, used unchanged (PROJECT.md §8)
     description:
-      'Liyat Construction is a groundwater development company specializing in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
+      'Liyat Construction is a groundwater development company specialising in water well drilling and engineering. We take water projects from hydrogeological survey through drilling, well construction and testing to pump installation, and we document every stage for our clients. Our work is built to keep water flowing for years.',
     copyrightEntity: 'Liyat Construction PLC',
     /** After "© {year} {legal name}." in the bottom bar */
     rights: 'All rights reserved.',

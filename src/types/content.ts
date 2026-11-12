@@ -45,6 +45,8 @@ export interface Service {
   title: string;
   /** One line, on the service card */
   summary: string;
+  /** Search-result description (about 160 characters); names Ethiopia and Addis Ababa */
+  metaDescription: string;
   /** Lead paragraph of the service page */
   intro: string;
   overview: string;
@@ -85,6 +87,30 @@ export interface Project {
   /** Tested yield (water: true). The project card shows it before depth */
   yield?: Stat;
   featured: boolean;
+  /** Gives the project its own page (D-184); only confirmed facts. Without it the project is a card only. */
+  story?: ProjectStory;
+}
+
+/** The short story on a project page: the job, what we did, the result. */
+export interface ProjectStory {
+  /** Search-result title, under about 50 characters; the site name is added after it */
+  metaTitle: string;
+  /** Search-result description, about 160 characters; names Addis Ababa */
+  metaDescription: string;
+  /** Paragraphs under "The job" */
+  job: string[];
+  work: {
+    /** Optional opening paragraph */
+    intro?: string;
+    /** The stages in order: a short name and what we did */
+    steps: { title: string; text: string }[];
+    /** Optional closing paragraph */
+    note?: string;
+  };
+  /** Paragraphs under "The result" */
+  result: string[];
+  /** Site photos shown under the story, besides the cover in the header */
+  photos: ImageAsset[];
 }
 
 export interface Testimonial {
@@ -165,6 +191,21 @@ export interface ProjectsPage {
   clients: SectionCopy;
   /** Eyebrow above each project's gallery under the cards (O-12) */
   gallery: SectionCopy;
+  /** Labels on the three project pages (D-184) */
+  detail: {
+    eyebrow: string;
+    facts: string;
+    /** Label of the year in the key figures */
+    completed: string;
+    job: string;
+    work: string;
+    result: string;
+    photos: string;
+    services: string;
+    related: string;
+    allProjects: Action;
+    cta: string;
+  };
 }
 
 /** A section of running text, with an optional button (Story section). */
@@ -175,11 +216,12 @@ export interface StoryCopy extends SectionCopy {
 /** /about, in section order (PROJECT.md §7). Company facts come from company.ts. */
 export interface AboutPage {
   header: PageCopy & { image: ImageAsset };
-  story: StoryCopy & { factsTitle: string };
+  story: StoryCopy & { factsTitle: string; registrationTitle: string };
   figures: SectionCopy;
   missionVision: SectionCopy & { items: Feature[] };
   values: SectionCopy & { items: Feature[] };
   clients: SectionCopy;
+  partners: SectionCopy;
   safety: SectionCopy & { link: Action };
 }
 
@@ -192,6 +234,13 @@ export interface CtaBandContent {
   call: string;
 }
 
+/** One full-screen photo of the home hero (no caption: owner, 2026-11-09). */
+export interface HeroSlide {
+  image: ImageAsset;
+  /** `bright` for a photo whose bright areas sit behind the text: a darker scrim (measured, 4.5 : 1) */
+  scrim?: 'standard' | 'bright';
+}
+
 /** Home page copy, in section order (PROJECT.md §7). The eyebrow of the hero is the descriptor. */
 export interface HomePage {
   hero: {
@@ -199,9 +248,8 @@ export interface HomePage {
     lead: string;
     primary: Action;
     secondary: Action;
-    /** The full-screen photo behind the headline (D-81), and its corner caption */
-    image: ImageAsset;
-    caption: string;
+    /** The full-screen photos behind the headline (D-81, D-145): one, or a slider of several */
+    slides: HeroSlide[];
   };
   /** "Who we are": text, a landscape photo and the key figures (D-61) */
   about: StoryCopy & { image: ImageAsset; action: Action };

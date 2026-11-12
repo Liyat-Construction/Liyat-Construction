@@ -14,20 +14,20 @@ export const TESTIMONIALS: Testimonial[] = [
       'The pumping test report was clear enough for our engineers to size the pump system directly from it. The team kept us informed at every stage.',
     name: 'Name Surname',
     role: 'Role',
-    organization: 'Organization (C-12)',
+    organization: 'Organisation (C-12)',
   },
   {
     quote:
       'Liyat ran the survey, drilling and pump installation as one project. The well has performed as the test predicted.',
     name: 'Name Surname',
     role: 'Role',
-    organization: 'Organization (C-12)',
+    organization: 'Organisation (C-12)',
   },
   {
     quote:
       'Their documentation made it straightforward to report back to our board and our funders.',
     name: 'Name Surname',
     role: 'Role',
-    organization: 'Organization (C-12)',
+    organization: 'Organisation (C-12)',
   },
 ];

@@ -8,8 +8,9 @@ import type { EnvironmentPage } from '@/types/content';
 
 export const ENVIRONMENT_PAGE: EnvironmentPage = {
   header: {
-    eyebrow: 'Environment and safety',
-    title: 'Water worth protecting',
+    // "Safety & Environment" in the menu, eyebrow and title (D-152, owner 2026-11-08)
+    eyebrow: 'Safety & Environment',
+    title: 'Safe crews, protected water',
     intro:
       'Responsible groundwater work means caring for the source, the people on site and the land around it.',
     image: {
@@ -37,13 +38,14 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
     intro:
       'Survey findings and test results support informed decisions. Each is carried out when included in the agreed scope.',
     items: [
+      // A survey only when the client asks for one: no promise on every job (D-117, D-152)
       {
-        title: 'Site wells on evidence',
-        text: 'When commissioned, hydrogeological and geophysical surveys help assess groundwater conditions and recommend drilling locations. They inform the decision to drill; they do not guarantee a water supply.',
+        title: 'Choosing where to drill',
+        text: 'When a client asks for a survey, its hydrogeological and geophysical findings guide where the well goes. A survey improves the odds of finding water. It never guarantees it.',
       },
       {
-        title: 'Understand the well’s performance',
-        text: 'When pumping tests are part of the work, pumping rates, water levels and recovery are recorded. The results inform recommendations for operating the well and selecting a suitable pump.',
+        title: 'Knowing what the well can give',
+        text: 'When a pumping test is part of the work, we record pumping rates, water levels and recovery. The results show how hard the well can be pumped and which pump suits it. We do not guarantee a specific discharge.',
       },
     ],
   },

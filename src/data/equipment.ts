@@ -10,27 +10,31 @@ import type { Equipment, EquipmentPage, ImageAsset } from '@/types/content';
 export const EQUIPMENT_PAGE: EquipmentPage = {
   header: {
     eyebrow: 'Our equipment',
-    title: 'Equipment and technologies',
+    // Copy approved by the owner, 2026-11-08 (D-158); "our own" is from Liyat's review ("We own the rigs")
+    title: 'Rigs, pumps and the crews who run them',
     intro:
-      'Drilling rigs, a dedicated pumping-test crew and the equipment that supports each stage on site.',
+      'We work with our own drilling rigs, compressors and test pumps, sourced from Indian and Turkish manufacturers.',
+    // The owner's choice (2026-11-09): the rig on its carrier; the Bole Lemi photo moved to the rigs section
     image: {
-      url: '/images/hero/belayneh-kinde-rig.webp',
-      alt: 'Liyat drilling rig, air compressors and truck on site at Bole Lemi',
+      url: '/images/equipment/rig-transport.webp',
+      alt: 'Liyat drilling rig mounted on its transport carrier',
     },
     description:
       'Liyat Construction’s drilling rigs, pumping-test equipment and groundwater investigation, well construction and installation methods in Ethiopia.',
   },
   rigs: {
     eyebrow: 'Drilling equipment',
-    title: 'The equipment behind the drilling',
-    // Liyat's written answers: "Indian and Turkey", rigs "up to 800m", Chaka House the deepest
+    title: 'Rigs for deep and shallow wells',
+    // Liyat's written answers: mud rotary and DTH, rigs "up to 800m", Chaka House the deepest.
+    // The 800 m vs the list's 1,200 m is still open (C-37)
     paragraphs: [
-      'Our rigs and drilling tools are sourced from Indian and Turkish manufacturers. In-house drilling teams carry out the well construction, supported by separate pumping-test and electromechanical teams.',
-      'Our rigs can drill up to 800 m. The deepest well we have completed so far is 600 m.',
+      'Our rigs drill by mud rotary and DTH (down-the-hole hammer), so one crew can work through soft ground and hard rock.',
+      'They can drill up to 800 m. The deepest well we have completed so far is 600 m, at Chaka House in Addis Ababa.',
+      'Our drilling team builds the well. Separate pumping-test and electromechanical teams take it from there.',
     ],
     image: {
-      url: '/images/equipment/rig-transport.webp',
-      alt: 'Liyat drilling rig mounted on its transport carrier',
+      url: '/images/hero/belayneh-kinde-rig.webp',
+      alt: 'Liyat drilling rig, air compressors and truck on site at Bole Lemi',
     },
   },
   // The main items of Liyat's equipment list (LIYAT_ORIGINALS.md §6); no counts, no consumables.
@@ -39,7 +43,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   fleet: {
     eyebrow: 'Our fleet',
     title: 'What we bring to site',
-    intro: 'The main machines and tools from our equipment list.',
+    intro: 'The main machines and tools we bring to a well site.',
     items: [
       {
         title: 'Drilling rigs',
@@ -47,11 +51,11 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       },
       {
         title: 'Air compressor',
-        text: 'An Atlas Copco XRVS high-pressure air compressor, 32 bar.',
+        text: 'An Atlas Copco XRVS high-pressure compressor, 32 bar, for DTH drilling and well development.',
       },
       {
         title: 'Crane and trucks',
-        text: 'A crane, trucks and pickups move the rigs, pipe and crews to site.',
+        text: 'A crane, trucks and pickups to move rigs, pipe and crews between sites.',
       },
       {
         title: 'Drill pipe and bits',
@@ -59,11 +63,11 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       },
       {
         title: 'Hammers and fishing tools',
-        text: 'Drilling hammers for DTH drilling, and fishing tools to recover anything lost in the hole.',
+        text: 'DTH hammers for hard rock, and fishing tools to recover anything lost down the hole.',
       },
       {
         title: 'Test pumps and flow measurement',
-        text: 'Submersible test pumps from 35 to 200 HP, and a V-notch to measure the flow.',
+        text: 'Submersible test pumps from 35 to 200 HP, and a V-notch weir to measure the flow.',
       },
     ],
   },
@@ -77,15 +81,15 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     items: [
       {
         title: 'Variable-discharge test pumps',
-        text: 'Submersible pumps let the crew control the pumping rate while observing how the well responds.',
+        text: 'The crew can change the pumping rate and watch how the water level responds.',
       },
       {
         title: 'Pumping-test crane',
-        text: 'The crew’s crane supports the handling and positioning of pumping-test equipment at the well.',
+        text: 'Lowers the test pump into the well and lifts it out again.',
       },
       {
         title: 'Generators',
-        text: 'Generators provide power for the pumps and equipment used during testing on site.',
+        text: 'Power the test pumps on site, wherever the well is.',
       },
     ],
   },
@@ -98,19 +102,19 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     items: [
       {
         title: 'Ground investigation',
-        text: 'When a survey is part of the project, its hydrogeological and geophysical findings decide where the well is sited.',
+        text: 'When the client asks for a survey, its hydrogeological and geophysical findings decide where we drill.',
       },
       {
         title: 'Well construction',
-        text: 'Casing, screens and well development follow the agreed design and the ground encountered during drilling.',
+        text: 'Casing, screens and development follow the agreed design and what the ground shows during drilling.',
       },
       {
         title: 'Pumping tests',
-        text: 'Pumping-rate and water-level observations show how the well performs under test.',
+        text: 'We pump at measured rates and record how the water level falls and recovers.',
       },
       {
         title: 'Pump installation',
-        text: 'The well’s performance (from a pumping test, when one is part of the work) and the project’s water needs inform pump selection and installation.',
+        text: 'We size the pump to the water the client needs and, when a pumping test was part of the work, to the well’s tested performance.',
       },
     ],
   },
@@ -124,13 +128,20 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     title: 'Ready for the work on site',
     paragraphs: [
       'Drilling, pumping-test and installation teams coordinate the stages of work, with care for the crew, the borehole and the surrounding ground. Our environmental practice explains how we approach water, drilling fluid, cuttings and handover.',
+      // From Liyat's review ("For tenders"), without its promise of ownership documents
+      'Need our equipment list for a tender? Ask us and we’ll send it.',
     ],
-    action: { label: 'See our environmental practice', href: '/environment' },
+    action: { label: 'See our safety and environmental practice', href: '/environment' },
   },
 };
 
-// Liyat's photos (2026-11-05), shown under the fleet on /equipment-capabilities
+// Liyat's photos (2026-11-05 and 2026-11-07, D-144), shown under the fleet on
+// /equipment-capabilities: 3 rows of 3 on tablets and desktops, a carousel on phones (D-146)
 export const EQUIPMENT_GALLERY: ImageAsset[] = [
+  {
+    url: '/images/equipment/rig-and-casings.webp',
+    alt: 'Liyat drilling rig with its mast raised over a row of screen casings',
+  },
   {
     url: '/images/equipment/fleet.webp',
     alt: 'Liyat trucks, crane truck and air compressor lined up at the yard',
@@ -140,8 +151,16 @@ export const EQUIPMENT_GALLERY: ImageAsset[] = [
     alt: 'Liyat truck-mounted drilling rig with its mast raised',
   },
   {
+    url: '/images/hero/ea-casing-site.webp',
+    alt: 'Liyat rig, casing pipes and site cabin at the Ethiopian Airlines site',
+  },
+  {
     url: '/images/equipment/compressor-truck.webp',
     alt: 'Atlas Copco XRVS air compressor on a Liyat crane truck',
+  },
+  {
+    url: '/images/equipment/engineers-on-pipes.webp',
+    alt: 'Engineers on the casing pipes beside the Liyat rig',
   },
   {
     url: '/images/equipment/generator.webp',

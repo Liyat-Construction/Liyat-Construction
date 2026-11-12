@@ -63,7 +63,8 @@ export function FeaturedProjects({
               icon="arrow"
               className={cn(
                 'shrink-0',
-                few && 'max-sm:self-end sm:absolute sm:right-0 sm:bottom-0'
+                // Centred just under the heading on phones; at the right from sm
+                few && 'max-sm:self-center sm:absolute sm:right-0 sm:bottom-0'
               )}
             >
               {link.label}

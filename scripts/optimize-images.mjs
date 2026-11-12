@@ -36,11 +36,11 @@ const PROFILES = {
 const SOURCE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.jfif', '.png']);
 const SELECTED = process.argv.slice(2);
 const TRIMMED_LOGOS = new Set([
-  'clients/belayneh kinde group.png',
+  'clients/belayneh-kinde-group.png',
   'clients/cirht.jfif',
-  'clients/et minieal.png',
-  'clients/horn of africa ground water.png',
-  'clients/hosea treading house.png',
+  'clients/et-mineral.png',
+  'clients/horn-of-africa-groundwater.png',
+  'clients/hosea-trading-house.png',
 ]);
 
 function listSources(dir) {

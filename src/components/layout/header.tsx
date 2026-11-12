@@ -42,7 +42,8 @@ export function Header() {
           <NavLinks links={main} layout="bar" />
         </nav>
         <div className="flex items-center gap-4">
-          <Button href={cta.href} className="shrink-0 max-sm:hidden">
+          {/* Never on two lines (owner, 2026-11-09) */}
+          <Button href={cta.href} className="shrink-0 whitespace-nowrap max-sm:hidden">
             {cta.label}
           </Button>
           <MobileMenu

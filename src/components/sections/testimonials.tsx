@@ -1,5 +1,6 @@
 import type { SectionCopy, Testimonial } from '@/types/content';
 import { TestimonialCard } from '@/components/cards/testimonial-card';
+import { Carousel } from '@/components/ui/carousel';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 
@@ -10,8 +11,9 @@ interface TestimonialsProps extends SectionCopy {
 }
 
 /**
- * Client quotes in a grid. Renders nothing when there are none (C-12: only approved
- * quotes). The clients row lives under the projects (ClientList in FeaturedProjects).
+ * Client quotes: a swipe row on phones, one quote at a time (D-148); stacked on tablets and
+ * three in a row from lg. Renders nothing when there are none (C-12: only approved quotes).
+ * The clients row lives under the projects (ClientList in FeaturedProjects).
  */
 export function Testimonials({ id, eyebrow, title, intro, testimonials }: TestimonialsProps) {
   if (testimonials.length === 0) return;
@@ -25,13 +27,15 @@ export function Testimonials({ id, eyebrow, title, intro, testimonials }: Testim
           title={title}
           intro={intro}
         />
-        <ul className="gap-grid grid lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <li key={testimonial.quote}>
-              <TestimonialCard testimonial={testimonial} />
-            </li>
-          ))}
-        </ul>
+        <Carousel
+          label={title}
+          layout="cards"
+          itemName="quotes"
+          slides={testimonials.map((testimonial) => ({
+            key: testimonial.quote,
+            content: <TestimonialCard testimonial={testimonial} />,
+          }))}
+        />
       </div>
     </Section>
   );

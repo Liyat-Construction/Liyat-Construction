@@ -13,6 +13,8 @@ export const SERVICES: Service[] = [
     slug: 'hydrogeological-geophysical-survey',
     title: 'Hydrogeological & Geophysical Survey',
     summary: 'We read the ground before a rig moves, so the well is sited on the evidence.',
+    metaDescription:
+      'Hydrogeological and geophysical surveys in Ethiopia: resistivity soundings that help locate productive aquifers before drilling. Liyat Construction, Addis Ababa.',
     intro:
       'Find the right water source before you drill, with a survey that names the site, depth and likely yield.',
     overview:
@@ -44,9 +46,11 @@ export const SERVICES: Service[] = [
     slug: 'deep-shallow-water-well-drilling',
     title: 'Deep and Shallow Water-Well Drilling',
     summary: 'Wells drilled, cased, screened and developed to specification.',
+    metaDescription:
+      'Deep and shallow water-well drilling in Ethiopia with mud rotary and DTH rotary rigs that drill up to 800 m. Liyat Construction, Addis Ababa.',
     intro: 'Wells drilled, cased, screened and developed to specification.',
     overview:
-      'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximize yield and minimize sediment. Every stage is logged and supervised.',
+      'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximise yield and minimise sediment. Every stage is logged and supervised.',
     wellNote:
       'Drilling builds the well itself: the borehole, the casing, the screen and gravel pack in the aquifer, and the wellhead at the surface.',
     forWho:
@@ -58,7 +62,7 @@ export const SERVICES: Service[] = [
       'Borehole log and construction records',
     ],
     method: [
-      'Mobilize the rig and set up the site',
+      'Mobilise the rig and set up the site',
       'Drill and log the formation',
       'Install casing, screen and gravel pack',
       'Develop the well until the water runs clear',
@@ -75,6 +79,8 @@ export const SERVICES: Service[] = [
     slug: 'pumping-tests',
     title: 'Pumping Tests',
     summary: 'Step and constant-rate tests that prove what a well can deliver before you invest.',
+    metaDescription:
+      'Pumping tests in Ethiopia: step-drawdown and constant-rate tests that show what a well can deliver before you invest. Liyat Construction, Addis Ababa.',
     intro: 'Know what your well can deliver before you size the pump and pipes.',
     overview:
       'A pumping test confirms that a well meets its design demand. We run step-drawdown and constant-rate tests, record water levels through drawdown and recovery, and interpret the results to find the sustainable yield and the aquifer parameters your engineers design from.',
@@ -95,16 +101,18 @@ export const SERVICES: Service[] = [
     ],
     deliverables: ['Pumping test report with the recommended pumping rate'],
     cta: 'Book a pumping test',
+    // Liyat's photo of the flow being read at the V-notch (D-142)
     image: {
-      url: '/images/hero/ethiopian-airlines.webp',
-      alt: 'Water discharging into a test tank during a Liyat pumping test for Ethiopian Airlines',
-      focus: 'right',
+      url: '/images/hero/ea-v-notch.webp',
+      alt: 'A Liyat engineer checking the flow at the V-notch tank during the Ethiopian Airlines pumping test',
     },
   },
   {
     slug: 'borehole-rehabilitation',
     title: 'Borehole Rehabilitation',
     summary: 'Restored yield for boreholes that have slowed down, silted up or stopped.',
+    metaDescription:
+      'Borehole rehabilitation in Ethiopia: clean, redevelop and retest boreholes that have slowed down, silted up or stopped. Liyat Construction, Addis Ababa.',
     intro: 'Bring an existing borehole back to service, often for less than drilling a new one.',
     overview:
       'Boreholes lose yield as screens clog and sediment builds up. We assess the well, test what it delivers today, then clean and redevelop it by airlifting, brushing and screen cleaning, and test it again so you can see the result.',
@@ -128,7 +136,7 @@ export const SERVICES: Service[] = [
     // Airlift development: the same technique rehabilitation uses
     image: {
       url: '/images/hero/yekatit-12.webp',
-      alt: 'Water rising from the new well during development at Yekatit 12 Medical College',
+      alt: 'Water rising from the new well during development at Yekatit 12 Hospital Medical College',
     },
   },
   // Hand pumps confirmed in Liyat's follow-up answers (2026-11-05)
@@ -136,6 +144,8 @@ export const SERVICES: Service[] = [
     slug: 'pump-supply-installation',
     title: 'Pump Supply & Installation',
     summary: 'Submersible and hand pumps, supplied, installed and commissioned.',
+    metaDescription:
+      'Submersible and hand pump supply and installation in Ethiopia, commissioned and checked before handover. Liyat Construction, Addis Ababa.',
     intro:
       'Submersible and hand pumps, supplied and installed to turn a well into a working supply.',
     // No test is promised before every installation (D-117, P15 proofread)
@@ -144,7 +154,7 @@ export const SERVICES: Service[] = [
     wellNote:
       'The pump set is what makes the well a supply: the control panel at the surface, the rising main and the submersible pump below the pumping level.',
     forWho:
-      'Clients ready to turn a completed or rehabilitated well into a working water supply, from a motorized borehole to a community hand pump',
+      'Clients ready to turn a completed or rehabilitated well into a working water supply, from a motorised borehole to a community hand pump',
     includes: [
       'Submersible pump supply and installation',
       'Hand pump supply and installation',
@@ -170,12 +180,14 @@ export const SERVICES: Service[] = [
     slug: 'turnkey-water-projects',
     title: 'Turnkey Water Projects',
     summary: 'One contractor accountable for the whole water source, from survey to handover.',
+    metaDescription:
+      'Turnkey water projects in Ethiopia: survey, drilling, pumping test and pump installation under one contractor. Liyat Construction, Addis Ababa.',
     intro: 'One contractor for the whole water source, from survey to handover.',
     overview:
       'For clients who want a single point of accountability, we run the whole project: survey, drilling, pumping test, wellhead and pump installation, with one schedule, one team and one handover file.',
     wellNote:
       'A turnkey project covers the whole drawing — survey, drilling, test, pump and handover — with one contractor accountable for every part.',
-    forWho: 'Organizations that want one contractor accountable for the complete water source',
+    forWho: 'Organisations that want one contractor accountable for the complete water source',
     includes: [
       'Planning and coordination of every stage',
       'Survey, drilling and testing',

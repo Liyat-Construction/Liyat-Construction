@@ -13,6 +13,8 @@ interface StatProps {
   /** `water` for yields, water levels and flow only (PROJECT.md §5) */
   tone?: keyof typeof tones;
   align?: 'start' | 'center';
+  /** `compact` shrinks the figure on phones, so several fit in one row (project page header) */
+  size?: 'default' | 'compact';
   className?: string;
 }
 
@@ -21,7 +23,15 @@ interface StatProps {
  * top of its cell (`justify-end` in a reversed column), so a row of figures lines
  * up even when one label wraps to two lines.
  */
-export function Stat({ value, unit, label, tone = 'ink', align = 'start', className }: StatProps) {
+export function Stat({
+  value,
+  unit,
+  label,
+  tone = 'ink',
+  align = 'start',
+  size = 'default',
+  className,
+}: StatProps) {
   return (
     <div
       className={cn(
@@ -34,11 +44,16 @@ export function Stat({ value, unit, label, tone = 'ink', align = 'start', classN
       <dd
         className={cn(
           'font-heading text-figure on-dark:text-white tabular-nums',
+          size === 'compact' && 'max-sm:text-h2',
           pick(tones, tone)
         )}
       >
         {value}
-        {unit && <span className="text-h4 ms-1">{unit}</span>}
+        {unit && (
+          <span className={cn('text-h4 ms-1', size === 'compact' && 'max-sm:text-small')}>
+            {unit}
+          </span>
+        )}
       </dd>
     </div>
   );

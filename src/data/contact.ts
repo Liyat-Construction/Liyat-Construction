@@ -36,11 +36,11 @@ export const CONTACT_PAGE: ContactPage = {
     subjectPrompt: 'Choose a subject',
     messageHint:
       'Include the location, the service you need and any planned dates. Please do not send sensitive documents through this form.',
-    submit: 'Send inquiry',
-    sending: 'Sending your inquiry…',
-    success: 'Your inquiry has been sent. Thank you for telling us about your project.',
-    error: 'Your inquiry could not be sent. Please try again or use the contact details alongside.',
-    noScript: 'To send an inquiry online, enable JavaScript or contact us by phone or email.',
+    submit: 'Send enquiry',
+    sending: 'Sending your enquiry…',
+    success: 'Your enquiry has been sent. Thank you for telling us about your project.',
+    error: 'Your enquiry could not be sent. Please try again or use the contact details alongside.',
+    noScript: 'To send an enquiry online, enable JavaScript or contact us by phone or email.',
     validation: {
       name: 'Enter your name using 2–80 characters.',
       email: 'Enter a valid email address using no more than 120 characters.',

@@ -7,8 +7,11 @@ import { SectionHeading } from '@/components/ui/section-heading';
 interface PhotoGalleryProps extends SectionCopy {
   images: ImageAsset[];
   id: string;
-  /** `carousel` for a long set: one row the visitor flips through, so the page stays short */
-  layout?: 'grid' | 'carousel';
+  /**
+   * `carousel` for a long set: one row the visitor flips through, so the page stays short.
+   * `phone-carousel`: that row on phones only, a grid of 3 columns from sm (D-146)
+   */
+  layout?: 'grid' | 'carousel' | 'phone-carousel';
 }
 
 /**
@@ -37,12 +40,7 @@ export function PhotoGallery({
           title={title}
           intro={intro}
         />
-        {layout === 'carousel' ? (
-          <Carousel
-            label={title}
-            slides={images.map((image) => ({ key: image.url, content: photo(image) }))}
-          />
-        ) : (
+        {layout === 'grid' ? (
           <ul className="gap-grid columns-1 sm:columns-2 lg:columns-3">
             {images.map((image) => (
               <li key={image.url} className="mb-grid break-inside-avoid">
@@ -50,6 +48,12 @@ export function PhotoGallery({
               </li>
             ))}
           </ul>
+        ) : (
+          <Carousel
+            label={title}
+            layout={layout === 'carousel' ? 'all' : 'photos'}
+            slides={images.map((image) => ({ key: image.url, content: photo(image) }))}
+          />
         )}
       </div>
     </Section>

@@ -44,6 +44,20 @@
   }
 }
 
+/*
+ * ShowMore (D-147): `phone-collapsed:` hides an item on phones (below md) until the visitor
+ * opens the list (`data-open`). Only with JavaScript, so without it every item shows, and
+ * `no-script:` hides the button that would do nothing.
+ */
+@custom-variant phone-collapsed {
+  @media (scripting: enabled) and (width < 48rem) {
+    &:where(:not([data-open] *)) {
+      @slot;
+    }
+  }
+}
+@custom-variant no-script (@media (scripting: none));
+
 /* `current:` styles the link to the page being viewed (nav, breadcrumb). */
 @custom-variant current (&[aria-current='page']);
 

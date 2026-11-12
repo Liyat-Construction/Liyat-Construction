@@ -12,7 +12,8 @@ import type { Partner } from '@/types/content';
 
 export const PARTNERS: Partner[] = [
   { name: 'Ethiopian Airlines', logo: '/images/clients/ethiopian-airlines.webp' },
-  { name: 'British Embassy Addis Ababa', logo: '/images/clients/british-embassy.webp' },
+  // One name per client everywhere (D-153)
+  { name: 'British Embassy', logo: '/images/clients/british-embassy.webp' },
   // Liyat's clients; permission to name them is treated as granted (owner, 2026-10-27)
   { name: 'Embassy of Belgium', logo: '/images/clients/belgian-embassy.webp' },
   // The brochure names Ovid Real Estate; the logo supplied is the parent Ovid Group's
@@ -25,16 +26,28 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Yekatit 12 Hospital Medical College',
-    logo: '/images/clients/yekatit-12-hospital-logo.webp',
+    logo: '/images/clients/yekatit-12-hospital-medical-college.webp',
   },
   { name: 'SD Salt Manufacturing', logo: '/images/clients/sd-salt-manufacturing.webp' },
   { name: 'CREDOKS Digital Service', logo: '/images/clients/credoks.webp' },
   { name: 'Belayneh Kinde Group', logo: '/images/clients/belayneh-kinde-group.webp' },
-  { name: 'CIRHT', logo: '/images/clients/cirht.webp' },
-  { name: 'ET Mineral Development S.C.', logo: '/images/clients/et-minieal.webp' },
+  // The ongoing World Bank-financed project in Liyat's company profile, with the Ministry above
   {
     name: 'Horn of Africa Groundwater for Resilience',
-    logo: '/images/clients/horn-of-africa-ground-water.webp',
+    logo: '/images/clients/horn-of-africa-groundwater.webp',
   },
-  { name: 'Hosea Trading House', logo: '/images/clients/hosea-treading-house.webp' },
+  // PLACEHOLDER(C-38): Liyat names the project behind each of these three, or agrees to remove the logo (D-150)
+  { name: 'CIRHT', logo: '/images/clients/cirht.webp' },
+  { name: 'ET Mineral Development S.C.', logo: '/images/clients/et-mineral.webp' },
+  { name: 'Hosea Trading House', logo: '/images/clients/hosea-trading-house.webp' },
+];
+
+/**
+ * Liyat's partners for groundwater investigation (the owner, 2026-11-09, D-174): the firms
+ * Liyat named in its review. Shown on /about, apart from the clients.
+ * PLACEHOLDER(C-39): Liyat sends a sharp Husky Engineering logo (the 200 px file was taken out); the name shows as text until then, and Liyat says we may name both.
+ */
+export const GROUNDWATER_PARTNERS: Partner[] = [
+  { name: 'Milto Engineering PLC', logo: '/images/clients/milto-engineering.webp' },
+  { name: 'Husky Engineering PLC' },
 ];

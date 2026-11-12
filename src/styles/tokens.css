@@ -99,6 +99,8 @@
   --focus-offset: 2px;
   --duration-fast: 150ms;
   --duration-base: 300ms;
+  /* Home hero slider (D-145): a slow cross-fade between photos */
+  --duration-slide: 1800ms;
   --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   /* Opacity of the well-diagram parts that are not highlighted (D-45) */
@@ -110,6 +112,30 @@
   @keyframes drift {
     from {
       transform: scale(1.08);
+    }
+  }
+
+  /* The hero slider: the photo on screen zooms in very slightly (transform only), for longer
+     than it is shown (7 s + the fade); the active indicator fills over one slide.
+     7 s = SLIDE_MS in hero-slides.tsx */
+  --animate-zoom: zoom 9s linear both;
+  --animate-progress: progress 7s linear both;
+
+  @keyframes zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.06);
+    }
+  }
+
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
     }
   }
 }
@@ -136,7 +162,9 @@
   --focus-upper: 50% 20%;
   /* The header with its bottom rule: a hero under the see-through header pulls up by this */
   --header-total: calc(var(--header-height) + var(--rule-width));
-  --legal-nav-top: calc(var(--header-total) + var(--spacing-gutter));
+  /* Where a sticky column stops under the header (legal contents, project facts) */
+  --sticky-top: calc(var(--header-total) + var(--spacing-gutter));
+  --legal-nav-top: var(--sticky-top);
   --legal-nav-height: calc(100svh - var(--legal-nav-top) - var(--spacing-gutter));
   /* Carousel slide widths: most of the width on phones, so the next photo peeks in;
      then 2 and 3 per view, less the gaps between them */

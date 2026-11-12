@@ -1,14 +1,30 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn, pick } from '@/lib/utils';
 import { Icon } from './icon';
+
+/*
+ * all: a carousel at every width: 1 per view on phones (the next one peeking in), 2, then 3.
+ * Phone-only (D-146, D-148): a swipe row below sm, a plain grid from sm, where the arrows go:
+ * photos: 3 columns (the Equipment photos, 3 rows of 3);
+ * cards: stacked on tablets, 3 columns from lg (the testimonials).
+ */
+const layouts = {
+  all: 'sm:auto-cols-(--carousel-slide-2) lg:auto-cols-(--carousel-slide-3)',
+  photos: 'sm:snap-none sm:grid-flow-row sm:grid-cols-3 sm:overflow-visible',
+  cards: 'sm:snap-none sm:grid-flow-row sm:grid-cols-1 lg:grid-cols-3 sm:overflow-visible',
+} as const satisfies Record<string, string>;
 
 interface CarouselProps {
   /** Names the carousel for screen readers, e.g. "Photos from our work" */
   label: string;
   /** One element per slide */
   slides: { key: string; content: React.ReactNode }[];
+  /** At every width, or a swipe row on phones only that becomes a grid from sm */
+  layout?: keyof typeof layouts;
+  /** Read out on the arrows: "Previous photos", "Next photos" */
+  itemName?: string;
 }
 
 /**
@@ -16,7 +32,7 @@ interface CarouselProps {
  * Swipe or scroll on any device; the arrow buttons move one view at a time. Without
  * JavaScript it is still a working scroll row.
  */
-export function Carousel({ label, slides }: CarouselProps) {
+export function Carousel({ label, slides, layout = 'all', itemName = 'photos' }: CarouselProps) {
   const track = useRef<HTMLUListElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -58,8 +74,8 @@ export function Carousel({ label, slides }: CarouselProps) {
         tabIndex={0}
         className={cn(
           'gap-grid grid snap-x snap-mandatory grid-flow-col overflow-x-auto overscroll-x-contain',
-          'auto-cols-(--carousel-slide-1) sm:auto-cols-(--carousel-slide-2) lg:auto-cols-(--carousel-slide-3)',
-          'rounded-card [scrollbar-width:none]'
+          'rounded-card [scrollbar-width:none] auto-cols-(--carousel-slide-1)',
+          pick(layouts, layout)
         )}
       >
         {slides.map((slide, i) => (
@@ -73,12 +89,12 @@ export function Carousel({ label, slides }: CarouselProps) {
           </li>
         ))}
       </ul>
-      <div className="flex justify-center gap-3">
+      <div className={cn('flex justify-center gap-3', layout !== 'all' && 'sm:hidden')}>
         <button type="button" className={arrow} onClick={() => move(-1)} disabled={atStart}>
-          <Icon name="chevron-left" label="Previous photos" />
+          <Icon name="chevron-left" label={`Previous ${itemName}`} />
         </button>
         <button type="button" className={arrow} onClick={() => move(1)} disabled={atEnd}>
-          <Icon name="chevron-right" label="Next photos" />
+          <Icon name="chevron-right" label={`Next ${itemName}`} />
         </button>
       </div>
     </div>

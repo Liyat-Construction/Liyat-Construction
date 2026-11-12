@@ -21,7 +21,12 @@ interface ServicePageProps {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const service = getServiceBySlug((await params).slug);
   if (!service) return {};
-  return pageMetadata(`/services/${service.slug}`, service.title, service.summary, service.image);
+  return pageMetadata(
+    `/services/${service.slug}`,
+    `${service.title} in Ethiopia`,
+    service.metaDescription,
+    service.image
+  );
 }
 
 // PROJECT.md §7 (Service detail)

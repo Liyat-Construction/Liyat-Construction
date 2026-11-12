@@ -32,7 +32,13 @@ export default function EquipmentCapabilitiesPage() {
         {/* Equipment Note */}
         <Story id="rigs" {...rigs} />
         <FeatureGrid id="fleet" {...fleet} columns={3} />
-        <PhotoGallery id="equipment-gallery" {...gallery} images={EQUIPMENT_GALLERY} />
+        {/* A swipe row on phones, 3 rows of 3 from tablets up (D-146) */}
+        <PhotoGallery
+          id="equipment-gallery"
+          {...gallery}
+          images={EQUIPMENT_GALLERY}
+          layout="phone-carousel"
+        />
         <FeatureGrid id="support-equipment" {...support} columns={3} />
         <FeatureGrid id="methods" {...methods} columns={4} />
         {/* Capabilities Grid */}

@@ -29,11 +29,19 @@ import { ProofStrip } from '@/components/sections/proof-strip';
 import { ABOUT_PAGE } from '@/data/about';
 import { PARTNERS } from '@/data/partners';
 import { COMPANY_FACTS, PROJECT_FIGURES } from '@/data/company';
-import { EQUIPMENT_PAGE } from '@/data/equipment';
+import { EQUIPMENT_GALLERY, EQUIPMENT_PAGE } from '@/data/equipment';
 import { ContactPanel } from '@/components/sections/contact-panel';
 import { FormFeedback } from '@/components/ui/form-feedback';
 import { CONTACT_PAGE } from '@/data/contact';
-import { getProjectBySlug, PROJECT_GALLERY, PROJECTS } from '@/data/projects';
+import {
+  getProjectBySlug,
+  PROJECT_GALLERY,
+  PROJECT_PAGES,
+  PROJECTS,
+  PROJECTS_PAGE,
+} from '@/data/projects';
+import { ProjectDetail } from '@/components/sections/project-detail';
+import { ProjectFigures } from '@/components/sections/project-figures';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
 import { photos, projectFacts, sectionCopy } from './_parts/samples';
@@ -71,7 +79,7 @@ const stats = PROJECT_FIGURES;
 const sampleProjects = [
   PROJECTS[0],
   getProjectBySlug('british-embassy-pump-installation'),
-  getProjectBySlug('credocs-shoring'),
+  getProjectBySlug('credoks-shoring'),
 ].filter((project) => project !== undefined);
 
 export default function StyleguidePage() {
@@ -392,6 +400,49 @@ export default function StyleguidePage() {
         images={PROJECT_GALLERY}
         layout="carousel"
       />
+
+      <PhotoGallery
+        id="sg-gallery-phone-carousel"
+        eyebrow="Sections"
+        title="PhotoGallery, phone carousel"
+        intro='layout="phone-carousel": a swipe row on phones, 3 columns from tablets up (D-146). Used on Equipment; the testimonials use the same Carousel layout for cards (D-148).'
+        images={EQUIPMENT_GALLERY}
+        layout="phone-carousel"
+      />
+
+      <SectionGroup>
+        <Section labelledBy="sg-project-detail">
+          <SectionHeading
+            id="sg-project-detail"
+            eyebrow="Sections"
+            title="ProjectDetail"
+            intro="The body of the three project pages (D-184): the story, with the facts and the contact button in a column that stays in view from lg, then the site photos (a swipe row on phones). Below, a project with six photos and one with none. The key figures in the header are ProjectFigures."
+          />
+        </Section>
+        <Section tone="ink" spacing="compact">
+          <ProjectFigures
+            project={PROJECT_PAGES[0]}
+            completedLabel={PROJECTS_PAGE.detail.completed}
+          />
+        </Section>
+        {PROJECT_PAGES.filter((project) =>
+          ['ethiopian-airlines-pumping-test', 'chaka-house-project'].includes(project.slug)
+        ).map((project) => (
+          <ProjectDetail
+            key={project.slug}
+            id={`sg-detail-${project.slug}`}
+            project={project}
+            services={SERVICES.filter((service) => project.services.includes(service.slug)).map(
+              (service) => ({
+                title: service.title,
+                href: `/services/${service.slug}`,
+                summary: service.summary,
+              })
+            )}
+            labels={PROJECTS_PAGE.detail}
+          />
+        ))}
+      </SectionGroup>
 
       <Story
         id="sg-story"

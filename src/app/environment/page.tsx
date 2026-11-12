@@ -14,7 +14,7 @@ export default function EnvironmentPage() {
   return (
     <>
       <PageHeader
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Environment' }]}
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Safety & Environment' }]}
         eyebrow={header.eyebrow}
         title={header.title}
         intro={header.intro}

@@ -13,23 +13,75 @@ export const HOME_PAGE: HomePage = {
     lead: 'Groundwater engineering from survey to tank.',
     primary: { label: 'Contact us', href: '/#contact' },
     secondary: { label: 'Our services', href: '/#services' },
-    // The whole first screen behind the headline (D-81)
-    image: {
-      url: '/images/hero/afar-rig-fleet.webp',
-      alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
-      // Keeps the rig (far left) in view on narrow screens and the mountains behind the text
-      focus: 'upper-left',
-    },
-    caption: 'On site in the Afar region',
+    // The whole first screen behind the headline (D-81). The first photo loads with the page;
+    // the others load after it. Every photo but the Afar one needs the 60 % 'bright' scrim
+    // (measured 2026-11-08/09)
+    slides: [
+      {
+        image: {
+          url: '/images/hero/afar-rig-fleet.webp',
+          alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
+          // Keeps the rig (far left) in view on narrow screens and the mountains behind the text
+          focus: 'upper-left',
+        },
+      },
+      {
+        image: {
+          url: '/images/hero/ea-v-notch.webp',
+          alt: 'Water pouring through the V-notch tank as a Liyat engineer checks the flow',
+        },
+        scrim: 'bright',
+      },
+      {
+        image: {
+          url: '/images/hero/ea-casing-site.webp',
+          alt: 'Liyat drilling rig with casing pipes laid out on site in Addis Ababa',
+        },
+        scrim: 'bright',
+      },
+      // CANDIDATES (owner, 2026-11-09): the owner's "wide" photos, in the slider only so he can
+      // choose; the ones he doesn't pick come out again. The two 1280 px ones look soft on
+      // large screens, and the drilling-fluid one shows mud spread on the ground
+      {
+        image: {
+          url: '/images/hero/welding-dusk.webp',
+          alt: 'A Liyat welder joining casing beside the rig at dusk',
+        },
+        scrim: 'bright',
+      },
+      {
+        image: {
+          url: '/images/hero/casing-pipes-cabin.webp',
+          alt: 'Casing pipes laid out beside the Liyat rig and site cabin',
+        },
+        scrim: 'bright',
+      },
+      {
+        image: {
+          url: '/images/hero/rig-drilling-fluid.webp',
+          alt: 'Liyat drilling rig and trucks with drilling fluid channels in the foreground',
+        },
+        scrim: 'bright',
+      },
+      {
+        image: {
+          url: '/images/hero/engineers-on-casing.webp',
+          alt: 'Engineers standing on the casing pipes beneath the raised Liyat rig mast',
+          focus: 'upper',
+        },
+        scrim: 'bright',
+      },
+    ],
   },
-  // "Who we are": the first paragraph is the client's own (copy review, 2026-11); the second
-  // is from Liyat's proposal
+  // "Who we are": rewritten by the owner, 2026-11-10, from the client's own note (his story,
+  // the 100 m Afdera and 600 m Addis Ababa wells, one contractor); the fact sentence opens it
+  // for search. Not the reason for the 2022 rename: we do not know it.
   about: {
     eyebrow: 'Who we are',
-    title: 'One team from the first survey to a working pump',
+    title: 'One team from survey to a working pump',
     paragraphs: [
-      'Liyat Construction PLC is an Ethiopian groundwater development and water-well engineering contractor. We combine hydrogeological insight, modern drilling capability and disciplined execution to deliver reliable water systems for institutions, commercial developments and local communities.',
-      'Our own teams carry out the drilling, the pumping tests and the electromechanical works. A dedicated pumping test crew brings a crane, generators and variable-discharge pumps to site.',
+      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. We started in 2019 as Wondwossen Water Well Drilling Contractor and took the name Liyat Construction PLC in May 2022.',
+      'We drill for institutions, embassies, commercial developments and communities. Our wells run from 100 m at a salt works in Afdera to 600 m in Addis Ababa. Our own crews run the rig, the pumping test and the pump installation, so you deal with one contractor and get one set of records, from survey to tank, in whichever stages you need.',
     ],
     image: {
       url: '/images/hero/ethiopian-airlines.webp',

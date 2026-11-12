@@ -5,12 +5,21 @@ before you stop. How the site is built is in [`docs/PROJECT.md`](docs/PROJECT.md
 
 ## ▶ You are here
 
-|                    |                                                                                                                                                         |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**   | **P16 part 2, step 11**: commit, merge and push on the owner's word; deploy the preview                                                                 |
-| **Last completed** | 2026-11-05: step 13, Liyat's follow-up answers, equipment list and photos applied. Not committed                                                        |
-| **Waiting on**     | The owner asks Liyat: testimonials, 800 m vs 1,200 m (C-37), Belayneh Kinde depth and work, Arada location, Belgian Embassy photo (C-36). Web3Forms key |
-| **Not committed**  | Step 13's changes. Liyat's original files are copied into `docs/LIYAT_ORIGINALS.md` and deleted (D-133)                                                 |
+|                    |                                                                                                                                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**   | **P18 review round**: decisions recorded in [`docs/REVIEW_PLAN.md`](docs/REVIEW_PLAN.md); next is the owner's yes on the delete list, then steps 1–7 there                             |
+| **Last completed** | 2026-11-12: SEO_PLAN steps 1, 2 and 5 (the three project pages; photos for two still to come). Not committed                                                                           |
+| **Waiting on**     | Meeting answers of 2026-11-10 are in `docs/CLIENT_ANSWERS.md`. Still open: address Woreda 03 vs 04, Arada "320", info@ set up, access choice (D-183), quotes, photos, Husky logo, C-37 |
+| **Next**           | One item from "What is left" in `docs/SEO_PLAN.md` (A1–E4). Step 5, the three project pages, is finished and reviewed                                                                  |
+| **Not committed**  | Step 13's changes. Liyat's original files are copied into `docs/LIYAT_ORIGINALS.md` and deleted (D-133)                                                                                |
+
+## SEO and being found (started 2026-11-10)
+
+The plan, the steps in order and the baseline are in [`docs/SEO_PLAN.md`](docs/SEO_PLAN.md). Decisions
+D-180 to D-184 are below. Work one step at a time and tick it in that file. Step 1 (Search Console,
+Bing, redirect check, AI baseline) and step 2 (site name, titles, fact sentence, sitemap dates) need
+no client answers. Steps 3–5 wait for the meeting answers: profiles, structured data and the three
+project pages.
 
 ## Plan to launch
 
@@ -87,13 +96,15 @@ pump photo. The Home hero stays one photo (D-131): only two new photos are wide 
 The must-ask questions are at the top of `docs/MEETING_QUESTIONS.md` and the Notion copy. Codes
 appear in `PLACEHOLDER(C-xx)` comments in the code.
 
-| Code | Still open                                                                         | Type       |
-| ---- | ---------------------------------------------------------------------------------- | ---------- |
-| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)   | Owner asks |
-| C-36 | Belayneh Kinde depth and work; where Arada Luxury Mall is; a Belgian Embassy photo | Owner asks |
-| C-37 | Rigs "up to 800m" (his answer) vs "1200 m" and "300 m" (his equipment list), D-132 | Owner asks |
-| C-29 | Legal pages: no reply means no changes                                             | Preview    |
-| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                     | Our task   |
+| Code | Still open                                                                          | Type       |
+| ---- | ----------------------------------------------------------------------------------- | ---------- |
+| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)    | Owner asks |
+| C-36 | Belayneh Kinde depth and work; where Arada Luxury Mall is; a Belgian Embassy photo  | Owner asks |
+| C-37 | Rigs "up to 800m" (his answer) vs "1200 m" and "300 m" (his equipment list), D-132  | Owner asks |
+| C-29 | Legal pages: no reply means no changes                                              | Preview    |
+| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                      | Our task   |
+| C-39 | Husky Engineering: a sharp logo and website; may we name Milto and Husky (D-174)    | Owner asks |
+| C-40 | More photos for the British Embassy and Chaka House pages (D-184); requirements doc | Owner asks |
 
 Answered and closed: C-09 (hand pumps: yes), C-10 (50+ wells, 12,000 m+), C-15 (no team names),
 C-16 (equipment list received), C-17 (Environment), C-20 (no social links yet), C-23 (CREDOKS),
@@ -107,8 +118,8 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
 
 - **Scope:** static Next.js site, no CMS, English only; hosting on Vercel (D-01, D-04).
 - **Pages:** Home, About, Projects (list only), Equipment, Environment, six service pages,
-  legal pages. No services overview, project detail, testimonials or contact pages — those
-  live on Home (D-60, D-74, D-96).
+  legal pages. No services overview, testimonials or contact pages — those live on Home
+  (D-60, D-74, D-96). Project detail pages: none, except three (D-184).
 - **Brand:** green `#156635` for actions, Ink for dark surfaces, Paper pages with White
   cards, Water Blue for water data only; no gold, no navy (D-05–D-07, D-33, D-58, D-70).
 - **Frame:** full-screen Afar photo hero (D-81, D-98); Ink page header with a real site photo
@@ -201,6 +212,30 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
   page stays short: one row to swipe or step through with arrows, 1 photo (the next peeking in)
   on phones, 2 on tablets, 3 on desktop. `PhotoGallery layout="carousel"` with the new
   `ui/carousel.tsx`; no new package. The Equipment page keeps its grid of 6.
+- **D-180 — owner, 2026-11-10:** Search Console is verified with the agency Gmail as a Domain
+  property (DNS TXT; we own the domain), and `liyatconstruction@gmail.com` is added as Owner so
+  Liyat keeps access if the agency ends.
+- **D-181 — owner, 2026-11-10:** the Google Business Profile is owned by Liyat, with the agency as
+  Manager. One profile only; Liyat deletes the other. A Business Profile has no email field.
+- **D-182 — owner, 2026-11-10:** profiles are Business Profile, LinkedIn company page, Facebook
+  page and WhatsApp Business. Not Telegram, Instagram, TikTok, X or YouTube for now. Same name,
+  descriptor, address, phones, website and logo everywhere.
+- **D-183 — owner, 2026-11-10:** Liyat chooses how we get access (meeting question 15): A, a
+  sit-down where he adds us as manager or admin and we never need his password (agent's
+  recommendation), or B, his Gmail login shared privately and changed after. Never write a
+  password in any file or in Notion. He owns everything either way.
+- **D-184 — owner, 2026-11-10:** three projects get their own page, shown on Home; the rest stay
+  cards. Reopens D-74 and D-96. Chosen by the owner, agent agreeing: Ethiopian Airlines, British
+  Embassy and Chaka House (the three Liyat chose for Home; trusted names; three different stories).
+  The embassy and Chaka House have one photo each, so a page waits for more photos from Liyat, with
+  Ovid (Kings Tower) as the fallback. CREDOKS stays a card. Details in `docs/SEO_PLAN.md`.
+- **D-185 — owner, 2026-11-12:** Ovid's year is 2025 (2024 was a mistake); Ethiopian Airlines is 2024
+  and the Belgian Embassy 2025 (meeting 2026-11-10); the British Embassy stays 2026 (Liyat's own
+  document). The three project pages are built now and the missing photos are added after the
+  requirements session; a page with one photo shows the cover beside the text (replaces "a page is
+  not built with one photo"). The pages say only confirmed facts: the owner's idea of an invented
+  "hardest part of the job" was not used (agent's objection: a false claim about a named client);
+  no duration.
 - **Open:** keep `/styleguide` hidden at launch, or delete it (O-05; currently kept).
 
 ## How we work
@@ -386,3 +421,81 @@ Favicon (owner's word): the full logo shrunk lost its divider and drop at 16/32 
 is not the logo), centred on a white rounded tile with about 11–12% white space on each side (owner approved this size) (square white for Apple), cut from `public/logo.png`. White tile so it reads
 on dark browser tabs too and matches the white logo box in the header. `build:static` passes.
 Not committed.
+
+**2026-11-09, after Liyat's filled-in review (D-171–D-179, `docs/REVIEW_PLAN.md`).** Built: project years on the
+cards (beside the client, replacing the newest-first sort so the curated order stands), Chaka House client
+"Palace Administration / Etoile GC PLC", the CREDOKS line about drilling inside a 14 m excavation, a
+"Registration" card on About (Grade One, licence WWDC/1/227, TIN, with the Ethiopian Construction Authority as
+Liyat wrote it), a "Partners for groundwater investigation" section on About (Milto logo from
+`assets/images/clients/`, Husky as text until a sharp logo arrives; C-39), and "we do not guarantee a specific
+discharge" on the Environment page. Type-check, lint, check:design and `build:static` pass; the About and Projects
+pages checked in the browser at 1024 and 375 px (no sideways scroll). Not committed. **Next:** the owner talks to Liyat
+(quotes, Husky logo, email choice info@ or hello@, years for Ethiopian Airlines and Belgian Embassy, Belgian photo),
+then the hero slider decision, then commit on the owner's word.
+
+**2026-11-10, SEO plan (D-180–D-184).** Checked the live site (indexed, first for "Liyat Construction";
+two Google Maps profiles; the AI answer ignores the site) and wrote `docs/SEO_PLAN.md` with the steps
+in order. Chose the three project pages by measuring the source photos. No site code changed. The
+Notion page "Meeting questions for Liyat" was rewritten for today's meeting: 14 questions, each a
+must. **Next:** the meeting; then SEO_PLAN step 1, then step 2 (both need no answers).
+
+**2026-11-12, SEO_PLAN steps 1 and 2.** Step 1: the owner set up Search Console (Domain, sitemap,
+Home indexing, Liyat as Owner) and Bing (imported). I checked the redirects (all permanent 308, the
+`www` address is canonical) and wrote the AI baseline into `SEO_PLAN.md` from the owner's
+answers: only Gemini uses the site; Google AI, ChatGPT and Perplexity describe a general building
+contractor, and Google AI calls it closed. Copilot was not checked. Step 2: Home title is "Liyat
+Construction | Water-Well Drilling in Ethiopia"; service titles are "<name> in Ethiopia", each
+with a new `metaDescription`; About's description is shorter; `WebSite` has `alternateName` and the
+business has `legalName`; the sitemap has one `lastmod` (`contentUpdated`). Later the same day: wrote the meeting answers into `docs/CLIENT_ANSWERS.md` and the step 5 build plan into `SEO_PLAN.md` (documents only). The fact sentence was
+already on Home and About, so it was not changed. `seo.test.mjs` has three new checks (14 tests
+pass); type-check, lint, check:design and `build:static` pass; Prettier passes with
+`--end-of-line auto`. I removed a corrupted generated folder, `.next/dev` (git-ignored), that broke
+the type-check. **Not done:** no browser look at 375/768/1280 (only page titles and descriptions
+changed, nothing visible); not committed; the live site shows the new titles only after a deploy,
+then ask Search Console to re-index Home. **Left as is:** the old `keywords` meta tag (Google
+ignores it; the owner may remove it). **Next:** SEO_PLAN step 3 needs Liyat, so step 5 (project
+pages) is the next work, starting with 5a.
+
+**2026-11-12, SEO_PLAN step 5 (D-185).** Built the three project pages: `src/app/projects/[slug]/page.tsx`
+(only projects with a `story`; `PROJECT_PAGES`), the `ProjectDetail` section (story, services linking to
+their pages, facts table, site photos, button to Contact; the cover sits beside the text when there are
+fewer than three site photos), new `Project.story` (with `metaTitle`) and `ProjectsPage.detail` labels,
+`ProjectCard` linked with a "View project" arrow only when a page exists, the sitemap (14 URLs) and a
+specimen on `/styleguide`. Years: Ethiopian Airlines 2024, Belgian Embassy 2025, Ovid 2025 (was 2024).
+Ethiopian Airlines has four site photos (rig, rig and casings, engineers, night); British Embassy and
+Chaka House have the cover only (C-40). `seo.test.mjs` has a test for the three pages (15 tests pass);
+type-check, lint, Prettier (`--end-of-line auto`), check:design and `build:static` (22 routes) pass.
+Browser: all three pages at 375, 768 and 1280 measured in the pane (no sideways scroll, one h1, no
+broken images); looked at by eye at 375 (Ethiopian Airlines, text) and 1280 (Chaka House). **Not seen by eye:**
+the photos on the page (this pane doesn't paint them; their files load), the Ethiopian Airlines gallery and
+the 768 layout. **Not done:** 5c photos (C-40), the Ethiopian Airlines yield still to be checked against the
+test report (C-11), not committed. **Next:** the owner reviews the pages; then the requirements and
+"what Liyat does" documents (step 3); step 4 when the answers arrive.
+
+**2026-11-12, step 5 rewrite (owner's word).** The owner found the first project texts too thin and the cover
+photo beside the text unwanted. Now: no photo beside the text; the facts table and the contact button sit in the
+right column; a key-figures row (tested yield in blue, depth, year) sits under the header; the stories are fuller,
+in the site's voice and with only confirmed facts or general explanation of how wells are built (`Project.story`
+now holds paragraphs, numbered steps and a `metaDescription`); each service on the page shows its one-line summary.
+Ethiopian Airlines' depth label is "Depth of each well". Type-check, lint, check:design, `build:static` (22 routes)
+and 15 tests pass; the text was proofread from the built pages. **To confirm with the owner:** the casing "stepped,
+wider at the top" is general practice, not stated by Liyat; "the national airline" and "dealt with one contractor"
+are our explanation of the facts. Not seen by eye after this change (owner's dev server shows it). Not committed.
+
+**2026-11-12, step 5, second round (owner's word).** The key figures moved from under the header into the header band
+(`ProjectFigures`, white on Ink). The facts table and the "Discuss your project" button now stay in view while the
+story scrolls, from lg (new token `--sticky-top`, shared with the legal contents). Ethiopian Airlines has six site
+photos (added `/images/hero/ethiopian-airlines.webp` and `/images/hero/ea-casing-site.webp`, both named for the
+project; `ea-v-notch` left out because its surroundings look like another site); the gallery is a swipe row on phones
+and 3 columns by 2 rows from tablet up (`layout="phone-carousel"`). Type-check, lint, check:design, `build:static` and
+15 tests pass. Browser (pane): the column held at 106 px under the header from the top of the story to its end; at
+375 the six photos sit in one swipe row, at 768 and 1280 in 3 columns and 2 rows; no sideways scroll on the three
+pages at 375 and 768; header figures seen at 1280. **Not seen by eye:** the photos themselves (pane does not paint
+them). Not committed.
+
+**2026-11-12, step 5, third round (owner's word).** Phones only: the header figures sit in one row with a smaller
+figure (`Stat size="compact"`, 28 px; wider screens unchanged), and the "Explore all projects" button under "More
+projects" is centred just below the title (it stays at the right from sm). The button change is in
+`FeaturedProjects`, so a service page with one or two related projects behaves the same. Measured at 320, 375, 768
+and 1280 on the Ethiopian Airlines and Chaka House pages: figures in one row everywhere, no sideways scroll;
+type-check, lint, check:design, `build:static` and 15 tests pass. Not committed.

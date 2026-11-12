@@ -10,8 +10,10 @@ groundwater engineering company (public name "Liyat Construction"). The audience
 government bodies, embassies, NGOs, institutions and developers; the main action is
 **Contact us**. Built by Digital Aksumite. No CMS: all content is TypeScript in this repo.
 
-**Pages:** Home · About · Projects · Equipment (`/equipment-capabilities`) · Environment ·
-six service pages (`/services/<slug>`) · Privacy policy · Terms of service · 404.
+**Pages:** Home · About · Projects · three project pages (`/projects/<slug>`: Ethiopian Airlines,
+British Embassy, Chaka House — the projects with a `story`, D-184) · Equipment
+(`/equipment-capabilities`) · Environment · six service pages (`/services/<slug>`) · Privacy
+policy · Terms of service · 404.
 Services, Testimonials and Contact are sections of Home (`/#services`, `/#testimonials`,
 `/#contact`), not pages. `/styleguide` shows every component; it is `noindex` and unlinked.
 
@@ -132,7 +134,7 @@ WebP made from `assets/images/brand/logo.png` by `npm run images`. On dark it si
   SystemMessage.
 - **cards:** ProjectCard · ServiceCard · TestimonialCard · FeatureCard · ClientCard.
 - **sections:** Hero · PageHeader · Story · ServiceLifecycle · ServiceDetail ·
-  FeaturedProjects · ProjectGrid · PhotoGallery · ProofStrip · ClientList · FeatureGrid ·
+  FeaturedProjects · ProjectGrid · ProjectDetail · PhotoGallery · ProofStrip · ClientList · FeatureGrid ·
   EquipmentTeaser · Testimonials · ContactPanel · ContactForm · CtaBand · LegalContent.
 
 Sections hide themselves when their data is empty. `/styleguide` shows each with real data.
@@ -144,7 +146,11 @@ Sections hide themselves when their data is empty. `/styleguide` shows each with
   → Equipment (`#equipment`) → Testimonials (`#testimonials`) → Contact (`#contact`).
 - **About:** story + company facts → figures → mission and vision → values → clients → safety
   (links to Environment). No team section (D-122); "Expert team" is one of the values.
-- **Projects:** project cards → photo gallery (4:5 tiles) → clients.
+- **Projects:** project cards → photo gallery (4:5 tiles) → clients. A card links to a page only
+  when the project has a `story`.
+- **Project page** (three, D-184): cover header with the key figures → the job, what we did, the result and the services
+  used (linked), beside a facts table and contact button that stay in view from lg
+  → site photos (swipe row on phones) → the other project pages. Confirmed facts only.
 - **Equipment:** rigs → pumping-test equipment → methods → project figures → site readiness.
 - **Environment:** responsibility story → groundwater cards → site-practice cards.
 - **Service pages:** overview + "What you receive" → the well diagram with this service's
@@ -195,6 +201,9 @@ recompressed social-media images and no originals exist).
   approved contrast pairs only, linked form errors, new-tab links announced.
 - **SEO:** per-page metadata from `lib/metadata.ts`; sitemap from navigation + services;
   JSON-LD organisation and breadcrumbs; legal drafts and `/styleguide` are `noindex`.
+  Service page titles are "<service name> in Ethiopia" with a `metaDescription` per service
+  (about 160 characters). The sitemap's lastmod is `siteConfig.seo.contentUpdated`: change it by
+  hand when page content really changes. The plan is in [`SEO_PLAN.md`](SEO_PLAN.md).
 - **Security:** headers and CSP in `next.config.ts` (Vercel/Node hosting; a static host
   needs the same headers in its own config).
 

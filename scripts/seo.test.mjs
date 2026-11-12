@@ -26,7 +26,60 @@ test('sitemap has unique public routes and excludes draft/legal/system specimens
   assert.equal(new Set(urls.map(String)).size, urls.length);
   for (const url of urls)
     assert.doesNotMatch(url.pathname, /styleguide|privacy-policy|terms-of-service|404/);
-  assert.doesNotMatch(sitemap, /<lastmod>/);
+  // One honest date for all pages, changed by hand only when content changes
+  const dates = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
+  assert.equal(dates.length, urls.length);
+  for (const date of dates) assert.match(date, /^\d{4}-\d{2}-\d{2}/);
+});
+
+test('Home and service titles and descriptions say what Liyat does and where', () => {
+  for (const { url, html } of pages) {
+    const description = content(html, 'description');
+    assert.ok(description.length <= 165, `${url.pathname}: description is ${description.length}`);
+    if (url.pathname === '/') {
+      assert.match(html.match(/<title>([^<]+)<\/title>/)[1], /^Liyat Construction \| Water-Well/);
+      assert.match(description, /Addis Ababa, Ethiopia/);
+    }
+    if (url.pathname.startsWith('/services/')) {
+      assert.match(html.match(/<title>([^<]+)<\/title>/)[1], / in Ethiopia \| Liyat Construction$/);
+      assert.match(description, /Ethiopia/);
+      assert.match(description, /Addis Ababa/);
+    }
+  }
+});
+
+test('the three project pages are in the sitemap with their own title, description and breadcrumb', () => {
+  const projectPages = pages.filter(
+    ({ url }) => url.pathname.startsWith('/projects/') && url.pathname !== '/projects/'
+  );
+  assert.deepEqual(projectPages.map(({ url }) => url.pathname.replace(/\/$/, '')).sort(), [
+    '/projects/british-embassy-pump-installation',
+    '/projects/chaka-house-project',
+    '/projects/ethiopian-airlines-pumping-test',
+  ]);
+  for (const { url, html } of projectPages) {
+    assert.match(html.match(/<title>([^<]+)<\/title>/)[1], / \| Liyat Construction$/, url.pathname);
+    const schemas = [
+      ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+    ].flatMap((match) => JSON.parse(match[1]));
+    const names = schemas
+      .find((schema) => schema['@type'] === 'BreadcrumbList')
+      .itemListElement.map((item) => item.name);
+    assert.deepEqual([names[0], names[1]], ['Home', 'Projects'], url.pathname);
+    assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, url.pathname);
+  }
+});
+
+test('WebSite data names the site "Liyat Construction" with the PLC name as alternate', () => {
+  const home = pages.find(({ url }) => url.pathname === '/').html;
+  const schemas = [
+    ...home.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+  ].flatMap((match) => JSON.parse(match[1]));
+  const site = schemas.find((schema) => schema['@type'] === 'WebSite');
+  assert.equal(site.name, 'Liyat Construction');
+  assert.deepEqual(site.alternateName, ['Liyat Construction PLC']);
+  const business = schemas.find((schema) => schema['@type'] === 'GeneralContractor');
+  assert.equal(business.legalName, 'Liyat Construction PLC');
 });
 
 test('every public route has its own canonical, title, description and social metadata', () => {

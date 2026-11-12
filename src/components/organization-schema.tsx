@@ -22,6 +22,7 @@ export function OrganizationSchema({ siteUrl }: OrganizationSchemaProps) {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteConfig.name,
+    ...(schema.alternateName.length > 0 && { alternateName: schema.alternateName }),
     url: siteUrl,
   };
 
@@ -29,6 +30,7 @@ export function OrganizationSchema({ siteUrl }: OrganizationSchemaProps) {
     '@context': 'https://schema.org',
     '@type': schema.type,
     name: siteConfig.name,
+    legalName: siteConfig.legalName,
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}${siteConfig.seo.ogImage}`,

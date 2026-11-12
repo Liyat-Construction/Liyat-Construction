@@ -14,6 +14,8 @@ interface StoryProps extends SectionCopy {
   paragraphs: string[];
   /** Key facts beside the text, e.g. "Company at a glance"; hidden when there are no rows */
   facts?: { title: string; rows: Spec[] };
+  /** A second facts card under the first, e.g. the company's registration (D-171) */
+  moreFacts?: { title: string; rows: Spec[] };
   /** A landscape photo beside the text (home About, D-61) */
   image?: ImageAsset;
   action?: Action;
@@ -28,6 +30,7 @@ export function Story({
   intro,
   paragraphs,
   facts,
+  moreFacts,
   image,
   action,
   spacing = 'default',
@@ -64,9 +67,17 @@ export function Story({
           />
         )}
         {!image && showFacts && (
-          <FeatureCard feature={{ title: facts.title }} className="lg:col-span-4 lg:col-start-9">
-            <FactsTable rows={facts.rows} />
-          </FeatureCard>
+          <div className="flex flex-col gap-6 lg:col-span-4 lg:col-start-9">
+            {[facts, moreFacts].map(
+              (card) =>
+                card &&
+                card.rows.length > 0 && (
+                  <FeatureCard key={card.title} feature={{ title: card.title }}>
+                    <FactsTable rows={card.rows} />
+                  </FeatureCard>
+                )
+            )}
+          </div>
         )}
       </div>
     </Section>

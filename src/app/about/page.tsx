@@ -6,10 +6,15 @@ import { ProofStrip } from '@/components/sections/proof-strip';
 import { Story } from '@/components/sections/story';
 import { SectionGroup } from '@/components/ui/section-group';
 import { ABOUT_PAGE } from '@/data/about';
-import { ABOUT_FIGURES, COMPANY_FACTS, SAFETY_PRACTICES } from '@/data/company';
-import { PARTNERS } from '@/data/partners';
+import {
+  ABOUT_FIGURES,
+  COMPANY_FACTS,
+  COMPANY_REGISTRATION,
+  SAFETY_PRACTICES,
+} from '@/data/company';
+import { GROUNDWATER_PARTNERS, PARTNERS } from '@/data/partners';
 
-const { header, story, figures, missionVision, values, clients, safety } = ABOUT_PAGE;
+const { header, story, figures, missionVision, values, clients, partners, safety } = ABOUT_PAGE;
 
 export const metadata: Metadata = pageMetadata('/about', header.title, header.description);
 
@@ -32,6 +37,7 @@ export default function AboutPage() {
           title={story.title}
           paragraphs={story.paragraphs}
           facts={{ title: story.factsTitle, rows: COMPANY_FACTS }}
+          moreFacts={{ title: story.registrationTitle, rows: COMPANY_REGISTRATION }}
         />
         <ProofStrip id="about-figures" {...figures} figures={ABOUT_FIGURES} />
         <FeatureGrid
@@ -42,6 +48,7 @@ export default function AboutPage() {
         />
         <FeatureGrid id="values" columns={3} {...values} />
         <ProofStrip id="about-clients" {...clients} figures={[]} clients={PARTNERS} />
+        <ProofStrip id="about-partners" {...partners} figures={[]} clients={GROUNDWATER_PARTNERS} />
         <FeatureGrid id="safety" icon="check" {...safety} items={SAFETY_PRACTICES} />
       </SectionGroup>
     </>

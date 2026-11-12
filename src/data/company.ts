@@ -3,6 +3,7 @@
  * PROJECT_FIGURES  → ProofStrip on /equipment-capabilities
  * ABOUT_FIGURES    → ProofStrip on /about
  * COMPANY_FACTS    → "Company at a glance" on /about
+ * COMPANY_REGISTRATION → the "Registration" card under it
  * SAFETY_PRACTICES → safety and site practice on /about
  * Every figure must be backed by a document (PROJECT.md §8).
  */
@@ -36,6 +37,14 @@ export const COMPANY_FACTS: Spec[] = [
   { label: 'Founded', value: '2019' },
   // His years are only in his story on /about (D-123)
   { label: 'Founder and General Manager', value: 'Wondwossen Ayalew, hydrogeologist' },
+];
+
+// Liyat's registration, as Liyat wrote it (review, 2026-11-09, D-171): its own card beside the facts
+export const COMPANY_REGISTRATION: Spec[] = [
+  { label: 'Registered as', value: 'Grade One Water Well Drilling Contractor' },
+  { label: 'Registered with', value: 'Ethiopian Construction Authority' },
+  { label: 'Licence no.', value: 'WWDC/1/227' },
+  { label: 'TIN', value: '0077049107' },
 ];
 
 // Liyat confirmed all three in his written answers

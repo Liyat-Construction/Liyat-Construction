@@ -1,5 +1,6 @@
 import type { Project } from '@/types/content';
 import { Card } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
 import { Photo } from '@/components/ui/photo';
 import { Stat } from '@/components/ui/stat';
 
@@ -12,8 +13,8 @@ interface ProjectCardProps {
   className?: string;
 }
 
-/** Project summary: photo, client, title, location · year, one key figure, services.
- *  Not linked — project pages return when C-11 brings real detail (D-60). */
+/** Project summary: photo, client with the year beside it, title, location, one key figure, services.
+ *  Linked only when the project has its own page (D-184); the other cards stay plain. */
 export function ProjectCard({
   project,
   serviceNames,
@@ -22,10 +23,14 @@ export function ProjectCard({
 }: ProjectCardProps) {
   // The tested yield is the outcome clients ask about first; depth when there is no yield
   const figure = project.yield ?? project.depth ?? project.shoringDepth;
-  const meta = [project.location, project.year].filter(Boolean).join(' · ');
 
   return (
-    <Card as="article" padding="none" className={className}>
+    <Card
+      as="article"
+      padding="none"
+      href={project.story ? `/projects/${project.slug}` : undefined}
+      className={className}
+    >
       <figure>
         <Photo image={project.image} ratio="card" width="third" />
         {project.imageCaption && (
@@ -36,9 +41,17 @@ export function ProjectCard({
       </figure>
       <div className="flex flex-1 flex-col gap-5 p-6">
         <div className="flex flex-col gap-2">
-          <p className="text-small text-ink-muted font-medium">{project.client}</p>
+          {/* The year sits opposite the client so it reads at a glance (owner, 2026-11-09, D-172) */}
+          <div className="text-small text-ink-muted flex items-baseline justify-between gap-4 font-medium">
+            <p>{project.client}</p>
+            {project.year && (
+              <p className="text-ink tabular-nums" aria-label={`Year ${project.year}`}>
+                {project.year}
+              </p>
+            )}
+          </div>
           <Heading className="text-h3">{project.title}</Heading>
-          <p className="text-small text-ink-muted">{meta}</p>
+          <p className="text-small text-ink-muted">{project.location}</p>
         </div>
         <p className="text-body text-ink-muted">{project.summary}</p>
         {figure && (
@@ -55,6 +68,16 @@ export function ProjectCard({
           <p className="text-small text-ink-muted border-line border-t pt-4">
             {project.scope ?? serviceNames.join(' · ')}
           </p>
+        )}
+        {/* Only a project with its own page shows the arrow (D-184) */}
+        {project.story && (
+          <span className="text-brand mt-auto flex items-center justify-end gap-2 font-medium">
+            <span className="text-small">View project</span>
+            <Icon
+              name="arrow-right"
+              className="ease-standard block transition-transform duration-(--duration-fast) group-hover/card:translate-x-1"
+            />
+          </span>
         )}
       </div>
     </Card>

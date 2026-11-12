@@ -6,7 +6,7 @@ import { PhotoGallery } from '@/components/sections/photo-gallery';
 import { ProjectGrid } from '@/components/sections/project-grid';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { PARTNERS } from '@/data/partners';
-import { PROJECT_GALLERY, PROJECTS_NEWEST_FIRST, PROJECTS_PAGE } from '@/data/projects';
+import { PROJECT_GALLERY, PROJECTS, PROJECTS_PAGE } from '@/data/projects';
 import { getServiceTitles } from '@/data/services';
 
 const { header, clients, gallery } = PROJECTS_PAGE;
@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata('/projects', header.title, header
 
 // PROJECT.md §7 (Projects): the header, every project, then the clients
 export default function ProjectsPage() {
-  const projects = PROJECTS_NEWEST_FIRST.map((project) => ({
+  const projects = PROJECTS.map((project) => ({
     project,
     serviceNames: getServiceTitles(project.services),
   }));
