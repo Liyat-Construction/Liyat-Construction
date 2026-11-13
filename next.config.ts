@@ -14,7 +14,7 @@ const contentSecurityPolicy = [
   "img-src 'self' blob: data: https:",
   "font-src 'self'",
   "connect-src 'self' https:",
-  "frame-src 'none'",
+  'frame-src https://www.google.com/maps',
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -30,6 +30,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+
+  // `src/app/styleguide/page.dev.tsx` is routed in development only (T15); production has no /styleguide
+  pageExtensions: isDev ? ['tsx', 'ts', 'jsx', 'js', 'dev.tsx'] : ['tsx', 'ts', 'jsx', 'js'],
 
   images: {
     // Images are prepared ahead of time by `npm run images` (PROJECT.md §9, D-35);

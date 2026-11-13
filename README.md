@@ -19,11 +19,14 @@ npm run dev          # http://localhost:3000
 
 ## Before you change anything
 
-| Read                                 | For                                                    |
-| ------------------------------------ | ------------------------------------------------------ |
-| [`docs/PROJECT.md`](docs/PROJECT.md) | How the site is built: structure, rules, design, pages |
-| [`WORKFLOW.md`](WORKFLOW.md)         | Where the project stands, next step, open client items |
-| [`AGENTS.md`](AGENTS.md)             | Working rules for AI coding assistants                 |
+| Read                                               | For                                                          |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| [`docs/PROJECT.md`](docs/PROJECT.md)               | How the site is built: structure, rules, design, pages       |
+| [`WORKFLOW.md`](WORKFLOW.md)                       | Where the project stands, next step, open client items       |
+| [`AGENTS.md`](AGENTS.md)                           | Working rules for AI coding assistants                       |
+| [`docs/DIRECTION.md`](docs/DIRECTION.md)           | The tasks in order (T1–T23) and the decisions D-186 to D-195 |
+| [`docs/SEO_PLAN.md`](docs/SEO_PLAN.md)             | Search and AI visibility: plan, baseline, steps              |
+| [`docs/CLIENT_ANSWERS.md`](docs/CLIENT_ANSWERS.md) | What the client told us, and why each change was made        |
 
 ## Common tasks
 
@@ -42,6 +45,7 @@ npm run dev          # http://localhost:3000
 npm run validate        # types, lint, formatting
 npm run check:design    # design values only in tokens.css
 npm run build:static    # builds the site into out/
+npm test               # SEO and contact-form tests (run build:static first)
 ```
 
 All three must pass before a change is done. `npm run check:placeholders` lists what

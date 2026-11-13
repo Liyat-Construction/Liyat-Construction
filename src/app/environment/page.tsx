@@ -8,7 +8,11 @@ import { ENVIRONMENT_PAGE } from '@/data/environment';
 
 const { header, story, groundwater, practices } = ENVIRONMENT_PAGE;
 
-export const metadata: Metadata = pageMetadata('/environment', header.title, header.description);
+export const metadata: Metadata = pageMetadata(
+  '/environment',
+  header.metaTitle ?? header.title,
+  header.description
+);
 
 export default function EnvironmentPage() {
   return (

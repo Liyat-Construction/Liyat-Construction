@@ -13,6 +13,8 @@ const variants = {
 
 const sizes = {
   md: 'min-h-11 px-5 text-body',
+  // md from md up; on phones the label is smaller so a long one stays on one line
+  fit: 'min-h-11 px-4 text-small md:px-5 md:text-body',
   lg: 'min-h-13 px-7 text-lead',
 } as const satisfies Record<string, string>;
 

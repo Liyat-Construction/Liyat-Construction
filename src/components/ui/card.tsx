@@ -5,6 +5,7 @@ const paddings = {
   none: '',
   md: 'p-6',
   lg: 'p-8',
+  xl: 'p-8 md:p-14',
 } as const satisfies Record<string, string>;
 
 interface CardProps {

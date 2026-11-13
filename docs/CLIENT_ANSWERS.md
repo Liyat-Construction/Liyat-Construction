@@ -2,7 +2,7 @@
 
 The record of what Liyat told us and what we do about it. Recorded 2026-11-04, updated
 2026-11-05. The steps to apply it are in [`WORKFLOW.md`](../WORKFLOW.md); the questions still
-open are in [`MEETING_QUESTIONS.md`](MEETING_QUESTIONS.md).
+open are the requirements list R1–R9 in [`DIRECTION.md`](DIRECTION.md).
 
 ## Sources
 
@@ -155,3 +155,19 @@ illustrative photo for the Belgian Embassy; extra photos for the British Embassy
 information for the team section; one Gmail, profile picture, address, phones and bio for all
 profiles; LinkedIn, Facebook and WhatsApp Business pages; ask every client for a Google review
 and a testimonial; how we get access (D-183).
+
+## Answers of 2026-11-13 (the owner, after calling Wondwossen)
+
+- **R1 Address.** Wondwossen says Mickey Leland Street is in Woreda 04 and the office too; Google Maps
+  says 03. Agreed (owner): leave the woreda out. The site address is "Bole Sub City, 301 Mickey Leland
+  Street, House Number 201, Addis Ababa, Ethiopia". The same line goes into the Google Business
+  Profile guide.
+- **Title.** Wondwossen chose "Founder and General Manager". The owner edits the Online Presence Guide
+  himself; done, the guide now has the title and the address above.
+- **R4 Arada Luxury Mall.** Two services: a 320 m deep well (drilling, casing, well development) and
+  pump installation. The 320 is the well depth; the card keeps it.
+- **Equipment photo.** The owner says the casing-and-screen pipes photo is materials, not equipment;
+  replaced by the crane lifting a submersible pump.
+- R2, R3 and R5–R9 are still to come from Liyat.
+
+- **R7 Belayneh Kinde (owner, 2026-11-13).** Belayneh Kinde General Contractor is part of Belayneh Kinde Group (the site uses the Group). Liyat's list: drilling of 220 m and of 250 m, each with 8 inch casing, Addis Ababa; year 2026; the "200 m" was a rough figure. Do not say "ongoing".

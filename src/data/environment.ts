@@ -11,11 +11,12 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
     // "Safety & Environment" in the menu, eyebrow and title (D-152, owner 2026-11-08)
     eyebrow: 'Safety & Environment',
     title: 'Safe crews, protected water',
+    metaTitle: 'Environment and Safety Practice',
     intro:
       'Responsible groundwater work means caring for the source, the people on site and the land around it.',
     image: {
-      url: '/images/hero/water-column.webp',
-      alt: 'A column of water rising beside a drilling rig during well development',
+      url: '/images/hero/yekatit-12.webp',
+      alt: 'A jet of water rising beside a Liyat drilling rig during well development, among trees',
     },
     description:
       'Liyat Construction’s approach to groundwater, crew safety and responsible site practice, from the agreed scope of work to a clean handover.',
@@ -30,6 +31,8 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
     image: {
       url: '/images/site/well-airlift-development.webp',
       alt: 'A Liyat rig carrying out well development on a site surrounded by grass and trees',
+      // Tall photo in a landscape card: keeps the top of the water jet in view
+      focus: 'top',
     },
   },
   groundwater: {
@@ -41,11 +44,11 @@ export const ENVIRONMENT_PAGE: EnvironmentPage = {
       // A survey only when the client asks for one: no promise on every job (D-117, D-152)
       {
         title: 'Choosing where to drill',
-        text: 'When a client asks for a survey, its hydrogeological and geophysical findings guide where the well goes. A survey improves the odds of finding water. It never guarantees it.',
+        text: 'When a client asks for a survey, its hydrogeological and geophysical findings guide where the well goes. A survey improves the odds of finding water, and we explain what it shows and what it cannot show, because every site is different.',
       },
       {
         title: 'Knowing what the well can give',
-        text: 'When a pumping test is part of the work, we record pumping rates, water levels and recovery. The results show how hard the well can be pumped and which pump suits it. We do not guarantee a specific discharge.',
+        text: 'When a pumping test is part of the work, we record pumping rates, water levels and recovery. The results show how hard the well can be pumped and which pump suits it. Every well is different, so we report what the tests show and never promise a yield in advance.',
       },
     ],
   },

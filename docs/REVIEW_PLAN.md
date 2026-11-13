@@ -1,16 +1,13 @@
-# Liyat's website review: decisions and plan
+# Liyat's website review: the decision log (D-138 to D-179)
 
-Started 2026-11-07. The plan for this round, decided one topic at a time with the owner. Status
-and the order of work stay in [`WORKFLOW.md`](../WORKFLOW.md); questions for Liyat go into
-[`MEETING_QUESTIONS.md`](MEETING_QUESTIONS.md) when the list is final.
+Liyat's review of the preview (2026-11-07 to 09) and what the owner decided on each point. The work
+is done and built into the site. Kept as the record of why; the status is in
+[`WORKFLOW.md`](../WORKFLOW.md) and the order of work in [`DIRECTION.md`](DIRECTION.md).
 
-## Sources
-
-| Source                                                       | What it is                                                                                                                                                                                          |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `docs/Web site review by Claude AI.docx` (Liyat, 2026-11-07) | Liyat's review of the preview, written with their Claude: 20 changes, draft About and Equipment copy full of `[blanks]`, and a list of what Liyat still has to supply. It gives almost no new facts |
-| `public/images/New Photos/` (Liyat, 2026-11-07)              | 17 photos and 4 videos (155 MB), mostly the Ethiopian Airlines project, May–June 2024 by the camera dates                                                                                           |
-| A colleague's feedback from a phone (2026-11-07)             | Use a carousel for the Equipment photos too; phones scroll too much on Home and Projects                                                                                                            |
+**Replaced later:** D-160 and D-175 (email) by D-188 (`info@`); D-151 (no team section) by D-194
+(team section as in `TEAM_SECTION.md`); D-145 and D-169 (hero slider) by the hero chosen in T7 and
+T8; D-166 (delete list) was carried out; the "To ask Liyat" list became R1 to R9 in `DIRECTION.md`.
+The full plan with the copy and photo tables: `git show 7c02d3b:docs/REVIEW_PLAN.md`.
 
 ## Decisions
 
@@ -55,146 +52,9 @@ and the order of work stay in [`WORKFLOW.md`](../WORKFLOW.md); questions for Liy
 | D-169 | Hero slider look | No corner captions. Thin indicator bars centred at the bottom, the active one filling over the 7 s, with a round pause button. A slower cross-fade (1.8 s), and the photo on screen zooms in very slightly. Pause freezes all of it                                               |
 | D-170 | Hero candidates  | The owner's 4 "wide" photos are in the slider for him to choose from (7 photos in all); the ones not picked come out again. Agent's note: two are 1280 px (soft on large screens), one shows drilling mud on the ground, and all 4 were on the approved delete list as duplicates |
 
-Phone lengths measured before this round (Edge, 375 px, the 2026-11-06 build; one screen = 812
-px): Home 16.9 screens, Projects 14.9, Equipment 12.9, About 9.8. Measure again after the changes.
-
-## The new photos, where each goes (D-141, D-142, D-143, D-144, D-145, D-164)
-
-Saved at up to 2,400 px into `assets/images/`, with consistent kebab-case names (D-157), then
-`npm run images <paths>` for just those files.
-
-| Liyat's file                  | Goes to                                                      | New file name                                                    |
-| ----------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
-| `pic 5.jpg`                   | Pumping Tests page header (D-142); also hero slide 2 (D-145) | `hero/ea-v-notch.webp`                                           |
-| `pic 3.jpg`                   | Hero slide 3 (D-145) + Equipment gallery (D-144)             | `hero/ea-casing-site.webp`                                       |
-| `pic 8.jpg`                   | Ethiopian Airlines card cover (D-143)                        | `projects/ethiopian-airlines-pumping-test/cover.webp` (replaces) |
-| `equpiment.jpg`               | Equipment gallery (D-144) + Projects carousel (D-164)        | `equipment/rig-and-casings.webp`                                 |
-| `pic 2.jpg`                   | Equipment gallery (D-144) + Projects carousel (D-164)        | `equipment/engineers-on-pipes.webp`                              |
-| `in ethiopian airlines 3.jpg` | Projects carousel only, last (D-164)                         | `projects/ethiopian-airlines-pumping-test/night.webp`            |
-
-**Delete list — approved by the owner 2026-11-08 after seeing the photos (D-166):**
-
-| File                                                                   | Why                                                                                                                                        |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Choose … 2.jpg` and `Choose … 3.jpg`                                  | Low-resolution copies of `pic 3.jpg` and `pic 2.jpg`                                                                                       |
-| `Choose … 5.jpg`                                                       | Low-resolution copy of `equpiment.jpg`                                                                                                     |
-| `Choose … 1.jpg` (welding, dusk)                                       | Only 1280 px wide and there is no slot for it                                                                                              |
-| `pic 1.jpg`                                                            | Almost the same frame as `pic 2.jpg`                                                                                                       |
-| `pic 6.jpg`, `pic 7.jpg`                                               | Near-duplicates of `pic 5.jpg` from the same minute                                                                                        |
-| `in ethiopian airlines.jpg`, `… 2.jpg`                                 | `… .jpg` is a twin of pic 5–7 (same minute, crouching instead of standing); `… 2.jpg` (plane over trailer) stays out: cover decided, D-143 |
-| `in ethiopian airlines 4.jpg`                                          | Drilling mud spread across the ground; contradicts the Environment page                                                                    |
-| `June 23 … constant test … 1.jpg`                                      | Phone-quality duplicate of the pic 8 scene; its "35 l per sec" is not a fact we show                                                       |
-| All 4 `.mp4` files (101 MB)                                            | Videos aren't used (D-165)                                                                                                                 |
-| `assets/images/hero/credocs-shoring.webp` + its 4 built files (1.1 MB) | Nothing on the site uses it                                                                                                                |
-
-After the pick, `public/images/New Photos/` is empty and the folder is deleted (D-133).
-
-## Copy (D-152, D-156, D-158) — approved by the owner 2026-11-08
-
-Rules: plain words, short sentences, facts we can show, British spelling, no promise of a survey
-or test on every job, no invented facts. Liyat's own words stay as they are (D-119): the About
-statement, story, vision, mission and values. Only what changes is listed; everything else
-stays.
-
-### About (`about.ts`)
-
-- **Story, new second paragraph** (the first is Liyat's, unchanged):
-
-  > Since then we have drilled for embassies, an airline, a bank, a teaching hospital, factories
-  > and property developers. Our wells range from 100 m at a salt works in Afdera to 600 m beneath
-  > Addis Ababa. Our own crews run the rig, the pumping test and the pump installation, so a client
-  > who gives us the whole job deals with one contractor and receives one set of records.
-
-  Each claim is backed: the 12 projects; SD Salt 100 m and Chaka House 600 m; "our own teams"
-  (Liyat's proposal and profile); the handover file (answer 5.1).
-
-- **Vision:** "recognized" → "recognised" (D-156). Otherwise Liyat's words.
-- **Safety link:** "See our environmental practice" → "See our safety and environmental practice".
-
-### Equipment (`equipment.ts`)
-
-- **Header title:** "Equipment and technologies" → **"Rigs, pumps and the crews who run them"**
-- **Header intro:** → "We work with our own drilling rigs, compressors and test pumps, sourced
-  from Indian and Turkish manufacturers." ("our own": Liyat's review draft says "We own the rigs")
-- **Rigs section title:** "The equipment behind the drilling" → **"Rigs for deep and shallow wells"**
-- **Rigs section text:**
-
-  > Our rigs drill by mud rotary and DTH (down-the-hole hammer), so one crew can work through soft
-  > ground and hard rock.
-  >
-  > They can drill up to 800 m. The deepest well we have completed so far is 600 m, at Chaka House
-  > in Addis Ababa.
-  >
-  > Our drilling team builds the well. Separate pumping-test and electromechanical teams take it
-  > from there.
-
-  The 800 m vs 1,200 m question (C-37) is still open; the two lines agree once Liyat answers.
-
-- **Fleet intro:** → "The main machines and tools we bring to a well site."
-- **Fleet items:**
-  - Air compressor → "An Atlas Copco XRVS high-pressure compressor, 32 bar, for DTH drilling and
-    well development."
-  - Crane and trucks → "A crane, trucks and pickups to move rigs, pipe and crews between sites."
-  - Hammers and fishing tools → "DTH hammers for hard rock, and fishing tools to recover anything
-    lost down the hole."
-  - Test pumps → "Submersible test pumps from 35 to 200 HP, and a V-notch weir to measure the flow."
-  - Drilling rigs, drill pipe and bits: unchanged.
-- **Pumping-test crew items:**
-  - Variable-discharge test pumps → "The crew can change the pumping rate and watch how the water
-    level responds."
-  - Pumping-test crane → "Lowers the test pump into the well and lifts it out again."
-  - Generators → "Power the test pumps on site, wherever the well is."
-- **Methods:**
-  - Ground investigation → "When the client asks for a survey, its hydrogeological and
-    geophysical findings decide where we drill."
-  - Well construction → "Casing, screens and development follow the agreed design and what the
-    ground shows during drilling."
-  - Pumping tests → "We pump at measured rates and record how the water level falls and recovers."
-  - Pump installation → "We size the pump to the water the client needs and, when a pumping test
-    was part of the work, to the well's tested performance."
-- **New line for tenders** (from Liyat's review), at the end of the page:
-  > Need our equipment list for a tender? Ask us and we'll send it.
-- **Safety link:** "See our environmental practice" → "See our safety and environmental practice".
-
-### Safety & Environment (`environment.ts`, `site.ts`)
-
-- **Menu label:** "Environment" → **"Safety & Environment"**. The link `/environment` stays.
-- **Header eyebrow:** "Environment and safety" → "Safety & Environment"
-- **Header title:** "Water worth protecting" → **"Safe crews, protected water"** (it now covers both
-  halves of the page; it is also the browser-tab title)
-- **Card "Site wells on evidence"** →
-  **"Choosing where to drill"**: "When a client asks for a survey, its hydrogeological and
-  geophysical findings guide where the well goes. A survey improves the odds of finding water. It
-  never guarantees it."
-- **Card "Understand the well's performance"** →
-  **"Knowing what the well can give"**: "When a pumping test is part of the work, we record
-  pumping rates, water levels and recovery. The results show how hard the well can be pumped and
-  which pump suits it."
-
-### British spelling (D-156)
-
-`site.ts` description and footer: "specializing" → "specialising"; `services.ts`: "Organizations"
-→ "Organisations"; `about.ts`: "recognized" → "recognised". A last search catches any others.
-
-## To do (in this order once the plan is final)
-
-1. Contact form subjects (D-139): `src/config/site.ts`.
-2. New photos (D-141–D-144): resize, copy into `assets/images/`, `npm run images <paths>`, then
-   the data files.
-3. Home hero slider (D-145): a new component on `/styleguide`; the owner then decides.
-4. Phone layouts: Equipment carousel on phones (D-146), Projects "Show all" (D-147), Home
-   testimonials swipe row (D-148). Reuse `ui/carousel.tsx`; no new package.
-5. Copy and names: Safety & Environment (D-152), client names (D-153), CREDOKS label (D-155),
-   British spelling (D-156), new About and Equipment copy (D-158). The rewritten copy is shown
-   to the owner first.
-6. Image file names (D-157), together with step 2 so the images are built once.
-7. Validate, check:design, build:static, browser at 375/768/1280, and the phone lengths again.
-   Then `WORKFLOW.md` and a commit on the owner's word.
-
 ## After Liyat's filled-in review (2026-11-09)
 
-`docs/Liyat_Website_Review CLAUDE.docx` is not a new review: it is Liyat's answers written into the
-same table (yellow = what Liyat added). Decided with the owner the same day. These change D-159,
+Liyat's answers, written into the same table. Decided with the owner the same day. These change D-159,
 D-161 and D-162.
 
 | #     | Topic                   | Decision                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -208,59 +68,3 @@ D-161 and D-162.
 | D-177 | Chaka House (#11)       | Client: Palace Administration / Etoile GC PLC, as Liyat wrote it. Arada location and Belayneh Kinde depth are still unanswered: ask                                                                                                                                                                                                                                                                                                                                                                                              |
 | D-178 | CREDOKS card text (#12) | "Water-well drilling inside a 14 m excavation, with rigs lowered by heavy crane." Their slogan "Nothing impossible" is not used (an unprovable claim; the site has "Know better. Drill better."). Label and order stay (D-155)                                                                                                                                                                                                                                                                                                   |
 | D-179 | About copy              | Our version, built on Liyat's draft. Out: "when the firm had grown past a single rig and a single crew" (a reason nobody gave us). In, if Liyat insists after the meeting. Out: "Surveys before we drill" (D-152 stands). In: "we do not guarantee a specific discharge" on the Environment page. Text below                                                                                                                                                                                                                     |
-
-**About "Who we are" (D-179) — built differently:** the About story already opens with Liyat's own first paragraph (founded 2019, renamed May 2022) and our second paragraph, so the extra sentence below is not added; it would repeat them. Their clause "grown past a single rig and a single crew" is not used.
-
-> Liyat Construction PLC is a groundwater development and water-well contractor based in Addis Ababa.
-> We started in 2019 as Wondwossen Water Well Drilling Contractor and became Liyat Construction PLC
-> in May 2022.
-
-The second paragraph stays as already approved ("Since then we have drilled for embassies…"). The
-registration box and the partners section come from D-171 and D-174; the figures list stays 7+ years,
-50+ wells, 600 m (and 12,000 m+ on Equipment).
-
-## To ask Liyat
-
-0. New from the filled-in review (D-172, D-174, D-171): the year for Ethiopian Airlines and the
-   Belgian Embassy; a sharper Husky Engineering logo and its website, and permission to name Milto
-   and Husky; approved quotes from the four contacts they listed; which public email they want,
-   info@ or hello@liyatconstruction.com (D-175).
-1. Real client quotes: name, job title, company and permission to publish (C-12, D-138).
-2. A photo of the Belgian Embassy well (C-36, D-140).
-3. CIRHT, ET Mineral Development and Hosea Trading House: which project did Liyat do for each?
-   If none can be shown, may we remove the logo? (D-150)
-4. Milto Engineering PLC: should the site mention working with them, and may we name them? (D-159)
-5. Contractor category and grade, licence number and TIN (D-161). Show on About only if they
-   give them and agree.
-6. Existing asks that are still open (from `MEETING_QUESTIONS.md`): the rig depth difference
-   (C-37), the Belayneh Kinde depth and work, where Arada Luxury Mall is (C-36), the Web3Forms
-   key for liyatconstruction@gmail.com (C-25).
-
-## To tell Liyat in the meeting
-
-Where we didn't follow their review, and why. Their review was written with an AI, and some of
-its points go against what Liyat told us themselves.
-
-| Their review asked                                | What we did                                                         | Why                                                                                                                                                                                     |
-| ------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Remove the sample testimonials (#1)               | Kept until real quotes arrive                                       | The section needs real quotes; please send 2–3 (D-138)                                                                                                                                  |
-| Short form subjects like "New well drilling" (#2) | Removed the two legal subjects; kept the six official service names | The six names are Liyat's own (their service list and phone call); the form matches the service pages (D-139)                                                                           |
-| Real photo or no photo for Belgian Embassy (#7)   | Kept the photo marked "Illustrative"                                | Until Liyat sends a real one (D-140)                                                                                                                                                    |
-| Add a team section with 5 named roles (#13)       | No team section                                                     | Liyat's owner said no names, in writing (answer 2.1) and to the owner in person (D-122, D-151)                                                                                          |
-| "Surveys before we drill" (#15)                   | A heading that doesn't promise it                                   | Liyat surveys only when the client asks; Liyat told us not to promise it (D-117, D-152)                                                                                                 |
-| Their new About and Equipment text (Sections 2–3) | Rewritten, using their ideas                                        | Their AI's text had blanks, an invented reason for the 2022 rename, a promise to test every well, and equipment not on Liyat's list (mud pump, water tanker). We kept the facts (D-158) |
-| Add Kidanemihiret Church to the clients (#9)      | Kept on its project card only                                       | The clients row shows logos only, and the church has none (D-154)                                                                                                                       |
-| Set up info@liyatconstruction.com (#3)            | Keep liyatconstruction@gmail.com                                    | The address was agreed with Liyat (D-160)                                                                                                                                               |
-| Show licence, grade and TIN (#4)                  | Only if Liyat supplies them                                         | We ask; nothing shown until then (D-161)                                                                                                                                                |
-| Add a year to every project (#5)                  | Years from their answers; two still missing                         | Replaces D-162: they sent the years (D-172)                                                                                                                                             |
-| "Grown past a single rig and a single crew"       | Left out; we say it plainly and add it back if they insist          | Nobody told us the reason for the 2022 rename (D-179)                                                                                                                                   |
-| Their slogan "Nothing impossible" on CREDOKS      | Plain fact: drilling inside a 14 m excavation                       | An unprovable claim; the fact is stronger (D-178)                                                                                                                                       |
-| Belgian Embassy photo                             | Illustrative photo stays                                            | We have no real one: ask (D-176)                                                                                                                                                        |
-| Testimonial contacts with phones and emails       | Not published                                                       | Private details; we need written, approved quotes (D-173)                                                                                                                               |
-| Show yield, water level and drawdown (#6)         | Only the Ethiopian Airlines yield                                   | Liyat called a yield figure "not important", and records may not exist per project (D-163)                                                                                              |
-
-## Still to decide
-
-- All 20 items in Liyat's review have a decision; the delete list and the copy are approved.
-- **Only open item:** whether the finished hero slider ships. The owner decides after seeing it in
-  the browser (D-145).

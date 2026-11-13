@@ -52,7 +52,7 @@ export function Story({
             ))}
           </Prose>
           {action && (
-            <Button href={action.href} icon="arrow" className="mt-2 self-start">
+            <Button href={action.href} icon="arrow" size="fit" className="mt-2 self-start">
               {action.label}
             </Button>
           )}

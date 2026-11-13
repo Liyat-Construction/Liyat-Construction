@@ -19,7 +19,7 @@ export const CONTACT_PAGE: ContactPage = {
     title: 'Send us a message',
     // Owner, 2026-10-27: softened to 48 hours (was Mekan's 24); client corrects it
     // if they disagree — no C-33 ask
-    intro: "We'll respond within 48 hours with a clear path forward.",
+    intro: 'We’ll respond within 48 hours with a clear path forward.',
     fields: {
       name: 'Full name',
       email: 'Email address',
@@ -54,5 +54,7 @@ export const CONTACT_PAGE: ContactPage = {
     email: 'Email',
     address: 'Visit our office',
     hours: 'Office hours',
+    mapTitle: 'Map showing the Liyat Construction office in Bole, Addis Ababa',
+    directions: 'Get directions from your location',
   },
 };

@@ -52,16 +52,19 @@ export const siteConfig = {
 
   // ── Contact Details ─────────────────────────────────────────────────────────
   contact: {
-    // C-05 confirmed: liyatconstruction@gmail.com (owner, 2026-10-25). The older
-    // liyatdrilling2021@gmail.com on the proposal letterhead is not used.
-    email: 'liyatconstruction@gmail.com',
+    // D-188 (owner, 2026-11-13): public address is info@, forwarded to
+    // liyatconstruction@gmail.com by Namecheap Email Forwarding. Do not deploy until the
+    // forwarding test and the contact-form test (with Liyat) have passed.
+    email: 'info@liyatconstruction.com',
     // C-04: the two numbers on the client's proposal letterhead (Dec 2025) and brochure
     phone: '+251 93 001 4711', // Used as-is for display; strip spaces for tel: links
     secondaryPhone: '+251 90 680 8182',
-    // C-03 answered: confirmed by the client in the copy review (2026-11)
-    address: 'Bole Sub City, Woreda 04, House Number 201, Addis Ababa, Ethiopia',
+    // C-03 answered. The woreda is left out on purpose: Liyat says 04, Google Maps says 03 (owner, 2026-11-13)
+    address: 'Bole Sub City, 301 Mickey Leland Street, House Number 201, Addis Ababa, Ethiopia',
     // Confirmed by the client in the copy review (2026-11)
     officeHours: 'Mon–Sat, 8:00 AM – 5:00 PM',
+    // The office on Google Maps (the "Liyat Construction PLC" business profile, owner 2026-11-13)
+    map: { latitude: 9.0100998, longitude: 38.7810302 },
   },
 
   // ── Social Links ────────────────────────────────────────────────────────────
@@ -121,20 +124,13 @@ export const siteConfig = {
       'Water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. Survey, drilling, pumping tests, pump installation and turnkey water projects.',
     // Sitemap lastmod: change it only when page content really changes (Google ignores dates that always move)
     contentUpdated: '2026-11-12',
-    keywords: [
-      'water well drilling Ethiopia',
-      'groundwater development',
-      'borehole drilling Addis Ababa',
-      'pumping test Ethiopia',
-      'water works contractor',
-      'Liyat Construction',
-    ] as string[],
     category: 'business',
     ogTitle: 'Liyat Construction | Water-Well Drilling in Ethiopia',
     ogDescription:
       'Water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia, serving government, institutional and commercial clients.',
     ogImage: '/og-image.jpg',
-    ogImageAlt: 'Water rising beside a Liyat Construction drilling rig',
+    ogImageAlt:
+      'Water rising beside a drilling rig, with the Liyat Construction logo and name along the bottom',
   },
 
   // ── JSON-LD Structured Data ─────────────────────────────────────────────────
@@ -144,6 +140,22 @@ export const siteConfig = {
     alternateName: ['Liyat Construction PLC'] as string[],
     // The client's tagline (PROJECT.md §8), confirmed by the owner 2026-10-27
     slogan: 'Know better. Drill better.',
+    // D-193 (owner, 2026-11-13): the company named Liyat Construction PLC dates from May 2022; the
+    // 2019 start under the founder's earlier name is told in the page text, not here
+    foundingDate: '2022-05',
+    founder: { name: 'Wondwossen Ayalew', jobTitle: 'Founder and General Manager' },
+    // The same address as contact.address, in parts. No postal code: none is confirmed.
+    postalAddress: {
+      streetAddress: 'Bole Sub City, 301 Mickey Leland Street, House Number 201',
+      addressLocality: 'Addis Ababa',
+      addressCountry: 'ET',
+    },
+    // Mon–Sat 8:00–5:00, as in contact.officeHours (confirmed by Liyat)
+    openingHours: {
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as string[],
+      opens: '08:00',
+      closes: '17:00',
+    },
     areaServed: ['Ethiopia', 'Addis Ababa', 'Afar Region'] as string[],
     priceRange: '',
     knowsAbout: [

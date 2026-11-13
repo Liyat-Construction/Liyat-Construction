@@ -61,6 +61,7 @@ export function ProjectCard({
               unit={figure.unit}
               label={figure.label}
               tone={figure.water ? 'water' : 'ink'}
+              size={figure.value.length > 5 ? 'long' : 'default'}
             />
           </dl>
         )}

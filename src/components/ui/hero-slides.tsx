@@ -105,7 +105,7 @@ export function HeroSlides({ label, slides, pauseIcon, playIcon }: HeroSlidesPro
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
-      className="absolute inset-0"
+      className="absolute inset-0 overflow-hidden"
     >
       {slides.map((slide, index) => {
         const current = index === active;
@@ -128,8 +128,8 @@ export function HeroSlides({ label, slides, pauseIcon, playIcon }: HeroSlidesPro
         );
       })}
 
-      <div className="absolute inset-x-0 bottom-5 z-10 flex justify-center">
-        <div className="flex items-center">
+      <div className="absolute inset-x-0 bottom-6 z-10 flex justify-center">
+        <div className="bg-ink/45 flex items-center rounded-full px-3 backdrop-blur-sm">
           {slides.map((slide, index) => (
             <button
               key={slide.key}
@@ -142,12 +142,14 @@ export function HeroSlides({ label, slides, pauseIcon, playIcon }: HeroSlidesPro
                 if (index !== active) go(index);
               }}
             >
-              <span className="relative h-1 w-8 overflow-hidden rounded-full bg-white/35 transition-colors duration-(--duration-fast) group-hover:bg-white/60">
+              <span
+                className={`ease-standard relative h-1 overflow-hidden rounded-full transition-all duration-(--duration-base) ${index === active ? 'w-12 bg-white/35' : 'w-4 bg-white/60 group-hover:bg-white'}`}
+              >
                 {index === active && (
                   <span
                     // A new element for each photo, so the fill starts again from empty
                     key={active}
-                    className={`animate-progress absolute inset-0 origin-left rounded-full bg-white ${motion}`}
+                    className={`animate-progress bg-brand-light absolute inset-0 origin-left rounded-full ${motion}`}
                   />
                 )}
               </span>
@@ -155,10 +157,10 @@ export function HeroSlides({ label, slides, pauseIcon, playIcon }: HeroSlidesPro
           ))}
           <button
             type="button"
-            className="group ml-1 inline-flex size-11 items-center justify-center text-white"
+            className="group ml-1 inline-flex size-11 items-center justify-center border-l border-white/25 text-white"
             onClick={() => setChoice(playing ? 'pause' : 'play')}
           >
-            <span className="ease-standard inline-flex size-8 items-center justify-center rounded-full border border-white/40 transition-colors duration-(--duration-fast) group-hover:bg-white/10">
+            <span className="ease-standard inline-flex size-7 items-center justify-center rounded-full transition-colors duration-(--duration-fast) group-hover:bg-white/20">
               {playing ? pauseIcon : playIcon}
             </span>
           </button>

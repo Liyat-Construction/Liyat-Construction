@@ -12,9 +12,10 @@ export const SERVICES: Service[] = [
   {
     slug: 'hydrogeological-geophysical-survey',
     title: 'Hydrogeological & Geophysical Survey',
+    metaTitle: 'Hydrogeological & Geophysical Survey',
     summary: 'We read the ground before a rig moves, so the well is sited on the evidence.',
     metaDescription:
-      'Hydrogeological and geophysical surveys in Ethiopia: resistivity soundings that help locate productive aquifers before drilling. Liyat Construction, Addis Ababa.',
+      'Hydrogeological and geophysical surveys in Ethiopia: resistivity soundings that help locate aquifers before drilling. Liyat Construction, Addis Ababa.',
     intro:
       'Find the right water source before you drill, with a survey that names the site, depth and likely yield.',
     overview:
@@ -45,9 +46,10 @@ export const SERVICES: Service[] = [
   {
     slug: 'deep-shallow-water-well-drilling',
     title: 'Deep and Shallow Water-Well Drilling',
+    metaTitle: 'Deep & Shallow Water-Well Drilling',
     summary: 'Wells drilled, cased, screened and developed to specification.',
     metaDescription:
-      'Deep and shallow water-well drilling in Ethiopia with mud rotary and DTH rotary rigs that drill up to 800 m. Liyat Construction, Addis Ababa.',
+      'Deep and shallow water-well drilling in Ethiopia with mud rotary and DTH rotary rigs, with a drilling depth of up to 800 m. Liyat Construction, Addis Ababa.',
     intro: 'Wells drilled, cased, screened and developed to specification.',
     overview:
       'We drill deep and shallow wells for drinking water, irrigation, industry, dewatering and monitoring. The drilling method follows the formation; each well is completed with casing, screen and gravel pack, then developed to maximise yield and minimise sediment. Every stage is logged and supervised.',
@@ -113,7 +115,8 @@ export const SERVICES: Service[] = [
     summary: 'Restored yield for boreholes that have slowed down, silted up or stopped.',
     metaDescription:
       'Borehole rehabilitation in Ethiopia: clean, redevelop and retest boreholes that have slowed down, silted up or stopped. Liyat Construction, Addis Ababa.',
-    intro: 'Bring an existing borehole back to service, often for less than drilling a new one.',
+    intro:
+      'Bring an existing borehole back to service, with a test before and after to show the result.',
     overview:
       'Boreholes lose yield as screens clog and sediment builds up. We assess the well, test what it delivers today, then clean and redevelop it by airlifting, brushing and screen cleaning, and test it again so you can see the result.',
     wellNote:
@@ -143,6 +146,7 @@ export const SERVICES: Service[] = [
   {
     slug: 'pump-supply-installation',
     title: 'Pump Supply & Installation',
+    metaTitle: 'Pump Supply & Installation',
     summary: 'Submersible and hand pumps, supplied, installed and commissioned.',
     metaDescription:
       'Submersible and hand pump supply and installation in Ethiopia, commissioned and checked before handover. Liyat Construction, Addis Ababa.',
@@ -203,8 +207,8 @@ export const SERVICES: Service[] = [
     deliverables: ['Handover file with every report from survey to commissioning'],
     cta: 'Request a turnkey proposal',
     image: {
-      url: '/images/hero/water-column.webp',
-      alt: 'Water rising beside a Liyat drilling rig during well development',
+      url: '/images/projects/sd-salt-manufacturing-afdera/cover.webp',
+      alt: 'Liyat drilling rig and support fleet at Afdera, Afar Region',
     },
   },
 ];

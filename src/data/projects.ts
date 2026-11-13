@@ -20,6 +20,26 @@ const photo = (
 // Keeps the top of a tall phone shot in view when a card crops it
 const top = { focus: 'top' } as const;
 
+// The Ethiopian Airlines photos are used on its project page and in the Projects gallery
+const EA_RIG = photo(
+  'ethiopian-airlines-pumping-test',
+  'rig',
+  'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
+);
+const EA_RIG_AND_CASINGS: ImageAsset = {
+  url: '/images/equipment/rig-and-casings.webp',
+  alt: 'Liyat drilling rig with screen casings laid out for the Ethiopian Airlines wells',
+};
+const EA_ENGINEERS: ImageAsset = {
+  url: '/images/equipment/engineers-on-pipes.webp',
+  alt: 'Engineers on the casing pipes beside the rig at the Ethiopian Airlines site',
+};
+const EA_NIGHT = photo(
+  'ethiopian-airlines-pumping-test',
+  'night',
+  'Water rushing from the well at night during the Ethiopian Airlines pumping test'
+);
+
 export const PROJECTS: Project[] = [
   {
     slug: 'ethiopian-airlines-pumping-test',
@@ -39,13 +59,7 @@ export const PROJECTS: Project[] = [
       'cover',
       'Crew reading the flow at the V-notch tank during the Ethiopian Airlines pumping test'
     ),
-    gallery: [
-      photo(
-        'ethiopian-airlines-pumping-test',
-        'rig',
-        'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
-      ),
-    ],
+    gallery: [EA_RIG],
     services: ['deep-shallow-water-well-drilling', 'pumping-tests', 'pump-supply-installation'],
     // Client proposal: drilling and construction of two 500 m wells in the Ethiopian
     // Airlines compound (main contractor Kibish Construction)
@@ -54,7 +68,7 @@ export const PROJECTS: Project[] = [
     yield: { value: '40', unit: 'L/s', label: 'Tested yield', water: true },
     featured: true,
     story: {
-      metaTitle: 'Ethiopian Airlines Water Wells, Addis Ababa',
+      metaTitle: 'Ethiopian Airlines Water Wells',
       metaDescription:
         'Two 500 m water wells drilled, pump-tested and equipped for Ethiopian Airlines in Addis Ababa, with a tested yield of 40 L/s. Liyat Construction.',
       job: [
@@ -89,19 +103,9 @@ export const PROJECTS: Project[] = [
         'Two tested wells, finished in 2024, for the national airline.',
       ],
       photos: [
-        photo(
-          'ethiopian-airlines-pumping-test',
-          'rig',
-          'Liyat rig at the Ethiopian Airlines site with an aircraft overhead'
-        ),
-        {
-          url: '/images/equipment/rig-and-casings.webp',
-          alt: 'Liyat drilling rig with screen casings laid out for the Ethiopian Airlines wells',
-        },
-        {
-          url: '/images/equipment/engineers-on-pipes.webp',
-          alt: 'Engineers on the casing pipes beside the rig at the Ethiopian Airlines site',
-        },
+        EA_RIG,
+        EA_RIG_AND_CASINGS,
+        EA_ENGINEERS,
         {
           url: '/images/hero/ethiopian-airlines.webp',
           alt: 'Water discharging into the test tank beside the Liyat rig at the Ethiopian Airlines site',
@@ -111,11 +115,7 @@ export const PROJECTS: Project[] = [
           alt: 'Liyat rig, casing pipes and site cabin at the Ethiopian Airlines site',
           focus: 'upper-left',
         },
-        photo(
-          'ethiopian-airlines-pumping-test',
-          'night',
-          'Water rushing from the well at night during the Ethiopian Airlines pumping test'
-        ),
+        EA_NIGHT,
       ],
     },
   },
@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     // PLACEHOLDER(C-40): one photo only; Liyat sends more after the requirements session
     story: {
-      metaTitle: 'British Embassy Water Well and Pump, Addis Ababa',
+      metaTitle: 'British Embassy Water Well',
       metaDescription:
         'A turnkey water source for the British Embassy in Addis Ababa: investigation, a 250 m well and a submersible pump connected to the tank. Liyat Construction.',
       job: [
@@ -207,7 +207,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     // PLACEHOLDER(C-40): one photo only; Liyat sends more after the requirements session
     story: {
-      metaTitle: 'Chaka House 600 m Water Well, Addis Ababa',
+      metaTitle: 'Chaka House 600 m Water Well',
       metaDescription:
         'A 600 m water well in Addis Ababa for the Chaka House development, the deepest well Liyat Construction has completed. Drilled in 2022.',
       job: [
@@ -226,7 +226,7 @@ export const PROJECTS: Project[] = [
             text: 'We lined the borehole with 14-inch, 10-inch and 6-inch casing. A deep well is cased in steps, wider at the top and narrower below, so the steel holds the borehole open all the way down.',
           },
         ],
-        note: 'Our rigs can drill up to 800 m, so 600 m sits inside what our equipment is built to do.',
+        note: 'Our drilling depth is up to 800 m, so 600 m sits well inside it.',
       },
       result: [
         'A 600 m well for the Chaka House development, completed in 2022 and still the deepest on our list of completed projects.',
@@ -343,13 +343,15 @@ export const PROJECTS: Project[] = [
     slug: 'arada-luxury-mall',
     year: 2026,
     title: 'A well for a shopping mall',
-    scope: 'Drilling · Casing · Well development',
+    scope: 'Drilling · Casing · Well development · Pump installation',
     client: 'Arada Luxury Mall',
     // PLACEHOLDER(C-36): the owner asks where the mall is; general until then
     location: 'Ethiopia',
-    summary: 'A 320 m well for Arada Luxury Mall, from drilling and casing to well development.',
+    summary:
+      'A 320 m deep well for Arada Luxury Mall, from drilling and casing to well development, with pump installation.',
+    // Liyat confirmed the two services, 2026-11-13: deep-well drilling (320 m) and pump installation
     description:
-      'Drilling of a 320 m well for Arada Luxury Mall, with casing installation and well development.',
+      'Drilling of a 320 m deep well for Arada Luxury Mall, with casing installation, well development and pump installation.',
     // Liyat's photos, named "Well Development for Arada Luxury Mall" and "Arada Luxury Mall
     // Casing Installation" (the casing photo is cropped to leave out a bystander)
     image: photo(
@@ -365,22 +367,24 @@ export const PROJECTS: Project[] = [
         'Casing pipes ready for installation beside the drilling rig at Arada Luxury Mall'
       ),
     ],
-    services: ['deep-shallow-water-well-drilling'],
-    // Liyat's company profile: "Arada Luxury Mall, 320 m well"
+    services: ['deep-shallow-water-well-drilling', 'pump-supply-installation'],
+    // Liyat's company profile: "Arada Luxury Mall, 320 m well"; confirmed a 320 m deep well (R4, 2026-11-13)
     depth: { value: '320', unit: 'm', label: 'Well depth' },
     featured: false,
   },
   {
     slug: 'belayneh-kinde-bole-lemi',
     year: 2026,
-    title: 'Well development for a factory',
-    scope: 'Well development',
+    title: 'Two wells for a contractor group',
+    scope: 'Drilling · Casing installation',
     client: 'Belayneh Kinde Group',
-    location: 'Bole Lemi, Addis Ababa',
-    summary: 'Well development for the Belayneh Kinde Group PP bags factory at Bole Lemi.',
-    // PLACEHOLDER(C-36): the owner asks for the depth and the full work; only the photo names it
+    location: 'Addis Ababa',
+    summary: 'Two wells, 220 m and 250 m, each with 8 inch casing, for the Belayneh Kinde Group.',
+    // Owner, 2026-11-13: Belayneh Kinde General Contractor is part of the Belayneh Kinde Group (show
+    // the Group); Liyat's list: "Drilling of 220m with 8 inch casing installation and Drilling of
+    // 250m with 8 inch casing installation (Addis Ababa)"; 2026; the 200 m he said was a rough figure.
     description:
-      'Well development at the Belayneh Kinde Group PP bags factory at Bole Lemi, with our drilling rig and air compressors on site.',
+      'Drilling of two wells in Addis Ababa for the Belayneh Kinde Group: one of 220 m and one of 250 m, each with 8 inch casing installation.',
     // Liyat's photo, named "Belayneh Kinde Group Well Development at Bole Lemi PP bags Factory"
     image: photo(
       'belayneh-kinde-bole-lemi',
@@ -388,8 +392,8 @@ export const PROJECTS: Project[] = [
       'Water and foam rising from the well during development at Bole Lemi'
     ),
     gallery: [],
-    // Well development is part of the drilling service (Liyat's written answers, 4.5)
     services: ['deep-shallow-water-well-drilling'],
+    depth: { value: '220 and 250', unit: 'm', label: 'Well depths' },
     featured: false,
   },
   {
@@ -478,6 +482,7 @@ export const PROJECTS_PAGE: ProjectsPage = {
   header: {
     eyebrow: 'Our work',
     title: 'Wells we have drilled, tested and equipped',
+    metaTitle: 'Water-Well Projects in Ethiopia',
     intro:
       'For embassies, banks, colleges and developers. Each project lists only the facts we can document.',
     image: {
@@ -517,18 +522,9 @@ export const PROJECT_GALLERY: ImageAsset[] = [
     )
   ).map((project) => project.image),
   // Liyat's Ethiopian Airlines photos (2026-11-07); the night shot last (D-164)
-  {
-    url: '/images/equipment/rig-and-casings.webp',
-    alt: 'Liyat drilling rig with screen casings laid out for the Ethiopian Airlines wells',
-  },
-  {
-    url: '/images/equipment/engineers-on-pipes.webp',
-    alt: 'Engineers on the casing pipes beside the rig at the Ethiopian Airlines site',
-  },
-  {
-    url: '/images/projects/ethiopian-airlines-pumping-test/night.webp',
-    alt: 'Water rushing from the well at night during the Ethiopian Airlines pumping test',
-  },
+  EA_RIG_AND_CASINGS,
+  EA_ENGINEERS,
+  EA_NIGHT,
 ];
 
 export const FEATURED_PROJECTS = PROJECTS.filter((project) => project.featured).slice(0, 6);

@@ -12,6 +12,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     eyebrow: 'Our equipment',
     // Copy approved by the owner, 2026-11-08 (D-158); "our own" is from Liyat's review ("We own the rigs")
     title: 'Rigs, pumps and the crews who run them',
+    metaTitle: 'Drilling Rigs and Equipment',
     intro:
       'We work with our own drilling rigs, compressors and test pumps, sourced from Indian and Turkish manufacturers.',
     // The owner's choice (2026-11-09): the rig on its carrier; the Bole Lemi photo moved to the rigs section
@@ -25,11 +26,11 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
   rigs: {
     eyebrow: 'Drilling equipment',
     title: 'Rigs for deep and shallow wells',
-    // Liyat's written answers: mud rotary and DTH, rigs "up to 800m", Chaka House the deepest.
-    // The 800 m vs the list's 1,200 m is still open (C-37)
+    // Liyat's written answers: mud rotary and DTH, Chaka House the deepest. D-190 wording:
+    // depth up to 800 m, rigs rated 300 m and 1,200 m. R5 asks Liyat to confirm it (C-37)
     paragraphs: [
       'Our rigs drill by mud rotary and DTH (down-the-hole hammer), so one crew can work through soft ground and hard rock.',
-      'They can drill up to 800 m. The deepest well we have completed so far is 600 m, at Chaka House in Addis Ababa.',
+      'Our drilling depth is up to 800 m. Our rigs are rated 300 m and 1,200 m. The deepest well we have completed so far is 600 m, at Chaka House in Addis Ababa.',
       'Our drilling team builds the well. Separate pumping-test and electromechanical teams take it from there.',
     ],
     image: {
@@ -38,8 +39,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     },
   },
   // The main items of Liyat's equipment list (LIYAT_ORIGINALS.md §6); no counts, no consumables.
-  // The list's "1200 m" and "300 m" rigs are shown as written; the 800 m above is his answer
-  // to our question. The owner asks him about the difference (2026-11-05)
+  // Rig ratings 300 m and 1,200 m from his list; the 800 m depth is his answer (D-190, R5)
   fleet: {
     eyebrow: 'Our fleet',
     title: 'What we bring to site',
@@ -47,7 +47,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
     items: [
       {
         title: 'Drilling rigs',
-        text: 'Truck-mounted drilling rigs, rated 1,200 m and 300 m.',
+        text: 'Truck-mounted drilling rigs, rated 300 m and 1,200 m.',
       },
       {
         title: 'Air compressor',
@@ -131,7 +131,7 @@ export const EQUIPMENT_PAGE: EquipmentPage = {
       // From Liyat's review ("For tenders"), without its promise of ownership documents
       'Need our equipment list for a tender? Ask us and we’ll send it.',
     ],
-    action: { label: 'See our safety and environmental practice', href: '/environment' },
+    action: { label: 'See our safety & environmental practice', href: '/environment' },
   },
 };
 
@@ -149,6 +149,7 @@ export const EQUIPMENT_GALLERY: ImageAsset[] = [
   {
     url: '/images/equipment/tower-rig.webp',
     alt: 'Liyat truck-mounted drilling rig with its mast raised',
+    focus: 'top',
   },
   {
     url: '/images/hero/ea-casing-site.webp',
@@ -157,6 +158,7 @@ export const EQUIPMENT_GALLERY: ImageAsset[] = [
   {
     url: '/images/equipment/compressor-truck.webp',
     alt: 'Atlas Copco XRVS air compressor on a Liyat crane truck',
+    focus: 'left-third',
   },
   {
     url: '/images/equipment/engineers-on-pipes.webp',
@@ -169,10 +171,11 @@ export const EQUIPMENT_GALLERY: ImageAsset[] = [
   {
     url: '/images/equipment/worker-container.webp',
     alt: 'Liyat worker container on its trailer, ready to move to site',
+    focus: 'right-third',
   },
   {
-    url: '/images/equipment/casings.webp',
-    alt: '10-inch blind and screen casing pipes stacked at the yard',
+    url: '/images/projects/ovid-real-estate-turnkey-wells/pump-crane.webp',
+    alt: 'Liyat crane lifting a submersible pump over the well',
   },
 ];
 

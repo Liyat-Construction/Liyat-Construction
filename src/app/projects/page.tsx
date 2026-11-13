@@ -11,7 +11,11 @@ import { getServiceTitles } from '@/data/services';
 
 const { header, clients, gallery } = PROJECTS_PAGE;
 
-export const metadata: Metadata = pageMetadata('/projects', header.title, header.description);
+export const metadata: Metadata = pageMetadata(
+  '/projects',
+  header.metaTitle ?? header.title,
+  header.description
+);
 
 // PROJECT.md §7 (Projects): the header, every project, then the clients
 export default function ProjectsPage() {

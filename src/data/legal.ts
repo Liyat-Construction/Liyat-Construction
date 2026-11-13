@@ -46,13 +46,14 @@ export const PRIVACY_PAGE: LegalPage = {
       paragraphs: [
         'The enquiry form uses Web3Forms when it is enabled. Your submitted details are sent to that provider for processing and delivery to Liyat’s receiving inbox. While the form is unavailable, you can contact Liyat directly using the published email address or phone numbers.',
         'Website hosting, form processing and email services may handle technical information, such as IP addresses and delivery logs, as part of operating their services. Their handling of that information is also subject to their own privacy notices. Contact Liyat if you need details about the providers involved in your enquiry.',
+        'The contact page shows a map from Google Maps. When the map loads, Google may set cookies and see your IP address.',
       ],
     },
     {
       id: 'analytics',
       title: 'Analytics and tracking',
       paragraphs: [
-        'This website uses no analytics, advertising or tracking services. If that changes, this policy will be updated to explain them before they are switched on.',
+        'This website uses no analytics or advertising services of its own. If that changes, this policy will be updated to explain them before they are switched on.',
       ],
     },
     {

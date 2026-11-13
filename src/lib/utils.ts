@@ -13,7 +13,19 @@ import { extendTailwindMerge } from 'tailwind-merge';
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ['display', 'h1', 'h2', 'h3', 'h4', 'figure', 'lead', 'body', 'small', 'eyebrow'],
+      text: [
+        'display',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'figure',
+        'lead',
+        'lead-fit',
+        'body',
+        'small',
+        'eyebrow',
+      ],
       radius: ['control', 'card'],
       shadow: ['raise'],
       spacing: ['section', 'section-md', 'section-sm', 'gutter', 'grid'],

@@ -1,5 +1,5 @@
 {
-  "name": "aksumite-web-next-static",
+  "name": "liyat-construction-web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "type-check": "npx tsc --noEmit",
     "check:design": "node scripts/check-design.mjs",
     "check:placeholders": "node scripts/check-placeholders.mjs",
+    "test": "node --test scripts/contact-form.test.mjs scripts/seo.test.mjs",
     "analyze": "npx next experimental-analyze",
     "validate": "npm run type-check && npm run lint && npm run format:check",
     "prepare": "husky",

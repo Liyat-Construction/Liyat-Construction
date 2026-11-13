@@ -5,106 +5,40 @@ before you stop. How the site is built is in [`docs/PROJECT.md`](docs/PROJECT.md
 
 ## ▶ You are here
 
-|                    |                                                                                                                                                                                        |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Current step**   | **P18 review round**: decisions recorded in [`docs/REVIEW_PLAN.md`](docs/REVIEW_PLAN.md); next is the owner's yes on the delete list, then steps 1–7 there                             |
-| **Last completed** | 2026-11-12: SEO_PLAN steps 1, 2 and 5 (the three project pages; photos for two still to come). Not committed                                                                           |
-| **Waiting on**     | Meeting answers of 2026-11-10 are in `docs/CLIENT_ANSWERS.md`. Still open: address Woreda 03 vs 04, Arada "320", info@ set up, access choice (D-183), quotes, photos, Husky logo, C-37 |
-| **Next**           | One item from "What is left" in `docs/SEO_PLAN.md` (A1–E4). Step 5, the three project pages, is finished and reviewed                                                                  |
-| **Not committed**  | Step 13's changes. Liyat's original files are copied into `docs/LIYAT_ORIGINALS.md` and deleted (D-133)                                                                                |
+|                    |                                                                                                                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current step**   | Follow [`docs/DIRECTION.md`](docs/DIRECTION.md) (T1–T23, in order); one task at a time                                                                                          |
+| **Last completed** | 2026-11-14: T15a (cleanup of unused files, see the handoff). T15 (style guide kept for development only). T14, T13, T12, T10, T9, T7, T8, T5, T6, T2, T1 done                   |
+| **Waiting on**     | Liyat: R2, R3, R5–R9 (sent), Web3Forms key, Search Console Owner. Owner and Liyat on the call: the `info@` test (T4). Answers so far are in `docs/CLIENT_ANSWERS.md`            |
+| **Next**           | T11 (team section) waits for R8 (C-41), spec in `docs/TEAM_SECTION.md`. Then T16 (final checks) and Phase 6 (commit and deploy, owner's word). Nothing is pushed before that    |
+| **Not committed**  | Committed locally on 2026-11-14, **not pushed** (owner's word needed, T17). Older history: `git log`; the long handoffs before 2026-11-13 are in `git show 7c02d3b:WORKFLOW.md` |
 
-## SEO and being found (started 2026-11-10)
+## SEO and being found
 
-The plan, the steps in order and the baseline are in [`docs/SEO_PLAN.md`](docs/SEO_PLAN.md). Decisions
-D-180 to D-184 are below. Work one step at a time and tick it in that file. Step 1 (Search Console,
-Bing, redirect check, AI baseline) and step 2 (site name, titles, fact sentence, sitemap dates) need
-no client answers. Steps 3–5 wait for the meeting answers: profiles, structured data and the three
-project pages.
+The plan, the steps and the baseline are in [`docs/SEO_PLAN.md`](docs/SEO_PLAN.md); the order of
+work is in `docs/DIRECTION.md`. Decisions D-180 to D-195 are below.
 
-## Plan to launch
+## Where the project stands (the old plan, short)
 
-| Step | What                                                                                        | Status      |
-| ---- | ------------------------------------------------------------------------------------------- | ----------- |
-| P15  | Quality and performance audit (results below)                                               | Done        |
-| —    | Commit everything since `bc67ac9`                                                           | Done        |
-| P16  | Swap in the client's answers; `check:placeholders` reaches zero                             | ▶ Part 2    |
-| P17a | Deploy a preview to Vercel; the owner shows it to Liyat; PageSpeed Insights on it (D-118)   | Not started |
-| P17b | Final deploy: domain, `NEXT_PUBLIC_SITE_URL`, form key, a real test inquiry, Search Console | Not started |
-| P18  | Client walkthrough and handoff                                                              | Not started |
-
-**P15 results (2026-10-28)** — Lighthouse 12.8.2, mobile, all 14 routes of the static build
-
-- **Accessibility 100, best practices 100, SEO 100** on every page; SEO 69 on the two legal
-  pages is their intended `noindex` (C-29).
-- **Performance 65–89, LCP 3.2–5.1 s (simulated), CLS ≤ 0.022.** Not trustworthy on this
-  laptop: Lighthouse's CPU benchmark swung 496–1732 between runs, and the simulated mobile CPU
-  assumes a faster host. Judged on the Vercel preview with PageSpeed Insights instead (D-118).
-  Remaining levers if it is still under 95 there: card photo weight, the hydration JS.
-- **First-load JS (gzip):** Home 167 KB, other routes 154 KB (≤ 190 KB). The 39 KB
-  `noModule` polyfill is excluded: modern browsers never load it.
-- **Hero contrast**, measured on the photo pixels behind each text box (98th percentile,
-  with scrim and top fade): headline and buttons ≥ 5 : 1 at every width, also over the rig
-  mast on phones. The lead (white/80) fell to 4.35 : 1 from lg and the caption to 2.5 : 1 over
-  the sand — fixed (below).
-- **Fixed in the shared layer:** Hero text full white (`data-on-photo`); Backdrop caption on a
-  65 % Ink plate; Photo `priority` now preloads with `fetchPriority="high"` (Next 16 dropped
-  it); the header logo is a 12 KB WebP from the image pipeline (`assets/images/brand`), not
-  the 65 KB PNG (about 50 KB less on every page); ProjectCard `headingAs` — h2 on /projects,
-  which jumped h1 → h3; the 404 page has its own title.
-- **Proofread (D-117):** Pump Supply & Installation and Equipment's pump method implied a
-  pumping test before every installation; now "when one is part of the work". The survey
-  "names the depth and yield" became "estimates the depth to drill to and the likely yield"
-  (Environment already says a survey does not guarantee water).
-- **Browsers:** Chrome and Edge here; Firefox is not installed. Phones by the owner on the
-  preview.
-- **Skipped as not required now (owner):** a full manual keyboard and screen-reader pass
-  (structure checks found only the heading jump); before the final launch.
-
-## P16 part 2: apply Liyat's answers
-
-Liyat's answers and the reason for each change are in
-[`docs/CLIENT_ANSWERS.md`](docs/CLIENT_ANSWERS.md). Work one step at a time, in this order. After
-each step: `npm run validate` (see the CRLF note under Known issues), `npm run check:design`,
-and a look in the browser. Tick the step here.
-
-| Step | What to change                                                                                                                                                                                                                                                             | Where                                                              | Status      |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
-| 1    | Service names, keeping the slugs so the URLs don't change. "Mud rotary and DTH rotary drilling" replaces "Rotary and air drilling". Find every hard-coded old name                                                                                                         | `services.ts`, `contact.ts`, `PROJECT.md` §8                       | Done        |
-| 2    | Figures: 7+ years, 50+ wells, 600 m deepest, 15,000 m+ drilled. Remove the GM's 20+ figure and the years in company facts; keep the sentence in his story                                                                                                                  | `company.ts`, `about.ts`, `PROJECT.md` §8                          | Done        |
-| 3    | Remove the team section and use his "Expert team" line. Delete `team-grid.tsx` and `team-card.tsx` once unused, and take them off `/styleguide`                                                                                                                            | `company.ts`, `about/page.tsx`, `styleguide`                       | Done        |
-| 4    | Home projects: Chaka House replaces Tsedey Bank. Entoto well: 200 m                                                                                                                                                                                                        | `projects.ts`                                                      | Done        |
-| 5    | Ovid: name Ovid Group; move the photo to `assets/images/projects/ovid-real-estate-turnkey-wells/cover.jpg`, run `npm run images`, remove "Illustrative", caption "Casing installation at Kings Tower, Arat Kilo", check the crop                                           | `projects.ts`, images                                              | Done        |
-| 6    | CREDOKS spelling in all names and alt text. Keep it as a past project, not a service. The `credocs-shoring` slug and image folder stay, because visitors don't see them                                                                                                    | `projects.ts`, `partners.ts`                                       | Done        |
-| 7    | Equipment: "Indian and Turkish manufacturers"; rigs can drill up to 800 m, kept separate from the 600 m deepest well. Fix the lines that say the page shows no capacity                                                                                                    | `equipment.ts`, `home.ts`                                          | Done        |
-| 8    | Not done, on the owner's word (D-129): the section and sample quotes stay while the owner asks Liyat for real ones. No social links                                                                                                                                        | `testimonials.ts`, `site.ts`, `home-sections.tsx`                  | Skipped     |
-| 9    | Remove the placeholder marks that are now answered (C-09 names, C-17, C-31). The C-10 and C-12 marks stay until he answers (D-126, D-129). Run `check:placeholders`; what's left must match the table below                                                                | `src/`                                                             | Done        |
-| 10   | Full check: `validate`, `check:design`, `build:static`, the tests, and the browser at 375, 768 and 1280 px. This also covers the D-119 browser check that is still open                                                                                                    | The whole site                                                     | Done        |
-| 11   | Commit on the owner's word. The owner sends the must-ask questions; deploy the preview (P17a) so Liyat can read the site                                                                                                                                                   | Owner, Vercel                                                      | ▶ Next      |
-| 12   | Projects page, "Photos from Our Work": on phones, a sideways swipe row with the next photo peeking in; the grid stays on desktop; check tablets. No new dependency (D-131)                                                                                                 | `photo-gallery.tsx`, `/styleguide`                                 | Not started |
-| 13   | Liyat's follow-up answers, equipment list and photos (2026-11-05): 12,000 m+; Ovid at Arat Kilo with pump installation; hand pumps stay; new Arada and Belayneh Kinde cards (9 → 11); Equipment page fleet list and photos; new drilling, pump and Equipment header photos | `company.ts`, `projects.ts`, `services.ts`, `equipment.ts`, images | Done        |
-
-**Step 13 in detail.** Photos moved from `public/images/NEW PHOTOS` into `assets/images/`
-(saved at up to 2,400 px; list in `docs/LIYAT_ORIGINALS.md`), built with `npm run images
-<paths>` only — a full `npm run images` empties `public/images/`. The Arada casing photo is
-cropped to leave out a bystander. The Equipment page gains "What we bring to site" (FeatureGrid,
-six items, no counts) and an "Our equipment" PhotoGallery (six photos). The drilling page and
-the Equipment header now use the Bole Lemi rig photo; Pump Supply & Installation uses the Ovid
-pump photo. The Home hero stays one photo (D-131): only two new photos are wide and sharp.
+P15 (quality audit: accessibility, best practices and SEO scored 100; performance is judged on the
+Vercel preview, D-118) and P16 (Liyat's answers, services, figures, projects, equipment) are done
+and committed. The launch steps (preview, final deploy, handover) are Phase 6 of `DIRECTION.md`.
 
 ## Open client items
 
-The must-ask questions are at the top of `docs/MEETING_QUESTIONS.md` and the Notion copy. Codes
+What is still to ask is the requirements list R1–R9 in `docs/DIRECTION.md`. Codes
 appear in `PLACEHOLDER(C-xx)` comments in the code.
 
-| Code | Still open                                                                          | Type       |
-| ---- | ----------------------------------------------------------------------------------- | ---------- |
-| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)    | Owner asks |
-| C-36 | Belayneh Kinde depth and work; where Arada Luxury Mall is; a Belgian Embassy photo  | Owner asks |
-| C-37 | Rigs "up to 800m" (his answer) vs "1200 m" and "300 m" (his equipment list), D-132  | Owner asks |
-| C-29 | Legal pages: no reply means no changes                                              | Preview    |
-| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                      | Our task   |
-| C-39 | Husky Engineering: a sharp logo and website; may we name Milto and Husky (D-174)    | Owner asks |
-| C-40 | More photos for the British Embassy and Chaka House pages (D-184); requirements doc | Owner asks |
+| Code | Still open                                                                                                                                                                    | Type       |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| C-12 | Real testimonials; the owner asks him. The samples must go before launch (D-129)                                                                                              | Owner asks |
+| C-36 | Belayneh Kinde: answered 2026-11-13 (see handoff); a Belgian Embassy photo                                                                                                    | Owner asks |
+| C-37 | Rigs "up to 800m" (his answer) vs "1200 m" and "300 m" (his equipment list), D-132                                                                                            | Owner asks |
+| C-29 | Legal pages: no reply means no changes                                                                                                                                        | Preview    |
+| C-25 | Our task: Web3Forms access key for liyatconstruction@gmail.com                                                                                                                | Our task   |
+| C-39 | Husky Engineering: a sharp logo and website; may we name Milto and Husky (D-174)                                                                                              | Owner asks |
+| C-40 | More photos for the British Embassy and Chaka House pages (D-184); requirements doc                                                                                           | Owner asks |
+| C-41 | Team facts for the About team section: total staff, disciplines with staff, qualifications and average years, most senior years, on-call experts (R8; `docs/TEAM_SECTION.md`) | Owner asks |
 
 Answered and closed: C-09 (hand pumps: yes), C-10 (50+ wells, 12,000 m+), C-15 (no team names),
 C-16 (equipment list received), C-17 (Environment), C-20 (no social links yet), C-23 (CREDOKS),
@@ -182,7 +116,7 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
   praise from clients who never said it, under "Name Surname". Keep them off anything public: tell
   Liyat on the preview, and replace or remove them before launch. The C-12 mark blocks launch.
 - **D-130 — owner, 2026-11-04:** the commit holds the site and our text documents
-  (`CLIENT_ANSWERS.md`, `MEETING_QUESTIONS.md`). Liyat's four files in `docs/` stay out of git.
+  (`CLIENT_ANSWERS.md`). Liyat's four files in `docs/` stay out of git.
 - **D-131 — owner, 2026-11-04:** after a reviewer's feedback from a phone, the Projects gallery gets a
   swipe row on phones and keeps the grid on desktop (step 12). The Home hero stays one photo for
   now: the photos we have aren't sharp enough to fill the screen one after another. Look at a slider
@@ -236,7 +170,7 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
   not built with one photo"). The pages say only confirmed facts: the owner's idea of an invented
   "hardest part of the job" was not used (agent's objection: a false claim about a named client);
   no duration.
-- **Open:** keep `/styleguide` hidden at launch, or delete it (O-05; currently kept).
+- **Decided 2026-11-13 (T15):** `/styleguide` is kept for development only and is not in the production build.
 
 ## How we work
 
@@ -251,8 +185,6 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
   accepted (D-118).
 - The rig depth question (C-37) has no `PLACEHOLDER` marker, only a comment in `equipment.ts`, so
   `check:placeholders` can reach zero while it is open: tick it off by hand.
-- `.devin/skills/senior-website-engineer/SKILL.md` still lists the deleted ENGINEERING,
-  DESIGN_SYSTEM and BRAND_GUIDELINES docs.
 - On this Windows checkout `core.autocrlf=true` writes CRLF, so `npm run validate`'s Prettier
   step flags every file (`endOfLine: lf`). Git stores LF, so commits are clean; check edits with
   `npx prettier --check --end-of-line auto <files>`.
@@ -263,239 +195,57 @@ log up to D-115 is in git (`git show bc67ac9:WORKFLOW.md`).
 - `npm run lint` covers `src/` only; `eslint .` reports 3 older errors in `scripts/`
   (`check-design.mjs`, `optimize-images.mjs`).
 - The dev server warns about the header logo's width and height; dev only, not an error.
+- `npm test` reads the built site: run `npm run build:static` first.
 - Legal pages are drafts: `noindex` until the client's review (C-29).
 
 ## Handoff
 
-**2026-10-28.** Removed every unused component, option, data list, package and image
-(D-116); verified with validate, check:design, contact tests 8/8, `build:static` (19 routes),
-SEO tests 4/4 and the browser at 375/768/1280. Reworded the services heading and the survey
-claims (D-117), and the home equipment intro, which claimed machine ratings the site does not
-show. Replaced ENGINEERING, DESIGN_SYSTEM, BRAND_GUIDELINES and the long WORKFLOW with
-`docs/PROJECT.md` and this file.
+**Before 2026-11-13 (short).** 2026-10-28: unused code and images removed (D-116), P15 audit,
+docs reduced to `PROJECT.md` and this file. 2026-11-03 to 05: Liyat's answers applied (P16):
+service names, figures, projects, equipment, CREDOKS spelling, Ovid and Arada, swipe row on
+phones. 2026-11-06 to 09: hero lowered, Liyat's review applied (D-171 to D-179). 2026-11-10 to 12:
+SEO plan (D-180 to D-185), Search Console, the three project pages. The full text of those
+handoffs: `git show 7c02d3b:WORKFLOW.md`.
 
-**2026-10-28, P15.** Audit and fixes as listed under "P15 results"; validate, check:design
-and `build:static` (19 routes) pass; browser at 375 (no overflow, lead white, caption hidden
-as designed), 768 and 1280 (caption plate, card titles unchanged). Committed and pushed as
-`9c86f6a`.
+**2026-11-13, direction set (D-186–D-195).** Owner and agent agreed the order of all remaining work; it is in `docs/DIRECTION.md` (tasks T1–T23). Profiles are Liyat's own job via an Online Presence Guide; `keywords` and `/styleguide` go; depth wording and Arada settled; softer "no guaranteed discharge" wording is T6. A reusable session prompt is in `docs/WORK_PROMPT.md`. Documents only: no site code changed. **Next:** T1 (Online Presence Guide), T2 (requirements list).
 
-**2026-11-03, P16 part 1 (D-119).** Put in the clear parts of Liyat's copy review (home.ts,
-about.ts, company.ts, projects.ts, site.ts; mission/vision icons swapped in about/page.tsx).
-Placeholders 21 → 18. Type-check, lint, check:design and `build:static` (19 routes) pass;
-Prettier passes on the changed files (CRLF note under Known issues); new text confirmed in
-`out/`. **Not yet done:** the browser check at 375/768/1280 (the running dev server needs a
-restart after `npm ci`). **Next:** browser check; the owner sends the follow-up questions;
-then commit on the owner's word.
+**2026-11-13, T1 and T2 done.** Wrote both documents in chat; the owner is putting them into Word and sending them to Liyat (no files in the repo). **T1, Online Presence Guide:** warm recommendations, not orders; same details everywhere (site address, phones, hours, `https://www.liyatconstruction.com/`, `info@`); ready bio and founder line; profiles Google Business, LinkedIn company page and founder profile (Wondwossen Ayalew), Facebook, WhatsApp Business; fix his own Maps profile and claim or report the other (D-187); ask for reviews. **T2, requirements list:** the owner reordered and edited it to **nine** questions: tick questions first (1 address Woreda 03 or 04, 2 founder title, 3 Arada "320", 4 depth wording D-190, 5 legal pages), then items to send (6 client quotes, 7 photos, 8 partners, 9 team, laid out like the Milto About table, no photos). Changes from the plan: R7 (Belayneh Kinde) dropped because the owner already gave the facts (2026, ongoing, 200 m); a founder-title question was added (the site says "Founder and General Manager", D-186 said "CEO"). **Checked:** facts against `site.ts` and `about.ts`. **Not checked / open:** the owner calls Wondwossen about Woreda and title before sending; the screenshot behind "Woreda 03" is a Google AI answer, and it said "301" while the site has House Number 201; the `SEO_PLAN.md` profile boxes stay unticked because they are Liyat's job. Documents only: no site code changed. **Next:** T3 (the call: Web3Forms key, Search Console Owner), T4 (`info@` forwarding), or T5 (content pass, needs nothing from anyone).
 
-**2026-11-04, P16 part 2 planned.** Recorded Liyat's written answers, company profile and phone
-call in `docs/CLIENT_ANSWERS.md`; cut the questions to 5 must-asks in
-`docs/MEETING_QUESTIONS.md` and Notion; wrote the steps under "P16 part 2". Documents only: no
-site code, images or copy changed. The Ovid photo is still in `assets/images/clients/` until
-step 5. **Next:** step 1.
+**2026-11-13, T5 (content pass).** **Changed:** address is now "Bole Sub City, 301 Mickey Leland Street, House Number 201, Addis Ababa, Ethiopia" with no woreda (Liyat says 04, Google says 03; owner's decision) in `site.ts`; `keywords` removed from `site.ts` and `layout.tsx` (D-189); depth wording per D-190 in `equipment.ts` (rigs section, fleet item, comments), `projects.ts` (Chaka House note) and `services.ts` (meta description); Arada card now says "320 m deep well" and adds pump installation (scope, summary, description, second service `pump-supply-installation`) because Liyat confirmed both (R4; D-191 said no number until he answered, so the number stays); one Equipment gallery photo replaced: the casing-pipes photo (materials, owner's call) by the crane lifting a submersible pump (`ovid-real-estate-turnkey-wells/pump-crane.webp`, already on the Ovid page, so it appears twice on the site). Answers recorded in `docs/CLIENT_ANSWERS.md`. **Checked:** type-check and lint pass; Prettier `--end-of-line auto` leaves the five edited files unchanged (`format:check` inside `validate` still reports the known CRLF files, not caused by this task); `check:design` and `build:static` pass; `out/index.html` has no `keywords` and the new address; browser at 375, 768 and 1280: no sideways scroll on Home contact, Equipment and Projects, Arada card text correct, new photo loads (tile 357x447 for a 500x666 photo, so a small crop). **Read, no change needed:** footer services come from `services.ts`, and the Terms list matches the six names; Ethiopian Airlines already names Kibish Construction in `projects.ts`; both legal pages read in full: they stay as written (D-192), `PLACEHOLDER(C-29)` stays until a qualified reviewer approves. **Not checked / open:** `public/images/equipment/casings*.webp` and `assets/images/equipment/casings.jpg` are now unused; delete on the owner's word. The Online Presence Guide now has the title "Founder and General Manager" and the new address (the owner edited it). R5's depth question is still with Liyat. The structured data address (`organization-schema.tsx`) uses the same string. **Next:** T6 (owner chooses the softer wording), or T7 (hero photo scan), which needs nothing from anyone.
 
-**2026-11-04, P16 part 2, step 1.** Renamed the service to "Deep and Shallow Water-Well Drilling"
-in `services.ts`, `contact.ts`, the form subjects (`site.ts`), `legal.ts`, the style guide samples
-and `PROJECT.md` §8; the `borehole-drilling` slug stays (changed later, D-135). "Mud rotary and DTH rotary drilling"
-replaces "Rotary and air drilling". Also made "turnkey water systems" in the meta description
-"turnkey water projects", and applied D-127 and D-128. Type-check, lint, check:design,
-`build:static` (the first run stopped with font fetch errors, the rerun passed) and tests 12/12
-pass; Prettier passes on the changed files. Browser at 375, 768 and 1280: no sideways scroll, no
-console errors, old name gone from the pages checked. At 768 the card heading breaks at the hyphen
-("Water-" / "Well Drilling"); left as it is. **Next:** step 2.
+**2026-11-13, T6 (D-195).** About's story no longer ends on "we do not guarantee a specific discharge"; it ends: "…dedicated to excellence, and at every stage we report what the ground and the tests show, so our clients decide with the facts." (`about.ts`). Environment (`environment.ts`): the pumping-test card now says "Every well is different, so we report what the tests show and never promise a yield in advance"; the survey card's "It never guarantees it" became "…we explain what it shows and what it cannot show, because every site is different". The owner's idea, our proposal and the owner's yes are the same here, so no objection to record. The promise-nothing line stays in the Terms (`legal.ts`, "not a guarantee of groundwater availability, well depth or yield"), untouched. **Checked:** grep of `src` for guarantee/promise/assure finds no other promise about water; type-check, lint, check:design, `build:static` pass; Prettier unchanged; new text in `out/about` and `out/environment`, old sentence in no built page; browser at 375, 768 and 1280: no sideways scroll on About and Environment. **Not checked / open:** `npm run validate`'s `format:check` still lists the known CRLF files. **Next:** T7 (hero photo scan, owner picks 3–4), or T3/T4 with Liyat and Namecheap.
+**2026-11-13, T7 and T8 (hero).** **Chosen with the owner** (every photo in `public/images` looked at on contact sheets, then ranked and cut): 1 Afar, 2 Ethiopian Airlines tank, 3 Belayneh Kinde, 4 Yekatit 12 water jet, 5 EA V-notch, in the owner's order. Dropped: the old slides welding dusk, casing and cabin, drilling fluid and engineers on casing, the water column (the owner disliked it on desktop; I thought it was the best on phones, and it is one block in `home.ts` to bring back), Afdera, Ovid crane, Credoks. **Why per device:** the hero fills the screen, so it is tall on phones (375x812, shorter with the browser bar) and wide on desktop (about 1900x890); one centred crop cannot suit both. **Changed:** `ImageAsset` gets `focusWide` (the crop from lg) and `zoom: 'left'` (phones only, 1.35x, used on Afar); three new focus values (left-third, mid-left, right-third) and the zoom values live in `tokens.css`; the hero title on phones is 40 to 56 px (15 vw) instead of 40 px, from md the old scale; the line under it has a new `introSize: fit` (13 to 18 px, one line on 320 to 430 px phones, 14.6 px at 360); the slider controls are now a dark pill with a growing active bar in brand green and a smaller pause button (the pause stays: WCAG 2.2.2, the photos move by themselves); the temporary number badge is gone; `overflow-hidden` on the slider (the zoom animation made a 5 px sideways scroll on phones). **Checked:** type-check, ESLint on the changed folders, Prettier on the changed files, `check:design` and `build:static` (the first run failed on the Google Fonts fetch as before, the rerun passed); browser at 375, 768 and 1280: no sideways scroll, no badge, five dots and the pause button present, title and line sizes measured at 320, 360, 390, 430, 768 and 1280. **Not checked / open:** `npm run validate`'s `format:check` still lists 82 known CRLF files; the white title over photos 4 and 5 was not re-measured against the 60 % scrim (looked readable); phone crops were judged on previews and one browser look, not on real devices; the hero photos not used now (`welding-dusk`, `casing-pipes-cabin`, `rig-drilling-fluid`, `engineers-on-casing`, `water-column`) stay for T15a. **Next:** T9 (photo framing audit of every card and header), or T10/T11 with the owner's screenshots.
 
-**2026-11-04, P16 part 2, step 2.** About figures are now 7+ years, 50+ wells, 600 m and
-15,000 m+; Equipment shows the last three. "Company experience" is the agent's label for his
-"7+ years experience". The GM's 20+ figure and the years in company facts are gone; the sentence in
-his story stays. The C-10 mark now sits only on 50+ and 15,000 m+ (D-126). `about.ts` needed no
-change. Type-check, lint, check:design, `build:static` and tests 12/12 pass; Prettier passes on
-the changed files. Browser at 375, 768 and 1280: no sideways scroll, no console errors, the old
-figures are gone from About and Equipment. **For step 7:** Equipment's "From Liyat's
-completed-project records" no longer fits, because 50+ and 15,000 m+ come from his review, not a
-project list. **Next:** step 3.
+**2026-11-13, T9 (photo framing audit).** Measured every cropped photo slot (header, card, gallery, hero) on all 14 pages at 375, 768 and 1280 px, by script in the browser (the box, the visible share of the photo and the crop position), then looked at one contact sheet per width with the visible part outlined. **Fixed with the existing focus setting (no new component code, no new token):** `tower-rig` `focus: 'top'` (mast top was cut in the 4:5 gallery card), `compressor-truck` `left-third` (the truck, not just the middle), `worker-container` `right-third` (`equipment.ts`); `well-airlift-development` `focus: 'top'` (top of the water jet was cut in the Environment card, `environment.ts`). **Judged fine and left as they are:** the five hero photos (T8), page-header photos on phones (the subject stays in view), the Ethiopian Airlines cover (the V-notch flow is the subject and is centred), British Embassy and Chaka House covers (already `top` / `upper`). **Cannot be fixed by a focus point (a 4:5 card from a wide photo shows only about 60 % of the width):** `fleet` (vehicles span the whole photo), and the tall project covers shown at 4:3 (they show 42 to 56 % of the height); a different photo or ratio would be the fix, and it is left to the owner. Note for the owner: `rig-transport` in the Equipment header on phones shows only 37 % of the width (the truck's ends are cut); I did not change it because the wide header is cropped by design. **Checked:** Prettier (changed files), type-check, ESLint on `src/data`, `check:design`, `build:static` pass; the four new positions confirmed in the built pages at 375, 768 and 1280 (no sideways scroll on Equipment and Environment). **Not checked / open:** the crops were judged on small contact sheets, not on real devices; `npm run validate`'s `format:check` still lists the known CRLF files; no matching boxes in SEO_PLAN.md. **Next:** T10/T11 need the owner's screenshots, T12 needs R1; T13 (A2 review) is the next task nothing blocks.
 
-**2026-11-04, P16 part 2, step 3.** Removed About's team section and the team data, type and copy;
-deleted `team-card.tsx` and `team-grid.tsx` on the owner's word and took them off `/styleguide`.
-His "Expert team" line replaces the "A professional team" value (owner, 2026-11-04), because a
-separate block would have repeated it. Placeholders 18 → 17 (C-15). Type-check, lint, check:design,
-`build:static` and tests 12/12 pass; Prettier passes on the changed files. Browser: no sideways
-scroll at 375, 768 and 1280, and About and `/styleguide` load with no team content. Viewed the
-values cards at 1280; at 375 the screenshot stopped above the "Expert team" card and at 768 it
-failed, so those two were checked by page measurements, not by eye. The console's only errors came
-from a moment mid-edit, when the open page saw `about/page.tsx` still importing `TEAM`; no new ones
-after reloading. **Next:** step 4.
+**2026-11-13, T9 follow-up (page headers on desktop).** The owner saw that my first T9 pass wrongly called the page headers fine: on desktop a header is a band of about 1265x450-500 px, so a tall photo or a close-up fills it with sky or blur (British Embassy, Chaka House, and `water-column` on Environment and Turnkey). Options discussed: fitting the whole photo (`contain`, blurred fill) hides the photo behind the title; AI fill invents ground and sky on real client photos, so refused; a side photo, refused by the owner. **Decided (owner):** Turnkey and Environment get landscape photos chosen by the agent; the two project pages wait for better photos from Liyat. **Changed:** Turnkey header is now the Afdera cover (`services.ts`, alt from `projects.ts`), Environment header is `hero/casing-pipes-cabin` (`environment.ts`, alt from the old hero slide). **Checked:** Prettier, type-check, `check:design`, `build:static` pass; the header photo measured at 375, 768 and 1280 (shows 100% of the width from 768, no sideways scroll); one look each at 1280 (both read well) and at 375 on Turnkey (rig mostly under the title and scrim, acceptable). **Open:** ask Liyat for one landscape photo each for British Embassy and Chaka House (R3); then add a separate header photo per project, so the card keeps its tall cover. Ethiopian Airlines has a page but its tall cover was not questioned by the owner. `hero/water-column` is no longer used by any page (T15a candidate; the owner liked it on phones, so keep it until T15a).
 
-**2026-11-04, P16 part 2, step 4.** Home now shows Ethiopian Airlines, British Embassy and Chaka
-House; Tsedey Bank stays on /projects and Pumping Tests. The Entoto card shows 200 m. The drilling
-page's related projects now end in Chaka House instead of Tsedey Bank. Type-check, lint,
-check:design, `build:static` and tests 12/12 pass; Prettier passes on `projects.ts`. Browser: all
-three cards at 375 and 1280, no sideways scroll at 375, 768 and 1280. The preview pane didn't paint
-the Chaka House photo, so its file was checked directly (loads, 200). **Still open:** at 768 the
-third Home card is hidden by design, so tablets don't see Chaka House; the centre crop cuts the
-top of the rig's mast; the church is spelled two ways on the Entoto card. **Next:** step 5.
+**2026-11-13, T9 follow-up 2 (Environment header).** The owner judged the casing-pipes header on Environment as not representing the environment (agreed). Compared six candidates; owner chose Yekatit 12 water jet, centre crop (`environment.ts`, alt rewritten). It is now also the header of Rehabilitation and Projects (same photo on three headers; acceptable for now). **Checked:** Prettier, type-check, `check:design`, `build:static` (the first run failed on the Google Fonts fetch as before, the rerun passed); header photo at 375 (50 % of the width, subject in view), 768 and 1280 (full width), no sideways scroll; one look at 1280. **Open:** a real environment or safety photo from Liyat (clean site, crew in safety gear, the land around a well) would be the proper fix; add to the R3 photo request. `hero/casing-pipes-cabin` is unused again (T15a candidate).
 
-**2026-11-04, P16 part 2, step 5.** Moved Liyat's photo to
-`assets/images/projects/ovid-real-estate-turnkey-wells/cover.jpg` and built its web images (this
-one folder only, so the others weren't regenerated). The card now says Ovid Group, shows the
-caption "Casing installation at Kings Tower, Arat Kilo" and has lost "Illustrative"; the default
-centre crop is the best of the three looked at. Depth and location unchanged. A C-35 mark now sits
-on the card until he confirms the link, so placeholders are back to 18. Type-check, lint,
-check:design, `build:static` and tests 12/12 pass; Prettier passes on the changed files. Browser:
-no sideways scroll at 375, 768 and 1280; the photo loads, but the preview pane didn't paint it, so
-the crop was judged from the file. Its 800 px file is 92 KB, over the 70 KB budget. **Still open:**
-`assets/images/site/water-column.webp` is now unused (ask before deleting); the crop and church
-spelling from step 4. **Next:** step 6.
+**2026-11-13, T10 (testimonial slider).** The owner chose the Mekan style (one large quote at a time, a strip of names below) over the three-card grid: it keeps the page short with any number of quotes, above all on phones. **Agreed with the owner:** manual only (arrows, swipe, tabs; no autoplay), every quote in the page HTML, full quotes, no word limit (the owner asked to show everything they wrote; the row is as tall as the longest). **Changed:** `Carousel` has a new layout `single` (one full-width slide at every width, a "1 / 3" counter, optional `tabs` strip from `sm`; token `--carousel-slide-full` in `tokens.css`); `TestimonialCard` has `variant="feature"` (initials circle, name, role beside a large quote; the circle becomes the company logo when R2 brings logos); `testimonials.tsx` uses both; `/styleguide` shows the new variant. The old grid layout `cards` is still used by nothing in the testimonials (check in T15a whether anything else uses it). **Checked:** Prettier (changed files), type-check, ESLint, `check:design`, `build:static` pass; slide width equals the track and all slides are the same height at 375 (436 px), 768 (227) and 1280 (207), no sideways scroll; the strip is hidden on phones and shown from 768. **Not checked:** clicking the arrows and tabs in the browser. The pane was hidden and did not run frames, so scroll events came late; the counter did follow the scroll once the page rendered (it read "3 / 3" after scrolling to the end). Please click through once on the preview. `npm run validate`'s `format:check` still lists the known CRLF files. **Open:** real quotes and logos (R2). **Next:** T11 when the owner shares the team screenshot.
 
-**2026-11-04, P16 part 2, steps 6 and 7.** CREDOKS replaces CREDOCS in every name and alt text; the
-`credocs-shoring` slug and image folder stay. Shoring is noted as a past project, not a service.
-Equipment now says "Indian and Turkish manufacturers" and "Our rigs can drill up to 800 m. The
-deepest well we have completed so far is 600 m."; the two lines about no rated capacity are gone,
-and the figures intro says "Wells completed and metres drilled from 2019 to 2026." Added two facts
-to the rig on Home's equipment section (up to 800 m, Indian and Turkish); `home.ts` itself needed
-no change. Placeholders 18 → 15. Type-check, lint, check:design, `build:static` and tests 12/12
-pass; Prettier passes on the changed files. Browser at 375, 768 and 1280: no sideways scroll; old
-spelling gone from the visible text and alt text of Home and Projects, and only in image paths in
-the build. **Step 8 not done** (D-129). **Next:** step 9.
+**2026-11-13, T10 follow-up (owner's review).** Two points from the owner. (1) A short quote looked lost in its card: `Card` has a new padding variant `xl` (more room from md), the quote text is `text-h2` from md and centred vertically beside the name column. (2) My "about 50 words" limit is removed: quotes show in full (the slider is as tall as the longest quote; short ones now sit in a card with more presence). The owner's own limit was never asked for; mine was only to keep the height steady. **Checked:** Prettier, type-check, ESLint, `check:design`, `build:static` pass. **Not checked:** the new look in the browser at 375/768/1280 (the owner will look on his dev server at localhost:3000); a very long quote has not been tried.
 
-**2026-11-04, P16 part 2, step 9.** Removed the answered marks (service names, site practices,
-agency credit), comments only, nothing visitors see. The hand pump mark moved onto the Pump Supply
-service and now asks only that. Placeholders 15 → 8, matching the open table: C-09 hand pumps, C-10,
-C-12, C-16, C-25, C-29 (2), C-35. C-20, C-27 and C-36 have no mark. Type-check, lint, check:design
-and Prettier pass; no browser check or build for comments, covered by step 10. **Next:** step 10.
+**2026-11-13, T11 specified (documents only).** The owner shared two screenshots of a facts-first team section (header with intro, four figures, discipline table with experience bars) and decided to wait for Liyat's facts. Wrote [`docs/TEAM_SECTION.md`](docs/TEAM_SECTION.md): purpose, place on About (owner: after "Our values and commitments", before "Clients we work for"), anatomy, phone layout, build rules (tokens, bar scale from the data, accessible table), data shape, the five questions for Liyat (R8, new item C-41), wording rules and the steps for the session that builds it. Saved the two screenshots in `docs/reference/` as look-only references (their figures are another company's). Changed DIRECTION T11 (waits for R8; no building with invented numbers) and R8; added C-41 to the open client items. No site code changed; nothing built or checked in the browser. **Open:** C-41 goes to Liyat with the requirements list; the T15a cleanup must keep `docs/reference/`. **Next:** T13 (A2 review) is the next task nothing blocks.
 
-**2026-11-04, three small fixes (owner's word).** Added an `upper` photo focus (token, `Photo`, type,
-`/styleguide`) and set it on Chaka House, so the card keeps both the top of the mast and the truck
-wheels. The Entoto card now spells the church "Kidanemihiret" throughout, his spelling. Deleted the
-unused `assets/images/site/water-column.webp`, its two web versions and its list entry; the
-`hero/water-column.webp` copy stays. Type-check, lint, check:design, `build:static` and tests 12/12
-pass; Prettier passes on the changed code files. Browser: no sideways scroll on Home at 375, Projects
-at 768 and 1280, and `/styleguide` at 1280; the crop setting is applied, but its picture was judged
-from the file, not on the page. **Still open:** `assets/images/site/test-tank-discharge.webp` is also
-unused (ask before deleting). **Next:** step 10.
+**2026-11-13, T12 (map on Contact).** The owner chose an embedded map with a button that opens Maps from the visitor's own location (as on the Milto Engineering contact page). **Changed:** `contact.map` (latitude 9.0100998, longitude 38.7810302, the "Liyat Construction PLC" business profile) in `site.ts`; `src/lib/maps.ts` builds the embed address and the directions link (`/maps/dir/?api=1&destination=...`, no start given, so Maps starts from the visitor's location); new `ui/map-embed.tsx` (lazy iframe with a sandbox, then a "Get directions from your location" button that opens a new tab); `ContactPanel` shows it on top of the right column (Home and `/styleguide`); copy `details.mapTitle` and `details.directions`; `next.config.ts` CSP `frame-src` changed from `'none'` to `https://www.google.com/maps` (Vercel only; static hosts ignore these headers). Free, no API key. **Checked:** Prettier, type-check, ESLint, `check:design`, `build:static` pass; at 375, 768 and 1280 the map is 342x256, 690x517 and 453x340, the button is full width, no sideways scroll; the built page has the iframe and the directions link with `rel="noopener noreferrer"`. **Not checked:** the map actually loading and the real size and speed cost (the browser pane was hidden and lazy frames did not load); the click on the button; the CSP on Vercel. Run PageSpeed on the live site (T19). **Open for the owner:** the privacy policy does not yet say that the map comes from Google (D-192 says the legal pages stay as written; a one-sentence addition is proposed in the report). The embed address (`?q=lat,lng&output=embed`) is the widely used no-key form; if Google ever stops it, paste the iframe from Maps > Share > Embed a map into `lib/maps.ts`. **Next:** T13 (A2 review).
 
-**2026-11-04, P16 part 2, step 10.** Type-check, lint, Prettier (`--end-of-line auto`, whole project),
-check:design, `build:static` and tests 12/12 pass on a fresh build. Built pages: no old wording left
-(old names, figures, spelling, team, "Illustrative"); the D-119 copy is on the pages, which closes
-that check. Measured on the built site at 375, 768 and 1280: Home, About, Projects, Equipment,
-Environment, six services, two legal pages, 404 and `/styleguide`: one h1, no sideways scroll, every
-image loads with alt text, no duplicate ids or dead anchors. Phone menu opens and closes; the form's
-subject list has the new name. Fixed: `/styleguide` scrolled sideways on phones, because "15,000 + m"
-no longer fit three columns. Seen by eye, in headless Edge: Home hero at 375, projects at 1280,
-Chaka House at 375, equipment at 768, testimonials at 1280; About and Projects at 1280, top of
-Projects at 375, Equipment and the drilling page at 768. The Chaka House crop is confirmed on the
-page. **Not seen by eye:** Environment, the other five services and the legal pages (measured only).
-**Not tested:** sending the form (no key yet, by plan), a keyboard pass, real phones. The header
-looks see-through in some screenshots taken right after a jump, mid-fade; solid in others, so it
-works, but look at it on the preview. **Next:** step 11.
+**2026-11-13, T12 follow-up (owner).** The map now sits at the bottom of the right column, under "Office hours" (`contact-panel.tsx`). Added one paragraph to the privacy policy, "Form, email and hosting providers" (`legal.ts`): "The contact page shows a map from Google Maps. When the map loads, Google may set cookies and see your IP address." **Checked:** Prettier, type-check, ESLint, `check:design`, `build:static` pass; the sentence is in the built privacy page. **Open:** the same policy says in "Analytics and tracking" that the site "uses no analytics, advertising or tracking services"; Google's cookies sit in tension with it. Proposed wording for T13: "This website uses no analytics or advertising services of its own." Not changed without the owner's word.
 
-**2026-11-04, two more small fixes (owner's word).** Very small phones: Home and About no longer
-scroll sideways at 320 px. `Button` can now wrap a long label, and the contact column can shrink,
-with the email address allowed to break. Deleted the unused
-`assets/images/site/test-tank-discharge.webp`, its two web versions and its list entry. Type-check,
-lint, check:design, `build:static` and tests 12/12 pass; Prettier passes on the changed files. All
-15 pages measured at 320, 375, 768 and 1280: no sideways scroll, one h1, no broken images. Seen by
-eye: the contact section at 320 and 1280, and the About button at 320. **Next:** step 11.
+**2026-11-13, privacy wording (owner: "do it").** "Analytics and tracking" in `legal.ts` now reads "This website uses no analytics or advertising services of its own." (was "...no analytics, advertising or tracking services"), so it no longer clashes with the Google Maps paragraph. Prettier, type-check and `build:static` pass; the new sentence is in the built page. **Next:** T13 (A2 review).
 
-**2026-11-04, P16 part 2, step 11 started.** Committed everything since `9c86f6a` on branch
-`p16-client-answers`, without Liyat's four files (D-130). Not merged into `main` and not pushed.
-**Next:** the owner decides on merging and pushing; the owner sends the 5 must-ask questions and
-the testimonial request; deploy the preview (P17a), and tell Liyat the testimonials are samples.
+**2026-11-13, T13 (A2 review).** Proofread the text of all built pages (home, About, Equipment, Environment, Projects and the three project pages, the six services, Privacy, Terms, 404) and checked titles, descriptions, canonicals, robots, headings, alt text, internal links and anchors, and external link `rel`. **Fixed (2):** Borehole Rehabilitation intro claimed "often for less than drilling a new one", a cost claim nobody confirmed; now "Bring an existing borehole back to service, with a test before and after to show the result." (`services.ts`). Home contact intro had a straight apostrophe where the rest of the site uses a curly one (`contact.ts`). **Found clean:** one `h1` per page, no skipped heading levels, no image without `alt`, all internal links and `#` anchors resolve, external links have `noopener`; the depth wording, 50+ wells, 12,000 m+, 600 m, 2019/May 2022 and the Kibish Construction line agree on every page; the legal pages are consistent with the Google Maps and "no analytics of its own" wording. **Open, not changed (for the owner):** (1) Public email on the site is still `liyatconstruction@gmail.com`; D-188 says `info@liyatconstruction.com`, but forwarding (T4) is not set up, so switching now would lose mail. Switch in T14/T20 after T4 (`site.ts` line 57). (2) Titles over about 60 characters will be cut in Google: About 69, British Embassy 69, Deep Drilling 69, Survey 73, Chaka House 62, Projects 63, Equipment 59 (borderline). Shortening them is an SEO decision; proposal for T14 (do it with the structured data). (3) Ethiopian Airlines: "pumping test confirming 40 L/s" does not say if that is per well or for both; ask Liyat with R3/R7 or leave as is. (4) About "Partners for groundwater investigation" shows one partner (Husky, name only) under a plural heading until R6 (C-38, C-39). (5) Canonical, sitemap and Open Graph show `localhost:3000` in this build because `NEXT_PUBLIC_SITE_URL` is unset (T20). (6) `check:placeholders` still lists 11 (C-12, C-25, C-29 x2, C-36 x3, C-38, C-39, C-40 x2), all waiting on Liyat or launch. **Checked:** `check:placeholders`; Prettier (`--end-of-line auto` on `src`) passes; type-check, ESLint and `check:design` pass; `build:static` (22 pages); the borehole page at 375, 768 and 1280 px by script: no sideways scroll, intro 86, 60 and 63 px high. `npm run validate` still fails only on `format:check` (82 files, the known CRLF issue under Known issues; it passes with `--end-of-line auto`). **Not checked:** other pages in the browser (no change to them); real-device or screen-reader read-through; spelling by a native Amharic or English reviewer. **Next:** T14 (apply the answers that have arrived, structured data, title lengths, `info@` after T4) is open, with parts waiting on R1–R9; T3, T4 and T11 stay blocked on Liyat or the owner.
 
-**2026-11-05, step 13.** Applied Liyat's follow-up answers (Doc 3), his equipment list and 12 of
-his 17 photos, as listed under step 13 and D-132–D-134. Copied all six of his files word for word
-into `docs/LIYAT_ORIGINALS.md` and recorded the new answers in `CLIENT_ANSWERS.md`; then deleted
-the six files and `public/images/NEW PHOTOS`. Placeholders 8 → 6 (C-12, C-25, C-29 ×2, C-36 ×2).
-Type-check, lint, check:design, `build:static` and tests 12/12 pass; Prettier passes on the
-changed files. Browser: Projects at 375 (no sideways scroll; new covers load and crop well),
-service pages and Equipment at 768, Equipment at 1280 (fleet list and photos). Not committed.
-**Next:** commit on the owner's word; the owner asks Liyat the C-12, C-36 and C-37 questions.
+**2026-11-13, Belayneh Kinde (R7, owner's answer).** The owner gave Liyat's list line "Belayneh Kinde General Contractor: Drilling of 220m with 8 inch casing installation and Drilling of 250m with 8 inch casing installation (Addis Ababa)" and said: General Contractor is part of Belayneh Kinde Group (the site shows the Group), the year is 2026, and the earlier 200 m was a rough figure. No "ongoing" on the site (owner). **Changed** (`projects.ts`, entry `belayneh-kinde-bole-lemi`): title "Two wells for a contractor group", scope "Drilling · Casing installation", location Addis Ababa, summary and description with the 220 m and 250 m wells and 8 inch casing, depth "220 and 250 m"; the C-36 placeholder for this entry is gone. The cover photo is from Belayneh Kinde (owner, same day), so it stays; its alt text still says Bole Lemi. The "220 and 250" figure was too large on the card, so `Stat` has a new `long` size (text-h2 at every width, used by `project-card` when the value is longer than 5 characters). Slug kept. Prettier, type-check and `build:static` pass; the new text is in the built Projects page; not checked in the browser at 375/768/1280. R7 is closed except that question.
 
-**2026-11-05, before the commit (owner's word).** Service links now match the names (D-135); the
-12th project card is the Belgian Embassy with an illustrative photo (D-136); Chaka House now
-comes before Tsedey Bank; the Projects photos are a carousel (D-137). Placeholders 6 → 7
-(C-36 ×3). **Next:** commit on the owner's word.
+**2026-11-13, T4 set up, test pending (D-188).** In Namecheap (BasicDNS) Mail Settings is Email Forwarding; the forwarder `info` → `liyatconstruction@gmail.com` is saved (no catch-all). Public DNS checked by script: five `eforward*.registrar-servers.com` MX records, one SPF record (`include:spf.efwd.registrar-servers.com`), the Google verification TXT, the A and `www` records unchanged. **Code:** `siteConfig` email is now `info@liyatconstruction.com` (`src/config/site.ts`) and the legal-page test in `scripts/seo.test.mjs` expects it; this overrides D-160 (Gmail stays). The Web3Forms key (C-25) is still tied to the Gmail inbox, which is where the form mail goes. **Not checked:** a real mail to `info@` arriving (inbox or spam), the contact form arriving, the pages in the browser at 375/768/1280 (the new address is shorter than the old one). **Checked:** Prettier (`--end-of-line auto`), type-check, `check:design`, `build:static`, SEO tests 15/15 and contact-form tests; the built pages carry `mailto:info@liyatconstruction.com` and no `liyatconstruction@gmail.com` remains in `out/`. **Not deployed; do not deploy until the call checks below pass.** Sending as `info@` from Gmail is Liyat's choice; the owner teaches the steps and the risks (spam, "on behalf of", app password).
+**2026-11-13, T14 (owner approved the titles).** **Titles:** ten changed, four kept; every indexable page is 46–57 characters including " | Liyat Construction" (Home 52, About 57, Environment 52, Equipment 48, Projects 52, British Embassy 47, Chaka House 49, Ethiopian Airlines 51, Deep and Shallow drilling 55, Survey 57, Pump supply 47; Rehabilitation 56, Pumping Tests 46, Turnkey 55 kept). The page heading is unchanged: a new optional `metaTitle` on `PageCopy` and `Service` (`types/content.ts`) carries the search title for About, Environment, Equipment, Projects and three services; the other services keep "<name> in Ethiopia". About and Survey descriptions trimmed to 148 and 150 characters. **Structured data** (`organization-schema.tsx`, `site.ts` `schema`): `foundingDate` 2022-05 (the PLC; 2019 stays in the text), founder (name and role already on the site), `PostalAddress` (street, Addis Ababa, ET; no postal code, none confirmed), `geo` from the map, `openingHoursSpecification` Mon–Sat 08:00–17:00, `hasOfferCatalog` with the six services (names and URLs from `SERVICES`, passed from `layout.tsx`), `@id` links between the business and the WebSite, email `info@`. `sameAs` stays empty until T22. **Visible "Founded: 2019" on About** is now two rows, "Started 2019" and "Liyat Construction PLC since May 2022", so the page and the data agree (`company.ts`); the owner has not yet confirmed this wording. **Tests:** `seo.test.mjs` now checks the new data and that every title is at most 60 characters (16 of 16 pass, contact tests too). **Checked:** Prettier, type-check, ESLint, `check:design`, `build:static` (22 pages); built titles and JSON-LD read from `out/`; About at 375, 768 and 1280 by script: no sideways scroll, fact labels on one line at 768 and 1280. **Not checked:** the structured data in Google's Rich Results Test or the Schema Markup Validator (needs the live URL, T17/T19); canonical, sitemap and JSON-LD still say `localhost:3000` until `NEXT_PUBLIC_SITE_URL` is set (T20); the fact labels at 375 wrap check. **Open:** the owner's yes on the two "Started" rows; whether the drilling title should say Ethiopia (left out to stay short).
+**2026-11-13, history sentence (owner: "make it best").** On Home (`home.ts`) and About (`about.ts`): "We began in 2019 as Wondwossen Water Well Drilling Contractor and became Liyat Construction PLC in May 2022." (was "started … took the name"). Same facts, no reason for the rename given. A test build with `NEXT_PUBLIC_SITE_URL=https://www.liyatconstruction.com` gave canonical and `@id` on the `www` address; type-check, Prettier and tests 16/16 pass. At deploy set that value in Vercel (T20).
+**2026-11-13, share pictures (owner: "do it perfectly", wants to see them before any commit).** The old Home picture (`og-image.jpg`) had no logo, the rig cut off at the edge and soft detail; the three project pages shared portrait 1200×1600 WebP covers (310–345 KB, over WhatsApp's roughly 300 KB limit, cropped to a strip) and the six service pages shared 1920 px WebP photos of 220–370 KB. **Now:** `scripts/prepare-og.mjs` (`npm run images:og`) makes eleven 1200×630 JPEGs of 77–164 KB: `public/og-image.jpg` (yekatit-12 photo, water and rig, with a green strip carrying the logo on a white plate, "Liyat Construction" and the one-line description), `public/images/projects/<slug>/og.jpg` (three; the whole portrait cover on the left, a green panel with project name, the fact, logo and brand), `public/images/services/<slug>/og.jpg` (six; landscape photos get the strip with the service name, the two portrait covers the panel; the Pumping Tests crop is anchored to the bottom so the V-notch tank shows). Colours are read from `tokens.css`; logo from `assets/images/brand/logo.png`; the words repeat facts from `projects.ts` and `services.ts`. `metadata.ts` adds `og:image:width/height` for them; project and service pages pass their own picture; alt text of the Home picture updated. `seo.test.mjs` now fails if a share picture is missing, not a JPEG, or 250 KB or more (16/16 pass). **Checked:** all eleven pictures looked at; Prettier, type-check, ESLint, `check:design`, `build:static` with the live URL, tests; every indexable page's `og:image` file exists in `out/`. **Not checked:** the previews in WhatsApp, Telegram and Facebook (need the live URL; after deploy refresh with Telegram's @WebpageBot and Facebook's Sharing Debugger; WhatsApp has no refresh tool, so test with a new `?v=2` link). **Open:** About, Environment, Equipment and Projects still share the Home picture; the text on the pictures uses Segoe UI, so regenerate on Windows. **Owner approved all eleven pictures (2026-11-13).** Not committed. The review sheet `docs/share-pictures-preview.jpg` was deleted in T15a (`npm run images:og` rebuilds the pictures).
+**Call checklist (owner and Liyat, 2026-11-14 evening):** (1) send a mail to `info@` from another account; it arrives, note inbox or spam; (2) Web3Forms: Liyat confirms the email and sends the key (C-25), then a real test inquiry from the contact form arrives; (3) Search Console: Liyat accepts the Owner invitation for `liyatconstruction@gmail.com` and the owner confirms Owner shows in Settings → Users and permissions; (4) Liyat decides about sending as `info@`. Record each result here and tick T4 and T3 only after they pass.
 
-**2026-11-06 (owner).** Home hero headline and buttons moved a little lower from md up
-(`md:pt-16` → `md:pt-24 lg:pt-28`); phones unchanged (centred). Checked at 768 and 1440.
-Favicon (owner's word): the full logo shrunk lost its divider and drop at 16/32 px, so all icons
-(favicon .ico/16/32/96, apple-touch, android 192/512) are now the full L | C logo (owner: the C alone
-is not the logo), centred on a white rounded tile with about 11–12% white space on each side (owner approved this size) (square white for Apple), cut from `public/logo.png`. White tile so it reads
-on dark browser tabs too and matches the white logo box in the header. `build:static` passes.
-Not committed.
+**2026-11-13, T15 (owner: option A, keep the style guide but hide it).** **Why not delete:** it is the tool for the team section and later changes; the harm of keeping it was only a reachable page. **What changed:** the page file is now `src/app/styleguide/page.dev.tsx`; `next.config.ts` adds the `dev.tsx` page extension only when `NODE_ENV` is development, so a production build has no `/styleguide` route (my first try, `notFound()` in the page, still wrote a 404 file at `/styleguide`, so I dropped it). The `Testimonials` slider (T10) was missing from the guide and is added; `Hero` is not (it fills the first screen under the header and does not fit a specimen page), the map shows through `ContactPanel`. `seo.test.mjs` now fails if `out/styleguide` exists. AGENTS.md, PROJECT.md, SEO_PLAN.md, TEAM_SECTION.md and DIRECTION.md updated. **Checked:** Prettier on the changed files, type-check, `src` lint, `check:design`, `build:static` (21 pages, no styleguide in `out/`, no mention in the built files), SEO tests 8/8. **Browser, after the owner restarted the dev server (2026-11-14):** `/styleguide` loads at 375, 768 and 1280, one h1, the slider specimen is there, no sideways scroll, no console errors. **Not checked:** a Vercel (non-static) `npm run build` was not run, it uses the same config. The generated `.next/dev/types` files were corrupted by the running dev server, I deleted the two broken ones; the server rewrites them on restart. `npm run validate` still lists CRLF files in `format:check` (known issue). **Open:** none for T15. Next: T15a.
 
-**2026-11-09, after Liyat's filled-in review (D-171–D-179, `docs/REVIEW_PLAN.md`).** Built: project years on the
-cards (beside the client, replacing the newest-first sort so the curated order stands), Chaka House client
-"Palace Administration / Etoile GC PLC", the CREDOKS line about drilling inside a 14 m excavation, a
-"Registration" card on About (Grade One, licence WWDC/1/227, TIN, with the Ethiopian Construction Authority as
-Liyat wrote it), a "Partners for groundwater investigation" section on About (Milto logo from
-`assets/images/clients/`, Husky as text until a sharp logo arrives; C-39), and "we do not guarantee a specific
-discharge" on the Environment page. Type-check, lint, check:design and `build:static` pass; the About and Projects
-pages checked in the browser at 1024 and 375 px (no sideways scroll). Not committed. **Next:** the owner talks to Liyat
-(quotes, Husky logo, email choice info@ or hello@, years for Ethiopian Airlines and Belgian Embassy, Belgian photo),
-then the hero slider decision, then commit on the owner's word.
+**2026-11-14, T15a (cleanup; owner approved groups A, B and C after a full audit).** **Proof:** every prepared photo was looked for in the built site; every `src/` file and export was checked for imports; component variants, dependencies, environment variables and scripts were checked; long repeated text was scanned. The code had no unused files. **Deleted:** six unused photos with their web copies and `image-widths.json` lines (`equipment/casings`, `hero/water-column`, `casing-pipes-cabin`, `engineers-on-casing`, `rig-drilling-fluid`, `welding-dusk`; 4.3 MB); the unused `cards` layout of the carousel; five `export`s used only in their own file; `docs/CLIENT_REQUEST_LIST.md`, `MEETING_QUESTIONS.md`, `NEW_SESSION_PROMPT.md`, `share-pictures-preview.jpg`, Liyat's two review `.docx` files (not in git; their content is in `REVIEW_PLAN.md`), `.devin/`. **Moved:** `brand-assets/` (the QR code) one folder up, outside the project. **Shortened:** `WORKFLOW.md` 539 to about 250 lines (old handoffs: `git show 7c02d3b:WORKFLOW.md`); `REVIEW_PLAN.md` is now only the decision log D-138 to D-179 (full old text: `git show 7c02d3b:docs/REVIEW_PLAN.md`). **Code:** the Ethiopian Airlines photos in `projects.ts` are defined once (`EA_*`); package name is `liyat-construction-web`; new `npm test` (needs `build:static` first); a new test checks the six service names are the same in the data, the privacy page and the form subjects. **Checked:** Prettier (`--end-of-line auto`, whole project), type-check, lint, `check:design`, `build:static` (21 pages), tests 17/17; no removed photo name in `out/`; the Projects and Ethiopian Airlines pages still list the same photos. Browser at 375, 768, 1280 (script): no sideways scroll on Projects and Home, no console errors. **Not checked:** one image on Projects (`hero/yekatit-12-640.webp`) reported no size while the browser pane was hidden; the file is valid (640×427, served 200) and untouched, so I think it is the hidden pane, but look at Projects yourself. **Known:** your running dev server corrupts `.next/dev/types/*` and breaks type-check and build; delete those two files (or stop the dev server) before `build:static`. **Open:** unused-code candidates left on purpose: the photo descriptions repeated between About/Home, Home/Services and Projects/Services (separate sections, same photo); `LIYAT_ORIGINALS.md` stays (the only copy of Liyat's own words). Next: T11 waits on R8; T16 comes after.
 
-**2026-11-10, SEO plan (D-180–D-184).** Checked the live site (indexed, first for "Liyat Construction";
-two Google Maps profiles; the AI answer ignores the site) and wrote `docs/SEO_PLAN.md` with the steps
-in order. Chose the three project pages by measuring the source photos. No site code changed. The
-Notion page "Meeting questions for Liyat" was rewritten for today's meeting: 14 questions, each a
-must. **Next:** the meeting; then SEO_PLAN step 1, then step 2 (both need no answers).
-
-**2026-11-12, SEO_PLAN steps 1 and 2.** Step 1: the owner set up Search Console (Domain, sitemap,
-Home indexing, Liyat as Owner) and Bing (imported). I checked the redirects (all permanent 308, the
-`www` address is canonical) and wrote the AI baseline into `SEO_PLAN.md` from the owner's
-answers: only Gemini uses the site; Google AI, ChatGPT and Perplexity describe a general building
-contractor, and Google AI calls it closed. Copilot was not checked. Step 2: Home title is "Liyat
-Construction | Water-Well Drilling in Ethiopia"; service titles are "<name> in Ethiopia", each
-with a new `metaDescription`; About's description is shorter; `WebSite` has `alternateName` and the
-business has `legalName`; the sitemap has one `lastmod` (`contentUpdated`). Later the same day: wrote the meeting answers into `docs/CLIENT_ANSWERS.md` and the step 5 build plan into `SEO_PLAN.md` (documents only). The fact sentence was
-already on Home and About, so it was not changed. `seo.test.mjs` has three new checks (14 tests
-pass); type-check, lint, check:design and `build:static` pass; Prettier passes with
-`--end-of-line auto`. I removed a corrupted generated folder, `.next/dev` (git-ignored), that broke
-the type-check. **Not done:** no browser look at 375/768/1280 (only page titles and descriptions
-changed, nothing visible); not committed; the live site shows the new titles only after a deploy,
-then ask Search Console to re-index Home. **Left as is:** the old `keywords` meta tag (Google
-ignores it; the owner may remove it). **Next:** SEO_PLAN step 3 needs Liyat, so step 5 (project
-pages) is the next work, starting with 5a.
-
-**2026-11-12, SEO_PLAN step 5 (D-185).** Built the three project pages: `src/app/projects/[slug]/page.tsx`
-(only projects with a `story`; `PROJECT_PAGES`), the `ProjectDetail` section (story, services linking to
-their pages, facts table, site photos, button to Contact; the cover sits beside the text when there are
-fewer than three site photos), new `Project.story` (with `metaTitle`) and `ProjectsPage.detail` labels,
-`ProjectCard` linked with a "View project" arrow only when a page exists, the sitemap (14 URLs) and a
-specimen on `/styleguide`. Years: Ethiopian Airlines 2024, Belgian Embassy 2025, Ovid 2025 (was 2024).
-Ethiopian Airlines has four site photos (rig, rig and casings, engineers, night); British Embassy and
-Chaka House have the cover only (C-40). `seo.test.mjs` has a test for the three pages (15 tests pass);
-type-check, lint, Prettier (`--end-of-line auto`), check:design and `build:static` (22 routes) pass.
-Browser: all three pages at 375, 768 and 1280 measured in the pane (no sideways scroll, one h1, no
-broken images); looked at by eye at 375 (Ethiopian Airlines, text) and 1280 (Chaka House). **Not seen by eye:**
-the photos on the page (this pane doesn't paint them; their files load), the Ethiopian Airlines gallery and
-the 768 layout. **Not done:** 5c photos (C-40), the Ethiopian Airlines yield still to be checked against the
-test report (C-11), not committed. **Next:** the owner reviews the pages; then the requirements and
-"what Liyat does" documents (step 3); step 4 when the answers arrive.
-
-**2026-11-12, step 5 rewrite (owner's word).** The owner found the first project texts too thin and the cover
-photo beside the text unwanted. Now: no photo beside the text; the facts table and the contact button sit in the
-right column; a key-figures row (tested yield in blue, depth, year) sits under the header; the stories are fuller,
-in the site's voice and with only confirmed facts or general explanation of how wells are built (`Project.story`
-now holds paragraphs, numbered steps and a `metaDescription`); each service on the page shows its one-line summary.
-Ethiopian Airlines' depth label is "Depth of each well". Type-check, lint, check:design, `build:static` (22 routes)
-and 15 tests pass; the text was proofread from the built pages. **To confirm with the owner:** the casing "stepped,
-wider at the top" is general practice, not stated by Liyat; "the national airline" and "dealt with one contractor"
-are our explanation of the facts. Not seen by eye after this change (owner's dev server shows it). Not committed.
-
-**2026-11-12, step 5, second round (owner's word).** The key figures moved from under the header into the header band
-(`ProjectFigures`, white on Ink). The facts table and the "Discuss your project" button now stay in view while the
-story scrolls, from lg (new token `--sticky-top`, shared with the legal contents). Ethiopian Airlines has six site
-photos (added `/images/hero/ethiopian-airlines.webp` and `/images/hero/ea-casing-site.webp`, both named for the
-project; `ea-v-notch` left out because its surroundings look like another site); the gallery is a swipe row on phones
-and 3 columns by 2 rows from tablet up (`layout="phone-carousel"`). Type-check, lint, check:design, `build:static` and
-15 tests pass. Browser (pane): the column held at 106 px under the header from the top of the story to its end; at
-375 the six photos sit in one swipe row, at 768 and 1280 in 3 columns and 2 rows; no sideways scroll on the three
-pages at 375 and 768; header figures seen at 1280. **Not seen by eye:** the photos themselves (pane does not paint
-them). Not committed.
-
-**2026-11-12, step 5, third round (owner's word).** Phones only: the header figures sit in one row with a smaller
-figure (`Stat size="compact"`, 28 px; wider screens unchanged), and the "Explore all projects" button under "More
-projects" is centred just below the title (it stays at the right from sm). The button change is in
-`FeaturedProjects`, so a service page with one or two related projects behaves the same. Measured at 320, 375, 768
-and 1280 on the Ethiopian Airlines and Chaka House pages: figures in one row everywhere, no sideways scroll;
-type-check, lint, check:design, `build:static` and 15 tests pass. Not committed.
+**2026-11-14, button on phones, mobile length (owner's decisions).** The "See our safety & environmental practice" buttons (About, Equipment) now stay on one line on phones: `Button` has a new size `fit` (14 px text and less padding below 768 px, same as `md` from 768 px), used by `FeatureGrid` and `Story`; the label uses "&" (`about.ts`, `equipment.ts`). Measured at 375 and 360 px (one line, 44 px tall, no sideways scroll). Fixed a dev-server 404 on every `[slug]` page (stale `.next` after running a build while `npm run dev` was open: stop the dev server before building). **Mobile length (a reviewer's suggestion):** Home is about 17 screens and Projects about 10.5 on a 375 px phone; the three Home project cards are about 2,100 px, and the rest of the Home projects block is the clients logo row. **Owner decided to leave the pages as they are and talk with Liyat first**; no carousel for the project cards or the equipment cards. Ideas kept for later: more compact project cards, a two-column clients row on phones. **Not checked:** 768 px for the new button size, `validate` and `check:design` after this change. Committed locally, not pushed.

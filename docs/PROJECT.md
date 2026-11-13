@@ -15,7 +15,7 @@ British Embassy, Chaka House — the projects with a `story`, D-184) · Equipmen
 (`/equipment-capabilities`) · Environment · six service pages (`/services/<slug>`) · Privacy
 policy · Terms of service · 404.
 Services, Testimonials and Contact are sections of Home (`/#services`, `/#testimonials`,
-`/#contact`), not pages. `/styleguide` shows every component; it is `noindex` and unlinked.
+`/#contact`), not pages. `/styleguide` shows the components; it is a development tool: `src/app/styleguide/page.dev.tsx` is routed only by `npm run dev` (`pageExtensions` in `next.config.ts`), so production and `build:static` have no such page (T15).
 
 ## 2. Stack and commands
 
@@ -57,7 +57,9 @@ src/
 ├── styles/tokens.css  ★ the only file with raw design values
 └── types/content.ts   shapes of everything in data/
 assets/images/      image sources (never served)  →  public/images/ (generated)
-scripts/            check-design, check-placeholders, optimize-images, prepare-og, tests
+scripts/            check-design, check-placeholders, optimize-images, tests, prepare-og
+                    (`npm run images:og`: the 1200 × 630 share pictures for Home, the three
+                    project pages and the six service pages; commit the output)
 ```
 
 **Layers:** `app → sections → cards → ui → tokens`; a lower layer never imports a higher
@@ -200,7 +202,7 @@ recompressed social-media images and no originals exist).
 - **Accessibility (WCAG 2.2 AA):** one h1 per page, skip link, visible focus, 44 px targets,
   approved contrast pairs only, linked form errors, new-tab links announced.
 - **SEO:** per-page metadata from `lib/metadata.ts`; sitemap from navigation + services;
-  JSON-LD organisation and breadcrumbs; legal drafts and `/styleguide` are `noindex`.
+  JSON-LD organisation and breadcrumbs; legal drafts are `noindex`; `/styleguide` is not built at all.
   Service page titles are "<service name> in Ethiopia" with a `metaDescription` per service
   (about 160 characters). The sitemap's lastmod is `siteConfig.seo.contentUpdated`: change it by
   hand when page content really changes. The plan is in [`SEO_PLAN.md`](SEO_PLAN.md).

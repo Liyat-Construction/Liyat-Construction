@@ -23,9 +23,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   if (!service) return {};
   return pageMetadata(
     `/services/${service.slug}`,
-    `${service.title} in Ethiopia`,
+    service.metaTitle ?? `${service.title} in Ethiopia`,
     service.metaDescription,
-    service.image
+    // The share picture made by scripts/prepare-og.mjs (the service photo and name, 1200 × 630)
+    { url: `/images/services/${service.slug}/og.jpg`, alt: service.image?.alt ?? service.title }
   );
 }
 

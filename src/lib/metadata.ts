@@ -17,9 +17,16 @@ export function pageMetadata(
   image?: ImageAsset
 ): Metadata {
   const url = pageUrl(path);
+  // Our own 1200 × 630 share pictures (scripts/prepare-og.mjs) declare their size, which helps
+  // WhatsApp and Facebook show them on the first share
+  const share = { width: 1200, height: 630 };
   const cover = image
-    ? { url: preparedImageUrl(image.url), alt: image.alt }
-    : { url: siteConfig.seo.ogImage, alt: siteConfig.seo.ogImageAlt };
+    ? {
+        url: preparedImageUrl(image.url),
+        alt: image.alt,
+        ...(image.url.endsWith('/og.jpg') && share),
+      }
+    : { url: siteConfig.seo.ogImage, alt: siteConfig.seo.ogImageAlt, ...share };
   return {
     title: path === '/' ? { absolute: title } : title,
     description,

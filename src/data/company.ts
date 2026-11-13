@@ -32,9 +32,11 @@ export const COMPANY_FACTS: Spec[] = [
   { label: 'Legal name', value: siteConfig.legalName },
   { label: 'In Amharic', value: siteConfig.legalNameAmharic },
   { label: 'Headquarters', value: 'Addis Ababa, Ethiopia' },
-  // Established January 2, 2019 as Wondwossen Water Well Drilling Contractor; renamed
-  // Liyat Construction PLC in May 2022 (client proposal and copy review)
-  { label: 'Founded', value: '2019' },
+  // Started January 2, 2019 as Wondwossen Water Well Drilling Contractor; named
+  // Liyat Construction PLC in May 2022 (client proposal and copy review). Structured data
+  // uses 2022-05 as the founding date of the PLC (site.ts schema.foundingDate).
+  { label: 'Started', value: '2019' },
+  { label: 'Liyat Construction PLC since', value: 'May 2022' },
   // His years are only in his story on /about (D-123)
   { label: 'Founder and General Manager', value: 'Wondwossen Ayalew, hydrogeologist' },
 ];

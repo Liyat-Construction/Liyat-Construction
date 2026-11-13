@@ -27,7 +27,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     `/projects/${project.slug}`,
     project.story.metaTitle,
     project.story.metaDescription,
-    project.image
+    // The share picture made by scripts/prepare-og.mjs (cover photo and project name, 1200 × 630)
+    { url: `/images/projects/${project.slug}/og.jpg`, alt: project.image.alt }
   );
 }
 

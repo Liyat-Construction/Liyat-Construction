@@ -2,7 +2,7 @@ import { clsx as cn } from 'clsx';
 import { ChevronDown, CircleAlert } from 'lucide-react';
 
 /** Props a control needs so its label, hint and error are announced. */
-export interface ControlProps {
+interface ControlProps {
   id: string;
   'aria-describedby'?: string;
   'aria-invalid'?: true;

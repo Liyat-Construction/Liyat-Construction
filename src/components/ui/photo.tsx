@@ -24,6 +24,25 @@ const focuses = {
   upper: 'object-(--focus-upper)',
   right: 'object-right',
   'upper-left': 'object-(--focus-upper-left)',
+  'left-third': 'object-(--focus-left-third)',
+  'mid-left': 'object-(--focus-mid-left)',
+  'right-third': 'object-(--focus-right-third)',
+} as const satisfies Record<ImageFocus, string>;
+
+const zooms = {
+  left: 'max-md:origin-(--zoom-left-origin) max-md:scale-(--zoom-in-scale)',
+} as const satisfies Record<NonNullable<ImageAsset['zoom']>, string>;
+
+// The same, from lg (Tailwind needs the full class names written out)
+const focusesWide = {
+  center: 'lg:object-center',
+  top: 'lg:object-top',
+  upper: 'lg:object-(--focus-upper)',
+  right: 'lg:object-right',
+  'upper-left': 'lg:object-(--focus-upper-left)',
+  'left-third': 'lg:object-(--focus-left-third)',
+  'mid-left': 'lg:object-(--focus-mid-left)',
+  'right-third': 'lg:object-(--focus-right-third)',
 } as const satisfies Record<ImageFocus, string>;
 
 interface PhotoProps {
@@ -72,6 +91,8 @@ export function Photo({
         className={cn(
           'ease-standard object-cover transition-transform duration-(--duration-base) group-hover/card:scale-105',
           pick(focuses, image.focus ?? 'center'),
+          image.focusWide && pick(focusesWide, image.focusWide),
+          image.zoom && pick(zooms, image.zoom),
           drift && 'animate-drift'
         )}
       />

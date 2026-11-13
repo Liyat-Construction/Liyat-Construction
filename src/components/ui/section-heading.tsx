@@ -6,6 +6,12 @@ const aligns = {
   center: 'mx-auto items-center text-center',
 } as const satisfies Record<Align, string>;
 
+const introSizes = {
+  lead: 'text-lead',
+  /** One line on any phone (the home hero) */
+  fit: 'text-lead-fit md:text-lead',
+} as const satisfies Record<string, string>;
+
 const titleSizes = {
   display: 'text-display',
   h1: 'text-h1',
@@ -22,6 +28,7 @@ interface SectionHeadingProps {
   as?: 'h1' | 'h2' | 'h3';
   /** Defaults to the size of the `as` level; `display` is the home hero only */
   size?: keyof typeof titleSizes;
+  introSize?: keyof typeof introSizes;
   /** Pass the same id to Section `labelledBy` */
   id?: string;
   className?: string;
@@ -36,6 +43,7 @@ export function SectionHeading({
   align = 'start',
   as: Heading = 'h2',
   size = Heading,
+  introSize = 'lead',
   id,
   className,
 }: SectionHeadingProps) {
@@ -50,7 +58,12 @@ export function SectionHeading({
         {title}
       </Heading>
       {intro && (
-        <p className="text-lead text-ink-muted on-dark:text-white/80 on-photo:text-white max-w-prose">
+        <p
+          className={cn(
+            pick(introSizes, introSize),
+            'text-ink-muted on-dark:text-white/80 on-photo:text-white max-w-prose'
+          )}
+        >
           {intro}
         </p>
       )}

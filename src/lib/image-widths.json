@@ -14,7 +14,6 @@
   "/images/clients/sd-salt-manufacturing.webp": [512],
   "/images/clients/tsedey-bank.webp": [586],
   "/images/clients/yekatit-12-hospital-medical-college.webp": [200],
-  "/images/equipment/casings.webp": [400, 800, 1280],
   "/images/equipment/compressor-truck.webp": [400, 800, 1008],
   "/images/equipment/engineers-on-pipes.webp": [400, 800, 1600],
   "/images/equipment/fleet.webp": [400, 800, 1024],
@@ -28,7 +27,6 @@
   "/images/hero/ea-casing-site.webp": [640, 1024, 1600, 1920],
   "/images/hero/ea-v-notch.webp": [640, 1024, 1600, 1920],
   "/images/hero/ethiopian-airlines.webp": [640, 1024, 1600, 1920],
-  "/images/hero/water-column.webp": [640, 1024, 1600, 1920],
   "/images/hero/yekatit-12.webp": [640, 1024, 1600, 1920],
   "/images/projects/arada-luxury-mall/casing.webp": [400, 800, 1260],
   "/images/projects/arada-luxury-mall/cover.webp": [400, 800, 1600],
@@ -50,9 +48,5 @@
   "/images/projects/tsedey-bank-pumping-test/cover.webp": [400, 800, 901],
   "/images/projects/yekatit-12-hospital-well-development/cover.webp": [400, 800, 901],
   "/images/site/well-airlift-development.webp": [400, 575],
-  "/images/hero/casing-pipes-cabin.webp": [640, 1024, 1280],
-  "/images/hero/engineers-on-casing.webp": [640, 1024, 1600, 1800],
-  "/images/hero/rig-drilling-fluid.webp": [640, 1024, 1600, 1920],
-  "/images/hero/welding-dusk.webp": [640, 1024, 1280],
   "/images/clients/milto-engineering.webp": [940]
 }

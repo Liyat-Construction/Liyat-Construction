@@ -13,8 +13,11 @@ interface StatProps {
   /** `water` for yields, water levels and flow only (PROJECT.md §5) */
   tone?: keyof typeof tones;
   align?: 'start' | 'center';
-  /** `compact` shrinks the figure on phones, so several fit in one row (project page header) */
-  size?: 'default' | 'compact';
+  /**
+   * `compact` shrinks the figure on phones, so several fit in one row (project page header).
+   * `long` shrinks it at every width, for a value with two numbers ("220 and 250").
+   */
+  size?: 'default' | 'compact' | 'long';
   className?: string;
 }
 
@@ -45,12 +48,19 @@ export function Stat({
         className={cn(
           'font-heading text-figure on-dark:text-white tabular-nums',
           size === 'compact' && 'max-sm:text-h2',
+          size === 'long' && 'text-h2',
           pick(tones, tone)
         )}
       >
         {value}
         {unit && (
-          <span className={cn('text-h4 ms-1', size === 'compact' && 'max-sm:text-small')}>
+          <span
+            className={cn(
+              'text-h4 ms-1',
+              size === 'compact' && 'max-sm:text-small',
+              size === 'long' && 'text-small'
+            )}
+          >
             {unit}
           </span>
         )}

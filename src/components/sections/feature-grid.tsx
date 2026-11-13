@@ -51,7 +51,7 @@ export function FeatureGrid({
             intro={intro}
           />
           {link && (
-            <Button href={link.href} icon="arrow" className="shrink-0">
+            <Button href={link.href} icon="arrow" size="fit" className="shrink-0">
               {link.label}
             </Button>
           )}

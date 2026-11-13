@@ -10,10 +10,11 @@ export const ABOUT_PAGE: AboutPage = {
   header: {
     eyebrow: 'Who we are',
     title: 'Groundwater engineering, from survey to handover',
+    metaTitle: 'Groundwater Engineers in Addis Ababa',
     // The client's hero statement (copy review, 2026-11)
     intro: 'Expert hydrogeology paired with advanced drilling technology across Ethiopia.',
     description:
-      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia, serving public bodies, embassies, NGOs and businesses.',
+      'Liyat Construction PLC: water-well drilling and groundwater engineering in Addis Ababa, Ethiopia, for public bodies, embassies, NGOs and businesses.',
     image: {
       url: '/images/hero/ethiopian-airlines.webp',
       alt: 'Drilling rig and water discharge during a pumping test at Ethiopian Airlines',
@@ -25,13 +26,14 @@ export const ABOUT_PAGE: AboutPage = {
     paragraphs: [
       // Rewritten by the owner, 2026-11-10, from the client's note. The founder sentence is
       // the client's own (D-123); the 2022 rename has no stated reason, so none is given.
-      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. We started in 2019 as Wondwossen Water Well Drilling Contractor and took the name Liyat Construction PLC in May 2022. Our founder and General Manager, Wondwossen Ayalew, is a hydrogeologist with more than 20 years of drilling experience in the sector.',
+      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. We began in 2019 as Wondwossen Water Well Drilling Contractor and became Liyat Construction PLC in May 2022. Our founder and General Manager, Wondwossen Ayalew, is a hydrogeologist with more than 20 years of drilling experience in the sector.',
       // Figures: company.ts (50+ wells, 12,000 m+, 2019–2026); methods: answer 5.3; regions: 3.8
       'We drill boreholes, deep and shallow, with mud rotary and DTH rotary rigs. Since 2019 we have completed more than 50 wells and drilled more than 12,000 m for institutions, embassies, commercial developments and communities in different regions of Ethiopia. Our wells run from 100 m at a salt works in Afdera to 600 m in Addis Ababa, the deepest we have drilled.',
       // Stages and records: answers 4.x and 5.1; hand pumps: C-09; no survey on every job (D-117)
       'A job can start with a survey that helps locate water, then drilling and well development, pumping tests, and pump supply and installation, including hand pumps. We can do one stage or run the whole project. Because our own people run the rig, the test pump and the installation, the client deals with one contractor and gets one set of records: survey report, drilling log, as-built drawing, pumping test report and handover file.',
-      // Grade One: COMPANY_REGISTRATION; discharge: Environment page; "Expert team": answer 2.1
-      'We are a Grade One registered contractor. Our staff are professional, friendly and dedicated to excellence, and because no survey can promise water, we do not guarantee a specific discharge.',
+      // Grade One: COMPANY_REGISTRATION; "Expert team": answer 2.1. T6 (D-195): the story ends on
+      // what we do, not on a disclaimer; the "no promised yield" line stays on Environment and Terms
+      'We are a Grade One registered contractor. Our staff are professional, friendly and dedicated to excellence, and at every stage we report what the ground and the tests show, so our clients decide with the facts.',
     ],
     factsTitle: 'Company at a glance',
     registrationTitle: 'Registration',
@@ -93,6 +95,6 @@ export const ABOUT_PAGE: AboutPage = {
     eyebrow: 'Responsibility',
     title: 'Safety and site practice',
     intro: 'Care for the crew, the borehole and the ground around it is part of the job.',
-    link: { label: 'See our safety and environmental practice', href: '/environment' },
+    link: { label: 'See our safety & environmental practice', href: '/environment' },
   },
 };

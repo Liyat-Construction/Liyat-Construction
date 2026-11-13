@@ -69,6 +69,7 @@ export function Hero({ title, lead, slides, primary, secondary }: HeroProps) {
             <SectionHeading
               as="h1"
               size="display"
+              introSize="fit"
               align="center"
               id="hero-title"
               title={title}

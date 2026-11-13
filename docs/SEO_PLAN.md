@@ -136,9 +136,9 @@ accurate); step 2 needs to check it, not write it.
 
 ### Step 4 — Code that needs the answers
 
-- [ ] Structured data: postal address, opening hours, founding date, legal name, the six
-      services as `Service`, `sameAs` links to the profiles. Coordinates only after the address
-      is confirmed.
+- [x] Structured data: postal address, opening hours, founding date (2022-05), legal name, the
+      six services as `Service`, coordinates, founder (done 2026-11-13, T14). `sameAs` links to
+      the profiles are added when Liyat has them (T22).
 - [ ] Footer and contact links for LinkedIn, Facebook and WhatsApp (`site.ts` already supports
       them); the contact email as Liyat chooses (info@ or hello@).
 
@@ -226,11 +226,11 @@ share preview, speed, handover, launch).
 
 **A. Claude builds, no one else needed**
 
-| ID  | What                                                                                                                                   |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| A1  | Documents for Liyat: the requirements list (quotes, photos, logos, profile details) and "what Liyat does" (step 3 paperwork)           |
-| A2  | Review pass on the whole site before deploy: copy, `check:placeholders` list, the owner's two small requests (one Equipment photo out) |
-| A3  | Remove the `keywords` meta tag (owner's word); decide `/styleguide`: keep hidden or delete (O-05)                                      |
+| ID  | What                                                                                                                                                                         |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A1  | Documents for Liyat: the requirements list (quotes, photos, logos, profile details) and "what Liyat does" (step 3 paperwork)                                                 |
+| A2  | - done 2026-11-13 (T13). Review pass on the whole site before deploy: copy, `check:placeholders` list, the owner's two small requests (Equipment photo: done 2026-11-13, T5) |
+| A3  | - `keywords` removed 2026-11-13 (T5). `/styleguide` is development-only and absent from the build (T15, 2026-11-13)                                                          |
 
 **B. Owner decides or does alone (with Claude's help)**
 

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 
@@ -41,7 +41,7 @@ test('Home and service titles and descriptions say what Liyat does and where', (
       assert.match(description, /Addis Ababa, Ethiopia/);
     }
     if (url.pathname.startsWith('/services/')) {
-      assert.match(html.match(/<title>([^<]+)<\/title>/)[1], / in Ethiopia \| Liyat Construction$/);
+      assert.match(html.match(/<title>([^<]+)<\/title>/)[1], / \| Liyat Construction$/);
       assert.match(description, /Ethiopia/);
       assert.match(description, /Addis Ababa/);
     }
@@ -80,6 +80,23 @@ test('WebSite data names the site "Liyat Construction" with the PLC name as alte
   assert.deepEqual(site.alternateName, ['Liyat Construction PLC']);
   const business = schemas.find((schema) => schema['@type'] === 'GeneralContractor');
   assert.equal(business.legalName, 'Liyat Construction PLC');
+  assert.equal(business.foundingDate, '2022-05');
+  assert.equal(business.address['@type'], 'PostalAddress');
+  assert.equal(business.address.addressCountry, 'ET');
+  assert.equal(business.address.addressLocality, 'Addis Ababa');
+  assert.deepEqual(business.openingHoursSpecification.dayOfWeek.length, 6);
+  assert.equal(business.openingHoursSpecification.opens, '08:00');
+  assert.equal(business.openingHoursSpecification.closes, '17:00');
+  assert.equal(business.hasOfferCatalog.itemListElement.length, 6);
+  assert.equal(business.email, 'info@liyatconstruction.com');
+  assert.equal(site.publisher['@id'], business['@id']);
+});
+
+test('titles stay short enough to show in full in search results', () => {
+  for (const { url, html } of pages) {
+    const title = html.match(/<title>([^<]+)<\/title>/)[1].replaceAll('&amp;', '&');
+    assert.ok(title.length <= 60, `${url.pathname}: title is ${title.length} characters`);
+  }
 });
 
 test('every public route has its own canonical, title, description and social metadata', () => {
@@ -97,7 +114,11 @@ test('every public route has its own canonical, title, description and social me
     assert.ok(content(html, 'og:description'), url.pathname);
     assert.equal(content(html, 'twitter:card'), 'summary_large_image', url.pathname);
     const image = new URL(content(html, 'og:image'));
-    assert.ok(existsSync(fileURLToPath(new URL(`.${image.pathname}`, output))), image.pathname);
+    const imageFile = fileURLToPath(new URL(`.${image.pathname}`, output));
+    assert.ok(existsSync(imageFile), image.pathname);
+    // WhatsApp drops share pictures over about 300 KB
+    assert.ok(statSync(imageFile).size < 250 * 1024, `${image.pathname} is too large to share`);
+    assert.match(image.pathname, /\.jpg$/, `${image.pathname}: share pictures are JPEG`);
     assert.doesNotMatch(html, /googletagmanager\.com/);
   }
 });
@@ -122,21 +143,36 @@ test('JSON-LD is parseable, includes the business and inner-page breadcrumbs', (
   }
 });
 
-test('legal drafts and styleguide are noindex and 404 supplies real recovery links', () => {
-  for (const path of ['privacy-policy', 'terms-of-service', 'styleguide']) {
+test('legal drafts are noindex, the styleguide is not in the build, and 404 supplies real recovery links', () => {
+  assert.ok(!existsSync(new URL('styleguide/', output)), 'styleguide must not be built');
+  assert.ok(!existsSync(new URL('styleguide.html', output)), 'styleguide must not be built');
+  for (const path of ['privacy-policy', 'terms-of-service']) {
     const html = read(`${path}/index.html`);
     assert.match(content(html, 'robots'), /noindex/);
-    if (path !== 'styleguide') {
-      assert.doesNotMatch(html, /Draft for review|Draft updated:/);
-      assert.match(html, /On this page/);
-      assert.match(html, /mailto:liyatconstruction@gmail\.com/);
-      const anchors = [...html.matchAll(/href="#([a-z][a-z-]*)"/g)].map((match) => match[1]);
-      assert.ok(new Set(anchors).size >= 7, `${path}: missing legal navigation`);
-      for (const anchor of anchors) assert.ok(html.includes(`id="${anchor}"`), anchor);
-    }
+    assert.doesNotMatch(html, /Draft for review|Draft updated:/);
+    assert.match(html, /On this page/);
+    assert.match(html, /mailto:info@liyatconstruction\.com/);
+    const anchors = [...html.matchAll(/href="#([a-z][a-z-]*)"/g)].map((match) => match[1]);
+    assert.ok(new Set(anchors).size >= 7, `${path}: missing legal navigation`);
+    for (const anchor of anchors) assert.ok(html.includes(`id="${anchor}"`), anchor);
   }
   const missing = read('404.html');
   assert.match(missing, /Page not found/);
   assert.match(missing, /href="\/#contact"/);
   assert.doesNotMatch(read('terms-of-service/index.html'), /50%|fourteen \(14\)/);
+});
+
+test('the six service names are the same in the data, the privacy page and the form subjects', () => {
+  // services.ts is the source (it feeds the structured data); the other two lists are typed by hand
+  const names = [...read('index.html').matchAll(/"@type":"Service","name":"([^"]+)"/g)].map(
+    (match) => match[1]
+  );
+  assert.equal(names.length, 6);
+  const privacy = read('privacy-policy/index.html');
+  const subjects = read('index.html');
+  for (const name of names) {
+    const escaped = name.replaceAll('&', '&amp;');
+    assert.ok(privacy.includes(escaped), `privacy page misses service "${name}"`);
+    assert.ok(subjects.includes(escaped), `form subjects miss service "${name}"`);
+  }
 });

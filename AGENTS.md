@@ -19,7 +19,7 @@ Then read the files the task touches, plus their callers and types.
 - **One source for every decision:** raw design values only in `src/styles/tokens.css`;
   visual styling only in `src/components/ui/` and `src/components/cards/`; pages compose
   sections. A new look is a new variant in the component, never a one-off class.
-- **Reuse before you create; delete what is unused.** New components go onto `/styleguide`.
+- **Reuse before you create; delete what is unused.** New components go onto `/styleguide` (development only: it is not in the production build, T15).
 - **Only `src/app/` imports data;** components get it as props. Server components by default.
 - **Never invent facts** (figures, clients, names, quotes, credentials). Mark unconfirmed
   wording `// PLACEHOLDER(C-xx)` with the client item from `WORKFLOW.md`.

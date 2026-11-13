@@ -2,11 +2,13 @@ import { FeatureCard } from '@/components/cards/feature-card';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Icon } from '@/components/ui/icon';
+import { MapEmbed } from '@/components/ui/map-embed';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Subheading } from '@/components/ui/subheading';
 import type { SiteConfig } from '@/config/site';
 import type { ContactFormConfiguration } from '@/lib/contact-form';
+import { mapDirectionsUrl, mapEmbedUrl } from '@/lib/maps';
 import type { ContactPage } from '@/types/content';
 import { ContactForm } from './contact-form';
 
@@ -90,6 +92,14 @@ export function ContactPanel({ copy, contact, configuration, sender, id }: Conta
                   <span>{contact.officeHours}</span>
                 </div>
               </FeatureCard>
+            )}
+            {contact.map && (
+              <MapEmbed
+                embedUrl={mapEmbedUrl(contact.map)}
+                directionsUrl={mapDirectionsUrl(contact.map)}
+                title={copy.details.mapTitle}
+                directionsLabel={copy.details.directions}
+              />
             )}
           </div>
         </div>

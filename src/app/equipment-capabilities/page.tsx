@@ -13,7 +13,7 @@ const { header, rigs, fleet, gallery, support, methods, figures, readiness } = E
 
 export const metadata: Metadata = pageMetadata(
   '/equipment-capabilities',
-  header.title,
+  header.metaTitle ?? header.title,
   header.description
 );
 

@@ -16,7 +16,11 @@ import { GROUNDWATER_PARTNERS, PARTNERS } from '@/data/partners';
 
 const { header, story, figures, missionVision, values, clients, partners, safety } = ABOUT_PAGE;
 
-export const metadata: Metadata = pageMetadata('/about', header.title, header.description);
+export const metadata: Metadata = pageMetadata(
+  '/about',
+  header.metaTitle ?? header.title,
+  header.description
+);
 
 // PROJECT.md §7 (About), with the owner's revised section order (D-101)
 // and the facts shown both beside the story and as figures (D-51).

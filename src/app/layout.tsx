@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     template: siteConfig.seo.titleTemplate,
   },
   description: siteConfig.seo.metaDescription,
-  keywords: siteConfig.seo.keywords,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
@@ -100,7 +99,13 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body>
-        <OrganizationSchema siteUrl={siteUrl} />
+        <OrganizationSchema
+          siteUrl={siteUrl}
+          services={SERVICES.map((service) => ({
+            name: service.title,
+            path: `/services/${service.slug}`,
+          }))}
+        />
         <SkipLink />
         <div className="flex min-h-screen flex-col">
           <Header />

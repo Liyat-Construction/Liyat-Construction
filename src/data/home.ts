@@ -16,58 +16,53 @@ export const HOME_PAGE: HomePage = {
     // The whole first screen behind the headline (D-81). The first photo loads with the page;
     // the others load after it. Every photo but the Afar one needs the 60 % 'bright' scrim
     // (measured 2026-11-08/09)
+    // The owner's five (T7, 2026-11-13). `focus` is the crop on phones and tablets, `focusWide` from lg, `zoom` phones only;
+    // measured per device (the hero fills the screen: tall on a phone, wide on a desktop)
     slides: [
+      // 1
       {
         image: {
           url: '/images/hero/afar-rig-fleet.webp',
           alt: 'Liyat drilling rig, compressors and support trucks on site in the Afar region',
-          // Keeps the rig (far left) in view on narrow screens and the mountains behind the text
           focus: 'upper-left',
+          zoom: 'left',
         },
       },
+      // 2
+      {
+        image: {
+          url: '/images/hero/ethiopian-airlines.webp',
+          alt: 'Water pouring through the V-notch tank below the Liyat rig during a pumping test',
+          focus: 'right-third',
+          focusWide: 'center',
+        },
+        scrim: 'bright',
+      },
+      // 3
+      {
+        image: {
+          url: '/images/hero/belayneh-kinde-rig.webp',
+          alt: 'Liyat drilling rig with compressors on site, a water tower behind',
+          focus: 'left-third',
+          focusWide: 'center',
+        },
+        scrim: 'bright',
+      },
+      // 4
+      {
+        image: {
+          url: '/images/hero/yekatit-12.webp',
+          alt: 'Water jetting from a well beside the Liyat rig, trees behind',
+          focus: 'mid-left',
+          focusWide: 'center',
+        },
+        scrim: 'bright',
+      },
+      // 5
       {
         image: {
           url: '/images/hero/ea-v-notch.webp',
           alt: 'Water pouring through the V-notch tank as a Liyat engineer checks the flow',
-        },
-        scrim: 'bright',
-      },
-      {
-        image: {
-          url: '/images/hero/ea-casing-site.webp',
-          alt: 'Liyat drilling rig with casing pipes laid out on site in Addis Ababa',
-        },
-        scrim: 'bright',
-      },
-      // CANDIDATES (owner, 2026-11-09): the owner's "wide" photos, in the slider only so he can
-      // choose; the ones he doesn't pick come out again. The two 1280 px ones look soft on
-      // large screens, and the drilling-fluid one shows mud spread on the ground
-      {
-        image: {
-          url: '/images/hero/welding-dusk.webp',
-          alt: 'A Liyat welder joining casing beside the rig at dusk',
-        },
-        scrim: 'bright',
-      },
-      {
-        image: {
-          url: '/images/hero/casing-pipes-cabin.webp',
-          alt: 'Casing pipes laid out beside the Liyat rig and site cabin',
-        },
-        scrim: 'bright',
-      },
-      {
-        image: {
-          url: '/images/hero/rig-drilling-fluid.webp',
-          alt: 'Liyat drilling rig and trucks with drilling fluid channels in the foreground',
-        },
-        scrim: 'bright',
-      },
-      {
-        image: {
-          url: '/images/hero/engineers-on-casing.webp',
-          alt: 'Engineers standing on the casing pipes beneath the raised Liyat rig mast',
-          focus: 'upper',
         },
         scrim: 'bright',
       },
@@ -80,7 +75,7 @@ export const HOME_PAGE: HomePage = {
     eyebrow: 'Who we are',
     title: 'One team from survey to a working pump',
     paragraphs: [
-      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. We started in 2019 as Wondwossen Water Well Drilling Contractor and took the name Liyat Construction PLC in May 2022.',
+      'Liyat Construction PLC is a water-well drilling and groundwater engineering company in Addis Ababa, Ethiopia. We began in 2019 as Wondwossen Water Well Drilling Contractor and became Liyat Construction PLC in May 2022.',
       'We drill for institutions, embassies, commercial developments and communities. Our wells run from 100 m at a salt works in Afdera to 600 m in Addis Ababa. Our own crews run the rig, the pumping test and the pump installation, so you deal with one contractor and get one set of records, from survey to tank, in whichever stages you need.',
     ],
     image: {

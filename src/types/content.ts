@@ -6,7 +6,15 @@
  */
 
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
-export type ImageFocus = 'center' | 'top' | 'upper' | 'right' | 'upper-left';
+export type ImageFocus =
+  | 'center'
+  | 'top'
+  | 'upper'
+  | 'right'
+  | 'upper-left'
+  | 'left-third'
+  | 'mid-left'
+  | 'right-third';
 
 export interface ImageAsset {
   /** Path of the prepared image, e.g. '/images/projects/<slug>/cover.webp' (PROJECT.md §9) */
@@ -14,6 +22,11 @@ export interface ImageAsset {
   alt: string;
   /** Defaults to 'center' */
   focus?: ImageFocus;
+  /** From the lg breakpoint (landscape screens); defaults to `focus`. A full-screen photo is cropped
+   *  differently on a tall phone and a wide desktop, so each can keep its own part in view */
+  focusWide?: ImageFocus;
+  /** Phones only: scales the photo up about the named side (a wide photo whose subject is small) */
+  zoom?: 'left';
 }
 
 /** A headline figure: a depth, a yield, a count. `water` marks water data (PROJECT.md §5). */
@@ -43,6 +56,8 @@ export interface Service {
   slug: ServiceSlug;
   /** The official name (PROJECT.md §8), used identically everywhere */
   title: string;
+  /** Search-result title when "<title> in Ethiopia" would be too long (the site name is added after it) */
+  metaTitle?: string;
   /** One line, on the service card */
   summary: string;
   /** Search-result description (about 160 characters); names Ethiopia and Addis Ababa */
@@ -92,7 +107,7 @@ export interface Project {
 }
 
 /** The short story on a project page: the job, what we did, the result. */
-export interface ProjectStory {
+interface ProjectStory {
   /** Search-result title, under about 50 characters; the site name is added after it */
   metaTitle: string;
   /** Search-result description, about 160 characters; names Addis Ababa */
@@ -155,9 +170,11 @@ export interface Feature {
 }
 
 /** The top of an inner page (PageHeader). */
-export interface PageCopy {
+interface PageCopy {
   eyebrow?: string;
   title: string;
+  /** Search-result title when it should differ from the page heading (about 35 characters; the site name is added after it) */
+  metaTitle?: string;
   /** One sentence, at most about 20 words (D-73) */
   intro?: string;
   /** Landscape photo behind the page header (D-72) */
@@ -209,7 +226,7 @@ export interface ProjectsPage {
 }
 
 /** A section of running text, with an optional button (Story section). */
-export interface StoryCopy extends SectionCopy {
+interface StoryCopy extends SectionCopy {
   paragraphs: string[];
 }
 
@@ -313,5 +330,8 @@ export interface ContactPage {
     email: string;
     address: string;
     hours: string;
+    /** Names the map for screen readers */
+    mapTitle: string;
+    directions: string;
   };
 }
