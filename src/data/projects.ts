@@ -20,6 +20,53 @@ const photo = (
 // Keeps the top of a tall phone shot in view when a card crops it
 const top = { focus: 'top' } as const;
 
+// Liyat's new photos (2026-11-16, D-199). The crane photo was the British Embassy cover until then.
+const BRITISH_CRANE = photo(
+  'british-embassy-pump-installation',
+  'cover',
+  'Pump installation works at the British Embassy, Addis Ababa',
+  top
+);
+// Liyat's photo 1 (D-199): water from the new pump at the outlet, a 1920×1080 video frame. The
+// pump and outlet sit left of centre: phones keep them in view, wide screens show the jet.
+const BRITISH_WATER: ImageAsset = {
+  ...photo(
+    'british-embassy-pump-installation',
+    'water-from-pump',
+    'Water from the new submersible pump at the British Embassy, Addis Ababa'
+  ),
+  focus: 'left-third',
+  focusWide: 'center',
+};
+// Liyat's photo 2 (owner, 2026-11-16): portrait; the vehicles are in the upper third
+const BRITISH_VEHICLES = photo(
+  'british-embassy-pump-installation',
+  'vehicles-on-site',
+  'Work vehicles on site in the British Embassy compound, Addis Ababa',
+  { focus: 'upper' }
+);
+// Chaka House header since 2026-11-16 (owner chose photo 1 or 3; photo 1 is landscape with the
+// rig in the middle, so it holds the header at every width)
+const CHAKA_RIG_AND_CASINGS = photo(
+  'chaka-house-project',
+  'rig-and-casings',
+  'Liyat rig and casing pipes on site at Chaka House'
+);
+const CHAKA_TEAM = photo(
+  'chaka-house-project',
+  'team-at-rig',
+  'The Liyat team at work beside the rig at Chaka House'
+);
+// The Chaka House cover until 2026-11-16, a portrait: 'upper' keeps the mast and the truck wheels
+const CHAKA_RIG = photo(
+  'chaka-house-project',
+  'cover',
+  'Liyat drilling rig on site at Chaka House',
+  {
+    focus: 'upper',
+  }
+);
+
 // The Ethiopian Airlines photos are used on its project page and in the Projects gallery
 const EA_RIG = photo(
   'ethiopian-airlines-pumping-test',
@@ -131,13 +178,8 @@ export const PROJECTS: Project[] = [
       'A complete groundwater source: survey, a 250 m well, and a submersible pump connected to the tank.',
     description:
       'A turnkey project in the embassy compound: hydrogeological and geophysical investigation, drilling and construction of a 250 m well, and supply and installation of a submersible pump with all accessories, connected to the water tank.',
-    image: photo(
-      'british-embassy-pump-installation',
-      'cover',
-      'Pump installation works at the British Embassy, Addis Ababa',
-      top
-    ),
-    gallery: [],
+    image: BRITISH_WATER,
+    gallery: [BRITISH_CRANE, BRITISH_VEHICLES],
     services: [
       'hydrogeological-geophysical-survey',
       'deep-shallow-water-well-drilling',
@@ -147,7 +189,6 @@ export const PROJECTS: Project[] = [
     // Client proposal: turnkey project, 250 m well
     depth: { value: '250', unit: 'm', label: 'Well depth' },
     featured: true,
-    // PLACEHOLDER(C-40): one photo only; Liyat sends more after the requirements session
     story: {
       metaTitle: 'British Embassy Water Well',
       metaDescription:
@@ -181,7 +222,8 @@ export const PROJECTS: Project[] = [
         'The embassy has a working groundwater source: a 250 m well, a submersible pump, and the tank connected to it, finished in 2026.',
         'Because one contractor ran every stage, what the investigation found guided the drilling, and the well guided the pump, with no hand-offs between firms.',
       ],
-      photos: [],
+      // The header photo again, then the crane and the vehicles (owner, 2026-11-16)
+      photos: [BRITISH_WATER, BRITISH_CRANE, BRITISH_VEHICLES],
     },
   },
   {
@@ -195,17 +237,13 @@ export const PROJECTS: Project[] = [
     summary: 'A 600 m well — the deepest on our completed list — for the Chaka House development.',
     description:
       'Drilling of a 600 m well with 14-inch, 10-inch and 6-inch casing for the Chaka House development, for Palace Administration and Etoile GC PLC. At 600 m it is the deepest well on our completed-projects list.',
-    // 'upper' keeps both the top of the mast and the truck wheels in the card
-    image: photo('chaka-house-project', 'cover', 'Liyat drilling rig on site at Chaka House', {
-      focus: 'upper',
-    }),
-    gallery: [],
+    image: CHAKA_RIG_AND_CASINGS,
+    gallery: [CHAKA_RIG, CHAKA_TEAM],
     services: ['deep-shallow-water-well-drilling'],
     // Client proposal: 600 m, 14"/10" + 10"/6" casing — deepest well on the list
     depth: { value: '600', unit: 'm', label: 'Well depth' },
     // Liyat's written answers: Chaka House replaces Tsedey Bank as Home's third project
     featured: true,
-    // PLACEHOLDER(C-40): one photo only; Liyat sends more after the requirements session
     story: {
       metaTitle: 'Chaka House 600 m Water Well',
       metaDescription:
@@ -232,7 +270,8 @@ export const PROJECTS: Project[] = [
         'A 600 m well for the Chaka House development, completed in 2022 and still the deepest on our list of completed projects.',
         'It is also part of a record that runs from 100 m at a salt works in Afdera to 600 m here in Addis Ababa: more than 50 wells and more than 12,000 m drilled since 2019.',
       ],
-      photos: [],
+      // Three photos on site, the header among them (owner, 2026-11-16)
+      photos: [CHAKA_RIG, CHAKA_RIG_AND_CASINGS, CHAKA_TEAM],
     },
   },
   {

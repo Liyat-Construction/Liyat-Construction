@@ -86,11 +86,6 @@ export const ABOUT_PAGE: AboutPage = {
     intro:
       'Our project record includes embassies, public institutions, development programmes and businesses across Ethiopia.',
   },
-  // Liyat's own heading for the two firms it works with on groundwater investigation (D-174)
-  partners: {
-    eyebrow: 'Our partners',
-    title: 'Partners for groundwater investigation',
-  },
   safety: {
     eyebrow: 'Responsibility',
     title: 'Safety and site practice',

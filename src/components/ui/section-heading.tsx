@@ -29,6 +29,8 @@ interface SectionHeadingProps {
   /** Defaults to the size of the `as` level; `display` is the home hero only */
   size?: keyof typeof titleSizes;
   introSize?: keyof typeof introSizes;
+  /** `split`: eyebrow and title on the left, the intro on the right from lg (team, T11) */
+  layout?: 'stacked' | 'split';
   /** Pass the same id to Section `labelledBy` */
   id?: string;
   className?: string;
@@ -44,9 +46,25 @@ export function SectionHeading({
   as: Heading = 'h2',
   size = Heading,
   introSize = 'lead',
+  layout = 'stacked',
   id,
   className,
 }: SectionHeadingProps) {
+  if (layout === 'split') {
+    return (
+      <div className={cn('gap-x-grid grid gap-y-4 lg:grid-cols-2 lg:items-end', className)}>
+        <div className="flex flex-col items-start gap-4">
+          {eyebrow && <Eyebrow tone={eyebrowTone}>{eyebrow}</Eyebrow>}
+          <Heading id={id} className={cn('text-balance', pick(titleSizes, size))}>
+            {title}
+          </Heading>
+        </div>
+        {intro && (
+          <p className={cn(pick(introSizes, introSize), 'text-ink-muted max-w-prose')}>{intro}</p>
+        )}
+      </div>
+    );
+  }
   return (
     <div className={cn('flex max-w-3xl flex-col gap-4', pick(aligns, align), className)}>
       {eyebrow && (

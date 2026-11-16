@@ -128,16 +128,16 @@ WebP made from `assets/images/brand/logo.png` by `npm run images`. On dark it si
 ## 6. Component library
 
 - **ui:** Container · Section (`paper`/`ink`, spacing, grid pattern, rule) · SectionGroup ·
-  SectionHeading · Eyebrow · Subheading · Button (`primary`/`secondary`, `md`/`lg`, icons) ·
+  SectionHeading (`stacked`/`split`) · Eyebrow · Subheading · Button (`primary`/`secondary`, `md`/`lg`, icons) ·
   SmartLink (internal/external/tel/mailto) · Card · Photo (fixed ratios: `wide`, `card`,
   `portrait`, `fill`; `image.focus` picks the crop) · Backdrop (photo under a scrim) · Fade ·
-  Stat · FactsTable · CheckList · Steps · Prose · Icon (registered names only) · Logo · Rule ·
+  Stat · StatRow (`plain`/`ruled`) · FactsTable · StaffTable (headcount bars) · SiteTeams · CheckList · Steps · Prose · Icon (registered names only) · Logo · Rule ·
   Breadcrumbs · Field/Input/Textarea/Select · FormFeedback · LegalDocument · FooterSurface ·
   SystemMessage.
 - **cards:** ProjectCard · ServiceCard · TestimonialCard · FeatureCard · ClientCard.
 - **sections:** Hero · PageHeader · Story · ServiceLifecycle · ServiceDetail ·
   FeaturedProjects · ProjectGrid · ProjectDetail · PhotoGallery · ProofStrip · ClientList · FeatureGrid ·
-  EquipmentTeaser · Testimonials · ContactPanel · ContactForm · CtaBand · LegalContent.
+  EquipmentTeaser · Testimonials · TeamFacts · ContactPanel · ContactForm · CtaBand · LegalContent.
 
 Sections hide themselves when their data is empty. `/styleguide` shows each with real data.
 
@@ -146,8 +146,9 @@ Sections hide themselves when their data is empty. `/styleguide` shows each with
 - **Home:** Hero → Who we are (`#about`) → Services + well diagram (`#services`; hovering a
   service lights its part of the well, CSS `:has()`) → Projects + clients row (`#projects`)
   → Equipment (`#equipment`) → Testimonials (`#testimonials`) → Contact (`#contact`).
-- **About:** story + company facts → figures → mission and vision → values → clients → safety
-  (links to Environment). No team section (D-122); "Expert team" is one of the values.
+- **About:** story + company facts → figures → mission and vision → values → team (`#team`:
+  figures, three site teams, staff by role with headcount bars, no names or photos, D-194, D-196, `src/data/team.ts`) → clients →
+  safety (links to Environment).
 - **Projects:** project cards → photo gallery (4:5 tiles) → clients. A card links to a page only
   when the project has a `story`.
 - **Project page** (three, D-184): cover header with the key figures → the job, what we did, the result and the services

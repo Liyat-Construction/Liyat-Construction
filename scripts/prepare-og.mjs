@@ -125,18 +125,6 @@ await wide({
 
 for (const item of [
   {
-    slug: 'chaka-house-project',
-    file: 'cover.webp',
-    title: 'Chaka House',
-    detail: '600 m water well, Addis Ababa',
-  },
-  {
-    slug: 'british-embassy-pump-installation',
-    file: 'cover.webp',
-    title: 'British Embassy',
-    detail: '250 m well and pump, Addis Ababa',
-  },
-  {
     slug: 'ethiopian-airlines-pumping-test',
     file: 'cover.jpg',
     title: 'Ethiopian Airlines',
@@ -150,6 +138,24 @@ for (const item of [
     output: `public/images/projects/${item.slug}/og.jpg`,
   });
 }
+
+// The Chaka House cover is landscape since 2026-11-16 (the rig and casings): full picture
+await wide({
+  source: 'assets/images/projects/chaka-house-project/rig-and-casings.jpg',
+  position: sharp.gravity.center,
+  title: 'Chaka House',
+  subtitle: '600 m water well, Addis Ababa',
+  output: 'public/images/projects/chaka-house-project/og.jpg',
+});
+
+// The British Embassy cover is landscape since D-199 (water from the pump outlet): full picture
+await wide({
+  source: 'assets/images/projects/british-embassy-pump-installation/water-from-pump.png',
+  position: sharp.gravity.center,
+  title: 'British Embassy',
+  subtitle: '250 m well and pump, Addis Ababa',
+  output: 'public/images/projects/british-embassy-pump-installation/og.jpg',
+});
 
 // The photo each service page already uses (src/data/services.ts); "wide" for landscape,
 // "split" for the two portrait covers

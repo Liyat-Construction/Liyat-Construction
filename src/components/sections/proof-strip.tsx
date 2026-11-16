@@ -2,7 +2,7 @@ import type { Partner, SectionCopy, Stat as StatData } from '@/types/content';
 import { ClientList } from '@/components/sections/client-list';
 import { Section } from '@/components/ui/section';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { Stat } from '@/components/ui/stat';
+import { StatRow } from '@/components/ui/stat-row';
 
 interface ProofStripProps extends SectionCopy {
   figures: StatData[];
@@ -35,26 +35,7 @@ export function ProofStrip({
           title={title}
           intro={intro}
         />
-        {figures.length > 0 && (
-          <dl
-            className={
-              figures.length === 3
-                ? 'gap-grid grid sm:grid-cols-3'
-                : 'gap-grid grid grid-cols-2 lg:grid-cols-4'
-            }
-          >
-            {figures.map((figure) => (
-              <Stat
-                key={figure.label}
-                value={figure.value}
-                unit={figure.unit}
-                label={figure.label}
-                tone={figure.water ? 'water' : 'ink'}
-                align={figuresAlign}
-              />
-            ))}
-          </dl>
-        )}
+        <StatRow figures={figures} align={figuresAlign} />
         <ClientList clients={clients} title={clientsTitle} />
       </div>
     </Section>

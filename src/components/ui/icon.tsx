@@ -5,6 +5,10 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleAlert,
+  ClipboardCheck,
+  Droplets,
+  HardHat,
+  Mountain,
   Clock,
   Cog,
   Drill,
@@ -57,6 +61,12 @@ const icons = {
   rehabilitation: Wrench,
   pump: Cog,
   turnkey: KeyRound,
+  // The team section (T11): site-team roles
+  'project-manager': ClipboardCheck,
+  hydrologist: Droplets,
+  geologist: Mountain,
+  crew: HardHat,
+  wrench: Wrench,
 } as const satisfies Record<string, LucideIcon>;
 
 const sizes = {

@@ -5,6 +5,8 @@
  * Facts the client has not confirmed are optional: a missing fact renders nothing.
  */
 
+import type { IconName } from '@/components/ui/icon';
+
 /** Which part of a photo stays in view when a ratio crops it (portrait photos in 4:3 cards). */
 export type ImageFocus =
   | 'center'
@@ -135,6 +137,29 @@ export interface Testimonial {
   organization: string;
 }
 
+/** One role in the team table (StaffTable, T11). */
+export interface StaffRole {
+  role: string;
+  /** People in the role; `max` only when Liyat gives a range (5–7) */
+  staff: number;
+  max?: number;
+  /** The training the role requires (not the degrees people hold, D-196) */
+  training: string;
+}
+
+/** One role in a site team (SiteTeams, T11). */
+export interface SiteRole {
+  role: string;
+  icon: IconName;
+}
+
+/** A department in the team table, with its subtotal. */
+export interface StaffGroup {
+  title: string;
+  staff: string;
+  roles: StaffRole[];
+}
+
 export interface Equipment {
   name: string;
   /** e.g. 'Drilling rig', 'Air compressor' */
@@ -238,7 +263,6 @@ export interface AboutPage {
   missionVision: SectionCopy & { items: Feature[] };
   values: SectionCopy & { items: Feature[] };
   clients: SectionCopy;
-  partners: SectionCopy;
   safety: SectionCopy & { link: Action };
 }
 

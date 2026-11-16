@@ -45,6 +45,15 @@ import { ProjectDetail } from '@/components/sections/project-detail';
 import { ProjectFigures } from '@/components/sections/project-figures';
 import { getServiceTitles, SERVICES } from '@/data/services';
 import { TESTIMONIALS } from '@/data/testimonials';
+import { TeamFacts } from '@/components/sections/team-facts';
+import {
+  SITE_TEAMS,
+  TEAM_FIGURES,
+  TEAM_FOOTNOTE,
+  TEAM_GROUPS,
+  TEAM_SECTION,
+  TEAM_TOTAL,
+} from '@/data/team';
 import { photos, projectFacts, sectionCopy } from './_parts/samples';
 import { Caption, Specimen, Swatch } from './_parts/specimen';
 import { readTokens } from './_parts/tokens';
@@ -485,6 +494,16 @@ export default function StyleguidePage() {
           {...ABOUT_PAGE.missionVision}
         />
         <FeatureGrid id="sg-values" columns={3} {...ABOUT_PAGE.values} />
+        {/* TeamFacts: SectionHeading layout=split, StatRow variant=ruled, StaffTable (T11) */}
+        <TeamFacts
+          id="sg-team"
+          {...TEAM_SECTION}
+          figures={TEAM_FIGURES}
+          siteTeams={SITE_TEAMS}
+          groups={TEAM_GROUPS}
+          total={TEAM_TOTAL}
+          footnote={TEAM_FOOTNOTE}
+        />
         <ProofStrip id="sg-figures" {...ABOUT_PAGE.figures} figures={stats} />
         <ProofStrip id="sg-clients" {...ABOUT_PAGE.clients} figures={[]} clients={PARTNERS} />
       </SectionGroup>

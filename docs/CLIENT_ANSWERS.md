@@ -171,3 +171,30 @@ and a testimonial; how we get access (D-183).
 - R2, R3 and R5–R9 are still to come from Liyat.
 
 - **R7 Belayneh Kinde (owner, 2026-11-13).** Belayneh Kinde General Contractor is part of Belayneh Kinde Group (the site uses the Group). Liyat's list: drilling of 220 m and of 250 m, each with 8 inch casing, Addis Ababa; year 2026; the "200 m" was a rough figure. Do not say "ongoing".
+
+## Answers of 2026-11-16 (the owner, from Liyat)
+
+- **R5 Depth.** Yes: "Our drilling depth is up to 800 m. Our rigs are rated 300 m and 1,200 m." C-37 closes.
+- **R9 Legal pages.** Keep as they are. C-29 closes (`noindex` still comes off at launch, T20).
+- **R6 Partners.** Liyat decided: no partners on the site. Milto and Husky come off too. C-38 and C-39 close.
+- **Belgian Embassy photo.** Keep the site as it is; no question to Liyat (owner).
+- **R8 Team.** Liyat sent "Organizational Structure & Staffing" (PDF, kept outside git and deleted
+  after T11). The owner confirmed it is the team **today**. No years of experience will come: build
+  without them. Heading: "Experienced Leadership. Dedicated Field Experts." Subheading: "Meet the
+  engineers, hydrogeologists, technical specialists, and support professionals powering Liyat Water
+  Drilling Construction's reliable project delivery across Ethiopia." Facts (permanent staff):
+  - Office and administration 10: General Manager 1, contract and legal 1, promotion and marketing 1,
+    executive secretary 1, liaison and driver 1, security 3, cleaners 2.
+  - Finance and HR 5: head 1, senior accountant 1, junior accountant 1, store keeper 1, secretary and
+    HR assistant 1.
+  - Technical and project operations 22–24: project managers 3 (M.Sc. or B.Sc. in water resources,
+    hydrogeology or civil engineering), chief machine operators 3 (TVET IV or diploma), machine
+    operator assistants 3 (TVET II–III), hydrologists 3 (M.Sc. or B.Sc.), geologists 3 (M.Sc. or
+    B.Sc.), electricians 2 (TVET III–IV or diploma), drilling crew 5–7; local day labourers are added
+    when three rigs work at the same time.
+  - Total 37–39. The PDF gives degree **requirements** per role ("M.Sc. or B.Sc."), not the degrees
+    people hold; publish them as the role's field, never as "2 M.Sc., 1 B.Sc.".
+  - Not given: years of experience, on-call experts, CVs with proposals. Left out (no padding).
+- **R2 Quotes** will come from Liyat. **R3 photos:** no new photos for the British Embassy and Chaka
+  House; Liyat sent three videos and five photos (`public/images/Videos and new photos/`, to move
+  out of `public/` before any build or commit).

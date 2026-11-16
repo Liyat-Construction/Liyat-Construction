@@ -4,6 +4,7 @@ import { FeatureGrid } from '@/components/sections/feature-grid';
 import { PageHeader } from '@/components/sections/page-header';
 import { ProofStrip } from '@/components/sections/proof-strip';
 import { Story } from '@/components/sections/story';
+import { TeamFacts } from '@/components/sections/team-facts';
 import { SectionGroup } from '@/components/ui/section-group';
 import { ABOUT_PAGE } from '@/data/about';
 import {
@@ -12,9 +13,17 @@ import {
   COMPANY_REGISTRATION,
   SAFETY_PRACTICES,
 } from '@/data/company';
-import { GROUNDWATER_PARTNERS, PARTNERS } from '@/data/partners';
+import { PARTNERS } from '@/data/partners';
+import {
+  SITE_TEAMS,
+  TEAM_FIGURES,
+  TEAM_FOOTNOTE,
+  TEAM_GROUPS,
+  TEAM_SECTION,
+  TEAM_TOTAL,
+} from '@/data/team';
 
-const { header, story, figures, missionVision, values, clients, partners, safety } = ABOUT_PAGE;
+const { header, story, figures, missionVision, values, clients, safety } = ABOUT_PAGE;
 
 export const metadata: Metadata = pageMetadata(
   '/about',
@@ -51,8 +60,16 @@ export default function AboutPage() {
           {...missionVision}
         />
         <FeatureGrid id="values" columns={3} {...values} />
+        <TeamFacts
+          id="team"
+          {...TEAM_SECTION}
+          figures={TEAM_FIGURES}
+          siteTeams={SITE_TEAMS}
+          groups={TEAM_GROUPS}
+          total={TEAM_TOTAL}
+          footnote={TEAM_FOOTNOTE}
+        />
         <ProofStrip id="about-clients" {...clients} figures={[]} clients={PARTNERS} />
-        <ProofStrip id="about-partners" {...partners} figures={[]} clients={GROUNDWATER_PARTNERS} />
         <FeatureGrid id="safety" icon="check" {...safety} items={SAFETY_PRACTICES} />
       </SectionGroup>
     </>
