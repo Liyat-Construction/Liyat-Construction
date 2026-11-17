@@ -1,8 +1,8 @@
 # Liyat's answers
 
-The record of what Liyat told us and what we do about it. Recorded 2026-11-04, updated
-2026-11-05. The steps to apply it are in [`WORKFLOW.md`](../WORKFLOW.md); the questions still
-open are the requirements list R1–R9 in [`DIRECTION.md`](DIRECTION.md).
+The record of what Liyat told us and what we did with it (2026-11-04 to 2026-11-16). Everything
+here is answered and applied. Still open: real client quotes (C-12), the Web3Forms key (C-25)
+and the `info@` test; see the open items in [`WORKFLOW.md`](../WORKFLOW.md).
 
 ## Sources
 
@@ -32,10 +32,6 @@ files were deleted from the project (D-133).
 | —   | Equipment list            | Sent as a separate file                              | Fleet list on the Equipment page; rigs "1200 m" and "300 m" vs his "up to 800m" (C-37, D-132) |
 | —   | Testimonials, hero photos | Empty                                                | Samples stay until launch (C-12); Home hero stays one photo (D-131)                           |
 
-Still to come, asked by the owner: real testimonials (C-12), the reason for 800 m vs 1,200 m
-(C-37), the Belayneh Kinde well's depth and work, where Arada Luxury Mall is, and a Belgian
-Embassy photo (C-36).
-
 Don't confuse two similar words: **Turnkey** is the service (his profile misspells it
 "Turnkiye projects"); **Turkey / Türkiye** is where some of the rigs come from.
 
@@ -61,7 +57,7 @@ sensible reading and he checks it on the preview. **Ask** = one of the must-ask 
 | Q    | Topic                     | His answer                                                                                                    | What we do                                                                                         | Status  |
 | ---- | ------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------- |
 | 1.1  | Testimonials              | Left empty                                                                                                    | The owner asks him for real quotes; the samples stay meanwhile and go before launch (D-129)        | Waiting |
-| 2.1  | Team                      | "Expert team: our staff are professional, friendly, courteous, and dedicated to excellence. No need of names" | Remove the team section; use his line instead                                                      | Done    |
+| 2.1  | Team                      | "Expert team: our staff are professional, friendly, courteous, and dedicated to excellence. No need of names" | Replaced 2026-11-16: team section from his PDF, no names (R8, D-196)                               | Done    |
 | 3.1  | Proposal's 13 wells       | "Leave the proposal"                                                                                          | Stop using the proposal's totals. Keep project details (see 6.4)                                   | Default |
 | 3.2  | 50+ wells, 15,000 m+      | "2019-2026"                                                                                                   | Follow-up: 50+ wells and 12,000 m+                                                                 | Done    |
 | 3.3  | Work before 2019          | "No"                                                                                                          | The figures cover 2019–2026 only                                                                   | Done    |
@@ -124,37 +120,24 @@ Spelling mistakes in the profile, for the owner to mention if useful: "Turnkiye 
 ## Meeting, 10 November 2026
 
 Answers from the Notion page "Meeting questions for Liyat" (copied 2026-11-12; Notion is the
-original). Items marked **ask** are still open.
+original). The open points were answered on 2026-11-13 and 2026-11-16 (below).
 
-| #   | Topic                      | His answer                                                                                                                     | What we do                                                                                                           |
-| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| 1   | Address                    | The office is 301 Mickey Leland St, Addis Ababa; the street name and Bole Sub City, Woreda 04, House 201 are the same place    | **ask:** Google Maps puts Mickey Leland St in Woreda 03, he gave Woreda 04. No structured-data address until settled |
-| 2   | Opening hours              | Mon–Sat, 8:00 AM – 5:00 PM is right; Google Maps will be corrected                                                             | The site is right; the Business Profile needs correcting                                                             |
-| 3   | Two Google Maps profiles   | His is the one with the phone number and website; the other is not his, can't be deleted, so ignore it                         | Ignore the other (replaces D-181's "Liyat deletes the other")                                                        |
-| 4–5 | LinkedIn, Facebook         | They create the pages; we send one document: one Gmail, same profile picture, address, phone, bio everywhere                   | Requirements document                                                                                                |
-| 6   | Google reviews             | Ask every client from now on for a review and a testimonial                                                                    | Requirements document                                                                                                |
-| 7   | Client quotes              | He will share them                                                                                                             | Requirements document                                                                                                |
-| 8   | Three project pages        | Ethiopian Airlines finished **2024**; hardest part and duration: not available. Owner: leave duration, invent a "hardest part" | Duration left out. **Agent objects to inventing** the hardest part (see `SEO_PLAN.md` step 5)                        |
-| 9   | Belgian Embassy            | Finished **2025**; no photo, he will send a better illustrative photo                                                          | Year to add; photo in the requirements document                                                                      |
-| 10  | Belayneh Kinde, Arada Mall | Belayneh Kinde: ongoing, 2026, 200 m deep. Arada Luxury Mall: Piassa, Addis Ababa, "320 pump installation"                     | **ask:** is the 320 a well depth or a pump? (the site says a 320 m well)                                             |
-| 11  | Rig depth                  | "We drill up to 800 and we have equipment that drills 1,200 and 300 m"; asks where the site says it                            | The Equipment page and Home's equipment section say it; the answer to C-37 is still open                             |
-| 12  | Partners                   | They will send the Husky logo and may add other partners                                                                       | Requirements document (C-39)                                                                                         |
-| 13  | Zelalem                    | Zelalem Fiker (role not given)                                                                                                 | Our records only, never on the site                                                                                  |
-| 14  | Public email               | info@liyatconstruction.com                                                                                                     | **ask:** does the address exist and forward to his Gmail? The site and form still use the Gmail address (C-25)       |
-| 15  | How we get access (D-183)  | Not on the Notion page, not asked                                                                                              | **ask**                                                                                                              |
-
-**Other requests from the owner at the meeting:** remove one picture from the Equipment page
-(the owner says which); a Google map in the contact section (reverses "map removed", D-116;
-agent: a link to Maps costs nothing, an embed adds a third-party script and a CSP change; wait for
-the address); a team section built like the partners section, no staff photos and names (reopens
-D-122; needs content from Liyat).
-
-**For the requirements document** (the owner sends it with the website): real client quotes with
-name, job title and permission; the Husky logo and website, and any other partners; a better
-illustrative photo for the Belgian Embassy; extra photos for the British Embassy and Chaka House;
-information for the team section; one Gmail, profile picture, address, phones and bio for all
-profiles; LinkedIn, Facebook and WhatsApp Business pages; ask every client for a Google review
-and a testimonial; how we get access (D-183).
+| #   | Topic                      | His answer                                                                                                                     | What we do                                                                                    |
+| --- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| 1   | Address                    | The office is 301 Mickey Leland St, Addis Ababa; the street name and Bole Sub City, Woreda 04, House 201 are the same place    | Answered (R1): the woreda is left out of the address                                          |
+| 2   | Opening hours              | Mon–Sat, 8:00 AM – 5:00 PM is right; Google Maps will be corrected                                                             | The site is right; the Business Profile needs correcting                                      |
+| 3   | Two Google Maps profiles   | His is the one with the phone number and website; the other is not his, can't be deleted, so ignore it                         | Ignore the other (replaces D-181's "Liyat deletes the other")                                 |
+| 4–5 | LinkedIn, Facebook         | They create the pages; we send one document: one Gmail, same profile picture, address, phone, bio everywhere                   | Requirements document                                                                         |
+| 6   | Google reviews             | Ask every client from now on for a review and a testimonial                                                                    | Requirements document                                                                         |
+| 7   | Client quotes              | He will share them                                                                                                             | Requirements document                                                                         |
+| 8   | Three project pages        | Ethiopian Airlines finished **2024**; hardest part and duration: not available. Owner: leave duration, invent a "hardest part" | Duration left out. **Agent objects to inventing** the hardest part (see `SEO_PLAN.md` step 5) |
+| 9   | Belgian Embassy            | Finished **2025**; no photo, he will send a better illustrative photo                                                          | Year 2025 added; the illustrative photo stays (owner, 2026-11-16)                             |
+| 10  | Belayneh Kinde, Arada Mall | Belayneh Kinde: ongoing, 2026, 200 m deep. Arada Luxury Mall: Piassa, Addis Ababa, "320 pump installation"                     | Answered (R4, R7): a 320 m well and pump installation, Piassa; Belayneh Kinde 220 m and 250 m |
+| 11  | Rig depth                  | "We drill up to 800 and we have equipment that drills 1,200 and 300 m"; asks where the site says it                            | Answered (R5): "drilling depth up to 800 m; rigs rated 300 m and 1,200 m"                     |
+| 12  | Partners                   | They will send the Husky logo and may add other partners                                                                       | Answered (R6): no partners on the site                                                        |
+| 13  | Zelalem                    | Zelalem Fiker (role not given)                                                                                                 | Our records only, never on the site                                                           |
+| 14  | Public email               | info@liyatconstruction.com                                                                                                     | Forwarding set up and the site uses `info@` (T4); the test is still to do                     |
+| 15  | How we get access (D-183)  | Not on the Notion page, not asked                                                                                              | Replaced by D-186: Liyat opens his own profiles                                               |
 
 ## Answers of 2026-11-13 (the owner, after calling Wondwossen)
 
@@ -168,8 +151,6 @@ and a testimonial; how we get access (D-183).
   pump installation. The 320 is the well depth; the card keeps it.
 - **Equipment photo.** The owner says the casing-and-screen pipes photo is materials, not equipment;
   replaced by the crane lifting a submersible pump.
-- R2, R3 and R5–R9 are still to come from Liyat.
-
 - **R7 Belayneh Kinde (owner, 2026-11-13).** Belayneh Kinde General Contractor is part of Belayneh Kinde Group (the site uses the Group). Liyat's list: drilling of 220 m and of 250 m, each with 8 inch casing, Addis Ababa; year 2026; the "200 m" was a rough figure. Do not say "ongoing".
 
 ## Answers of 2026-11-16 (the owner, from Liyat)
@@ -195,6 +176,6 @@ and a testimonial; how we get access (D-183).
   - Total 37–39. The PDF gives degree **requirements** per role ("M.Sc. or B.Sc."), not the degrees
     people hold; publish them as the role's field, never as "2 M.Sc., 1 B.Sc.".
   - Not given: years of experience, on-call experts, CVs with proposals. Left out (no padding).
-- **R2 Quotes** will come from Liyat. **R3 photos:** no new photos for the British Embassy and Chaka
-  House; Liyat sent three videos and five photos (`public/images/Videos and new photos/`, to move
-  out of `public/` before any build or commit).
+- **R2 Quotes** will come from Liyat (still open, C-12). **R3 photos:** Liyat sent three videos and
+  five photos, used as D-198 and D-199 say (T11b). The files sit outside the project, in
+  `../Videos and new photos/`.

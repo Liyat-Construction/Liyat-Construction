@@ -384,8 +384,8 @@ export const PROJECTS: Project[] = [
     title: 'A well for a shopping mall',
     scope: 'Drilling · Casing · Well development · Pump installation',
     client: 'Arada Luxury Mall',
-    // PLACEHOLDER(C-36): the owner asks where the mall is; general until then
-    location: 'Ethiopia',
+    // Liyat at the meeting of 2026-11-10: Piassa, Addis Ababa
+    location: 'Piassa, Addis Ababa',
     summary:
       'A 320 m deep well for Arada Luxury Mall, from drilling and casing to well development, with pump installation.',
     // Liyat confirmed the two services, 2026-11-13: deep-well drilling (320 m) and pump installation
@@ -446,8 +446,8 @@ export const PROJECTS: Project[] = [
     location: 'Addis Ababa',
     summary: 'A 200 m well for the Embassy of Belgium in Addis Ababa.',
     description: 'Drilling of a 200 m well for the Embassy of Belgium in Addis Ababa.',
-    // PLACEHOLDER(C-36): no photo from this project yet (owner, 2026-11-05: show a general
-    // Liyat photo marked illustrative until Liyat sends one)
+    // No photo from this project: a general Liyat photo marked illustrative (D-136; the owner
+    // kept it, 2026-11-16)
     image: {
       url: '/images/hero/belayneh-kinde-rig.webp',
       alt: 'Liyat drilling rig and air compressors on a well site',

@@ -199,7 +199,8 @@ recompressed social-media images and no originals exist).
 ## 10. Quality bar
 
 - **Performance:** Lighthouse ≥ 95, LCP < 2.0 s, CLS < 0.05; first-load JS ≤ 190 KB gzip
-  per route; one priority image per page; no third-party scripts (no map, no analytics).
+  per route; one priority image per page; no third-party scripts and no analytics; the only
+  third-party content is the lazy Google Maps frame on Contact (T12).
 - **Accessibility (WCAG 2.2 AA):** one h1 per page, skip link, visible focus, 44 px targets,
   approved contrast pairs only, linked form errors, new-tab links announced.
 - **SEO:** per-page metadata from `lib/metadata.ts`; sitemap from navigation + services;

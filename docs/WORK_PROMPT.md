@@ -11,11 +11,10 @@ Do NOT change anything yet. First find out where we are, then report.
 
 Read only, in this order:
 1. AGENTS.md
-2. WORKFLOW.md: "You are here" (first 45 lines, with the open client items) and the last handoff
-3. docs/DIRECTION.md: all decisions (D-186 onward), every task with its tick state, and
-   "The road from here"
-Open docs/PROJECT.md, docs/SEO_PLAN.md, docs/CLIENT_ANSWERS.md, docs/TEAM_SECTION.md or Notion
-only for the part the next task needs, with Grep, never whole files.
+2. WORKFLOW.md: "You are here", the open client items and the last handoff
+3. docs/DIRECTION.md (short): decisions, the open tasks and "The road from here"
+Open docs/PROJECT.md, docs/SEO_PLAN.md, docs/CLIENT_ANSWERS.md or Notion only for the part the
+next task needs, with Grep, never whole files.
 
 Report in plain words, short:
 - Done: the ticked tasks, one line each
